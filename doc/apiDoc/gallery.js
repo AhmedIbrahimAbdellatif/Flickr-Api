@@ -1,0 +1,3 @@
+/**
+ * Galelry Endpoints
+ */
