@@ -1,7 +1,7 @@
 /**
  * Tag Endpoints
  */
-/** 
+/**
  * @api {get} /tags/trending Get trending tags
  * @apiName Get Trending Tags
  * @apiGroup Tag
@@ -19,7 +19,7 @@
  *              }
  *          ]
  *     }
-*/
+ */
 
 /** 
  * @api {get} /tag/:id Get tag media
