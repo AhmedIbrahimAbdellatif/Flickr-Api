@@ -12,17 +12,12 @@
 ///////////////////GHALLAB////////////////////////
 /**
  * @apiUse Authentication
- * @api {get} /groups/:groupName/members  View Group's members
+ * @api {get} /group/members/:groupId  View Group's members
  * @apiName View Group's members
  * @apiGroup Group
  * @apiDescription Returns all the members of a certain group
  * @apiVersion  1.0.0
- *
- *
  * @apiParam  {String} groupId  The ID of the group that you want to view it's members
- *
- * @apiSuccess (200)
- *
  * @apiParamExample {json} Request-Example:
  * {
  *     "groupId": "5349b4ddd2781d08c09890f4"
@@ -33,11 +28,13 @@
  * {
  *     members : [
  *              {
+ *                _id:''
  *                userType : String
  *                firstName : String
  *                lastName : String
  *              },
  *              {
+ *                _id:'',
  *                userType : String
  *                firstName : String
  *                lastName : String
@@ -53,16 +50,13 @@
  */
 /**
  *
- * @api {get} /groups/:groupName/media  Get the group Media
+ * @api {get} /group/media/:groupId  Get the group Media
  * @apiName Get Group's media
  * @apiGroup Group
  * @apiVersion  1.0.0
  *
  *
  * @apiParam  {String} groupId  The ID of the group that you want to view it's members
- *
- * @apiSuccess (200)
- *
  * @apiParamExample {json} Request-Example:
  * {
  *     "groupId": "5349b4ddd2781d08c09890f4"
@@ -72,6 +66,7 @@
  * {
  *     images : [
  *              {
+ *                _id:''
  *                url : String
  *                title : String
  *                creator : String
@@ -79,6 +74,7 @@
  *                commentsNum : Number
  *              },
  *              {
+ *                _id:''
  *                url : String
  *                title : String
  *                creator : String
