@@ -2,7 +2,7 @@
  * Tag Endpoints
  */
 /**
- * @api {get} /tags/trending Get trending tags
+ * @api {get} /tag/trending Get trending tags
  * @apiName Get Trending Tags
  * @apiGroup Tag
  * @apiVersion 1.0.0
