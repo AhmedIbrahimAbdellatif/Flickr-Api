@@ -14,7 +14,7 @@
  * @apiUse Authentication
  * @api {post} /gallery/addPhoto         Add photo to gallery
  * @apiName Add photo to gallery
- * @apiGroup gallery
+ * @apiGroup Gallery
  * @apiVersion  1.0.0
  *
  *
