@@ -638,7 +638,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    message : \"Photo added successfully\"\n}",
+          "content": "{\n    message : \"Photo removed successfully\"\n}",
           "type": "json"
         }
       ]
