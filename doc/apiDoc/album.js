@@ -149,3 +149,40 @@
  *     }
  *
  */
+/**
+ * @apiUse Authentication
+ * @api {post} /album/removePhoto         Remove photo from album
+ * @apiName Remove photo from album
+ * @apiGroup Album
+ * @apiVersion  1.0.0
+ *
+ *
+ * @apiParam  {String} photoId
+ * @apiParam  {String} albumId
+ *
+ * @apiParamExample  {json} Request-Example:
+ * {
+ *     photoId : "5349b4ddd2781d08c09890f4"
+ *     albumId : "5349b4ddd2781d08c09890f4"
+ * }
+ *
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     message : "Photo removed successfully"
+ * }
+ *
+ * @apiError (404) Photo Not Found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *          "message": "Photo Not Found"
+ *     }
+ * @apiError (404) Album Not Found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *          "message": "Album Not Found"
+ *     }
+ *
+ */

@@ -125,6 +125,37 @@
  */
 /**
  * @apiUse Authentication
+ * @api {post} /group/leave Leave Group
+ * @apiName Leave Group
+ * @apiGroup Group
+ * @apiVersion 1.0.0
+ * @apiDescription Leave A group
+ * @apiParam {String} userId userId that wants to leave the group
+ * @apiParam {String} groupId Group to which user will leave
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "userId": "5349b4ddd2781d08c09890f4",
+ *     "groupId": "5349b4ddd2781d08c09890f4"
+ * }
+ * @apiError (404) UserNotFound  The User isn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * @apiError (404) GroupNotFound  The Group isn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Group Not Found"
+ *        }
+ *     }
+ */
+/**
+ * @apiUse Authentication
  * @api {post} /group/inviteUser Invite User to Group
  * @apiName Invite User to Group
  * @apiGroup Group

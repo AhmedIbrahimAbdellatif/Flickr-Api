@@ -359,35 +359,6 @@
  *     }
  * 
 */
-
-/** 
- * @apiUse Authentication
- * @api {post} /photo/addToGroup Add Media to Group
- * @apiName Add Media to Group if Admin
- * @apiGroup Photo
- * @apiVersion 1.0.0
- * @apiDescription Add Media to Group if the user is admin
- * @apiParam {String} photoId ID of the photo to be added
- * @apiParam {String} groupId ID of the group to be added to
- * @apiParamExample {json} Request-Example:
- * {
- *     photoId: "asdn574hfjjhdfu74sdknfn"
- *     groupId: "5349b4ddd2781d08c09890f6"
- * }
- *  @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- * {
- * }
- * @apiError (404) PhotoNotFound  The id of the photo wasn't found
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": {
- *          "message": "Photo Not Found"
- *        }
- *     }
- * 
-*/
 /**
  * @apiUse photoObjects
  * @api {get} /photo/searchPhotos/:searchText Search Photos

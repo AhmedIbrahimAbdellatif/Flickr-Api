@@ -382,9 +382,229 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/album/removePhoto",
+    "title": "Remove photo from album",
+    "name": "Remove_photo_from_album",
+    "group": "Album",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "photoId",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "albumId",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    photoId : \"5349b4ddd2781d08c09890f4\"\n    albumId : \"5349b4ddd2781d08c09890f4\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    message : \"Photo removed successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "Photo",
+            "description": "<p>Not Found</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "Album",
+            "description": "<p>Not Found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Album Not Found\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./doc/apiDoc/album.js",
+    "groupTitle": "Album",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p>"
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./doc/main.js",
+    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "name": ""
+  },
+  {
+    "type": "post",
     "url": "/gallery/addPhoto",
     "title": "Add photo to gallery",
     "name": "Add_photo_to_gallery",
+    "group": "Gallery",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "photoId",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "galleryId",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    photoId : \"5349b4ddd2781d08c09890f4\"\n    galleryId : \"5349b4ddd2781d08c09890f4\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    message : \"Photo added successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "Photo",
+            "description": "<p>Not Found</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "gallery",
+            "description": "<p>Not Found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"gallery Not Found\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./doc/apiDoc/gallery.js",
+    "groupTitle": "Gallery",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/gallery/removePhoto",
+    "title": "Remove photo from gallery",
+    "name": "Remove_photo_from_gallery",
     "group": "Gallery",
     "version": "1.0.0",
     "parameter": {
@@ -874,6 +1094,94 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/group/leave",
+    "title": "Leave Group",
+    "name": "Leave_Group",
+    "group": "Group",
+    "version": "1.0.0",
+    "description": "<p>Leave A group</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>userId that wants to leave the group</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "groupId",
+            "description": "<p>Group to which user will leave</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"userId\": \"5349b4ddd2781d08c09890f4\",\n    \"groupId\": \"5349b4ddd2781d08c09890f4\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The User isn't found</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "GroupNotFound",
+            "description": "<p>The Group isn't found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./doc/apiDoc/group.js",
+    "groupTitle": "Group",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
     "url": "/group/editUserAccess",
     "title": "Promote/Demote Member",
     "name": "Promote_Member",
@@ -1088,92 +1396,6 @@ define({ "api": [
     },
     "filename": "./doc/apiDoc/group.js",
     "groupTitle": "Group",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users access-token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
-          "type": "json"
-        }
-      ]
-    }
-  },
-  {
-    "type": "post",
-    "url": "/photo/addToGroup",
-    "title": "Add Media to Group",
-    "name": "Add_Media_to_Group_if_Admin",
-    "group": "Photo",
-    "version": "1.0.0",
-    "description": "<p>Add Media to Group if the user is admin</p>",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "photoId",
-            "description": "<p>ID of the photo to be added</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "groupId",
-            "description": "<p>ID of the group to be added to</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    photoId: \"asdn574hfjjhdfu74sdknfn\"\n    groupId: \"5349b4ddd2781d08c09890f6\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "404": [
-          {
-            "group": "404",
-            "optional": false,
-            "field": "PhotoNotFound",
-            "description": "<p>The id of the photo wasn't found</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./doc/apiDoc/photo.js",
-    "groupTitle": "Photo",
     "header": {
       "fields": {
         "Header": [
@@ -3855,6 +4077,85 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/user/unfollowUser",
+    "title": "Unfollow User",
+    "name": "Unfollow_User",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Following a user.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The ID of the user to be unfollowed</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n      \"userId\": \"5349b4ddd2781d08c09890f4\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 Success\n{\n    \n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "User",
+            "description": "<p>Not Found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Failed\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
         }
       ]

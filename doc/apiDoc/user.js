@@ -544,6 +544,34 @@
  *     }
  * 
  */
+/**
+ * @apiUse Authentication
+ * @api {post} /user/unfollowUser Unfollow User
+ * @apiName Unfollow User
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Following a user.
+ * @apiParam {Number} userId The ID of the user to be unfollowed
+ * @apiParamExample {json} Request-Example:
+ *{
+ *       "userId": "5349b4ddd2781d08c09890f4"
+ *     }
+  
+ * @apiSuccessExample {json} Success-Response:
+ *    HTTP/1.1 200 Success
+ *   {
+ *       
+ *     }
+ * @apiError (404) User Not Found
+ *  @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Failed
+ *     {
+ *       "error": {
+ *          "message": "User Not Found"
+ *        }
+ *     }
+ * 
+ */
  /**
  * @api {get} /user/about/:userId Show About
  * @apiName Show User's About
