@@ -12,7 +12,7 @@
 ////////////////////////////GHALLAB///////////////////////////
 /**
  *
- * @api {post} /users/login Login using Facebook
+ * @api {post} /user/login Login using Facebook
  * @apiName Facebook Login
  * @apiGroup User
  * @apiVersion  1.0.0
@@ -48,7 +48,7 @@
  */
 /**
  *
- * @api {get} /users/:userId/followers  Get the followers of a certain User
+ * @api {get} /user/followers/:userId  Get the followers of a certain User
  * @apiName Get User Followers
  * @apiGroup User
  * @apiVersion  1.0.0
@@ -56,7 +56,6 @@
  *
  * @apiParam  {String} userId   ID of User which is required to show his followers
  *
- * @apiSuccess (200)
  *
  * @apiParamExample  {json} Request-Example:
  * {
@@ -65,6 +64,7 @@
  *
  *
  * @apiSuccessExample {json} Success-Response:
+ * HTTP/1.1 200 Success
  * {
  *     followers : [
  *                  {
@@ -90,7 +90,7 @@
  */
 /**
  *
- * @api {get} /users/:userId/followings  Get the followings of a certain User
+ * @api {get} /user/followings/:userId  Get the followings of a certain User
  * @apiName Get User Followings
  * @apiGroup User
  * @apiVersion  1.0.0
@@ -98,15 +98,15 @@
  *
  * @apiParam  {String} userId   ID of User which is required to show his followings
  *
- * @apiSuccess (200)
  *
  * @apiParamExample  {json} Request-Example:
  * {
  *     userId : "5349b4ddd2781d08c09890f4"
  * }
  *
- *
+ * 
  * @apiSuccessExample {json} Success-Response:
+ * HTTP/1.1 200 Success
  * {
  *     following : [
  *                  {
@@ -133,23 +133,23 @@
 
 /**
  *
- * @api {get} /search/users/:username     Search on user //username is the keyword you want to search for
+ * @api {get} /user/search/:username     Search on user //username is the keyword you want to search for
  * @apiName Search on user
  * @apiGroup User
  * @apiVersion  1.0.0
  *
  *
- * @apiParam  {String} keyWord    any word to be matched with user names in the DB
+ * @apiParam  {String} username    any word to be matched with user names in the DB
  *
- * @apiSuccess (200)
  *
  * @apiParamExample  {json} Request-Example:
  * {
- *     keyWord : "Ghallab"
+ *     username : "Ghallab"
  * }
  *
  *
  * @apiSuccessExample {json} Success-Response:
+ * HTTP/1.1 200 Success
  * {
  *     users : [{
  *                _id : String,

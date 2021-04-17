@@ -122,7 +122,6 @@
  *
  * @apiParam  {String} photoId
  * @apiParam  {String} albumId
- * @apiSuccess (200)
  *
  * @apiParamExample  {json} Request-Example:
  * {
