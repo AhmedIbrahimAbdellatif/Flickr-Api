@@ -218,6 +218,7 @@
  *       "title": "Cat",
  *       "description": "image description",
  *       "tags": ["cat","animals"],
+ *       "photoUrl": 'https://www.google.com/photo'
  *       "views": 1023,
  *       "favouritesNum": 1023,
  *       "commentsNum": 1023,
