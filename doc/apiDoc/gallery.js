@@ -65,7 +65,7 @@
  *
  * @apiSuccessExample {json} Success-Response:
  * {
- *     message : "Photo added successfully"
+ *     message : "Photo removed successfully"
  * }
  *
  * @apiError (404) Photo Not Found
