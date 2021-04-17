@@ -43,7 +43,7 @@
                     "firstName": "Ahmed",
                     "lastName": "Ibrahim"
                 },
-                "photo": <binary data>,
+                "url": '',
                 "title": 'Cairo Tower',
                 "description": 'Cairo tower at the sunset'
  *          },
