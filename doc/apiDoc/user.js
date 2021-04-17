@@ -626,7 +626,6 @@
                 "title": 'Cairo Tower',
                 "description": 'Cairo tower at the sunset'
                 "itemsNum": 27
-                coverImageUrl: '',
  *          },            
  *       ],
  *     }
