@@ -21,19 +21,20 @@
 ////////////////////////////////////GHALLAB////////////////////////
 /**
  * @apiUse Authentication
- * @api {post} /photos/:userId/:imageUrl         Edit License of a photo
+ * @api {post} /photo/editPhotoLicense         Edit License of a photo
  * @apiName Edit License of a photo
  * @apiGroup Photo
  * @apiVersion  1.0.0
  *
  *
  * @apiParam  {String} License  Type of license you want
- *
- * @apiSuccess (200)
+ * @apiParam  {String} photoId  photoId to change its license
+ 
  *
  * @apiParamExample  {json} Request-Example:
  * {
- *     license : "All rights reserved"
+ *     "license" : "All rights reserved",
+ *      "photoId": "safasfasdfae34q32qwe"
  * }
  * @apiError (404) image not found
  * @apiErrorExample {json} Error-Response:
@@ -51,13 +52,16 @@
  */
 /**
  *
- * @api {get} /search/:text&license        Search by license
+ * @api {get} /photo/search/:searchText        Search by license
  * @apiName Search by license
  * @apiGroup Photo
  * @apiVersion  1.0.0
- *
- *
- * @apiSuccess (200)
+ * @apiParam  {String} searchText  Text to search by
+ * 
+ * @apiParamExample  {json} Request-Example:
+ * {
+ *     "searchText" : "All rights reserved",
+ * }
  *
  * @apiSuccessExample {json} Success-Response:
  * {
@@ -88,22 +92,15 @@
  */
 /**
  * @apiUse Authentication
- * @api {delete} /photos/:userId        Delete Photo
+ * @api {delete} /photo        Delete Photo
  * @apiName Delete Photo
  * @apiGroup Photo
  * @apiVersion  1.0.0
- *
- *
- * @apiParam  {String} photoId
- *
- * @apiSuccess (200)
- *
+ * @apiParam  {String} photoId Photo to be deleted
  * @apiParamExample  {json} Request-Example:
  * {
  *     photoId : "5349b4ddd2781d08c09890f4"
  * }
- *
- *
  * @apiSuccessExample {json} Success-Response:
  * {
  *     message : "Photo with ID 5349b4ddd2781d08c09890f4 is deleted"
@@ -125,7 +122,7 @@
  */
 /**
  *
- * @api {post} /photos/:photoId         Comment on Media
+ * @api {post} /photo/comment Comment on Photo
  * @apiName Comment On a photo
  * @apiGroup Photo
  * @apiVersion  1.0.0
@@ -133,15 +130,11 @@
  *
  * @apiParam  {String} comment The Comment to be added
  * @apiParam  {String} photoId
- * @apiSuccess (200)
- *
  * @apiParamExample  {json} Request-Example:
  * {
  *     photoId : "5349b4ddd2781d08c09890f4",
  *     comment : "Awesome"
  * }
- *
- *
  * @apiSuccessExample {json} Success-Response:
  * {
  *     message : "Comment Added Successfully"
@@ -216,7 +209,7 @@
 ///////////////////////////////////////// KARIM ///////////////////////////////////////////
 /**
  * * @apiUse Authentication
- * @api {post} /photo/privacy/:photoId Adjust Privacy
+ * @api {post} /photo/privacy Adjust Privacy
  * @apiName Adjust Privacy
  * @apiGroup Photo
  * @apiVersion 1.0.0
@@ -224,7 +217,7 @@
  * @apiParam {String} photoId ID of the photo whose privacy is to be adjusted
  * @apiParamExample {json} Request-Example:
  * {
- *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "5349b4ddd2781d08c09890f4"
  *     isPublic: true
  * }
  *  @apiSuccessExample {json} Success-Response:
@@ -243,7 +236,7 @@
 /** 
 * 
  * @apiUse Authentication
- * @api {post} /photo/allowCommenting/:photoId Allow Commenting
+ * @api {post} /photo/allowCommenting Allow Commenting
  * @apiName Allow commenting
  * @apiGroup Photo
  * @apiVersion 1.0.0
@@ -251,7 +244,7 @@
  * @apiParam {String} photoId ID of the photo to allow comments on
  * @apiParamExample {json} Request-Example:
  * {
- *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "5349b4ddd2781d08c09890f4"
  *     allowCommenting: false
  * }
  *  @apiSuccessExample {json} Success-Response:
@@ -272,7 +265,7 @@
 
 /** 
  * @apiUse Authentication
- * @api {post} /photo/addToFavorites/:photoId Add to Favorites
+ * @api {post} /photo/addToFavorites Add to Favorites
  * @apiName Add to Favorites
  * @apiGroup Photo
  * @apiVersion 1.0.0
@@ -280,7 +273,6 @@
  * @apiParam {String} photoId ID of the photo to be added to favorites
  * @apiParamExample {json} Request-Example:
  * {
- *     userId: "5349b4ddd2781d08c09890f4"
  *     photoId: "asdn574hfjjhdfu74sdknfn"
  * }
  *  @apiSuccessExample {json} Success-Response:
@@ -300,7 +292,7 @@
 
 /** 
  * @apiUse Authentication
- * @api {post} /photo/addTags/:photoId Add Tags
+ * @api {post} /photo/addTags Add Tags
  * @apiName Add Tags
  * @apiGroup Photo
  * @apiVersion 1.0.0
@@ -309,7 +301,6 @@
  * @apiParam {String} tag The text to be added as a tag
  * @apiParamExample {json} Request-Example:
  * {
- *     userId: "5349b4ddd2781d08c09890f4"
  *     photoId: "asdn574hfjjhdfu74sdknfn"
  *     tag: "Sunset"
  * }
@@ -337,13 +328,19 @@
  * @apiParam {String} photoId ID of the photo
  * @apiParamExample {json} Request-Example:
  * {
- *     userId: "5349b4ddd2781d08c09890f4"
  *     photoId: "asdn574hfjjhdfu74sdknfn"
  * }
- * @apiSuccess {[Object]} user Array of users who made the media favorite
+ * @apiSuccess {Object[]]} user Array of users who made the media favorite
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  * {
+ *     "user":[
+ *          {
+ *              _id:'',
+ *              firstName:'',
+ *              lastName:''
+ * }
+ * ]
  * }
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
@@ -358,47 +355,17 @@
 
 /** 
  * @apiUse Authentication
- * @api {post} /photo/addToGroup/:photoId Add Media to Group
+ * @api {post} /photo/addToGroup Add Media to Group
  * @apiName Add Media to Group if Admin
  * @apiGroup Photo
  * @apiVersion 1.0.0
  * @apiDescription Add Media to Group if the user is admin
  * @apiParam {String} photoId ID of the photo to be added
  * @apiParam {String} groupId ID of the group to be added to
- * @apiParam {String} userId ID of the user
  * @apiParamExample {json} Request-Example:
  * {
- *     userId: "5349b4ddd2781d08c09890f4"
  *     photoId: "asdn574hfjjhdfu74sdknfn"
  *     groupId: "5349b4ddd2781d08c09890f6"
- * }
- *  @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- * {
- * }
- * @apiError (404) PhotoNotFound  The id of the photo wasn't found
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": {
- *          "message": "Photo Not Found"
- *        }
- *     }
- * 
-*/
-/** 
- * @apiUse Authentication
- * @api {post} /photo/editCoverPhoto/:photoId Edit Cover Photo
- * @apiName Edit Cover Photo
- * @apiGroup Photo
- * @apiVersion 1.0.0
- * @apiDescription Change cover photo
- * @apiParam {String} photoId ID of the photo to be added
- * @apiParam {String} userId ID of the user
- * @apiParamExample {json} Request-Example:
- * {
- *     userId: "5349b4ddd2781d08c09890f4"
- *     photoId: "asdn574hfjjhdfu74sdknfn"
  * }
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
