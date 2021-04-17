@@ -368,27 +368,7 @@
  *     }
  */
 /**
- * @api {get} /user/about/:id Get About
- * @apiName Get User About
- * @apiGroup User
- * @apiVersion 1.0.0
- * @apiDescription View user's about
- * @apiParam {String} id User to show about for
- * @apiSuccess {String} userAbout
- * @apiErrorExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       "userAbout": "Photographer under training"
- *     }
- * @apiError (404) UserNotFound  The id of the user wasn't found
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
- *     }
- */
+ 
 /**
  * @api {get} /user/fav/:id Get Favorites
  * @apiName Get User Favorites
@@ -487,4 +467,191 @@
  *          "message": "User Not Found"
  *        }
  *     }
+ * 
+ * ///////////////////////////////// KARIM ///////////////////////////////////              * @api {post} /user/signUp Sign Up
+  
+   
+  * @apiName Sign Up
+  * @apiGroup User
+  * @apiVersion 1.0.0
+  * @apiDescription Creating a new account.
+  * @apiParam {String} email User's Email
+  * @apiParam {String} password User's Password
+  * @apiParam {String} firstName User's First Name
+  * @apiParam {String} lastName User's Last Name
+  * @apiParam {Number} age User's Age
+  * @apiParamExample {json} Request-Example:
+  *{    
+  *       "email": "user@email.com",
+  *       "firstName": "User",
+  *      "lastName": "User",
+  *       "age": 18,      
+  *     }
+  
+ * @apiSuccess {Object} user
+ * @apiSuccess {String} user.email User's Email
+ * @apiSuccess {String} user.firstName User's First Name
+ * @apiSuccess {String} user.lastName User's Last Name
+ * @apiSuccess {String} user.accessToken  User's Access Token
+ * @apiSuccess {Number} user.age User's Age
+ * @apiSuccess {String} user._id User's Id
+ * @apiSuccess {Number} user.followers User's Followers
+ * @apiSuccess {Number} user.following User's Following
+ * @apiSuccessExample {json} Success-Response:
+ *    HTTP/1.1 201 OK
+ *   {
+ *       "_id": "5349b4ddd2781d08c09890f4",
+ *       "email": "user@email.com",
+ *       "firstName": "User",
+ *      "lastName": "User",
+ *       "accessToken": "skdnksd7474g3kdbjfhf34",
+ *       "age": 18,
+ *       "followers": 63,
+ *       "following": 55,
+ *       
+ *     }
+ * @apiError (400) UserExists  The Email is already registered
+ *  @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Failed
+ *     {
+ *       "error": {
+ *          "message": "User Already Exists"
+ *        }
+ *     }
+ *  @apiUse Authentication
+ *  @api {post} /user/followUser Follow User
+ * @apiName Follow User
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Following a user.
+ * @apiParam {Number} userId The ID of the user to be followed
+ * @apiParamExample {json} Request-Example:
+ *{
+ *       "userId": "5349b4ddd2781d08c09890f4"
+ *     }
+  
+ * @apiSuccessExample {json} Success-Response:
+ *    HTTP/1.1 200 Success
+ *   {
+ *       
+ *     }
+ * @apiError (404) User Not Found
+ *  @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Failed
+ *     {
+ *       "error": {
+ *          "message": "User Not Found"
+ *        }
+ *     }
+ * 
+ * @api {get} /user/about/:userId Show About
+ * @apiName Show User's About
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Showing the about page of a user.
+ * @apiParam {Number} userId The ID of the user to show their about page
+ * @apiParamExample {json} Request-Example:
+ *{
+ *       "userId": "5349b4ddd2781d08c09890f4"
+ *     }
+ * @apiSuccess {Object[]} showcase An array of objects containing the photos with its data
+ * @apiSuccess {String} description User Description
+ * @apiSuccess {Object} statistics User's Statistics
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "showcase": [
+ *          {
+                "_id": "5349b4ddd2781d08c09890f4",
+                "tags": ["Tower","Egypt"],
+                "views": 1023,
+                "favouritesNum": 1023,
+                "commentsNum": 1023,
+                "creator": {
+                    "firstName": "Ahmed",
+                    "lastName": "Ibrahim"
+                },
+                "photo": <binary data>,
+                "title": 'Cairo Tower',
+                "description": 'Cairo tower at the sunset'
+ *          },
+                
+ *       ],
+        "description": "A talented photographer",
+        "statistics": 
+                {
+                    "views": 27
+                    "faves": 9
+                    "groups": 10
+                }
+ *     }
+ * @apiError (404) User Not Found
+ *  @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Failed
+ *     {
+ *       "error": {
+ *          "message": "User Not Found"
+ *        }
+ *     }
+ *
+ * @api {get} /user/galleries/:userId Show Galleries
+ * @apiName Show User's Galleries
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Showing the galleries of a user.
+ * @apiParam {Number} userId The ID of the user to show their galleries
+ * @apiParamExample {json} Request-Example:
+ * {
+ *       "userId": "5349b4ddd2781d08c09890f4"
+ *     }
+ * @apiSuccess {Object[]} galleries An array of objects containing the galleries of the user
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "gallery": [
+ *          {
+                "_id": "5349b4ddd2781d08c09890f4",
+                "views": 1023,
+                "commentsNum": 1023,
+                "creator": {
+                    "firstName": "Ahmed",
+                    "lastName": "Ibrahim"
+                },
+                "title": 'Cairo Tower',
+                "description": 'Cairo tower at the sunset'
+                "itemsNum": 27
+ *          },            
+ *       ],
+ *     }
+ *  @apiError (404) User Not Found
+ *  @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Failed
+ *     {
+ *       "error": {
+ *          "message": "User Not Found"
+ *        }
+ *     }
+ * @apiUse Authentication
+ * @apiUse photoObjects
+ * @api {get} /user/cameraRoll/:userId User Camera Roll
+ * @apiName Show User Camera Roll
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Return User's Camera Roll
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ * }
+ * 
+ * @apiError (404) UserNotFound  The id of the user wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "User Not Found"
+ *        }
+ *     }
+ 
  */
+
+
