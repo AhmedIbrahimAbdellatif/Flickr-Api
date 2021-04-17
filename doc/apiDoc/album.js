@@ -30,12 +30,12 @@
  */
 /**
  * @apiUse Authentication
- * @api {delete} /album/:id Delete an album
+ * @api {delete} /album/:albumId Delete an album
  * @apiName Create Album
  * @apiGroup Album
  * @apiVersion 1.0.0
  * @apiDescription Delete an existing album
- * @apiParam {String} id
+ * @apiParam {String} albumId Album Id
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {}
@@ -50,12 +50,12 @@
  */
 /**
  * @apiUse Authentication
- * @api {patch} /album/:id Edit an album
+ * @api {patch} /album/:albumId Edit an album
  * @apiName Edit Album
  * @apiGroup Album
  * @apiVersion 1.0.0
  * @apiDescription Edit Title and/or description of an album
- * @apiParam {String} id Album to be edited
+ * @apiParam {String} albumId Album to be edited
  * @apiParam {String} title New title for the album
  * @apiParam {String} description New description for the album
  * @apiParamExample {json} Request-Example:
@@ -76,12 +76,12 @@
  *     }
  */
 /** 
- * @api {get} /album/:id Get album media
+ * @api {get} /album/:albumId Get album media
  * @apiName Get Album Media
  * @apiGroup Album
  * @apiVersion 1.0.0
  * @apiDescription Get album media
- * @apiParam {String} id Album to view its media
+ * @apiParam {String} albumId Album to view its media
  * @apiSuccess {Object[]} media An array of objects containing the photos with its data
  * @apiSuccessExample {json} Error-Response:
  *     HTTP/1.1 200 OK
@@ -97,7 +97,7 @@
                     "firstName": "Ahmed",
                     "lastName": "Ibrahim"
                 },
- *              'photo': <binary data>,
+ *              'url': '',
  *              'title': 'Cairo Tower',
  *              'description': 'Cairo tower at the sunset'
  *          },

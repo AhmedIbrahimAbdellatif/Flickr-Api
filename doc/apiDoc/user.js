@@ -370,12 +370,12 @@
 /**
  
 /**
- * @api {get} /user/fav/:id Get Favorites
+ * @api {get} /user/fav/:userId Get Favorites
  * @apiName Get User Favorites
  * @apiGroup User
  * @apiVersion 1.0.0
  * @apiDescription View user's favorites
- * @apiParam {String} id User to show favorites for
+ * @apiParam {String} userId User to show favorites for
  * @apiSuccess {Object[]} favorites An array of objects containing the photos with its data
  * @apiErrorExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -407,12 +407,12 @@
  *     }
  */
 /**
- * @api {get} /user/groups/:id Get Groups
+ * @api {get} /user/groups/:userId Get Groups
  * @apiName Get User Groups
  * @apiGroup User
  * @apiVersion 1.0.0
  * @apiDescription View user's groups
- * @apiParam {String} id User to show groups for
+ * @apiParam {String} userId User to show groups for
  * @apiSuccess {Object[]} groups An array of objects containing the groups with its data
  * @apiErrorExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -438,7 +438,7 @@
  *     }
  */
 /**
- * @api {get} /user/albums/:id Get Albums
+ * @api {get} /user/albums/:userId Get Albums
  * @apiName Get User albums
  * @apiGroup User
  * @apiVersion 1.0.0
