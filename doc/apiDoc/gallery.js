@@ -12,7 +12,7 @@
 /////////////////////////////////GHALLAB///////////////////////
 /**
  * @apiUse Authentication
- * @api {post} /galleries/:userId/         Add photo to gallery
+ * @api {post} /gallery/addPhoto         Add photo to gallery
  * @apiName Add photo to gallery
  * @apiGroup gallery
  * @apiVersion  1.0.0
@@ -20,9 +20,6 @@
  *
  * @apiParam  {String} photoId
  * @apiParam  {String} galleryId
- *
- * @apiSuccess (200)
- *
  * @apiParamExample  {json} Request-Example:
  * {
  *     photoId : "5349b4ddd2781d08c09890f4"
