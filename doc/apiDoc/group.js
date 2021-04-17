@@ -223,4 +223,54 @@
  *     }
  */
 
-
+/////////////////////////////HIMA//////////////////////////
+/**
+ * @apiUse Authentication
+ * @api {post} /group/createGroup Create new group
+ * @apiName Create New Group
+ * @apiGroup Group
+ * @apiVersion 1.0.0
+ * @apiDescription Creating a new group by an authenticated user
+ * @apiParam {String} userId User id to be saved as the creator's id
+ * @apiParam {String} groupName Name for the group to be created
+ * @apiParam {String} [description] Description for the group to be created
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "userId": "5349b4ddd2781d08c09890f4",
+ *       "groupName": "Paris"
+ *       "description": "Paris pics 2019"
+ *     }
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {}
+ */
+/**
+ * @api {post} /group/search Search on Groups
+ * @apiName Search on Groups
+ * @apiGroup Group
+ * @apiVersion 1.0.0
+ * @apiDescription Searching for a certain group
+ * @apiParam {String} [name] Search by name
+ * @apiParam {String} [description] Search by description
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "name": "paris",
+ *     }
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "description": "Paris pics 2019"
+ *     }
+ * @apiSuccess {Object[]} groups An array of objects containing groups data
+ * @apiSuccessExample {json} Success-Response:
+ *    HTTP/1.1 200 OK
+ *    {
+ *      "group": [
+ *        "groupId": "5349b4ddd2781d08c09890f4",
+ *        "description": "Paris pics 2019",
+ *        "creator": "8949b4ddd2781d08c0989673",
+ *        "admins": ["6549b4ddd2781d08c0989323","2349b4ddd2781d08c0989101"]
+ *        "moderators": ["4649b4ddd2781d08c0989321","7049b4ddd2781d08c0989104"]
+ *        "members": ["2879b4ddd2781d08c0989020","9049b4ddd2781d08c0989100"]
+ *      ]
+ *    }
+ */

@@ -187,4 +187,27 @@
  *     }
  */
 ///////////////////////////////HIMA/////////////////////////////
-
+/**
+ * @apiUse Authentication
+ * @api {post} /photo/upload Upload a photo
+ * @apiName Upload Photo
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Upload a photo by an authenticated user
+ * @apiParam {String} photo A binary object containing the uploaded photo
+ * @apiParam {Boolean} isPublic Boolean to control if it's a public or a private photo
+ * @apiParam {String} title Title for the uploaded photo
+ * @apiParam {Boolean} allowCommenting Boolean to allow for commenting on the photo
+ * @apiParam {String} description Description for the uploaded photo
+ * @apiParamExample {json} Request-Example:
+ *     {
+ *       "photo" : <binary data>,
+ *       "isPublic": true,
+ *       "title": "Cairo Tower",
+ *       "allowCommenting": true,
+ *       "description": "A photo of Cairo tower at the sunset"
+ *     }
+ * @apiSuccessExample {json} Success-Response:
+ *    HTTP/1.1 200 OK
+ *    {}
+ */
