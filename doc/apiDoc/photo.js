@@ -210,4 +210,233 @@
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 OK
  *    {}
+ * 
+ * 
  */
+///////////////////////////////////////// KARIM ///////////////////////////////////////////
+/**
+ * * @apiUse Authentication
+ * @api {post} /photo/privacy/:photoId Adjust Privacy
+ * @apiName Adjust Privacy
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Adjust privacy of the photo
+ * @apiParam {String} photoId ID of the photo whose privacy is to be adjusted
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     isPublic: true
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ 
+/** 
+* 
+ * @apiUse Authentication
+ * @api {post} /photo/allowCommenting/:photoId Allow Commenting
+ * @apiName Allow commenting
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Allow comments
+ * @apiParam {String} photoId ID of the photo to allow comments on
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     allowCommenting: false
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ *  
+ * 
+*/
+
+/** 
+ * @apiUse Authentication
+ * @api {post} /photo/addToFavorites/:photoId Add to Favorites
+ * @apiName Add to Favorites
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Add a photo to favorites
+ * @apiParam {String} photoId ID of the photo to be added to favorites
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "asdn574hfjjhdfu74sdknfn"
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * 
+*/
+
+/** 
+ * @apiUse Authentication
+ * @api {post} /photo/addTags/:photoId Add Tags
+ * @apiName Add Tags
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Add more tags to a media
+ * @apiParam {String} photoId ID of the photo to add tags to
+ * @apiParam {String} tag The text to be added as a tag
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "asdn574hfjjhdfu74sdknfn"
+ *     tag: "Sunset"
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * 
+*/
+
+/** 
+ * @api {get} /photo/whoFavortied/:photoId See who favorited
+ * @apiName See who favorited
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription View who made a certain media favorite
+ * @apiParam {String} photoId ID of the photo
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "asdn574hfjjhdfu74sdknfn"
+ * }
+ * @apiSuccess {[Object]} user Array of users who made the media favorite
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * 
+*/
+
+/** 
+ * @apiUse Authentication
+ * @api {post} /photo/addToGroup/:photoId Add Media to Group
+ * @apiName Add Media to Group if Admin
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Add Media to Group if the user is admin
+ * @apiParam {String} photoId ID of the photo to be added
+ * @apiParam {String} groupId ID of the group to be added to
+ * @apiParam {String} userId ID of the user
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "asdn574hfjjhdfu74sdknfn"
+ *     groupId: "5349b4ddd2781d08c09890f6"
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * 
+*/
+/** 
+ * @apiUse Authentication
+ * @api {post} /photo/editCoverPhoto/:photoId Edit Cover Photo
+ * @apiName Edit Cover Photo
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Change cover photo
+ * @apiParam {String} photoId ID of the photo to be added
+ * @apiParam {String} userId ID of the user
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     userId: "5349b4ddd2781d08c09890f4"
+ *     photoId: "asdn574hfjjhdfu74sdknfn"
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * 
+*/
+/**
+ * @apiUse photoObjects
+ * @api {get} /photo/searchPhotos/:photoId Search Photos
+ * @apiName Search on Photos
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Search on photos using tags or title
+ * @apiParam {String} searchText The text to search with
+ * @apiParamExample {json} Request-Example:
+ * {
+ *    searchText: "Eiffel Tower"
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ * 
+*/

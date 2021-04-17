@@ -146,7 +146,7 @@
  *     HTTP/1.1 404 Not Found
  *     {
  *       "error": {
- *          "message": "Photo Not Found"
+ *          "message": "User Not Found"
  *        }
  *     }
  * @apiError (404) GroupNotFound  The Group isn't found
