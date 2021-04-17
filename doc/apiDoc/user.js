@@ -20,8 +20,6 @@
  *
  * @apiParam  {String} loginType  a string containing type of login ex:"Facebook"
  *
- * @apiSuccess (200) {type} name description
- *
  * @apiParamExample  {type} Request-Example:
  * {
  *     loginType : "Facebook"
@@ -174,8 +172,6 @@
  *
  * @apiParam  {String} description    The user's Description
  * @apiparam  {String} Showcase       The user's Showcase
- *
- * @apiSuccess (200)
  *
  * @apiParamExample  {type} Request-Example:
  * {

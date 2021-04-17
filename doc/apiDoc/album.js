@@ -114,7 +114,7 @@
 ////////////////////////////////GHALLAB//////////////////////////
 /**
  * @apiUse Authentication
- * @api {post} /album/:         Add photo to album
+ * @api {post} /album/addPhoto         Add photo to album
  * @apiName Add photo to album
  * @apiGroup Album
  * @apiVersion  1.0.0
