@@ -416,7 +416,7 @@
 */
 /**
  * @apiUse photoObjects
- * @api {get} /photo/searchPhotos/:photoId Search Photos
+ * @api {get} /photo/searchPhotos/:searchText Search Photos
  * @apiName Search on Photos
  * @apiGroup Photo
  * @apiVersion 1.0.0
@@ -426,10 +426,28 @@
  * {
  *    searchText: "Eiffel Tower"
  * }
+ * @apiSuccess {Object[]} media An array of objects containing the photos with its data
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
- * {
- * }
+ *     {
+ *       "media": [
+ *          {
+                "_id": "5349b4ddd2781d08c09890f4",
+                "tags": ["Tower","Egypt"],
+                "views": 1023,
+                "favouritesNum": 1023,
+                "commentsNum": 1023,
+                "creator": {
+                    "firstName": "Ahmed",
+                    "lastName": "Ibrahim"
+                },
+                "url": '',
+                "title": 'Cairo Tower',
+                "description": 'Cairo tower at the sunset'
+ *          },
+                
+ *       ],
+ *     }
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found

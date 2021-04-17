@@ -468,9 +468,10 @@
  *        }
  *     }
  * 
- * ///////////////////////////////// KARIM ///////////////////////////////////              * @api {post} /user/signUp Sign Up
-  
-   
+ * /   
+//////////////////////////////// KARIM ///////////////////////////////////  
+/**
+ *  @api {post} /user/signUp Sign Up
   * @apiName Sign Up
   * @apiGroup User
   * @apiVersion 1.0.0
@@ -518,8 +519,10 @@
  *          "message": "User Already Exists"
  *        }
  *     }
- *  @apiUse Authentication
- *  @api {post} /user/followUser Follow User
+ * /
+ /**
+ * @apiUse Authentication
+ * @api {post} /user/followUser Follow User
  * @apiName Follow User
  * @apiGroup User
  * @apiVersion 1.0.0
@@ -544,6 +547,8 @@
  *        }
  *     }
  * 
+ */
+ /**
  * @api {get} /user/about/:userId Show About
  * @apiName Show User's About
  * @apiGroup User
@@ -571,7 +576,7 @@
                     "firstName": "Ahmed",
                     "lastName": "Ibrahim"
                 },
-                "photo": <binary data>,
+                "url": '',
                 "title": 'Cairo Tower',
                 "description": 'Cairo tower at the sunset'
  *          },
@@ -593,7 +598,8 @@
  *          "message": "User Not Found"
  *        }
  *     }
- *
+ */
+/**
  * @api {get} /user/galleries/:userId Show Galleries
  * @apiName Show User's Galleries
  * @apiGroup User
@@ -620,6 +626,7 @@
                 "title": 'Cairo Tower',
                 "description": 'Cairo tower at the sunset'
                 "itemsNum": 27
+                coverImageUrl: '',
  *          },            
  *       ],
  *     }
@@ -631,6 +638,8 @@
  *          "message": "User Not Found"
  *        }
  *     }
+ * /
+ /**
  * @apiUse Authentication
  * @apiUse photoObjects
  * @api {get} /user/cameraRoll/:userId User Camera Roll
@@ -638,6 +647,28 @@
  * @apiGroup User
  * @apiVersion 1.0.0
  * @apiDescription Return User's Camera Roll
+ * @apiSuccess {Object[]} cameraRoll An array of objects containing the photos with its data
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "cameraRoll": [
+ *          {
+                "_id": "5349b4ddd2781d08c09890f4",
+                "tags": ["Tower","Egypt"],
+                "views": 1023,
+                "favouritesNum": 1023,
+                "commentsNum": 1023,
+                "creator": {
+                    "firstName": "Ahmed",
+                    "lastName": "Ibrahim"
+                },
+                "url": '',
+                "title": 'Cairo Tower',
+                "description": 'Cairo tower at the sunset'
+ *          },
+                
+ *       ],
+ *     }
  * @apiParamExample {json} Request-Example:
  * {
  *     userId: "5349b4ddd2781d08c09890f4"
