@@ -652,7 +652,7 @@
  *     {
  *       "cameraRoll": [
  *          {
-                "_id": "5349b4ddd2781d08c09890f4",
+              "_id": "5349b4ddd2781d08c09890f4",
                 "tags": ["Tower","Egypt"],
                 "views": 1023,
                 "favouritesNum": 1023,
@@ -685,3 +685,78 @@
  */
 
 
+/**
+ * @apiUse Authentication
+ * @api {post} /user/editCoverPhoto Edit Cover Photo
+ * @apiName Change User's Cover Photo
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Return User's Camera Roll
+ * @apiParam {String} photoId Photo to set as cover photo
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       
+ *     }
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     photoId: "5349b4ddd2781d08c09890f4"
+ * }
+ * 
+ * @apiError (404) PhotoNotFound  The id of the Photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ 
+ */
+/**
+ * @apiUse Authentication
+ * @api {post} /user/changePassword Change Password
+ * @apiName Change User's Password
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Change User's Password
+ * @apiParam {String} newPass New Password 
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       
+ *     }
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "newPass": "5349b4ddd2781d08c09890f4"
+ * }
+ * 
+ */
+
+ /**
+ * @api {post} /user/forgetPassword Forget Password
+ * @apiName Forget Password
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Send User Code to Reset password
+ * @apiParam {String} email Email whose password was forgetten
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       
+ *     }
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     email: "test@test.com"
+ * }
+ * 
+ * @apiError (404) UserNotFound  The id of the User wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "User Not Found"
+ *        }
+ *     }
+ 
+ */
