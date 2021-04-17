@@ -191,6 +191,10 @@
  * @apiParam {Boolean} isPublic Boolean to control if it's a public or a private photo
  * @apiParam {String} title Title for the uploaded photo
  * @apiParam {Boolean} allowCommenting Boolean to allow for commenting on the photo
+ * @apiParam {String} contentType Type of the uploaded Photo
+ * @apiParam {String} license License of the photo
+ * @apiParam {String} safety Safety of the photo
+ * 
  * @apiParam {String} description Description for the uploaded photo
  * @apiParamExample {json} Request-Example:
  *     {
@@ -198,6 +202,9 @@
  *       "isPublic": true,
  *       "title": "Cairo Tower",
  *       "allowCommenting": true,
+ *        "license": "",
+ *        "contentType":'',
+ *        "safetyOption":'',
  *       "description": "A photo of Cairo tower at the sunset"
  *     }
  * @apiSuccessExample {json} Success-Response:
