@@ -217,7 +217,7 @@
  *          "message": "User Already Exists"
  *        }
  *     }
- * @apiError (400) EmailMissing
+ * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -225,7 +225,7 @@
  *          "message": "Email is required"
  *        
  *     }
- * @apiError (400) PasswordMissing
+ * @apiError (400) PasswordMissing Password is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -234,7 +234,7 @@
  *        
  *     }
  
- * @apiError (400) firstNameMissing
+ * @apiError (400) firstNameMissing First Name is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -242,7 +242,7 @@
  *          "message": "First Name is required"
  *        
  *     }
- * @apiError (400) lastNameMissing
+ * @apiError (400) lastNameMissing Last Name is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -251,7 +251,7 @@
  *        
  *     }
  
- * @apiError (400) AgeMissing
+ * @apiError (400) AgeMissing Age  is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -279,8 +279,8 @@
  * {
  *     "newPass": "5349b4ddd2781d08c09890f4",
  *     "oldPass": "fifa2011"
- * }
- * @apiError (400) NewPasswordMissing
+ * } 
+ * @apiError (400) NewPasswordMissing New Password of the account is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -288,7 +288,7 @@
  *          "message": "New Password is required"
  *        
  *     }
- * @apiError (400) OldPasswordMissing
+ * @apiError (400) OldPasswordMissing Old Password of the account is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
@@ -324,7 +324,7 @@
  *          "message": "User Not Found"
  *        }
  *     }
- * @apiError (400) EmailMissing
+ * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {

@@ -2696,13 +2696,13 @@
             "group": "400",
             "optional": false,
             "field": "NewPasswordMissing",
-            "description": ""
+            "description": "<p>New Password of the account is required</p>"
           },
           {
             "group": "400",
             "optional": false,
             "field": "OldPasswordMissing",
-            "description": ""
+            "description": "<p>Old Password of the account is required</p>"
           }
         ],
         "401": [
@@ -2915,7 +2915,7 @@
             "group": "400",
             "optional": false,
             "field": "EmailMissing",
-            "description": ""
+            "description": "<p>Email is required</p>"
           }
         ],
         "404": [
@@ -3281,31 +3281,31 @@
             "group": "400",
             "optional": false,
             "field": "EmailMissing",
-            "description": ""
+            "description": "<p>Email is required</p>"
           },
           {
             "group": "400",
             "optional": false,
             "field": "PasswordMissing",
-            "description": ""
+            "description": "<p>Password is required</p>"
           },
           {
             "group": "400",
             "optional": false,
             "field": "firstNameMissing",
-            "description": ""
+            "description": "<p>First Name is required</p>"
           },
           {
             "group": "400",
             "optional": false,
             "field": "lastNameMissing",
-            "description": ""
+            "description": "<p>Last Name is required</p>"
           },
           {
             "group": "400",
             "optional": false,
             "field": "AgeMissing",
-            "description": ""
+            "description": "<p>Age  is required</p>"
           }
         ]
       },
