@@ -1,66 +1,20 @@
 /**
  * User Endpoints
  */
-/**
- * @apiDefine Authentication
- * @apiHeader {String} Authorization Users access-token
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "Authorization": "Bearer asdasdkasdliuaslidas"
- *     }
- */
+
 ////////////////////////////GHALLAB///////////////////////////
-/**
- *
- * @api {post} /user/login Login using Facebook
- * @apiName Facebook Login
- * @apiGroup User
- * @apiVersion  1.0.0
- *
- *
- * @apiParam  {String} loginType  a string containing type of login ex:"Facebook"
- *
- * @apiParamExample  {type} Request-Example:
- * {
- *     loginType : "Facebook"
- * }
- *
- *
- * @apiSuccessExample {json} Success-Response:
- * {
- *     {
- *       status: 'connected', The person is logged into Facebook, and has logged into your webpage.
- *                            not_authorized    The person is logged into Facebook, but has not logged into your webpage.
- *                            unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.
- *       authResponse: {
- *       accessToken: '{access-token}',   An access token for the person using the webpage
- *       expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.
- *       reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.
- *       signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.
- *       userID:'{user-id}'   The ID of the person using your webpage.
- *   }
- * }
- * }
- *
- *
- */
+
 /**
  *
  * @api {get} /user/followers/:userId  Get the followers of a certain User
  * @apiName Get User Followers
  * @apiGroup User
  * @apiVersion  1.0.0
- *
- *
  * @apiParam  {String} userId   ID of User which is required to show his followers
- *
- *
  * @apiParamExample  {json} Request-Example:
  * {
  *     userId : "5349b4ddd2781d08c09890f4"
  * }
- *
- *
  * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 Success
  * {
@@ -77,15 +31,21 @@
  *                  },
  *                 ]
  * }
- *
- * @apiError (404) This user is not found
+ * @apiError (404) UserNotFound This user is not found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
  *        "message" : "User Not Found"
  *     }
+* @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "UserId is required"
+ *     }
  *
  */
+
 /**
  *
  * @api {get} /user/followings/:userId  Get the followings of a certain User
@@ -126,13 +86,18 @@
  *     {
  *        "message" : "User Not Found"
  *     }
- *
+ * @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "UserId is required"
+ *     }
  */
 
 /**
  *
- * @api {get} /user/search/:username     Search on user //username is the keyword you want to search for
- * @apiName Search on user
+ * @api {get} /user/search/:username     Search on user
+ * @apiName Search on user username is the keyword you want to search fo
  * @apiGroup User
  * @apiVersion  1.0.0
  *
@@ -162,6 +127,7 @@
  *             ]
  * }
  */
+
 /**
  * @apiUse Authentication
  * @api {post} /users/:userId   Edit Showcase and Description
@@ -193,23 +159,14 @@
  *     }
  */
 ///////////////////////////////////////////SHAHDA////////////////////////////
+
 /**
  * @apiDefine  photoObjects
- * @apiSuccess {Object} photo
- * @apiSuccess {String} photo._id Image Id
- * @apiSuccess {String} photo.url Image Url
- * @apiSuccess {String} photo.title Image title
- * @apiSuccess {String} photo.description Image description
- * @apiSuccess {String[]} photo.tags Image tags
- * @apiSuccess {Number} photo.views Image number of views
- * @apiSuccess {Number} photo.favouritesNum Image number of favourites
- * @apiSuccess {Number} photo.commentsNum Image number of comments
- * @apiSuccess {Object} photo.creator Image user Creator
- * @apiSuccess {String} photo.creator.firstName  User Creator firstName
- * @apiSuccess {String} photo.creator.lastName  User Creator lastName
+ * @apiSuccess {Object[]} photos
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
- *     [{
+ * {
+ *     "photos": [{
  *       "_id": "5349b4ddd2781d08c09890f4",
  *       "title": "Cat",
  *       "description": "image description",
@@ -223,7 +180,10 @@
  *          "lastName": "Shahda"
  *        },
  *     }]
+ * }
+ 
  */
+
 /**
  * @apiUse photoObjects
  * @api {get} /user/photostream/:userId User Photostream
@@ -238,12 +198,17 @@
  * @apiError (404) UserNotFound  The id of the user wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
+ *     {    
+ *       "message": "User Not Found" 
+ *     }
+ * @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
+ *        "message" : "UserId is required"
  *     }
  */
+
 /**
  * @apiUse Authentication
  * @api {post} /user/sendMessage Message User
@@ -272,6 +237,7 @@
  *        }
  *     }
  */
+
 /**
  * @apiUse Authentication
  * @api {get} /user/messages/me Get My Messages
@@ -314,56 +280,6 @@
  *     }
  */
 /////////////////////////////////////////HIMA/////////////////////////////////
-/**
- * @api {post} /user/login Login a User
- * @apiName Login User
- * @apiGroup User
- * @apiVersion 1.0.0
- * @apiDescription Login into a user account
- * @apiParam {String} username Username credential
- * @apiParam {String} password Password credential
- * @apiParamExample {json} Request-Example:
- *     {
- *       "username": "AhmedIbrahim",
- *       "password": "123"
- *     }
- * @apiSuccess {String} Token Returning the access-token to the user
- * @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       "Token": "asdasdkasdliuaslidas"
- *     }
- * @apiError (401) Unauthorized  Wrong user credentials
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 401 Unauthorized
- *     {
- *       "error": {
- *          "message": "Invalid Credentials"
- *        }
- *     }
- */
-/**
- * @apiUse Authentication
- * @api {post} /user/follow Follow a User
- * @apiName Follow User
- * @apiGroup User
- * @apiVersion 1.0.0
- * @apiDescription Follow a user
- * @apiParam {String} userId User to follow
- * @apiParamExample {json} Request-Example:
- *     {
- *       "userId": "asdasdasd2323423",
- *     }
- * @apiError (404) UserNotFound  The id of the user wasn't found
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
- *     }
- */
-/**
  
 /**
  * @api {get} /user/fav/:userId Get Favorites
@@ -378,18 +294,18 @@
  *     {
  *       "favorites": [
  *          {
-                "_id": "5349b4ddd2781d08c09890f4",
-                "tags": ["Tower","Egypt"],
-                "views": 1023,
-                "favouritesNum": 1023,
-                "commentsNum": 1023,
-                "creator": {
-                    "firstName": "Ahmed",
-                    "lastName": "Ibrahim"
-                },
-                "url": '',
-                "title": 'Cairo Tower',
-                "description": 'Cairo tower at the sunset'
+ *               "_id": "5349b4ddd2781d08c09890f4",
+ *               "tags": ["Tower","Egypt"],
+ *               "views": 1023,
+ *               "favouritesNum": 1023,
+ *               "commentsNum": 1023,
+ *               "creator": {
+ *                   "firstName": "Ahmed",
+ *                   "lastName": "Ibrahim"
+ *               },
+ *               "url": '',
+ *               "title": 'Cairo Tower',
+ *               "description": 'Cairo tower at the sunset'
  *          },
  *       ]
  *     }
@@ -401,7 +317,14 @@
  *          "message": "User Not Found"
  *        }
  *     }
+  * @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "UserId is required"
+ *     }
  */
+
 /**
  * @api {get} /user/groups/:userId Get Groups
  * @apiName Get User Groups
@@ -416,11 +339,11 @@
  *       "groups": [
  *          {
  *              "_id": "5349b4ddd2781d08c09890f4",
-                "admins": ["4349b4ddd2781d08c0989da9","3249b4ddd2781d08c0989f21"],
-                "creator": "2149b4ddd2781d08c09890a1",
-                "moderators": ["9349b4ddd2781d08c0989555","6249b4ddd2781d08c0989222"],
-                "members": ["8349b4ddd2781d08c0989111","8249b4ddd2781d08c0989000"],
-                "description": 'Paris'
+ *               "admins": ["4349b4ddd2781d08c0989da9","3249b4ddd2781d08c0989f21"],
+ *               "creator": "2149b4ddd2781d08c09890a1",
+ *               "moderators": ["9349b4ddd2781d08c0989555","6249b4ddd2781d08c0989222"],
+ *               "members": ["8349b4ddd2781d08c0989111","8249b4ddd2781d08c0989000"],
+ *               "description": 'Paris'
  *          },
  *       ]
  *     }
@@ -433,6 +356,7 @@
  *        }
  *     }
  */
+
 /**
  * @api {get} /user/albums/:userId Get Albums
  * @apiName Get User albums
@@ -447,11 +371,11 @@
  *       "albums": [
  *          {
  *              "_id": "5349b4ddd2781d08c09890f4",
-                "title": "Paris pics",
-                "description": "Paris pics 2019"
-                "creator": "2149b4ddd2781d08c09890a1",
-                "views": 1023,
-                "images": ["8349b4ddd2781d08c0989111","8249b4ddd2781d08c0989000"],
+ *               "title": "Paris pics",
+ *               "description": "Paris pics 2019"
+ *               "creator": "2149b4ddd2781d08c09890a1",
+ *               "views": 1023,
+ *               "images": ["8349b4ddd2781d08c0989111","8249b4ddd2781d08c0989000"],
  *          },
  *       ]
  *     }
@@ -464,58 +388,8 @@
  *        }
  *     }
  * 
- * /   
+ */   
 //////////////////////////////// KARIM ///////////////////////////////////  
-/**
- *  @api {post} /user/signUp Sign Up
-  * @apiName Sign Up
-  * @apiGroup User
-  * @apiVersion 1.0.0
-  * @apiDescription Creating a new account.
-  * @apiParam {String} email User's Email
-  * @apiParam {String} password User's Password
-  * @apiParam {String} firstName User's First Name
-  * @apiParam {String} lastName User's Last Name
-  * @apiParam {Number} age User's Age
-  * @apiParamExample {json} Request-Example:
-  *{    
-  *       "email": "user@email.com",
-  *       "firstName": "User",
-  *      "lastName": "User",
-  *       "age": 18,      
-  *     }
-  
- * @apiSuccess {Object} user
- * @apiSuccess {String} user.email User's Email
- * @apiSuccess {String} user.firstName User's First Name
- * @apiSuccess {String} user.lastName User's Last Name
- * @apiSuccess {String} user.accessToken  User's Access Token
- * @apiSuccess {Number} user.age User's Age
- * @apiSuccess {String} user._id User's Id
- * @apiSuccess {Number} user.followers User's Followers
- * @apiSuccess {Number} user.following User's Following
- * @apiSuccessExample {json} Success-Response:
- *    HTTP/1.1 201 OK
- *   {
- *       "_id": "5349b4ddd2781d08c09890f4",
- *       "email": "user@email.com",
- *       "firstName": "User",
- *      "lastName": "User",
- *       "accessToken": "skdnksd7474g3kdbjfhf34",
- *       "age": 18,
- *       "followers": 63,
- *       "following": 55,
- *       
- *     }
- * @apiError (400) UserExists  The Email is already registered
- *  @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 400 Failed
- *     {
- *       "error": {
- *          "message": "User Already Exists"
- *        }
- *     }
- * /
  /**
  * @apiUse Authentication
  * @api {post} /user/followUser Follow User
@@ -528,7 +402,6 @@
  *{
  *       "userId": "5349b4ddd2781d08c09890f4"
  *     }
-  
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 Success
  *   {
@@ -538,12 +411,19 @@
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
+ *       
+ *        "message": "User Not Found"
+ *        
+ *     }
+  * @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "UserId is required"
  *     }
  * 
  */
+
 /**
  * @apiUse Authentication
  * @api {post} /user/unfollowUser Unfollow User
@@ -553,10 +433,9 @@
  * @apiDescription Following a user.
  * @apiParam {Number} userId The ID of the user to be unfollowed
  * @apiParamExample {json} Request-Example:
- *{
+ *     {
  *       "userId": "5349b4ddd2781d08c09890f4"
  *     }
-  
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 Success
  *   {
@@ -566,9 +445,15 @@
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       "error": {
+ *        {
  *          "message": "User Not Found"
  *        }
+ *     }
+  * @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "UserId is required"
  *     }
  * 
  */
@@ -591,28 +476,27 @@
  *     {
  *       "showcase": [
  *          {
-                "_id": "5349b4ddd2781d08c09890f4",
-                "tags": ["Tower","Egypt"],
-                "views": 1023,
-                "favouritesNum": 1023,
-                "commentsNum": 1023,
-                "creator": {
-                    "firstName": "Ahmed",
-                    "lastName": "Ibrahim"
-                },
-                "url": '',
-                "title": 'Cairo Tower',
-                "description": 'Cairo tower at the sunset'
- *          },
-                
+ *               "_id": "5349b4ddd2781d08c09890f4",
+ *               "tags": ["Tower","Egypt"],
+ *               "views": 1023,
+ *               "favouritesNum": 1023,
+ *               "commentsNum": 1023,
+ *               "creator": {
+ *                   "firstName": "Ahmed",
+ *                   "lastName": "Ibrahim"
+ *               },
+ *               "url": '',
+ *               "title": 'Cairo Tower',
+ *               "description": 'Cairo tower at the sunset'
+ *          },              
  *       ],
-        "description": "A talented photographer",
-        "statistics": 
-                {
-                    "views": 27
-                    "faves": 9
-                    "groups": 10
-                }
+ *       "description": "A talented photographer",
+ *       "statistics": 
+ *               {
+ *                   "views": 27
+ *                   "faves": 9
+ *                   "groups": 10
+ *               }
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
@@ -621,6 +505,12 @@
  *       "error": {
  *          "message": "User Not Found"
  *        }
+ *     }
+ * @apiError (400) UserIdMissing This user is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "UserId is required"
  *     }
  */
 /**
@@ -640,16 +530,16 @@
  *     {
  *       "gallery": [
  *          {
-                "_id": "5349b4ddd2781d08c09890f4",
-                "views": 1023,
-                "commentsNum": 1023,
-                "creator": {
-                    "firstName": "Ahmed",
-                    "lastName": "Ibrahim"
-                },
-                "title": 'Cairo Tower',
-                "description": 'Cairo tower at the sunset'
-                "itemsNum": 27
+ *               "_id": "5349b4ddd2781d08c09890f4",
+ *               "views": 1023,
+ *               "commentsNum": 1023,
+ *               "creator": {
+ *                   "firstName": "Ahmed",
+ *                   "lastName": "Ibrahim"
+ *               },
+ *               "title": 'Cairo Tower',
+ *               "description": 'Cairo tower at the sunset'
+ *               "itemsNum": 27
  *          },            
  *       ],
  *     }
@@ -661,7 +551,7 @@
  *          "message": "User Not Found"
  *        }
  *     }
- * /
+ */
  /**
  * @apiUse Authentication
  * @apiUse photoObjects
@@ -676,20 +566,19 @@
  *     {
  *       "cameraRoll": [
  *          {
-              "_id": "5349b4ddd2781d08c09890f4",
-                "tags": ["Tower","Egypt"],
-                "views": 1023,
-                "favouritesNum": 1023,
-                "commentsNum": 1023,
-                "creator": {
-                    "firstName": "Ahmed",
-                    "lastName": "Ibrahim"
-                },
-                "url": '',
-                "title": 'Cairo Tower',
-                "description": 'Cairo tower at the sunset'
- *          },
-                
+ *             "_id": "5349b4ddd2781d08c09890f4",
+ *               "tags": ["Tower","Egypt"],
+ *               "views": 1023,
+ *               "favouritesNum": 1023,
+ *               "commentsNum": 1023,
+ *               "creator": {
+ *                   "firstName": "Ahmed",
+ *                   "lastName": "Ibrahim"
+ *               },
+ *               "url": '',
+ *               "title": 'Cairo Tower',
+ *               "description": 'Cairo tower at the sunset'
+ *          },              
  *       ],
  *     }
  * @apiParamExample {json} Request-Example:
@@ -705,7 +594,6 @@
  *          "message": "User Not Found"
  *        }
  *     }
- 
  */
 
 
@@ -735,52 +623,4 @@
  *          "message": "Photo Not Found"
  *        }
  *     }
- 
- */
-/**
- * @apiUse Authentication
- * @api {post} /user/changePassword Change Password
- * @apiName Change User's Password
- * @apiGroup User
- * @apiVersion 1.0.0
- * @apiDescription Change User's Password
- * @apiParam {String} newPass New Password 
- *  @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       
- *     }
- * @apiParamExample {json} Request-Example:
- * {
- *     "newPass": "5349b4ddd2781d08c09890f4"
- * }
- * 
- */
-
- /**
- * @api {post} /user/forgetPassword Forget Password
- * @apiName Forget Password
- * @apiGroup User
- * @apiVersion 1.0.0
- * @apiDescription Send User Code to Reset password
- * @apiParam {String} email Email whose password was forgetten
- *  @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       
- *     }
- * @apiParamExample {json} Request-Example:
- * {
- *     email: "test@test.com"
- * }
- * 
- * @apiError (404) UserNotFound  The id of the User wasn't found
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
- *     }
- 
  */

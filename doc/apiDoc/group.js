@@ -1,14 +1,7 @@
 /**
  * Group Endpoints
  */
-/**
- * @apiDefine Authentication
- * @apiHeader {String} Authorization Users access-token
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "Authorization": "Bearer asdasdkasdliuaslidas"
- *     }
- */
+
 ///////////////////GHALLAB////////////////////////
 /**
  * @apiUse Authentication

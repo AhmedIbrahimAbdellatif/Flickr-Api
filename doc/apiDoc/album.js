@@ -9,6 +9,14 @@
  *     {
  *       "Authorization": "Bearer asdasdkasdliuaslidas"
  *     }
+ * @apiError (401) unauthorized User is not authorized
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 401 unauthorized
+ *     {
+ *       
+ *       "message": "Authentication Error"
+ *        
+ *     }
  */
 /**
  * @apiUse Authentication
@@ -89,14 +97,14 @@
  *       "media": [
  *          {
  *              "_id": "5349b4ddd2781d08c09890f4",
-                "tags": ["Tower","Egypt"],
-                "views": 1023,
-                "favouritesNum": 1023,
-                "commentsNum": 1023,
-                "creator": {
-                    "firstName": "Ahmed",
-                    "lastName": "Ibrahim"
-                },
+ *               "tags": ["Tower","Egypt"],
+ *               "views": 1023,
+ *               "favouritesNum": 1023,
+ *               "commentsNum": 1023,
+ *               "creator": {
+ *                   "firstName": "Ahmed",
+ *                   "lastName": "Ibrahim"
+ *               },
  *              'url': '',
  *              'title': 'Cairo Tower',
  *              'description': 'Cairo tower at the sunset'

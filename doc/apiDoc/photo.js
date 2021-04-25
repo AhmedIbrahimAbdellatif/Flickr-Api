@@ -1,23 +1,6 @@
 /**
  * Photo Endpoints
  */
-
-/**
- * @apiDefine Authentication
- * @apiHeader {String} Authorization Users access-token
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "Authorization": "Bearer asdasdkasdliuaslidas"
- *     }
- */
-/**
- * @apiDefine Authentication
- * @apiHeader {String} Authorization Users access-token
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "Authorization": "Bearer asdasdkasdliuaslidas"
- *     }
- */
 ////////////////////////////////////GHALLAB////////////////////////
 /**
  * @apiUse Authentication
@@ -210,7 +193,12 @@
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 OK
  *    {}
- * 
+  * @apiError (400) PhotoMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "Photo is required"
+ *     }
  * 
  */
 ///////////////////////////////////////// KARIM ///////////////////////////////////////////
@@ -290,9 +278,15 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "Photo Not Found"
- *        }
+ *      
+ *      "message": "Photo Not Found"
+ *        
+ *     }
+  * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhotoId is required"
  *     }
  * 
 */
@@ -357,6 +351,12 @@
  *          "message": "Photo Not Found"
  *        }
  *     }
+ * @apiError (400) PhotoIdMissing This PhotoId is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhotoId is required"
+ *     }
  * 
 */
 /**
@@ -377,20 +377,19 @@
  *     {
  *       "media": [
  *          {
-                "_id": "5349b4ddd2781d08c09890f4",
-                "tags": ["Tower","Egypt"],
-                "views": 1023,
-                "favouritesNum": 1023,
-                "commentsNum": 1023,
-                "creator": {
-                    "firstName": "Ahmed",
-                    "lastName": "Ibrahim"
-                },
-                "url": '',
-                "title": 'Cairo Tower',
-                "description": 'Cairo tower at the sunset'
- *          },
-                
+ *               "_id": "5349b4ddd2781d08c09890f4",
+ *               "tags": ["Tower","Egypt"],
+ *               "views": 1023,
+ *               "favouritesNum": 1023,
+ *               "commentsNum": 1023,
+ *               "creator": {
+ *                   "firstName": "Ahmed",
+ *                   "lastName": "Ibrahim"
+ *               },
+ *               "url": '',
+ *               "title": 'Cairo Tower',
+ *               "description": 'Cairo tower at the sunset'
+ *          },              
  *       ],
  *     }
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found

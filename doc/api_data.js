@@ -44,6 +44,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -69,10 +77,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Album Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/album.js",
+    "filename": "doc/apiDoc/album.js",
     "groupTitle": "Album",
     "header": {
       "fields": {
@@ -139,7 +152,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/album.js",
+    "filename": "doc/apiDoc/album.js",
     "groupTitle": "Album",
     "header": {
       "fields": {
@@ -157,6 +170,25 @@ define({ "api": [
         {
           "title": "Header-Example:",
           "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
@@ -194,6 +226,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -208,10 +248,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Album Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/album.js",
+    "filename": "doc/apiDoc/album.js",
     "groupTitle": "Album",
     "header": {
       "fields": {
@@ -287,6 +332,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -301,10 +354,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Album Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/album.js",
+    "filename": "doc/apiDoc/album.js",
     "groupTitle": "Album",
     "header": {
       "fields": {
@@ -363,7 +421,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"tags\": [\"Tower\",\"Egypt\"],\n            \"views\": 1023,\n            \"favouritesNum\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n         'url': '',\n         'title': 'Cairo Tower',\n         'description': 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n         'url': '',\n         'title': 'Cairo Tower',\n         'description': 'Cairo tower at the sunset'\n     },\n  ]\n}",
           "type": "json"
         }
       ]
@@ -377,7 +435,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/album.js",
+    "filename": "doc/apiDoc/album.js",
     "groupTitle": "Album"
   },
   {
@@ -425,6 +483,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -450,10 +516,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Album Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/album.js",
+    "filename": "doc/apiDoc/album.js",
     "groupTitle": "Album",
     "header": {
       "fields": {
@@ -499,7 +570,7 @@ define({ "api": [
     "type": "",
     "url": "",
     "version": "0.0.0",
-    "filename": "./doc/main.js",
+    "filename": "doc/main.js",
     "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "name": ""
@@ -549,6 +620,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -574,10 +653,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"gallery Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/gallery.js",
+    "filename": "doc/apiDoc/gallery.js",
     "groupTitle": "Gallery",
     "header": {
       "fields": {
@@ -645,6 +729,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -670,10 +762,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"gallery Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/gallery.js",
+    "filename": "doc/apiDoc/gallery.js",
     "groupTitle": "Gallery",
     "header": {
       "fields": {
@@ -747,7 +844,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -765,6 +862,25 @@ define({ "api": [
         {
           "title": "Header-Example:",
           "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
@@ -825,7 +941,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group"
   },
   {
@@ -865,6 +981,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -890,10 +1014,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -953,6 +1082,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -978,10 +1115,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -1041,6 +1183,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1066,10 +1216,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -1129,6 +1284,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1154,10 +1317,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -1224,6 +1392,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1249,10 +1425,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -1335,7 +1516,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group"
   },
   {
@@ -1377,6 +1558,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1391,10 +1580,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"Group Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/group.js",
+    "filename": "doc/apiDoc/group.js",
     "groupTitle": "Group",
     "header": {
       "fields": {
@@ -1454,6 +1648,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1479,10 +1681,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -1551,6 +1758,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1565,10 +1780,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -1630,6 +1850,22 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdMissing",
+            "description": "<p>This Photo is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1642,12 +1878,22 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n \"message\": \"Photo Not Found\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"PhotoId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -1719,6 +1965,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1738,10 +1992,20 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -1831,7 +2095,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo"
   },
   {
@@ -1872,6 +2136,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1897,10 +2169,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n    \"message\": \"This user is not found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -1959,6 +2236,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -1984,10 +2269,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n    \"message\": \"This user is not found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -2046,7 +2336,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo"
   },
   {
@@ -2089,99 +2379,22 @@ define({ "api": [
           },
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Object[]",
             "optional": false,
-            "field": "photo",
+            "field": "photos",
             "description": ""
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo._id",
-            "description": "<p>Image Id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.url",
-            "description": "<p>Image Url</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.title",
-            "description": "<p>Image title</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.description",
-            "description": "<p>Image description</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String[]",
-            "optional": false,
-            "field": "photo.tags",
-            "description": "<p>Image tags</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.views",
-            "description": "<p>Image number of views</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.favouritesNum",
-            "description": "<p>Image number of favourites</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.commentsNum",
-            "description": "<p>Image number of comments</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "photo.creator",
-            "description": "<p>Image user Creator</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.creator.firstName",
-            "description": "<p>User Creator firstName</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.creator.lastName",
-            "description": "<p>User Creator lastName</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n            \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"tags\": [\"Tower\",\"Egypt\"],\n            \"views\": 1023,\n            \"favouritesNum\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n            \"url\": '',\n            \"title\": 'Cairo Tower',\n            \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n}",
           "type": "json"
         },
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"_id\": \"5349b4ddd2781d08c09890f4\",\n  \"title\": \"Cat\",\n  \"description\": \"image description\",\n  \"tags\": [\"cat\",\"animals\"],\n  \"photoUrl\": 'https://www.google.com/photo'\n  \"views\": 1023,\n  \"favouritesNum\": 1023,\n  \"commentsNum\": 1023,\n  \"creator\": {\n     \"firstName\": \"Abdelrahman\",\n     \"lastName\": \"Shahda\"\n   },\n}]",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouritesNum\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n    }]\n}",
           "type": "json"
         }
       ]
@@ -2205,7 +2418,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo"
   },
   {
@@ -2258,6 +2471,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdMissing",
+            "description": "<p>This PhotoId is required</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -2272,10 +2493,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"PhotoId is required\"\n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo"
   },
   {
@@ -2364,7 +2590,39 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/photo.js",
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoMissing",
+            "description": "<p>This Photo is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"Photo is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo",
     "header": {
       "fields": {
@@ -2388,174 +2646,11 @@ define({ "api": [
     }
   },
   {
-    "type": "get",
-    "url": "/tag/:id",
-    "title": "Get tag media",
-    "name": "Get_Tag_Media",
-    "group": "Tag",
-    "version": "1.0.0",
-    "description": "<p>Get tag media</p>",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "id",
-            "description": "<p>Tag to view its media</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "media",
-            "description": "<p>An array of objects containing the photos with its data</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n            \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"tags\": [\"Tower\",\"Egypt\"],\n            \"views\": 1023,\n            \"favouritesNum\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n            \"url\": '',\n            \"title\": 'Cairo Tower',\n            \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Tag Not Found\"\n   }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./doc/apiDoc/tag.js",
-    "groupTitle": "Tag"
-  },
-  {
-    "type": "get",
-    "url": "/tag/trending",
-    "title": "Get trending tags",
-    "name": "Get_Trending_Tags",
-    "group": "Tag",
-    "version": "1.0.0",
-    "description": "<p>View trending tags</p>",
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "trendingTags",
-            "description": "<p>An array of objects containing tags data</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"count\": 120,\n             \"name\": \"nature\"\n         }\n     ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./doc/apiDoc/tag.js",
-    "groupTitle": "Tag"
-  },
-  {
     "type": "post",
-    "url": "/user/editCoverPhoto",
-    "title": "Edit Cover Photo",
-    "name": "Change_User's_Cover_Photo",
-    "group": "User",
-    "version": "1.0.0",
-    "description": "<p>Return User's Camera Roll</p>",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "photoId",
-            "description": "<p>Photo to set as cover photo</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    photoId: \"5349b4ddd2781d08c09890f4\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "404": [
-          {
-            "group": "404",
-            "optional": false,
-            "field": "PhotoNotFound",
-            "description": "<p>The id of the Photo wasn't found</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./doc/apiDoc/user.js",
-    "groupTitle": "User",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users access-token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
-          "type": "json"
-        }
-      ]
-    }
-  },
-  {
-    "type": "post",
-    "url": "/user/changePassword",
+    "url": "/register/changePassword",
     "title": "Change Password",
     "name": "Change_User's_Password",
-    "group": "User",
+    "group": "Register",
     "version": "1.0.0",
     "description": "<p>Change User's Password</p>",
     "parameter": {
@@ -2567,13 +2662,20 @@ define({ "api": [
             "optional": false,
             "field": "newPass",
             "description": "<p>New Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "oldPass",
+            "description": "<p>Old Password</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"newPass\": \"5349b4ddd2781d08c09890f4\"\n}",
+          "content": "{\n    \"newPass\": \"5349b4ddd2781d08c09890f4\",\n    \"oldPass\": \"fifa2011\"\n}",
           "type": "json"
         }
       ]
@@ -2587,93 +2689,51 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
-    "groupTitle": "User",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users access-token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
-          "type": "json"
-        }
-      ]
-    }
-  },
-  {
-    "type": "post",
-    "url": "/users/:userId",
-    "title": "Edit Showcase and Description",
-    "name": "Edit_Showcase_and_Description",
-    "group": "User",
-    "version": "1.0.0",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "description",
-            "description": "<p>The user's Description</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "Showcase",
-            "description": "<p>The user's Showcase</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    desciption : \"Photos are my passion\"\n    showcase : \"a glimpse of my life\"\n}",
-          "type": "type"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "{\n    message : \"Changed Successfully\"\n}",
-          "type": "type"
-        }
-      ]
-    },
     "error": {
       "fields": {
-        "404": [
+        "400": [
           {
-            "group": "404",
+            "group": "400",
             "optional": false,
-            "field": "This",
-            "description": "<p>user is not found</p>"
+            "field": "NewPasswordMissing",
+            "description": ""
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "OldPasswordMissing",
+            "description": ""
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"User Not Found\"\n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"New Password is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Old Password is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
-    "groupTitle": "User",
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register",
     "header": {
       "fields": {
         "Header": [
@@ -2697,10 +2757,10 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/user/login",
+    "url": "/register/loginWithFacebook",
     "title": "Login using Facebook",
     "name": "Facebook_Login",
-    "group": "User",
+    "group": "Register",
     "version": "1.0.0",
     "parameter": {
       "fields": {
@@ -2717,7 +2777,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    loginType : \"Facebook\"\n}",
+          "content": "{\n    \"loginType\" : \"Facebook\"\n    \"accessToken\": \"askdjaksdjaidjskdjak13412jkasjdk.asdasdasd\"\n}",
           "type": "type"
         }
       ]
@@ -2726,22 +2786,40 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    {\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n  }\n}\n}",
+          "content": "{\n    \n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n     }\n\n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
-    "groupTitle": "User"
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "Bad",
+            "description": "<p>Request  AccessToken Is Required</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"AccessToken Is Required\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register"
   },
   {
     "type": "post",
-    "url": "/user/follow",
-    "title": "Follow a User",
-    "name": "Follow_User",
-    "group": "User",
+    "url": "/register/signUpWithFacebook",
+    "title": "Sign Up using Facebook",
+    "name": "Facebook_SignUp",
+    "group": "Register",
     "version": "1.0.0",
-    "description": "<p>Follow a user</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -2749,27 +2827,103 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "userId",
-            "description": "<p>User to follow</p>"
+            "field": "loginType",
+            "description": "<p>a string containing type of login ex:&quot;Facebook&quot;</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"userId\": \"asdasdasd2323423\",\n}",
+          "content": "{\n    \"loginType\" : \"Facebook\"\n    \"accessToken\": \"askdjaksdjaidjskdjak13412jkasjdk.asdasdasd\"\n}",
+          "type": "type"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n  }\n\n}",
           "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "AccessTokenMissing",
+            "description": "<p>AccessToken Is Required</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"AccessToken Is Required\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register"
+  },
+  {
+    "type": "post",
+    "url": "/register/forgetPassword",
+    "title": "Forget Password",
+    "name": "Forget_Password",
+    "group": "Register",
+    "version": "1.0.0",
+    "description": "<p>Send User Code to Reset password</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email whose password was forgetten</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"email\": \"test@test.com\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "EmailMissing",
+            "description": ""
+          }
+        ],
         "404": [
           {
             "group": "404",
             "optional": false,
             "field": "UserNotFound",
-            "description": "<p>The id of the user wasn't found</p>"
+            "description": "<p>The id of the User wasn't found</p>"
           }
         ]
       },
@@ -2778,11 +2932,90 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
-    "groupTitle": "User",
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register"
+  },
+  {
+    "type": "post",
+    "url": "/register/logOut",
+    "title": "LogOut a User",
+    "name": "Log_Out_User",
+    "group": "Register",
+    "version": "1.0.0",
+    "description": "<p>Log Out a user account</p>",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "Bad",
+            "description": "<p>Request  Wrong user credentials</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "EmailMissing",
+            "description": "<p>Email is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PasswordMissing",
+            "description": "<p>Password is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Invalid Credentials\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register",
     "header": {
       "fields": {
         "Header": [
@@ -2806,12 +3039,12 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/user/followUser",
-    "title": "Follow User",
-    "name": "Follow_User",
-    "group": "User",
+    "url": "/register/login",
+    "title": "Login a User",
+    "name": "Login_User",
+    "group": "Register",
     "version": "1.0.0",
-    "description": "<p>Following a user.</p>",
+    "description": "<p>Login into a user account</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -2819,9 +3052,101 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "id",
-            "description": "<p>User to show albums for</p>"
+            "field": "email",
+            "description": "<p>User's email credential</p>"
           },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password credential</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"email\": \"AhmedIbrahim@test.com\",\n  \"password\": \"123\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "accessToken",
+            "description": "<p>Returning the access-token to the user</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "Bad",
+            "description": "<p>Request  Wrong user credentials</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "EmailMissing",
+            "description": "<p>Email is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PasswordMissing",
+            "description": "<p>Password is required</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Invalid Credentials\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register"
+  },
+  {
+    "type": "post",
+    "url": "/register/signUp",
+    "title": "Sign Up",
+    "name": "Sign_Up",
+    "group": "Register",
+    "version": "1.0.0",
+    "description": "<p>Creating a new account.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
           {
             "group": "Parameter",
             "type": "String",
@@ -2856,13 +3181,6 @@ define({ "api": [
             "optional": false,
             "field": "age",
             "description": "<p>User's Age</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "userId",
-            "description": "<p>The ID of the user to be followed</p>"
           }
         ]
       },
@@ -2871,24 +3189,12 @@ define({ "api": [
           "title": "Request-Example:",
           "content": "{    \n      \"email\": \"user@email.com\",\n      \"firstName\": \"User\",\n     \"lastName\": \"User\",\n      \"age\": 18,      \n    }",
           "type": "json"
-        },
-        {
-          "title": "Request-Example:",
-          "content": "{\n      \"userId\": \"5349b4ddd2781d08c09890f4\"\n    }",
-          "type": "json"
         }
       ]
     },
     "success": {
       "fields": {
         "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "albums",
-            "description": "<p>An array of objects containing the groups with its data</p>"
-          },
           {
             "group": "Success 200",
             "type": "Object",
@@ -2959,37 +3265,10 @@ define({ "api": [
           "title": "Success-Response:",
           "content": " HTTP/1.1 201 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"user@email.com\",\n    \"firstName\": \"User\",\n   \"lastName\": \"User\",\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"age\": 18,\n    \"followers\": 63,\n    \"following\": 55,\n    \n  }",
           "type": "json"
-        },
-        {
-          "title": "Success-Response:",
-          "content": " HTTP/1.1 200 Success\n{\n    \n  }",
-          "type": "json"
         }
       ]
     },
     "error": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"albums\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"title\": \"Paris pics\",\n            \"description\": \"Paris pics 2019\"\n            \"creator\": \"2149b4ddd2781d08c09890a1\",\n            \"views\": 1023,\n            \"images\": [\"8349b4ddd2781d08c0989111\",\"8249b4ddd2781d08c0989000\"],\n     },\n  ]\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "    HTTP/1.1 404 Not Found\n    {\n      \"error\": {\n         \"message\": \"User Not Found\"\n       }\n    }\n\n/   \n//////////////////////////////// KARIM ///////////////////////////////////  \n/**",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "    HTTP/1.1 400 Failed\n    {\n      \"error\": {\n         \"message\": \"User Already Exists\"\n       }\n    }\n/\n /**",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Failed\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
-          "type": "json"
-        }
-      ],
       "fields": {
         "400": [
           {
@@ -2997,25 +3276,229 @@ define({ "api": [
             "optional": false,
             "field": "UserExists",
             "description": "<p>The Email is already registered</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "EmailMissing",
+            "description": ""
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PasswordMissing",
+            "description": ""
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "firstNameMissing",
+            "description": ""
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "lastNameMissing",
+            "description": ""
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "AgeMissing",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Failed\n{\n  \"error\": {\n     \"message\": \"User Already Exists\"\n   }\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"First Name is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Last Name is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Age is required\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register"
+  },
+  {
+    "type": "get",
+    "url": "/tag/:id",
+    "title": "Get tag media",
+    "name": "Get_Tag_Media",
+    "group": "Tag",
+    "version": "1.0.0",
+    "description": "<p>Get tag media</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Tag to view its media</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "media",
+            "description": "<p>An array of objects containing the photos with its data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Tag Not Found\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/tag.js",
+    "groupTitle": "Tag"
+  },
+  {
+    "type": "get",
+    "url": "/tag/trending",
+    "title": "Get trending tags",
+    "name": "Get_Trending_Tags",
+    "group": "Tag",
+    "version": "1.0.0",
+    "description": "<p>View trending tags</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "trendingTags",
+            "description": "<p>An array of objects containing tags data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"count\": 120,\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/tag.js",
+    "groupTitle": "Tag"
+  },
+  {
+    "type": "post",
+    "url": "/user/editCoverPhoto",
+    "title": "Edit Cover Photo",
+    "name": "Change_User's_Cover_Photo",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Return User's Camera Roll</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "photoId",
+            "description": "<p>Photo to set as cover photo</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    photoId: \"5349b4ddd2781d08c09890f4\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
           }
         ],
         "404": [
           {
             "group": "404",
             "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The id of the user wasn't found</p>"
-          },
-          {
-            "group": "404",
-            "optional": false,
-            "field": "User",
-            "description": "<p>Not Found</p>"
+            "field": "PhotoNotFound",
+            "description": "<p>The id of the Photo wasn't found</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
+        }
+      ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -3040,12 +3523,11 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/user/forgetPassword",
-    "title": "Forget Password",
-    "name": "Forget_Password",
+    "url": "/users/:userId",
+    "title": "Edit Showcase and Description",
+    "name": "Edit_Showcase_and_Description",
     "group": "User",
     "version": "1.0.0",
-    "description": "<p>Send User Code to Reset password</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -3053,15 +3535,114 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "email",
-            "description": "<p>Email whose password was forgetten</p>"
+            "field": "description",
+            "description": "<p>The user's Description</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Showcase",
+            "description": "<p>The user's Showcase</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    email: \"test@test.com\"\n}",
+          "content": "{\n    desciption : \"Photos are my passion\"\n    showcase : \"a glimpse of my life\"\n}",
+          "type": "type"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    message : \"Changed Successfully\"\n}",
+          "type": "type"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "This",
+            "description": "<p>user is not found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"User Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "post",
+    "url": "/user/followUser",
+    "title": "Follow User",
+    "name": "Follow_User",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Following a user.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The ID of the user to be followed</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n      \"userId\": \"5349b4ddd2781d08c09890f4\"\n    }",
           "type": "json"
         }
       ]
@@ -3070,32 +3651,78 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \n}",
+          "content": " HTTP/1.1 200 Success\n{\n    \n  }",
           "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
             "optional": false,
-            "field": "UserNotFound",
-            "description": "<p>The id of the User wasn't found</p>"
+            "field": "User",
+            "description": "<p>Not Found</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "content": "HTTP/1.1 404 Failed\n{\n  \n   \"message\": \"User Not Found\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
-    "groupTitle": "User"
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "get",
@@ -3190,6 +3817,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -3204,10 +3839,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -3268,16 +3908,29 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"favorites\": [\n     {\n            \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"tags\": [\"Tower\",\"Egypt\"],\n            \"views\": 1023,\n            \"favouritesNum\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n            \"url\": '',\n            \"title\": 'Cairo Tower',\n            \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"favorites\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
+          "type": "json"
         }
       ],
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -3288,7 +3941,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3329,12 +3982,20 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
             "optional": false,
-            "field": "This",
-            "description": "<p>user is not found</p>"
+            "field": "UserNotFound",
+            "description": "<p>This user is not found</p>"
           }
         ]
       },
@@ -3343,10 +4004,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"User Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3387,6 +4053,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -3401,10 +4075,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"User Not Found\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3445,7 +4124,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"groups\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"admins\": [\"4349b4ddd2781d08c0989da9\",\"3249b4ddd2781d08c0989f21\"],\n            \"creator\": \"2149b4ddd2781d08c09890a1\",\n            \"moderators\": [\"9349b4ddd2781d08c0989555\",\"6249b4ddd2781d08c0989222\"],\n            \"members\": [\"8349b4ddd2781d08c0989111\",\"8249b4ddd2781d08c0989000\"],\n            \"description\": 'Paris'\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"groups\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"admins\": [\"4349b4ddd2781d08c0989da9\",\"3249b4ddd2781d08c0989f21\"],\n          \"creator\": \"2149b4ddd2781d08c09890a1\",\n          \"moderators\": [\"9349b4ddd2781d08c0989555\",\"6249b4ddd2781d08c0989222\"],\n          \"members\": [\"8349b4ddd2781d08c0989111\",\"8249b4ddd2781d08c0989000\"],\n          \"description\": 'Paris'\n     },\n  ]\n}",
           "type": "json"
         },
         {
@@ -3465,7 +4144,7 @@ define({ "api": [
         ]
       }
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3487,6 +4166,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -3499,119 +4186,47 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "content": "HTTP/1.1 404 Not Found\n{    \n  \"message\": \"User Not Found\" \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User",
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Object[]",
             "optional": false,
-            "field": "photo",
+            "field": "photos",
             "description": ""
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo._id",
-            "description": "<p>Image Id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.url",
-            "description": "<p>Image Url</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.title",
-            "description": "<p>Image title</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.description",
-            "description": "<p>Image description</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String[]",
-            "optional": false,
-            "field": "photo.tags",
-            "description": "<p>Image tags</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.views",
-            "description": "<p>Image number of views</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.favouritesNum",
-            "description": "<p>Image number of favourites</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.commentsNum",
-            "description": "<p>Image number of comments</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "photo.creator",
-            "description": "<p>Image user Creator</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.creator.firstName",
-            "description": "<p>User Creator firstName</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.creator.lastName",
-            "description": "<p>User Creator lastName</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"_id\": \"5349b4ddd2781d08c09890f4\",\n  \"title\": \"Cat\",\n  \"description\": \"image description\",\n  \"tags\": [\"cat\",\"animals\"],\n  \"photoUrl\": 'https://www.google.com/photo'\n  \"views\": 1023,\n  \"favouritesNum\": 1023,\n  \"commentsNum\": 1023,\n  \"creator\": {\n     \"firstName\": \"Abdelrahman\",\n     \"lastName\": \"Shahda\"\n   },\n}]",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouritesNum\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n    }]\n}",
           "type": "json"
         }
       ]
     }
   },
   {
-    "type": "post",
-    "url": "/user/login",
-    "title": "Login a User",
-    "name": "Login_User",
+    "type": "get",
+    "url": "/user/albums/:userId",
+    "title": "Get Albums",
+    "name": "Get_User_albums",
     "group": "User",
     "version": "1.0.0",
-    "description": "<p>Login into a user account</p>",
+    "description": "<p>View user's albums</p>",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -3619,66 +4234,50 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
-            "description": "<p>Username credential</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>Password credential</p>"
+            "field": "id",
+            "description": "<p>User to show albums for</p>"
           }
         ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n  \"username\": \"AhmedIbrahim\",\n  \"password\": \"123\"\n}",
-          "type": "json"
-        }
-      ]
+      }
     },
     "success": {
       "fields": {
         "Success 200": [
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "Object[]",
             "optional": false,
-            "field": "Token",
-            "description": "<p>Returning the access-token to the user</p>"
+            "field": "albums",
+            "description": "<p>An array of objects containing the groups with its data</p>"
           }
         ]
-      },
+      }
+    },
+    "error": {
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"Token\": \"asdasdkasdliuaslidas\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"albums\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"title\": \"Paris pics\",\n          \"description\": \"Paris pics 2019\"\n          \"creator\": \"2149b4ddd2781d08c09890a1\",\n          \"views\": 1023,\n          \"images\": [\"8349b4ddd2781d08c0989111\",\"8249b4ddd2781d08c0989000\"],\n     },\n  ]\n}",
           "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "401": [
-          {
-            "group": "401",
-            "optional": false,
-            "field": "Unauthorized",
-            "description": "<p>Wrong user credentials</p>"
-          }
-        ]
-      },
-      "examples": [
+        },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 Unauthorized\n{\n  \"error\": {\n     \"message\": \"Invalid Credentials\"\n   }\n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
         }
-      ]
+      ],
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The id of the user wasn't found</p>"
+          }
+        ]
+      }
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3734,6 +4333,14 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -3748,10 +4355,15 @@ define({ "api": [
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -3777,8 +4389,8 @@ define({ "api": [
   {
     "type": "get",
     "url": "/user/search/:username",
-    "title": "Search on user //username is the keyword you want to search for",
-    "name": "Search_on_user",
+    "title": "Search on user",
+    "name": "Search_on_user_username_is_the_keyword_you_want_to_search_fo",
     "group": "User",
     "version": "1.0.0",
     "parameter": {
@@ -3810,7 +4422,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3870,7 +4482,90 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"showcase\": [\n     {\n            \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"tags\": [\"Tower\",\"Egypt\"],\n            \"views\": 1023,\n            \"favouritesNum\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n            \"url\": '',\n            \"title\": 'Cairo Tower',\n            \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n    \"description\": \"A talented photographer\",\n    \"statistics\": \n            {\n                \"views\": 27\n                \"faves\": 9\n                \"groups\": 10\n            }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"showcase\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n  \"description\": \"A talented photographer\",\n  \"statistics\": \n          {\n              \"views\": 27\n              \"faves\": 9\n              \"groups\": 10\n          }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "User",
+            "description": "<p>Not Found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Failed\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/user/galleries/:userId",
+    "title": "Show Galleries",
+    "name": "Show_User's_Galleries",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Showing the galleries of a user.</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>The ID of the user to show their galleries</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n      \"userId\": \"5349b4ddd2781d08c09890f4\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "galleries",
+            "description": "<p>An array of objects containing the galleries of the user</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"gallery\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"views\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n          \"itemsNum\": 27\n     },            \n  ],\n}",
           "type": "json"
         }
       ]
@@ -3894,7 +4589,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User"
   },
   {
@@ -3905,41 +4600,9 @@ define({ "api": [
     "group": "User",
     "version": "1.0.0",
     "description": "<p>Return User's Camera Roll</p>",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Number",
-            "optional": false,
-            "field": "userId",
-            "description": "<p>The ID of the user to show their galleries</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n      \"userId\": \"5349b4ddd2781d08c09890f4\"\n    }",
-          "type": "json"
-        },
-        {
-          "title": "Request-Example:",
-          "content": "{\n    userId: \"5349b4ddd2781d08c09890f4\"\n}",
-          "type": "json"
-        }
-      ]
-    },
     "success": {
       "fields": {
         "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "galleries",
-            "description": "<p>An array of objects containing the galleries of the user</p>"
-          },
           {
             "group": "Success 200",
             "type": "Object[]",
@@ -3949,117 +4612,46 @@ define({ "api": [
           },
           {
             "group": "Success 200",
-            "type": "Object",
+            "type": "Object[]",
             "optional": false,
-            "field": "photo",
+            "field": "photos",
             "description": ""
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo._id",
-            "description": "<p>Image Id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.url",
-            "description": "<p>Image Url</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.title",
-            "description": "<p>Image title</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.description",
-            "description": "<p>Image description</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String[]",
-            "optional": false,
-            "field": "photo.tags",
-            "description": "<p>Image tags</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.views",
-            "description": "<p>Image number of views</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.favouritesNum",
-            "description": "<p>Image number of favourites</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "photo.commentsNum",
-            "description": "<p>Image number of comments</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Object",
-            "optional": false,
-            "field": "photo.creator",
-            "description": "<p>Image user Creator</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.creator.firstName",
-            "description": "<p>User Creator firstName</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "photo.creator.lastName",
-            "description": "<p>User Creator lastName</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"gallery\": [\n     {\n            \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"views\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n            \"title\": 'Cairo Tower',\n            \"description\": 'Cairo tower at the sunset'\n            \"itemsNum\": 27\n     },            \n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"cameraRoll\": [\n     {\n        \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n}",
           "type": "json"
         },
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"cameraRoll\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n            \"tags\": [\"Tower\",\"Egypt\"],\n            \"views\": 1023,\n            \"favouritesNum\": 1023,\n            \"commentsNum\": 1023,\n            \"creator\": {\n                \"firstName\": \"Ahmed\",\n                \"lastName\": \"Ibrahim\"\n            },\n            \"url\": '',\n            \"title\": 'Cairo Tower',\n            \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouritesNum\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n    }]\n}",
           "type": "json"
-        },
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
         {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n[{\n  \"_id\": \"5349b4ddd2781d08c09890f4\",\n  \"title\": \"Cat\",\n  \"description\": \"image description\",\n  \"tags\": [\"cat\",\"animals\"],\n  \"photoUrl\": 'https://www.google.com/photo'\n  \"views\": 1023,\n  \"favouritesNum\": 1023,\n  \"commentsNum\": 1023,\n  \"creator\": {\n     \"firstName\": \"Abdelrahman\",\n     \"lastName\": \"Shahda\"\n   },\n}]",
+          "title": "Request-Example:",
+          "content": "{\n    userId: \"5349b4ddd2781d08c09890f4\"\n}",
           "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
-        "404": [
+        "401": [
           {
-            "group": "404",
+            "group": "401",
             "optional": false,
-            "field": "User",
-            "description": "<p>Not Found</p>"
-          },
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
+        "404": [
           {
             "group": "404",
             "optional": false,
@@ -4071,17 +4663,17 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "    HTTP/1.1 404 Failed\n    {\n      \"error\": {\n         \"message\": \"User Not Found\"\n       }\n    }\n/\n /**",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
@@ -4127,7 +4719,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n      \"userId\": \"5349b4ddd2781d08c09890f4\"\n    }",
+          "content": "{\n  \"userId\": \"5349b4ddd2781d08c09890f4\"\n}",
           "type": "json"
         }
       ]
@@ -4143,6 +4735,22 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "UserIdMissing",
+            "description": "<p>This user is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
@@ -4155,12 +4763,22 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Failed\n{\n  \"error\": {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "content": "HTTP/1.1 404 Failed\n{\n   {\n     \"message\": \"User Not Found\"\n   }\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
           "type": "json"
         }
       ]
     },
-    "filename": "./doc/apiDoc/user.js",
+    "filename": "doc/apiDoc/user.js",
     "groupTitle": "User",
     "header": {
       "fields": {
