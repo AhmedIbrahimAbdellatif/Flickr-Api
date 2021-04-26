@@ -6,7 +6,12 @@ const tagSchema = new mongoose.Schema({
         required: true,
     },
 })
-
+//virtuals
+tagSchema.virtual('photos',{
+    ref: 'Photo',
+    localField: '_id',
+    foreignField: 'tags'
+})
 const Tag = mongoose.model('Tag',tagSchema)
 
 module.exports = Tag
