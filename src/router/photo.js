@@ -43,19 +43,4 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
 })
-
-// router.post('/upload', auth, upload.single('file'), async (req, res) => {
-//     console.log(req.body.title)
-//     // console.log(req.user)
-//     reqBody = { ...req.body }
-//     delete reqBody['file']
-//     const photo = new Photo({
-//         ...reqBody,
-//         url: '/images/uploads/' + req.file.filename,
-//         creator: req.user._id,
-//     })
-//     await photo.save()
-//     res.status(201).send({ url: photo.url })
-// })
-
 module.exports = router
