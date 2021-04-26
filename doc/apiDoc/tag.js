@@ -52,8 +52,8 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "Tag Not Found"
- *        }
+ *       
+ *       "message": "Tag Not Found"
+ *        
  *     }
 */

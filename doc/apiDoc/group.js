@@ -103,17 +103,17 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Photo Not Found"
- *        }
+ *        
  *     }
  * @apiError (404) GroupNotFound  The Group isn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Group Not Found"
- *        }
+ *        
  *     }
  */
 /**
@@ -134,17 +134,17 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Photo Not Found"
- *        }
+ *        
  *     }
  * @apiError (404) GroupNotFound  The Group isn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Group Not Found"
- *        }
+ *        
  *     }
  */
 /**
@@ -165,17 +165,17 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *        
  *     }
  * @apiError (404) GroupNotFound  The Group isn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Group Not Found"
- *        }
+ *        
  *     }
  */
 /**
@@ -196,9 +196,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Photo Not Found"
- *        }
+ *        
  *     }
  * @apiError (404) GroupNotFound  The Group isn't found
  * @apiErrorExample {json} Error-Response:
@@ -229,17 +229,17 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *        
  *     }
  * @apiError (404) GroupNotFound  The Group isn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Group Not Found"
- *        }
+ *        
  *     }
  */
 
