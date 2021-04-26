@@ -232,9 +232,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
+ *      
+ *       "message": "User Not Found"
+ *        
  *     }
  */
 
@@ -274,9 +274,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
+ *       
+ *        "message": "User Not Found"
+ *        
  *     }
  */
 /////////////////////////////////////////HIMA/////////////////////////////////
@@ -313,9 +313,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
+ *       
+ *        "message": "User Not Found"
+ *        
  *     }
   * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
@@ -351,9 +351,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *        
  *     }
  */
 
@@ -383,9 +383,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *       
  *     }
  * 
  */   
@@ -502,9 +502,9 @@
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *        
  *     }
  * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
@@ -547,9 +547,9 @@
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *        
  *     }
  */
  /**
@@ -590,9 +590,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "User Not Found"
- *        }
+ *        
  *     }
  */
 
@@ -619,8 +619,8 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
+ *       
  *          "message": "Photo Not Found"
- *        }
+ *        
  *     }
  */

@@ -37,7 +37,7 @@
  *     HTTP/1.1 400 Bad Request
  *     {
  *     
- *          "message": "AccessToken Is Required"
+ *        "message": "AccessToken Is Required"
  *        
  *     }
  *
@@ -213,9 +213,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Failed
  *     {
- *       "error": {
- *          "message": "User Already Exists"
- *        }
+ *       
+ *         "message": "User Already Exists"
+ *        
  *     }
  * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
@@ -320,9 +320,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": {
- *          "message": "User Not Found"
- *        }
+ *       
+ *        "message": "User Not Found"
+ *        
  *     }
  * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
