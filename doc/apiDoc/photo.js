@@ -74,6 +74,31 @@
  * }
  */
 /**
+ *
+ * @api {get} /photo/explore Explore Photos
+ * @apiName Explore Recent Photos
+ * @apiGroup Photo
+ * @apiVersion  1.0.0
+ * 
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *     "photos" : [
+ *               {
+ *                "url" : String,
+ *                "title" : String,
+ *                "creator" : {
+ *                  "firstName": "Abdelrahman",
+ *                  "lastName": "Shahda"
+ *                },
+ *                "favouritesNum" : Number
+ *                "commentsNum" : Number
+ *               },
+ *               
+ *              ]
+ * }
+ */
+/**
  * @apiUse Authentication
  * @api {delete} /photo        Delete Photo
  * @apiName Delete Photo
