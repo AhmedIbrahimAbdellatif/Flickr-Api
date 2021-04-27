@@ -21,24 +21,24 @@ const userSchema = new mongoose.Schema({
         type:Number,
         required: true,
     } ,
-    showCase: {
+    showCase: [{
 
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Photo',
         default:[]
-    },
-    favourites: {
+    }],
+    favourites: [{
 
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Photo',
         default:[]
-    },
-    following: {
+    }],
+    following: [{
 
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'User',
         default:[]
-    },
+    }],
     description: {
         type: String,
         default :''

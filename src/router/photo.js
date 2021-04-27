@@ -59,12 +59,15 @@ router.post('/addToFavorites', auth, async (req, res) => {
             })
             return
         }
-        req.user['favourites'].append(photo._id)
+        req.user.favourites.push(photo._id)
+        console.log('user')
+        console.log(req.user.favourites)
         await req.user.save()
+        console.log(req.user)
         res.send()
     }
     catch (error) {
-        res.status(500).send()
+        res.status(500).send(error)
     }
 })
 module.exports = router
