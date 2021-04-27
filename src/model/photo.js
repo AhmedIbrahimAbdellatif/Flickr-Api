@@ -13,16 +13,16 @@ const photoSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    tags: {
+    tags: [{
         type: [mongoose.SchemaTypes.ObjectId],
         ref: 'Tag',
         default: []
-    },
-    comments: {
+    }],
+    comments: [{
         type: [mongoose.SchemaTypes.ObjectId],
         ref: 'Comment',
         default: []
-    },
+    }],
     views: {
         type: Number,
         default: 0

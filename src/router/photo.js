@@ -60,14 +60,36 @@ router.post('/addToFavorites', auth, async (req, res) => {
             return
         }
         req.user.favourites.push(photo._id)
-        console.log('user')
-        console.log(req.user.favourites)
         await req.user.save()
-        console.log(req.user)
         res.send()
     }
     catch (error) {
-        res.status(500).send(error)
+        res.status(500).send()
+    }
+})
+
+router.get('/whoFavorited/:photoId', async(req, res)=>{
+    try {
+        if(!req.params.photoId) {
+            res.status(400).send({
+                error: 'Photo Id is missing'
+            })
+            return
+        }
+        const photo = await Photo.findById(req.params.photoId)
+        if(!photo){
+            res.status(404).send({
+                error: 'Photo is not found'
+            })
+            return
+        }
+        await photo.populate({
+            path: 'favoured'
+        }).execPopulate()
+        res.send(photo.favoured)
+    }
+    catch (error) {
+        res.status(500).send()
     }
 })
 module.exports = router
