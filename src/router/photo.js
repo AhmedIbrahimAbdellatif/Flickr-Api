@@ -26,8 +26,8 @@ const upload = multer({
 
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
     try {
-        reqBody = {...req.body}
-        delete reqBody['file'] 
+        reqBody = { ...req.body }
+        delete reqBody['file']
         const photo = new Photo({
             ...reqBody,
             url: '/images/uploads/' + req.file.filename,
@@ -42,5 +42,29 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
     }
 }, (error, req, res, next) => {
     res.status(400).send({ error: error.message })
+})
+
+router.post('/addToFavorites', auth, async (req, res) => {
+    try {
+        if(!req.body.photoId) {
+            res.status(400).send({
+                error: 'Photo Id is missing'
+            })
+            return
+        }
+        const photo = await Photo.findById(req.body.photoId)
+        if(!photo){
+            res.status(404).send({
+                error: 'Photo is not found'
+            })
+            return
+        }
+        req.user['favourites'].append(photo._id)
+        await req.user.save()
+        res.send()
+    }
+    catch (error) {
+        res.status(500).send()
+    }
 })
 module.exports = router
