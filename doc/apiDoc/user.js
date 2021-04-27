@@ -496,7 +496,12 @@
  *                   "views": 27
  *                   "faves": 9
  *                   "groups": 10
- *               }
+ *               },
+ *        "email": "asdasd@test.com",
+ *        "occupation": "",
+ *        "currentCity": "",
+ *        "homeTown": "",
+ *        "createdAt": ""  
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
