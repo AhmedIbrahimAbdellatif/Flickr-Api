@@ -1,4 +1,4 @@
-const User = require('../model/user');
+const User = require('../model/userModel');
 
 // This is just a mock added by Ahmed Ibrahim to simulate the behavior of this middleware
 // It's Ghallab's task so he will replace it with the implementation

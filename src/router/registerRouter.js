@@ -3,7 +3,7 @@ const router = new express.Router();
 
 const jwt = require('jsonwebtoken');
 const CustomError = require('../error/custom-error');
-const User = require('../model/user');
+const User = require('../model/userModel');
 
 const signToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {

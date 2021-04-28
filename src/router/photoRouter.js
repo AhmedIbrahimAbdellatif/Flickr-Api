@@ -3,7 +3,7 @@ const multer = require('multer')
 const sharp = require('sharp')
 const router = new express.Router();
 var fs = require('fs');
-const Photo = require('../model/photo')
+const Photo = require('../model/photoModel')
 
 const auth = require('../middleware/authentication')
 const upload = multer({
