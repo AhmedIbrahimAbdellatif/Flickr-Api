@@ -27,14 +27,13 @@ router.get('/fav/:userId', async (req, res) => {
         user['favourites'].forEach((photoId) =>
             favouritesArray.push(mongoose.Types.ObjectId(photoId))
         );
-        Photo.find(
+        const photos = await Photo.find(
             {
                 _id: { $in: favouritesArray },
-            },
-            function (err, docs) {
-                res.send(docs);
             }
         );
+
+        res.send(photos)
     } catch (error) {
         res.status(500).send();
     }

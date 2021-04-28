@@ -45,51 +45,43 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
 })
 
 router.post('/addToFavorites', auth, async (req, res) => {
-    try {
-        if(!req.body.photoId) {
-            res.status(400).send({
-                error: 'Photo Id is missing'
-            })
-            return
-        }
-        const photo = await Photo.findById(req.body.photoId)
-        if(!photo){
-            res.status(404).send({
-                error: 'Photo is not found'
-            })
-            return
-        }
-        req.user.favourites.push(photo._id)
-        await req.user.save()
-        res.send()
+    if(!req.body.photoId) {
+        res.status(400).send({
+            error: 'Photo Id is missing'
+        })
+        return
     }
-    catch (error) {
-        res.status(500).send()
+    const photo = await Photo.findById(req.body.photoId)
+    if(!photo){
+        res.status(404).send({
+            error: 'Photo is not found'
+        })
+        return
     }
+    req.user.favourites.push(photo._id)
+    await req.user.save()
+    res.send()
 })
 
 router.get('/whoFavorited/:photoId', async(req, res)=>{
-    try {
-        if(!req.params.photoId) {
-            res.status(400).send({
-                error: 'Photo Id is missing'
-            })
-            return
-        }
-        const photo = await Photo.findById(req.params.photoId)
-        if(!photo){
-            res.status(404).send({
-                error: 'Photo is not found'
-            })
-            return
-        }
-        await photo.populate({
-            path: 'favoured'
-        }).execPopulate()
-        res.send(photo.favoured)
+    
+    if(!req.params.photoId) {
+        res.status(400).send({
+            error: 'Photo Id is missing'
+        })
+        return
     }
-    catch (error) {
-        res.status(500).send()
+    const photo = await Photo.findById(req.params.photoId)
+    if(!photo){
+        res.status(404).send({
+            error: 'Photo is not found'
+        })
+        return
     }
+    await photo.populate({
+        path: 'favoured'
+    }).execPopulate()
+    res.send(photo.favoured)
+    
 })
 module.exports = router
