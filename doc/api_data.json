@@ -571,8 +571,8 @@
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
-    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-api\\doc\\main.js",
+    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-api\\doc\\main.js",
     "name": ""
   },
   {
@@ -2703,7 +2703,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n\n}",
           "type": "json"
         }
       ]
@@ -2736,12 +2736,12 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"New Password is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"New Password is required\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Old Password is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Old Password is required\"\n\n}",
           "type": "json"
         },
         {
@@ -2805,7 +2805,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n     }\n\n}",
+          "content": "{\n\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n     }\n\n}",
           "type": "json"
         }
       ]
@@ -2824,7 +2824,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n   \"message\": \"AccessToken Is Required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n   \"message\": \"AccessToken Is Required\"\n\n}",
           "type": "json"
         }
       ]
@@ -2863,7 +2863,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n  }\n\n}",
+          "content": "{\n\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n  }\n\n}",
           "type": "json"
         }
       ]
@@ -2882,7 +2882,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"AccessToken Is Required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"AccessToken Is Required\"\n\n}",
           "type": "json"
         }
       ]
@@ -2922,7 +2922,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n\n}",
           "type": "json"
         }
       ]
@@ -2949,12 +2949,12 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n   \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n   \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n\n}",
           "type": "json"
         }
       ]
@@ -2974,7 +2974,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n \n}",
+          "content": "HTTP/1.1 200 OK\n{\n\n}",
           "type": "json"
         }
       ]
@@ -3013,17 +3013,17 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Invalid Credentials\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Invalid Credentials\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n\n}",
           "type": "json"
         },
         {
@@ -3117,12 +3117,6 @@
           {
             "group": "400",
             "optional": false,
-            "field": "Bad",
-            "description": "<p>Request  Wrong user credentials</p>"
-          },
-          {
-            "group": "400",
-            "optional": false,
             "field": "EmailMissing",
             "description": "<p>Email is required</p>"
           },
@@ -3132,22 +3126,30 @@
             "field": "PasswordMissing",
             "description": "<p>Password is required</p>"
           }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "Unauthorized",
+            "description": "<p>Wrong user credentials</p>"
+          }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Invalid Credentials\"\n   \n}",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n     \"message\": \"Invalid Credentials\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n\n}",
           "type": "json"
         }
       ]
@@ -3157,7 +3159,7 @@
   },
   {
     "type": "post",
-    "url": "/register/signUp",
+    "url": "/register/signup",
     "title": "Sign Up",
     "name": "Sign_Up",
     "group": "Register",
@@ -3206,7 +3208,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{    \n      \"email\": \"user@email.com\",\n      \"firstName\": \"User\",\n     \"lastName\": \"User\",\n      \"age\": 18,      \n    }",
+          "content": "{    \n  \"email\": \"user@email.com\",\n  \"password\": \"12345678\",\n  \"firstName\": \"User\",\n  \"lastName\": \"User\",\n  \"age\": 18,      \n}",
           "type": "json"
         }
       ]
@@ -3262,27 +3264,13 @@
             "optional": false,
             "field": "user._id",
             "description": "<p>User's Id</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "user.followers",
-            "description": "<p>User's Followers</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Number",
-            "optional": false,
-            "field": "user.following",
-            "description": "<p>User's Following</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 201 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"user@email.com\",\n    \"firstName\": \"User\",\n   \"lastName\": \"User\",\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"age\": 18,\n    \"followers\": 63,\n    \"following\": 55,\n    \n  }",
+          "content": " HTTP/1.1 201 OK\n{\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"user@email.com\",\n    \"firstName\": \"User\",\n    \"lastName\": \"User\",\n    \"age\": 18,\n }",
           "type": "json"
         }
       ]
@@ -3290,12 +3278,6 @@
     "error": {
       "fields": {
         "400": [
-          {
-            "group": "400",
-            "optional": false,
-            "field": "UserExists",
-            "description": "<p>The Email is already registered</p>"
-          },
           {
             "group": "400",
             "optional": false,
@@ -3325,13 +3307,27 @@
             "optional": false,
             "field": "AgeMissing",
             "description": "<p>Age  is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PasswordTooShort",
+            "description": "<p>Password must be more than 8 characters</p>"
+          }
+        ],
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "UserExists",
+            "description": "<p>The Email is already registered</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Failed\n{\n  \n    \"message\": \"User Already Exists\"\n   \n}",
+          "content": "HTTP/1.1 403 Failed\n{\n  \n    \"message\": \"User Already Exists\"\n   \n}",
           "type": "json"
         },
         {
@@ -3357,6 +3353,11 @@
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Age is required\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password must be more than 8 characters\"\n\n}",
           "type": "json"
         }
       ]
