@@ -1,5 +1,3 @@
-
-
 /**
  *
  * @api {post} /register/loginWithFacebook Login using Facebook
@@ -19,7 +17,7 @@
  *
  * @apiSuccessExample {json} Success-Response:
  * {
- *     
+ *
  *       status: 'connected', The person is logged into Facebook, and has logged into your webpage.
  *                            not_authorized    The person is logged into Facebook, but has not logged into your webpage.
  *                            unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.
@@ -30,15 +28,15 @@
  *       signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.
  *       userID:'{user-id}'   The ID of the person using your webpage.
  *      }
- * 
+ *
  * }
  * @apiError (400) Bad Request  AccessToken Is Required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *        "message": "AccessToken Is Required"
- *        
+ *
  *     }
  *
  */
@@ -61,7 +59,7 @@
  *
  * @apiSuccessExample {json} Success-Response:
  * {
- *     
+ *
  *       status: 'connected', The person is logged into Facebook, and has logged into your webpage.
  *                            not_authorized    The person is logged into Facebook, but has not logged into your webpage.
  *                            unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.
@@ -72,15 +70,15 @@
  *       signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.
  *       userID:'{user-id}'   The ID of the person using your webpage.
  *   }
- * 
+ *
  * }
  * @apiError (400) AccessTokenMissing  AccessToken Is Required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "AccessToken Is Required"
- *        
+ *
  *     }
  *
  *
@@ -105,33 +103,33 @@
  *     {
  *       "accessToken": "asdasdkasdliuaslidas"
  *     }
- * @apiError (400) Bad Request  Wrong user credentials
+ * @apiError (401) Unauthorized   Wrong user credentials
  * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 400 Bad Request
+ *     HTTP/1.1 401 Unauthorized
  *     {
  *          "message": "Invalid Credentials"
- *        
+ *
  *     }
  * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "Email is required"
- *        
+ *
  *     }
  * @apiError (400) PasswordMissing Password is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "Password is required"
- *        
+ *
  *     }
  *
  */
 
- /**
+/**
  * @api {post} /register/logOut LogOut a User
  * @apiUse Authentication
  * @apiName Log Out User
@@ -141,36 +139,36 @@
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *      
+ *
  *     }
  * @apiError (400) Bad Request  Wrong user credentials
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
  *          "message": "Invalid Credentials"
- *        
+ *
  *     }
  * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "Email is required"
- *        
- *     } 
+ *
+ *     }
  * @apiError (400) PasswordMissing Password is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "Password is required"
- *        
+ *
  *     }
  *
  */
 
 /**
- *  @api {post} /register/signUp Sign Up
+ *  @api {post} /register/signup Sign Up
   * @apiName Sign Up
   * @apiGroup Register
   * @apiVersion 1.0.0
@@ -181,10 +179,11 @@
   * @apiParam {String} lastName User's Last Name
   * @apiParam {Number} age User's Age
   * @apiParamExample {json} Request-Example:
-  *{    
+  *     {    
   *       "email": "user@email.com",
+  *       "password": "12345678",
   *       "firstName": "User",
-  *      "lastName": "User",
+  *       "lastName": "User",
   *       "age": 18,      
   *     }
  * @apiSuccess {Object} user
@@ -194,24 +193,19 @@
  * @apiSuccess {String} user.accessToken  User's Access Token
  * @apiSuccess {Number} user.age User's Age
  * @apiSuccess {String} user._id User's Id
- * @apiSuccess {Number} user.followers User's Followers
- * @apiSuccess {Number} user.following User's Following
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 201 OK
  *   {
+ *       "accessToken": "skdnksd7474g3kdbjfhf34",
  *       "_id": "5349b4ddd2781d08c09890f4",
  *       "email": "user@email.com",
  *       "firstName": "User",
- *      "lastName": "User",
- *       "accessToken": "skdnksd7474g3kdbjfhf34",
+ *       "lastName": "User",
  *       "age": 18,
- *       "followers": 63,
- *       "following": 55,
- *       
- *     }
- * @apiError (400) UserExists  The Email is already registered
+ *    }
+ * @apiError (403) UserExists  The Email is already registered
  * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 400 Failed
+ *     HTTP/1.1 403 Failed
  *     {
  *       
  *         "message": "User Already Exists"
@@ -259,7 +253,14 @@
  *          "message": "Age is required"
  *        
  *     }
- 
+ * @apiError (400) PasswordTooShort    Password must be more than 8 characters
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "Password must be more than 8 characters"
+ *
+ *     }
  */
 /**
  * @apiUse Authentication
@@ -269,37 +270,37 @@
  * @apiVersion 1.0.0
  * @apiDescription Change User's Password
  * @apiParam {String} newPass New Password
- * @apiParam {String} oldPass Old Password 
+ * @apiParam {String} oldPass Old Password
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       
+ *
  *     }
  * @apiParamExample {json} Request-Example:
  * {
  *     "newPass": "5349b4ddd2781d08c09890f4",
  *     "oldPass": "fifa2011"
- * } 
+ * }
  * @apiError (400) NewPasswordMissing New Password of the account is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "New Password is required"
- *        
+ *
  *     }
  * @apiError (400) OldPasswordMissing Old Password of the account is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "Old Password is required"
- *        
+ *
  *     }
- * 
+ *
  */
 
- /**
+/**
  * @api {post} /register/forgetPassword Forget Password
  * @apiName Forget Password
  * @apiGroup Register
@@ -309,27 +310,27 @@
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       
+ *
  *     }
  * @apiParamExample {json} Request-Example:
  * {
  *     "email": "test@test.com"
  * }
- * 
+ *
  * @apiError (404) UserNotFound  The id of the User wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *        "message": "User Not Found"
- *        
+ *
  *     }
  * @apiError (400) EmailMissing Email is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
- *     
+ *
  *          "message": "Email is required"
- *        
+ *
  *     }
  */
