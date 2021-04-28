@@ -10,9 +10,9 @@ const { errorHandler } = require('./middleware/error-handler')
 //Import Errors
 const { NotFound } = require('./error/not-found')
 //Import Routes
-const userRouter = require('./router/user')
-const registerRouter = require('./router/register')
-const photoRouter = require('./router/photo')
+const userRouter = require('./router/userRouter')
+const registerRouter = require('./router/registerRouter')
+const photoRouter = require('./router/photoRouter')
 
 //Configure App
 app.use(express.json())

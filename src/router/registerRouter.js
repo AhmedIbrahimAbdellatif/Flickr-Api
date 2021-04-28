@@ -2,7 +2,9 @@ const express = require('express');
 const router = new express.Router();
 
 const jwt = require('jsonwebtoken');
-const CustomError = require('../error/custom-error');
+
+//Import Middlewares
+const { validateRequest, validateSignUp } = require('../middleware/request-validator');
 const User = require('../model/userModel');
 
 const signToken = (id) => {
@@ -11,7 +13,7 @@ const signToken = (id) => {
     });
 };
 
-router.post('/signup', async (req, res, next) => {
+router.post('/signup',validateSignUp, validateRequest, async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
     if (!email) {
         res.status(400).json({

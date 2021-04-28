@@ -2,8 +2,8 @@ const express = require('express');
 const router = new express.Router();
 const mongoose = require('mongoose');
 
-const User = require('../model/user');
-const Photo = require('../model/photo');
+const User = require('../model/userModel');
+const Photo = require('../model/photoModel');
 //const authentication = require('../middleware/authentication');
 
 router.get('/fav/:userId', async (req, res) => {
