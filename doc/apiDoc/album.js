@@ -3,22 +3,6 @@
  */
 /////////////////////////////HIMA//////////////////////////
 /**
- * @apiDefine Authentication
- * @apiHeader {String} Authorization Users access-token
- * @apiHeaderExample {json} Header-Example:
- *     {
- *       "Authorization": "Bearer asdasdkasdliuaslidas"
- *     }
- * @apiError (401) unauthorized User is not authorized
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 401 unauthorized
- *     {
- *       
- *       "message": "Authentication Error"
- *        
- *     }
- */
-/**
  * @apiUse Authentication
  * @api {post} /album/createAlbum Create a new album
  * @apiName Create Album
@@ -51,9 +35,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "Album Not Found"
- *        
+ *
  *     }
  */
 /**
@@ -78,12 +62,12 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "Album Not Found"
- *        
+ *
  *     }
  */
-/** 
+/**
  * @api {get} /album/:albumId Get album media
  * @apiName Get Album Media
  * @apiGroup Album
@@ -114,11 +98,11 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "Album Not Found"
- *        
+ *
  *     }
-*/
+ */
 ////////////////////////////////GHALLAB//////////////////////////
 /**
  * @apiUse Authentication

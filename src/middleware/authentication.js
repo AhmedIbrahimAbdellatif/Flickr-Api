@@ -1,18 +1,45 @@
 const User = require('../model/userModel');
+const { LogicError } = require('../error/logic-error');
+const { promisify } = require('util');
+const jwt = require('jsonwebtoken');
 
-// This is just a mock added by Ahmed Ibrahim to simulate the behavior of this middleware
-// It's Ghallab's task so he will replace it with the implementation
 const auth = async (req, res, next) => {
-    req.user = await User.findById('5349b4ddd2781d08c09890f4');
-    // req.user = new User({
-    //     email: 'test@gmail.com',
-    //     password: '123',
-    //     firstName: 'test',
-    //     lastName: 'test',
-    //     age: '18',
-    //     favourites: ["608721aff453eb230cc86382"],
-    //     _id: '5349b4ddd2781d08c09890f4'
-    // })
+    let token;
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith('Bearer')
+    ) {
+        token = req.headers.authorization.split(' ')[1];
+    }
+    if (!token) {
+        throw new LogicError(
+            401,
+            'You are not logged in! Please log in to continue'
+        );
+    }
+    let decoded;
+    try {
+        decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    } catch (err) {
+        throw new LogicError(
+            401,
+            'Token may be Invalid or Expired! Please log in to continue'
+        );
+    }
+    const user = await User.findById(decoded.id);
+    if (!user) {
+        throw new LogicError(
+            401,
+            'The user that belongs to this token does not exist'
+        );
+    }
+    if (user.changedPassword(decoded.iat)) {
+        throw new LogicError(
+            401,
+            'The user that belongs to this token changed his password recently! Please reLogin'
+        );
+    }
+    req.user = user;
     next();
 };
 

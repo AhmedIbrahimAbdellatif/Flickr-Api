@@ -1,4 +1,44 @@
 /**
+ * @apiDefine Authentication
+ * @apiHeader {String} Authorization Users access-token
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Bearer asdasdkasdliuaslidas"
+ *     }
+ * @apiError (401) InvalidToken Token May be Expired or Invalid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 401 unauthorized
+ *     {
+ *
+ *       "message": "Token may be Invalid or Expired! Please log in to continue"
+ *
+ *     }
+ * @apiError (401) UserDeleted The user linked to this token does no longer exist
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 401 unauthorized
+ *     {
+ *
+ *       "message": "The user that belongs to this token does not exist"
+ *
+ *     }
+ * @apiError (401) UserChangedPassword The user Linked to this token changed his password recently therefore token is no longer valid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 401 unauthorized
+ *     {
+ *
+ *       "message": "The user that belongs to this token changed his password recently! Please reLogin"
+ *
+ *     }
+ * @apiError (401) unauthorized User is not authorized
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 401 unauthorized
+ *     {
+ *
+ *       "message": "You are not logged in! Please log in to continue"
+ *
+ *     }
+ */
+/**
  *
  * @api {post} /register/loginWithFacebook Login using Facebook
  * @apiName Facebook Login

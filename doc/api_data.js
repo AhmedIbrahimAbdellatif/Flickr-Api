@@ -48,6 +48,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -80,7 +98,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -180,6 +213,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -188,7 +239,22 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -230,6 +296,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -246,12 +330,27 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Album Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Album Not Found\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -336,6 +435,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -352,12 +469,27 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Album Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Album Not Found\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -430,7 +562,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Album Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Album Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -487,6 +619,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -519,7 +669,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -571,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-api\\doc\\main.js",
-    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-api\\doc\\main.js",
+    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -624,6 +789,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -656,7 +839,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -733,6 +931,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -765,7 +981,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -872,6 +1103,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -880,7 +1129,22 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -985,6 +1249,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1017,7 +1299,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1086,6 +1383,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1118,7 +1433,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1187,6 +1517,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1219,7 +1567,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1288,6 +1651,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1320,7 +1701,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1396,6 +1792,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1428,7 +1842,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1562,6 +1991,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1583,7 +2030,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1652,6 +2114,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1684,7 +2164,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1762,6 +2257,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1783,7 +2296,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1862,6 +2390,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1888,7 +2434,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -1969,6 +2530,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -1995,12 +2574,42 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -2140,6 +2749,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -2172,7 +2799,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -2240,6 +2882,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -2272,7 +2932,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -2623,6 +3298,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -2636,7 +3329,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -2728,6 +3436,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -2746,7 +3472,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -3005,6 +3746,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -3028,7 +3787,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -3492,6 +4266,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -3513,7 +4305,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -3590,6 +4397,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -3611,7 +4436,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -3690,6 +4530,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -3716,7 +4574,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -3841,6 +4714,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -3862,7 +4753,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -4357,6 +5263,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -4378,7 +5302,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -4667,6 +5606,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -4688,7 +5645,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
@@ -4767,6 +5739,24 @@ define({ "api": [
           {
             "group": "401",
             "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
             "field": "unauthorized",
             "description": "<p>User is not authorized</p>"
           }
@@ -4793,7 +5783,22 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n  \n  \"message\": \"Authentication Error\"\n   \n}",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
           "type": "json"
         }
       ]
