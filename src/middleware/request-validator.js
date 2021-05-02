@@ -38,16 +38,22 @@ const validatePhotoUpload = [
     body('description').optional().isString().withMessage('Description should be string'),
     body('safetyOption').optional().isString().withMessage('Safety Option should be string'),
  
-]
+];
 //Params Validations
 const validatePhotoIdParam = [
     param('photoId').isMongoId().withMessage('PhotoId is required')
-]
+];
+
+const validateUserIdParam = [
+    param('userId').isMongoId().withMessage('UserId is required')
+];
+
 module.exports = {
     validateRequest,
     validatePhotoId,
     validateSignUp,
     validateLogIn,
     validatePhotoIdParam,
-    validatePhotoUpload
+    validatePhotoUpload,
+    validateUserIdParam
 };

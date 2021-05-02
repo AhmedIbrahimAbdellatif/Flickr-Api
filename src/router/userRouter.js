@@ -2,6 +2,11 @@ const express = require('express');
 const router = new express.Router();
 const userController = require('../controllers/userController');
 
-router.get('/fav/:userId', userController.getFavorites);
+const {
+    validateRequest,
+    validateUserIdParam,
+} = require('../middleware/request-validator');
+
+router.get('/fav/:userId', validateUserIdParam, validateRequest, userController.getFavorites);
 
 module.exports = router;
