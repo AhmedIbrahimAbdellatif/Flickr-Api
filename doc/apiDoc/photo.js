@@ -217,7 +217,9 @@
  *     }
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 OK
- *    {}
+ *    {
+ *      "url": String
+ *     }
   * @apiError (400) PhotoMissing This Photo is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found

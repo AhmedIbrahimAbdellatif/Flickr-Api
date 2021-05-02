@@ -3279,7 +3279,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"url\": String\n }",
           "type": "json"
         }
       ]
