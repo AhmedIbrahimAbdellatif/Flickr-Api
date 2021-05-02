@@ -10,12 +10,12 @@ const {
 } = require('../middleware/request-validator');
 
 router.post(
-    '/signup',
+    '/signUp',
     validateSignUp,
     validateRequest,
     registerController.signUp
 );
 
-router.post('/login', validateLogIn, validateRequest, registerController.logIn);
+router.post('/logIn', validateLogIn, validateRequest, registerController.logIn);
 
 module.exports = router;

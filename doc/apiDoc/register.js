@@ -125,7 +125,7 @@
  */
 
 /**
- * @api {post} /register/login Login a User
+ * @api {post} /register/logIn Login a User
  * @apiName Login User
  * @apiGroup Register
  * @apiVersion 1.0.0
@@ -208,7 +208,7 @@
  */
 
 /**
- *  @api {post} /register/signup Sign Up
+ *  @api {post} /register/signUp Sign Up
   * @apiName Sign Up
   * @apiGroup Register
   * @apiVersion 1.0.0

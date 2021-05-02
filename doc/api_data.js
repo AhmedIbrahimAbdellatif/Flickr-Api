@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
-    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "name": ""
   },
   {
@@ -3832,7 +3832,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/register/login",
+    "url": "/register/logIn",
     "title": "Login a User",
     "name": "Login_User",
     "group": "Register",
@@ -3933,7 +3933,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/register/signup",
+    "url": "/register/signUp",
     "title": "Sign Up",
     "name": "Sign_Up",
     "group": "Register",
