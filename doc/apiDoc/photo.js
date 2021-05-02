@@ -230,8 +230,15 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *        "message" : "Photo is required"
+ *        "message" : "Title is required"
  *     }
+ *  @apiError (400) ContentTypeMissing This Photo ContentType is required
+ *  @apiError (400) isPublicWrongFormat This Photo isPublic should be boolean
+ *  @apiError (400) AllowCommentingWrongFormat This Photo Allow Commenting should be boolean
+ *  @apiError (400) LicenseWrongFormat This Photo License should be string
+ *  @apiError (400) DescriptionWrongFormat This Photo description should be string
+ *  @apiError (400) SafetyOptionWrongFormat This Photo SafetyOption should be string
+ * 
  * 
  */
 ///////////////////////////////////////// KARIM ///////////////////////////////////////////

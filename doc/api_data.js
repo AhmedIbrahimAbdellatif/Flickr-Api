@@ -3292,6 +3292,48 @@ define({ "api": [
             "optional": false,
             "field": "PhotoMissing",
             "description": "<p>This Photo is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "TitleMissing",
+            "description": "<p>This Photo Title is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "ContentTypeMissing",
+            "description": "<p>This Photo ContentType is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "isPublicWrongFormat",
+            "description": "<p>This Photo isPublic should be boolean</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "AllowCommentingWrongFormat",
+            "description": "<p>This Photo Allow Commenting should be boolean</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "LicenseWrongFormat",
+            "description": "<p>This Photo License should be string</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "DescriptionWrongFormat",
+            "description": "<p>This Photo description should be string</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "SafetyOptionWrongFormat",
+            "description": "<p>This Photo SafetyOption should be string</p>"
           }
         ],
         "401": [
@@ -3325,6 +3367,11 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"Photo is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"Title is required\"\n}",
           "type": "json"
         },
         {
