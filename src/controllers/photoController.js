@@ -1,5 +1,5 @@
 const Photo = require('../model/photoModel');
-(exports.uploadImage = async (req, res) => {
+module.exports.uploadImage = async (req, res) => {
     try {
         reqBody = { ...req.body };
         delete reqBody['file'];
@@ -14,12 +14,9 @@ const Photo = require('../model/photoModel');
     } catch (error) {
         res.send(400).send(error);
     }
-}),
-    (error, req, res, next) => {
-        res.status(400).send({ error: error.message });
-    };
+}
 
-exports.addToFavorites = async (req, res) => {
+module.exports.addToFavorites = async (req, res) => {
     if (!req.body.photoId) {
         res.status(400).send({
             error: 'Photo Id is missing',
@@ -38,7 +35,7 @@ exports.addToFavorites = async (req, res) => {
     res.send();
 };
 
-exports.whoFavorited = async (req, res) => {
+module.exports.whoFavorited = async (req, res) => {
     if (!req.params.photoId) {
         res.status(400).send({
             error: 'Photo Id is missing',

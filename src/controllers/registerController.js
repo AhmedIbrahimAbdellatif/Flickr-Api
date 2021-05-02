@@ -1,6 +1,6 @@
 const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
-exports.signUp = async (req, res, next) => {
+module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
     if (await User.findOne({ email })) {
         throw new LogicError(403,'User Already Exists')
@@ -23,7 +23,7 @@ exports.signUp = async (req, res, next) => {
     });
 };
 
-exports.logIn = async (req, res, next) => {
+module.exports.logIn = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email }).select('+password');
     if (!user || !(await user.correctPassword(password, user.password))) {
