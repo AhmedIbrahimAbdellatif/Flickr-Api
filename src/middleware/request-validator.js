@@ -29,7 +29,7 @@ const validateLogIn = [
     body('password').isString().withMessage('Password is required'),
 ];
 const validatePhotoUpload = [
-    body('photo').withMessage('File is required'),
+    body('file').exists().withMessage('File is required'),
     body('title').isString().withMessage('Title is required'),
     body('contentType').isString().withMessage('Content Type is required'),
     body('isPublic').optional().isBoolean().withMessage('Is Public should be boolean'),
@@ -48,5 +48,6 @@ module.exports = {
     validatePhotoId,
     validateSignUp,
     validateLogIn,
-    validatePhotoIdParam
+    validatePhotoIdParam,
+    validatePhotoUpload
 };

@@ -10,6 +10,7 @@ const auth = require('../middleware/authentication');
 const {
     validateRequest,
     validatePhotoIdParam,
+    validatePhotoUpload
 } = require('../middleware/request-validator');
 
 const upload = multer({
@@ -29,11 +30,12 @@ const upload = multer({
         if (!file.originalname.match(/\.(png|jpg|tiff)$/)) {
             return callback(new Error('Invalid file extension'));
         }
+        req.body.file = true
         callback(undefined, true);
     },
 });
 
-router.post('/upload', auth, upload.single('file'), photoController.uploadImage);
+router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadImage);
 
 router.post('/addToFavorites', auth, photoController.addToFavorites);
 
