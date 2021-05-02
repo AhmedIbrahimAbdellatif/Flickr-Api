@@ -1,4 +1,6 @@
 const multer = require('multer');
+var fs = require('fs');
+
 module.exports.upload = multer({
     dest: function (req, file, callback) {
         if (!fs.existsSync('public')) {
@@ -19,6 +21,7 @@ module.exports.upload = multer({
         if (!file.originalname.match(/\.(png|jpg|tiff)$/)) {
             return callback(new Error('Invalid file extension'));
         }
+        req.body.file = true
         callback(undefined, true);
     },
 });

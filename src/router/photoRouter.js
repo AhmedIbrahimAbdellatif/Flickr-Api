@@ -1,6 +1,5 @@
 const express = require('express');
 const router = new express.Router();
-var fs = require('fs');
 const photoController = require('../controllers/photoController');
 const auth = require('../middleware/authentication');
 
@@ -10,7 +9,7 @@ const {
     validatePhotoIdParam,
     validatePhotoUpload
 } = require('../middleware/request-validator');
-const upload = require('../middleware/photo-multer-handler');
+const { upload } = require('../middleware/photo-multer-handler');
 
 router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadImage);
 
