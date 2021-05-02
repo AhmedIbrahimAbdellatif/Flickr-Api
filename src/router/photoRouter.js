@@ -7,6 +7,9 @@ const photoController = require('../controllers/photoController');
 const auth = require('../middleware/authentication');
 const upload = multer({
     dest: function (req, file, callback) {
+        if (!fs.existsSync('public/images')) {
+            fs.mkdirSync('public/images');
+        }
         if (!fs.existsSync(`public/images/${req.user._id}`)) {
             fs.mkdirSync(`public/images/${req.user._id}`);
         }
@@ -23,12 +26,7 @@ const upload = multer({
     },
 });
 
-router.post(
-    '/upload',
-    auth,
-    upload.single('file'),
-    photoController.uploadImage
-);
+router.post('/upload', auth, upload.single('file'), photoController.uploadImage);
 
 router.post('/addToFavorites', auth, photoController.addToFavorites);
 
