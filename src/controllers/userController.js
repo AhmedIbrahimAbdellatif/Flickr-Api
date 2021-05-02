@@ -1,6 +1,7 @@
 const User = require('../model/userModel');
 const Photo = require('../model/photoModel');
 const mongoose = require('mongoose');
+
 module.exports.getFavorites = async (req, res) => {
     try {
         console.log('inside fav');

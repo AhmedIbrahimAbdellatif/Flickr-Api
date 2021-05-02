@@ -226,6 +226,12 @@
  *     {
  *        "message" : "Photo is required"
  *     }
+ * @apiError (400) TitleMissing This Photo Title is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "Photo is required"
+ *     }
  * 
  */
 ///////////////////////////////////////// KARIM ///////////////////////////////////////////

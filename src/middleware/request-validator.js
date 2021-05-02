@@ -1,4 +1,4 @@
-const { validationResult, body } = require('express-validator');
+const { validationResult, body, param } = require('express-validator');
 const { RequestValidationError } = require('../error/request-validation');
 
 const validateRequest = (req, res, next) => {
@@ -8,6 +8,8 @@ const validateRequest = (req, res, next) => {
     next();
 };
 
+
+//Body Validations
 const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
 ];
@@ -26,9 +28,15 @@ const validateLogIn = [
     body('email').isEmail().withMessage('Email is required'),
     body('password').isString().withMessage('Password is required'),
 ];
+
+//Params Validations
+const validatePhotoIdParam = [
+    param('photoId').isMongoId().withMessage('PhotoId is required')
+]
 module.exports = {
     validateRequest,
     validatePhotoId,
     validateSignUp,
     validateLogIn,
+    validatePhotoIdParam
 };
