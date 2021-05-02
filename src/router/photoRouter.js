@@ -1,6 +1,4 @@
 const express = require('express');
-const multer = require('multer');
-const sharp = require('sharp');
 const router = new express.Router();
 var fs = require('fs');
 const photoController = require('../controllers/photoController');
@@ -11,27 +9,7 @@ const {
     validateRequest,
     validatePhotoIdParam,
 } = require('../middleware/request-validator');
-
-const upload = multer({
-    dest: function (req, file, callback) {
-        if (!fs.existsSync('public/images')) {
-            fs.mkdirSync('public/images');
-        }
-        if (!fs.existsSync(`public/images/${req.user._id}`)) {
-            fs.mkdirSync(`public/images/${req.user._id}`);
-        }
-        callback(null, `public/images/${req.user._id}`);
-    },
-    limits: {
-        fileSize: 1000000,
-    },
-    fileFilter(req, file, callback) {
-        if (!file.originalname.match(/\.(png|jpg|tiff)$/)) {
-            return callback(new Error('Invalid file extension'));
-        }
-        callback(undefined, true);
-    },
-});
+const upload = require('../middleware/photo-multer-handler');
 
 router.post('/upload', auth, upload.single('file'), photoController.uploadImage);
 
