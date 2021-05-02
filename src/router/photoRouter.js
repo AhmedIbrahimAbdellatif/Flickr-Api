@@ -5,6 +5,13 @@ const router = new express.Router();
 var fs = require('fs');
 const photoController = require('../controllers/photoController');
 const auth = require('../middleware/authentication');
+
+//Import Middlewares
+const {
+    validateRequest,
+    validatePhotoIdParam,
+} = require('../middleware/request-validator');
+
 const upload = multer({
     dest: function (req, file, callback) {
         if (!fs.existsSync('public/images')) {
@@ -30,5 +37,5 @@ router.post('/upload', auth, upload.single('file'), photoController.uploadImage)
 
 router.post('/addToFavorites', auth, photoController.addToFavorites);
 
-router.get('/whoFavorited/:photoId', photoController.whoFavorited);
+router.get('/whoFavorited/:photoId', validatePhotoIdParam, validateRequest, photoController.whoFavorited);
 module.exports = router;
