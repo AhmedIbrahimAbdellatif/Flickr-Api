@@ -238,6 +238,8 @@
  *  @apiError (400) LicenseWrongFormat This Photo License should be string
  *  @apiError (400) DescriptionWrongFormat This Photo description should be string
  *  @apiError (400) SafetyOptionWrongFormat This Photo SafetyOption should be string
+ *  @apiError (400) FileExtension Invalid File extension
+ *  @apiError (400) FileSizeLimit Something Went Wrong
  * 
  * 
  */

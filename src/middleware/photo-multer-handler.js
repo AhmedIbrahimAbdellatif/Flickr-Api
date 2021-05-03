@@ -1,6 +1,6 @@
 const multer = require('multer');
 var fs = require('fs');
-
+const { LogicError } = require('../error/logic-error')
 module.exports.upload = multer({
     dest: function (req, file, callback) {
         if (!fs.existsSync('public')) {
@@ -18,8 +18,8 @@ module.exports.upload = multer({
         fileSize: 1000000,
     },
     fileFilter(req, file, callback) {
-        if (!file.originalname.match(/\.(png|jpg|tiff)$/)) {
-            return callback(new Error('Invalid file extension'));
+        if (!file.originalname.match(/\.(png|jpg|tiff)$/i)) {
+            return callback(new LogicError(400,'Invalid file extension'));
         }
         req.body.file = true
         callback(undefined, true);
