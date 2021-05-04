@@ -21,7 +21,7 @@ throw error
 console.log(stdout)
 })
 */
-const redisClient = redis.createClient();
+const redisClient = redis.createClient(process.env.REDIS_URL);
 // process.env.REDIS_URL is the redis url config variable name on heroku.
 // if local use redis.createClient()
 redisClient.on('connect', () => {
