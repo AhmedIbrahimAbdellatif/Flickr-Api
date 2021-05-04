@@ -1,9 +1,10 @@
 const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
+const { setAsync } = require('../third-Parties/redis');
 module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
     if (await User.findOne({ email })) {
-        throw new LogicError(403,'User Already Exists')
+        throw new LogicError(403, 'User Already Exists');
     }
     const newUser = await User.create({
         email,
@@ -33,4 +34,9 @@ module.exports.logIn = async (req, res, next) => {
     res.status(200).json({
         accessToken: token,
     });
+};
+
+module.exports.logOut = async (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    await setAsync(token, 'LoggedOut', 'EX', process.env.REDIS_CLEAR_TIME);
 };

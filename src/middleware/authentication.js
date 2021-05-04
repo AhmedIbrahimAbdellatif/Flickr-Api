@@ -2,6 +2,7 @@ const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
+const { redisClient, getAsync, setAsync } = require('../third-Parties/redis');
 
 const auth = async (req, res, next) => {
     let token;
@@ -24,6 +25,13 @@ const auth = async (req, res, next) => {
         throw new LogicError(
             401,
             'Token may be Invalid or Expired! Please log in to continue'
+        );
+    }
+    const redisValue = await getAsync(token);
+    if (redisValue == 'LoggedOut') {
+        throw new LogicError(
+            401,
+            'This user is logged out! Please log in to continue'
         );
     }
     const user = await User.findById(decoded.id);
