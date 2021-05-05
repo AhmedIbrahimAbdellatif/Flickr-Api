@@ -1,6 +1,6 @@
 const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
-const { setAsync } = require('../third-Parties/redis');
+const { setAsync, getAsync } = require('../third-Parties/redis');
 module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
     if (await User.findOne({ email })) {
@@ -37,6 +37,14 @@ module.exports.logIn = async (req, res, next) => {
 };
 
 module.exports.logOut = async (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
-    await setAsync(token, 'LoggedOut', 'EX', process.env.REDIS_CLEAR_TIME);
+    const token = req.token;
+    const setReturns = await setAsync(
+        token,
+        'LoggedOut',
+        'EX',
+        process.env.REDIS_CLEAR_TIME
+    );
+    res.status(200).json({
+        message: 'You are logged out successfuly',
+    });
 };

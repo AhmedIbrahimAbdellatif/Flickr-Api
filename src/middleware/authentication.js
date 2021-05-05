@@ -11,6 +11,7 @@ const auth = async (req, res, next) => {
         req.headers.authorization.startsWith('Bearer')
     ) {
         token = req.headers.authorization.split(' ')[1];
+        req.token = token;
     }
     if (!token) {
         throw new LogicError(

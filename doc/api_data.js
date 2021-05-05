@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
-    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -3762,33 +3762,35 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     message: 'You are logged out successfuly'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
           "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
-        "400": [
-          {
-            "group": "400",
-            "optional": false,
-            "field": "Bad",
-            "description": "<p>Request  Wrong user credentials</p>"
-          },
-          {
-            "group": "400",
-            "optional": false,
-            "field": "EmailMissing",
-            "description": "<p>Email is required</p>"
-          },
-          {
-            "group": "400",
-            "optional": false,
-            "field": "PasswordMissing",
-            "description": "<p>Password is required</p>"
-          }
-        ],
         "401": [
           {
             "group": "401",
@@ -3819,21 +3821,6 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Invalid Credentials\"\n\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
           "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
           "type": "json"
         },
@@ -3850,28 +3837,6 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "doc/apiDoc/register.js",
-    "groupTitle": "Register",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users access-token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
           "type": "json"
         }
       ]

@@ -179,32 +179,8 @@
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *
+ *          message: 'You are logged out successfuly'
  *     }
- * @apiError (400) Bad Request  Wrong user credentials
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 400 Bad Request
- *     {
- *          "message": "Invalid Credentials"
- *
- *     }
- * @apiError (400) EmailMissing Email is required
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 400 Bad Request
- *     {
- *
- *          "message": "Email is required"
- *
- *     }
- * @apiError (400) PasswordMissing Password is required
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 400 Bad Request
- *     {
- *
- *          "message": "Password is required"
- *
- *     }
- *
  */
 
 /**
