@@ -3334,6 +3334,18 @@ define({ "api": [
             "optional": false,
             "field": "SafetyOptionWrongFormat",
             "description": "<p>This Photo SafetyOption should be string</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "FileExtension",
+            "description": "<p>Invalid File extension</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "FileSizeLimit",
+            "description": "<p>Something Went Wrong</p>"
           }
         ],
         "401": [
