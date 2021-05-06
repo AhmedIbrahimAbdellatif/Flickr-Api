@@ -9,12 +9,16 @@ module.exports.getFavorites = async (req, res) => {
         throw new LogicError(404, 'User is not found');
     }
     favouritesArray = [];
-    user['favourites'].forEach((photoId) =>
-        favouritesArray.push(mongoose.Types.ObjectId(photoId))
-    );
+    // user['favourites'].forEach((photoId) =>
+    //     favouritesArray.push(mongoose.Types.ObjectId(photoId))
+    // );
     const photos = await Photo.find({
-        _id: { $in: favouritesArray },
-    });
-
-    res.send(photos);
+        _id: { $in: user['favourites'] },
+    }).populate(
+        {
+            path: 'creator',
+            select: ['_id', 'firstName', 'lastName']
+        }
+    ).exec();
+    res.send({favorites: photos});
 };
