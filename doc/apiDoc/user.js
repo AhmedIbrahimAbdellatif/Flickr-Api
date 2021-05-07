@@ -300,6 +300,7 @@
  *               "favouritesNum": 1023,
  *               "commentsNum": 1023,
  *               "creator": {
+ *                   "_id": "60928e30456b633130df176d",
  *                   "firstName": "Ahmed",
  *                   "lastName": "Ibrahim"
  *               },

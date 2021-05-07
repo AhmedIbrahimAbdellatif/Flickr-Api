@@ -6,7 +6,7 @@ module.exports.uploadImage = async (req, res) => {
     delete reqBody['file'];
     const photo = new Photo({
         ...reqBody,
-        url: '/images/uploads/' + req.file.filename,
+        url: 'https://' + process.env.HOSTNAME + ':' + process.env.PORT + '/' + req.file.path.toString().replaceAll('\\','/'),
         creator: req.user._id,
     });
     await photo.save();
@@ -18,8 +18,10 @@ module.exports.addToFavorites = async (req, res) => {
     if (!photo) {
         throw new LogicError(404, 'Photo is not found');
     }
-    req.user.favourites.push(photo._id);
-    await req.user.save();
+    if(!req.user.favourites.includes(photo._id)){
+        req.user.favourites.push(photo._id);
+        await req.user.save();
+    }
     res.send();
 };
 
@@ -31,7 +33,8 @@ module.exports.whoFavorited = async (req, res) => {
     await photo
         .populate({
             path: 'favoured',
+            select: ['firstName', 'lastName', '-favourites']
         })
         .execPopulate();
-    res.send(photo.favoured);
+    res.send({user: photo.favoured});
 };

@@ -1,8 +1,9 @@
 const multer = require('multer');
+const mongoose = require('mongoose');
 var fs = require('fs');
 const { LogicError } = require('../error/logic-error')
-module.exports.upload = multer({
-    dest: function (req, file, callback) {
+storage = multer.diskStorage({
+    destination: function (req, file, callback) {
         if (!fs.existsSync('public')) {
             fs.mkdirSync('public');
         }
@@ -14,6 +15,14 @@ module.exports.upload = multer({
         }
         callback(null, `public/images/${req.user._id}`);
     },
+    filename: function(req, file, callback) {
+        uniqueFileName = mongoose.Types.ObjectId();
+        extension = file.originalname.split('.').pop();
+        callback(null, uniqueFileName+'.'+extension);
+    }
+})
+module.exports.upload = multer({
+    storage: storage,
     limits: {
         fileSize: 1000000,
     },
