@@ -10,6 +10,19 @@ const validateRequest = (req, res, next) => {
 
 
 //Body Validations
+
+const validateChangePassword = [
+    body('oldPass').isString().withMessage('Old password is required'),
+    body('newPass')
+    .isString()
+    .withMessage('Password is required')
+    .isLength({ min: 8 })
+    .withMessage('Password must be more than 8 characters'),
+];
+const validateUserIdBody = [
+    body('userId').isMongoId().withMessage('User Id to be followed is missing'),
+];
+
 const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
 ];
@@ -55,5 +68,7 @@ module.exports = {
     validateLogIn,
     validatePhotoIdParam,
     validatePhotoUpload,
-    validateUserIdParam
+    validateUserIdParam,
+    validateUserIdBody,
+    validateChangePassword
 };

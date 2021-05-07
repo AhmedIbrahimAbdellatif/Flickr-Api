@@ -4,6 +4,7 @@ const router = new express.Router();
 const auth = require('../middleware/authentication');
 //Import Middlewares
 const {
+    validateChangePassword,
     validateRequest,
     validateSignUp,
     validateLogIn,
@@ -19,4 +20,7 @@ router.post(
 router.post('/logIn', validateLogIn, validateRequest, registerController.logIn);
 
 router.post('/logOut', auth, registerController.logOut);
+
+router.post('/changePassword', auth, validateRequest, registerController.changePassword);
+
 module.exports = router;
