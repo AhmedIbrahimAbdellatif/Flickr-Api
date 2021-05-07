@@ -9,6 +9,7 @@ module.exports.uploadImage = async (req, res) => {
         url: 'https://' + process.env.HOSTNAME + ':' + process.env.PORT + '/' + req.file.path.toString().replaceAll('\\','/'),
         creator: req.user._id,
     });
+    photo.favouriteCount = 0;
     await photo.save();
     res.status(201).send({ url: photo.url });
 };
@@ -21,6 +22,8 @@ module.exports.addToFavorites = async (req, res) => {
     if(!req.user.favourites.includes(photo._id)){
         req.user.favourites.push(photo._id);
         await req.user.save();
+        photo.favouriteCount = photo.favouriteCount + 1;
+        await photo.save();
     }
     res.send();
 };

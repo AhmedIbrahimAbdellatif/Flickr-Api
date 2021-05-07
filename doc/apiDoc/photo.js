@@ -299,6 +299,7 @@
  * 
 */
 
+////////////////////////////////HIMA//////////////////////////////
 /** 
  * @apiUse Authentication
  * @api {post} /photo/addToFavorites Add to Favorites
@@ -309,7 +310,7 @@
  * @apiParam {String} photoId ID of the photo to be added to favorites
  * @apiParamExample {json} Request-Example:
  * {
- *     photoId: "asdn574hfjjhdfu74sdknfn"
+ *     photoId: "60953562224d432a505e8d07"
  * }
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -331,7 +332,7 @@
  *     }
  * 
 */
-
+/////////////////////////KARIM//////////////////////////
 /** 
  * @apiUse Authentication
  * @api {post} /photo/addTags Add Tags
@@ -360,7 +361,7 @@
  *     }
  * 
 */
-
+////////////////////////////////HIMA////////////////////
 /** 
  * @api {get} /photo/whoFavortied/:photoId See who favorited
  * @apiName See who favorited
@@ -370,7 +371,7 @@
  * @apiParam {String} photoId ID of the photo
  * @apiParamExample {json} Request-Example:
  * {
- *     photoId: "asdn574hfjjhdfu74sdknfn"
+ *     photoId: "60953562224d432a505e8d07"
  * }
  * @apiSuccess {Object[]]} user Array of users who made the media favorite
  *  @apiSuccessExample {json} Success-Response:
@@ -378,9 +379,9 @@
  * {
  *     "user":[
  *          {
- *              _id:'',
- *              firstName:'',
- *              lastName:''
+ *              _id:'60953562224d432a505e8d07',
+ *              firstName:'Ahmed',
+ *              lastName:'Ibrahim'
  * }
  * ]
  * }

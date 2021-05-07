@@ -297,6 +297,7 @@
  *               "_id": "5349b4ddd2781d08c09890f4",
  *               "tags": ["Tower","Egypt"],
  *               "views": 1023,
+ *               "favouriteCount": 0,
  *               "favouritesNum": 1023,
  *               "commentsNum": 1023,
  *               "creator": {

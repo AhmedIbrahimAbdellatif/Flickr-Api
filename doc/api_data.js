@@ -2334,7 +2334,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    photoId: \"asdn574hfjjhdfu74sdknfn\"\n}",
+          "content": "{\n    photoId: \"60953562224d432a505e8d07\"\n}",
           "type": "json"
         }
       ]
@@ -3110,7 +3110,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    photoId: \"asdn574hfjjhdfu74sdknfn\"\n}",
+          "content": "{\n    photoId: \"60953562224d432a505e8d07\"\n}",
           "type": "json"
         }
       ]
@@ -3130,7 +3130,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n    \"user\":[\n         {\n             _id:'',\n             firstName:'',\n             lastName:''\n}\n]\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"user\":[\n         {\n             _id:'60953562224d432a505e8d07',\n             firstName:'Ahmed',\n             lastName:'Ibrahim'\n}\n]\n}",
           "type": "json"
         }
       ]
@@ -4830,7 +4830,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"favorites\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"_id\": \"60928e30456b633130df176d\",\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"favorites\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 0,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"_id\": \"60928e30456b633130df176d\",\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
           "type": "json"
         },
         {

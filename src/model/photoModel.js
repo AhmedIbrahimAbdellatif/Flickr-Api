@@ -27,6 +27,10 @@ const photoSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    favouriteCount: {
+        type: Number,
+        default: 0
+    },
     isPublic: {
         type: Boolean,
         default: false,
