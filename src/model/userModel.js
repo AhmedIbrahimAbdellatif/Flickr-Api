@@ -55,6 +55,18 @@ const userSchema = new mongoose.Schema(
             type: Date, //YYYY/MM/DD
             select: false,
         },
+        occupation: {
+            type:String,
+            default : ''
+        },
+        homeTown: {
+            type: String,
+            default: ''
+        },
+        currentCity :{
+            type: String,
+            default: ''
+        }
     },
     {
         timestamps: true,

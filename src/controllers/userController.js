@@ -48,3 +48,21 @@ module.exports.getFollowings = async(req, res) => {
     res.send({following: user.following});
     
 };
+
+module.exports.getUserAbout = async(req,res) => {
+    const user = await User.findById(req.params.userId).populate({
+        path:'showCase',
+        populate: {
+            path: 'creator',
+            select: 'firstName lastName _id'
+        }
+    }).exec();
+
+    const statistics = {
+        view: 0,
+        groups: 0,
+        faves: 0
+    }
+    console.log(user)
+    res.send({...user._doc, statistics})
+}

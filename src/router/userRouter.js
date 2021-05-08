@@ -8,6 +8,7 @@ const {
     validateUserIdParam,
     validateUserIdBody
 } = require('../middleware/request-validator');
+const { validate } = require('../model/userModel');
 
 router.get('/fav/:userId', validateUserIdParam, validateRequest, userController.getFavorites);
 
@@ -19,4 +20,5 @@ router.get('/followers/:userId', validateUserIdParam, validateRequest, userContr
 
 router.get('/followings/:userId', validateUserIdParam, validateRequest, userController.getFollowings);
 
+router.get('/about/:userId', validateUserIdParam, validateRequest, userController.getUserAbout)
 module.exports = router;
