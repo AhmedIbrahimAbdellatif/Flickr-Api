@@ -2,7 +2,7 @@ require('./db/mongoose');
 const express = require('express');
 require('express-async-errors');
 const app = express();
-
+const path = require('path')
 //Import Middlewares
 const { errorHandler } = require('./middleware/error-handler');
 
@@ -16,6 +16,9 @@ const photoRouter = require('./router/photoRouter');
 //Configure App
 app.use(express.json());
 
+app.get('/public/images/:userId/:imageName', async(req,res) => {
+    res.sendFile(path.join(__dirname, `../public/images/${req.params.userId}/${req.params.imageName}`))
+})
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/photo', photoRouter);
