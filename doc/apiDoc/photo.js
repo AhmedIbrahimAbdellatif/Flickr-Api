@@ -53,21 +53,21 @@
  *                url : String
  *                title : String
  *                creator : String
- *                favouritesNum : Number
+ *                favouriteCount : Number
  *                commentsNum : Number
  *               },
  *               {
  *                url : String
  *                title : String
  *                creator : String
- *                favouritesNum : Number
+ *                favouriteCount : Number
  *                commentsNum : Number
  *               },
  *               {
  *                url : String
  *                title : String
  *                creator : String
- *                favouritesNum : Number
+ *                favouriteCount : Number
  *                commentsNum : Number
  *               },
  *              ]
@@ -91,7 +91,7 @@
  *                  "firstName": "Abdelrahman",
  *                  "lastName": "Shahda"
  *                },
- *                "favouritesNum" : Number
+ *                "favouriteCount" : Number
  *                "commentsNum" : Number
  *               },
  *               
@@ -422,7 +422,7 @@
  *               "_id": "5349b4ddd2781d08c09890f4",
  *               "tags": ["Tower","Egypt"],
  *               "views": 1023,
- *               "favouritesNum": 1023,
+ *               "favouriteCount": 1023,
  *               "commentsNum": 1023,
  *               "creator": {
  *                   "firstName": "Ahmed",

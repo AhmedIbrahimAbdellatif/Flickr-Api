@@ -20,12 +20,12 @@
  * {
  *     followers : [
  *                  {
- *                    userId : String
+ *                    _id : String
  *                    firstName : String
  *                    lastName : String
  *                  },
  *                  {
- *                    userId : String
+ *                    _id : String
  *                    firstName : String
  *                    lastName : String
  *                  },
@@ -68,12 +68,12 @@
  * {
  *     following : [
  *                  {
- *                    userId : String
+ *                    _id : String
  *                    firstName : String
  *                    lastName : String
  *                  },
  *                  {
- *                    userId : String
+ *                    _id : String
  *                    firstName : String
  *                    lastName : String
  *                  },
@@ -173,7 +173,7 @@
  *       "tags": ["cat","animals"],
  *       "photoUrl": 'https://www.google.com/photo'
  *       "views": 1023,
- *       "favouritesNum": 1023,
+ *       "favouriteCount": 1023,
  *       "commentsNum": 1023,
  *       "creator": {
  *          "firstName": "Abdelrahman",
@@ -298,7 +298,6 @@
  *               "tags": ["Tower","Egypt"],
  *               "views": 1023,
  *               "favouriteCount": 0,
- *               "favouritesNum": 1023,
  *               "commentsNum": 1023,
  *               "creator": {
  *                   "_id": "60928e30456b633130df176d",
@@ -481,7 +480,7 @@
  *               "_id": "5349b4ddd2781d08c09890f4",
  *               "tags": ["Tower","Egypt"],
  *               "views": 1023,
- *               "favouritesNum": 1023,
+ *               "favouriteCount": 1023,
  *               "commentsNum": 1023,
  *               "creator": {
  *                   "firstName": "Ahmed",
@@ -576,7 +575,7 @@
  *             "_id": "5349b4ddd2781d08c09890f4",
  *               "tags": ["Tower","Egypt"],
  *               "views": 1023,
- *               "favouritesNum": 1023,
+ *               "favouriteCount": 1023,
  *               "commentsNum": 1023,
  *               "creator": {
  *                   "firstName": "Ahmed",

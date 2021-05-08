@@ -4,9 +4,10 @@ const { LogicError } = require('../error/logic-error');
 module.exports.uploadImage = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
+    const protocol = process.env.NODE_ENV === 'DEV'?'http':'https';
     const photo = new Photo({
         ...reqBody,
-        url: 'https://' + process.env.HOSTNAME + ':' + process.env.PORT + '/' + req.file.path.toString().replaceAll('\\','/'),
+        url: protocol+'://' + process.env.HOSTNAME + ':' + process.env.PORT + '/' + req.file.path.toString().replaceAll('\\','/'),
         creator: req.user._id,
     });
     photo.favouriteCount = 0;

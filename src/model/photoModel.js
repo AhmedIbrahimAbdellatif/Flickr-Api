@@ -64,8 +64,7 @@ const photoSchema = new mongoose.Schema({
     toJSON: {
         transform: function(doc,ret,options){
 
-            ret.favouriteNum = ret.favouriteCount
-            delete ret.favouriteCount
+            ret.favouriteCount
             ret.commentsNum = ret.comments.length
         }
     }

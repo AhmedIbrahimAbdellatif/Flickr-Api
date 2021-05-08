@@ -24,6 +24,8 @@ module.exports.getFavorites = async (req, res) => {
 };
 module.exports.followUser = async (req, res) => {
     const user = req.user;
+    const isUserExist = await User.exists({_id: req.body.userId});
+    if(!isUserExist) throw new LogicError(404, 'User not found');
     await User.findByIdAndUpdate(user._id, {
         $addToSet: {following: req.body.userId}
     });
@@ -31,6 +33,8 @@ module.exports.followUser = async (req, res) => {
 };
 module.exports.unfollowUser = async (req, res) => {
     const user = req.user;
+    const isUserExist = await User.exists({_id: req.body.userId});
+    if(!isUserExist) throw new LogicError(404, 'User not found');
     await User.findByIdAndUpdate(user._id, {
         $pull: {following: req.body.userId}
     });
@@ -38,12 +42,14 @@ module.exports.unfollowUser = async (req, res) => {
 };
 module.exports.getFollowers = async(req, res) => {
     const user = await User.findById(req.params.userId);
+    if(!user) throw new LogicError(404,'User not found');
     await user.populate({path: 'followers', select: '_id firstName lastName -following'}).execPopulate();
     res.send({followers: user.followers});
 };
 
 module.exports.getFollowings = async(req, res) => {
     const user = await User.findById(req.params.userId);
+    if(!user) throw new LogicError(404,'User not found');
     await user.populate({path: 'following', select: '_id firstName lastName'}).execPopulate();
     res.send({following: user.following});
     
@@ -68,6 +74,9 @@ module.exports.getUserAbout = async(req,res) => {
 }
 
 module.exports.getUserPhotoStream = async(req,res) => {
+
+    const isUserExist = await User.exists({_id: req.params.userId});
+    if(!isUserExist) throw new LogicError(404, 'User not found');
     const photos = await Photo.find({
         creator: req.params.userId,
         isPublic: true
