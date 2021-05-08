@@ -20,5 +20,8 @@ router.get('/followers/:userId', validateUserIdParam, validateRequest, userContr
 
 router.get('/followings/:userId', validateUserIdParam, validateRequest, userController.getFollowings);
 
-router.get('/about/:userId', validateUserIdParam, validateRequest, userController.getUserAbout)
+router.get('/about/:userId', validateUserIdParam, validateRequest, userController.getUserAbout);
+
+router.get('/photostream/:userId', validateUserIdParam, validateRequest, userController.getUserPhotoStream)
+
 module.exports = router;

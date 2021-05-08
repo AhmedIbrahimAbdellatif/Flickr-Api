@@ -33,7 +33,7 @@ const photoSchema = new mongoose.Schema({
     },
     isPublic: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     license: {
         type: String,
@@ -60,7 +60,15 @@ const photoSchema = new mongoose.Schema({
         default: true
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: {
+        transform: function(doc,ret,options){
+
+            ret.favouriteNum = ret.favouriteCount
+            delete ret.favouriteCount
+            ret.commentsNum = ret.comments.length
+        }
+    }
 })
 //virtuals
 photoSchema.virtual('favoured', {

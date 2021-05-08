@@ -49,6 +49,7 @@ module.exports.getFollowings = async(req, res) => {
     
 };
 
+//Add Statistics
 module.exports.getUserAbout = async(req,res) => {
     const user = await User.findById(req.params.userId).populate({
         path:'showCase',
@@ -62,7 +63,20 @@ module.exports.getUserAbout = async(req,res) => {
         view: 0,
         groups: 0,
         faves: 0
-    }
-    console.log(user)
-    res.send({...user._doc, statistics})
+    };
+    res.send({...user._doc, statistics});
+}
+
+module.exports.getUserPhotoStream = async(req,res) => {
+    const photos = await Photo.find({
+        creator: req.params.userId,
+        isPublic: true
+    }).populate({
+        path: 'creator',
+        select: 'firstName lastName _id'
+        
+    }).exec();
+
+
+    res.send({photos});
 }
