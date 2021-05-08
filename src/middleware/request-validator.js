@@ -52,6 +52,9 @@ const validatePhotoUpload = [
     body('safetyOption').optional().isString().withMessage('Safety Option should be string'),
  
 ];
+const validateUserEmailBody = [
+    body('email').isEmail().withMessage('Email is required')
+]
 //Params Validations
 const validatePhotoIdParam = [
     param('photoId').isMongoId().withMessage('PhotoId is required')
@@ -70,5 +73,6 @@ module.exports = {
     validatePhotoUpload,
     validateUserIdParam,
     validateUserIdBody,
-    validateChangePassword
+    validateChangePassword,
+    validateUserEmailBody
 };

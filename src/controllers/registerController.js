@@ -1,6 +1,8 @@
 const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
 const { setAsync, getAsync } = require('../third-Parties/redis');
+const { sendResetPasswordEmail } = require('../third-Parties/email')
+
 module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
     if (await User.findOne({ email })) {
@@ -70,3 +72,17 @@ module.exports.changePassword = async (req, res) => {
     userPass.password = await userPass.save();
     res.send();
 };
+
+module.exports.forgetPassword = async (req,res) => {
+
+    const { email } = req.body
+    const user = await User.findOne({
+        email
+    });
+
+    if(!user) throw new LogicError(404,'User not found')
+
+    user.forgetPassCode =  await sendResetPasswordEmail(email)
+    await user.save()
+    res.send({})
+}

@@ -55,6 +55,10 @@ const userSchema = new mongoose.Schema(
             type: Date, //YYYY/MM/DD
             select: false,
         },
+        forgetPassCode:{
+            type: String,
+            select: false,
+        },
         occupation: {
             type:String,
             default : ''

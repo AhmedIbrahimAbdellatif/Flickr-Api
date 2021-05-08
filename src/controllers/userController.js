@@ -58,7 +58,7 @@ module.exports.getUserAbout = async(req,res) => {
             select: 'firstName lastName _id'
         }
     }).exec();
-
+    if(!user) throw new LogicError(404, 'User not found')
     const statistics = {
         view: 0,
         groups: 0,
