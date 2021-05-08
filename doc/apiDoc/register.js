@@ -313,7 +313,30 @@
  *          "message": "Old Password is required"
  *
  *     }
+ * @apiError (400) OldPasswordMismatch Old Password of the account is wrong
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
  *
+ *          "message": "Old Password is wrong"
+ *
+ *     }
+ * @apiError (400) NewPassWrongFormat New Password should be more than 8 character
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "New Password should be more than 8 characters"
+ *
+ *     }
+ * @apiError (400) OldPassWrongFormat Old Password should be more than 8 character
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "Old Password should be more than 8 characters"
+ *
+ *     }
  */
 
 /**

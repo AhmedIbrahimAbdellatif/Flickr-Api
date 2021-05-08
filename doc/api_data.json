@@ -3489,6 +3489,24 @@
             "optional": false,
             "field": "OldPasswordMissing",
             "description": "<p>Old Password of the account is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "OldPasswordMismatch",
+            "description": "<p>Old Password of the account is wrong</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "NewPassWrongFormat",
+            "description": "<p>New Password should be more than 8 character</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "OldPassWrongFormat",
+            "description": "<p>Old Password should be more than 8 character</p>"
           }
         ],
         "401": [
@@ -3527,6 +3545,21 @@
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Old Password is required\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Old Password is wrong\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"New Password should be more than 8 characters\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Old Password should be more than 8 characters\"\n\n}",
           "type": "json"
         },
         {
