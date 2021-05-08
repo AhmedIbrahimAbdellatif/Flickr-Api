@@ -53,23 +53,19 @@ module.exports.logOut = async (req, res, next) => {
 
 module.exports.changePassword = async (req, res) => {
     const user = req.user;
-    const userPass = await User.findById(user._id).select('password');
+    const userPass = await User.findById(user._id).select('+password');
     const oldPass = req.body.oldPass;
     const newPass = req.body.newPass;
-    const isCorrect = await user.correctPassword(oldPass, userPass.password);
+    const isCorrect = await userPass.correctPassword(oldPass, userPass.password);
     if(!isCorrect) throw new LogicError(400, 'Old password is incorrect');
     userPass.password = newPass;
     
     //Setting the required format for the date
-    date_ob = new Date();
-    day = ("0" + date_ob.getDate()).slice(-2);
-    month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-    year = date_ob.getFullYear();
-    currentDate = year + "/" + month + "/" + day;
-    dateObj = new Date(currentDate);
-
+    const dateObj = new Date(Date.now());
+    
     userPass.passwordChangedAt = dateObj;
-    userPass.password = await userPass.save();
+    console.log({...userPass})
+    await userPass.save()
     res.send();
 };
 

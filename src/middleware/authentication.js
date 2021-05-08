@@ -35,7 +35,7 @@ const auth = async (req, res, next) => {
             'This user is logged out! Please log in to continue'
         );
     }
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded.id).select('+passwordChangedAt');
     if (!user) {
         throw new LogicError(
             401,
