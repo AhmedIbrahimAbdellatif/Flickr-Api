@@ -4,12 +4,9 @@ const { LogicError } = require('../error/logic-error');
 module.exports.uploadImage = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
-    const url = process.env.NODE_ENV === 'DEV'?
-                    'http://'+ process.env.HOSTNAME + ':' + process.env.PORT + '/' + req.file.path.toString().replaceAll('\\','/'):
-                    'https'+ process.env.HOSTNAME +'/' + req.file.path.toString().replaceAll('\\','/');
     const photo = new Photo({
         ...reqBody,
-        url,
+        url: process.env.HOSTNAME + req.file.path.toString().replaceAll('\\','/'),
         creator: req.user._id,
     });
     photo.favouriteCount = 0;
