@@ -2,6 +2,9 @@
   "name": "code",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "16.1.0"
+  },
   "scripts": {
     "dev": "env-cmd -f ./config/.env nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
