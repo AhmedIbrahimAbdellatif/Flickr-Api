@@ -1,18 +1,20 @@
 const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
 const { setAsync, getAsync } = require('../third-Parties/redis');
-const { sendResetPasswordEmail } = require('../third-Parties/email')
+const { sendResetPasswordEmail } = require('../third-Parties/email');
 
 module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
     if (await User.findOne({ email })) {
         throw new LogicError(403, 'User Already Exists');
     }
+    const userName = email.split('@')[0];
     const newUser = await User.create({
         email,
         password,
         firstName,
         lastName,
+        userName,
         age,
     });
     const token = newUser.signToken(newUser._id);
@@ -22,6 +24,7 @@ module.exports.signUp = async (req, res, next) => {
         email: newUser.email,
         firstName: newUser.firstName,
         lastName: newUser.lastName,
+        userName: newUser.userName,
         age: newUser.age,
     });
 };
@@ -35,6 +38,19 @@ module.exports.logIn = async (req, res, next) => {
     const token = user.signToken(user._id);
     res.status(200).json({
         accessToken: token,
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        userName: user.userName,
+        age: user.age,
+        showCase: user.showCase,
+        favourites: user.favourites,
+        following: user.following,
+        description: user.description,
+        occupation: user.occupation,
+        homeTown: user.homeTown,
+        currentCity: user.currentCity,
     });
 };
 
@@ -56,29 +72,31 @@ module.exports.changePassword = async (req, res) => {
     const userPass = await User.findById(user._id).select('+password');
     const oldPass = req.body.oldPass;
     const newPass = req.body.newPass;
-    const isCorrect = await userPass.correctPassword(oldPass, userPass.password);
-    if(!isCorrect) throw new LogicError(400, 'Old password is incorrect');
+    const isCorrect = await userPass.correctPassword(
+        oldPass,
+        userPass.password
+    );
+    if (!isCorrect) throw new LogicError(400, 'Old password is incorrect');
     userPass.password = newPass;
-    
+
     //Setting the required format for the date
     const dateObj = new Date(Date.now());
-    
+
     userPass.passwordChangedAt = dateObj;
-    console.log({...userPass})
-    await userPass.save()
+    console.log({ ...userPass });
+    await userPass.save();
     res.send();
 };
 
-module.exports.forgetPassword = async (req,res) => {
-
-    const { email } = req.body
+module.exports.forgetPassword = async (req, res) => {
+    const { email } = req.body;
     const user = await User.findOne({
-        email
+        email,
     });
 
-    if(!user) throw new LogicError(404,'User not found')
+    if (!user) throw new LogicError(404, 'User not found');
 
-    user.forgetPassCode =  await sendResetPasswordEmail(email)
-    await user.save()
-    res.send({})
-}
+    user.forgetPassCode = await sendResetPasswordEmail(email);
+    await user.save();
+    res.send({});
+};

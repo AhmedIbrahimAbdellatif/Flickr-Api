@@ -131,17 +131,30 @@
  * @apiVersion 1.0.0
  * @apiDescription Login into a user account
  * @apiParam {String} email User's email credential
- * @apiParam {String} password Password credential
+ * @apiParam {String} password Password credential (minimum 8 characters)
  * @apiParamExample {json} Request-Example:
  *     {
  *       "email": "AhmedIbrahim@test.com",
- *       "password": "123"
+ *       "password": "12345678"
  *     }
  * @apiSuccess {String} accessToken Returning the access-token to the user
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "accessToken": "asdasdkasdliuaslidas"
+ *       "accessToken": "skdnksd7474g3kdbjfhf34",
+ *       "_id": "5349b4ddd2781d08c09890f4",
+ *       "email": "test@email.com",
+ *       "firstName": "User",
+ *       "lastName": "User",
+ *       "userName": "test",
+ *       "age": 18,
+ *       "showCase": [],
+ *       "favourites": [],
+ *       "following": [],
+ *       "description": "",
+ *       "occupation": "",
+ *       "homeTown": "",
+ *       "currentCity": "",
  *     }
  * @apiError (401) Unauthorized   Wrong user credentials
  * @apiErrorExample {json} Error-Response:
@@ -214,9 +227,10 @@
  *   {
  *       "accessToken": "skdnksd7474g3kdbjfhf34",
  *       "_id": "5349b4ddd2781d08c09890f4",
- *       "email": "user@email.com",
+ *       "email": "test@email.com",
  *       "firstName": "User",
  *       "lastName": "User",
+ *       "userName": "test",
  *       "age": 18,
  *    }
  * @apiError (403) UserExists  The Email is already registered

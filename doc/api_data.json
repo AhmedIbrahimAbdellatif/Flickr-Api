@@ -736,8 +736,8 @@
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
-    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -3910,14 +3910,14 @@
             "type": "String",
             "optional": false,
             "field": "password",
-            "description": "<p>Password credential</p>"
+            "description": "<p>Password credential (minimum 8 characters)</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"email\": \"AhmedIbrahim@test.com\",\n  \"password\": \"123\"\n}",
+          "content": "{\n  \"email\": \"AhmedIbrahim@test.com\",\n  \"password\": \"12345678\"\n}",
           "type": "json"
         }
       ]
@@ -3937,7 +3937,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"asdasdkasdliuaslidas\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"_id\": \"5349b4ddd2781d08c09890f4\",\n  \"email\": \"test@email.com\",\n  \"firstName\": \"User\",\n  \"lastName\": \"User\",\n  \"userName\": \"test\",\n  \"age\": 18,\n  \"showCase\": [],\n  \"favourites\": [],\n  \"following\": [],\n  \"description\": \"\",\n  \"occupation\": \"\",\n  \"homeTown\": \"\",\n  \"currentCity\": \"\",\n}",
           "type": "json"
         }
       ]
@@ -4101,7 +4101,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 201 OK\n{\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"user@email.com\",\n    \"firstName\": \"User\",\n    \"lastName\": \"User\",\n    \"age\": 18,\n }",
+          "content": " HTTP/1.1 201 OK\n{\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"test@email.com\",\n    \"firstName\": \"User\",\n    \"lastName\": \"User\",\n    \"userName\": \"test\",\n    \"age\": 18,\n }",
           "type": "json"
         }
       ]
