@@ -6,7 +6,7 @@ module.exports.uploadImage = async (req, res) => {
     delete reqBody['file'];
     const url = process.env.NODE_ENV === 'DEV'?
                     'http://'+ process.env.HOSTNAME + ':' + process.env.PORT + '/' + req.file.path.toString().replaceAll('\\','/'):
-                    'https'+ process.env.HOSTNAME'/' + req.file.path.toString().replaceAll('\\','/');
+                    'https'+ process.env.HOSTNAME +'/' + req.file.path.toString().replaceAll('\\','/');
     const photo = new Photo({
         ...reqBody,
         url,
