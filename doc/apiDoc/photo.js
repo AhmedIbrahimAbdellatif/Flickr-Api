@@ -356,7 +356,12 @@
  *     {
  *          "message": "Photo Not Found" 
  *     }
- * 
+ * @apiError (409) TagAlreadyInPhoto  The added tag is already added to this photo
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *          "message": "Tag already exists in this photo add another tag" 
+ *     }
 */
 ////////////////////////////////HIMA////////////////////
 /** 

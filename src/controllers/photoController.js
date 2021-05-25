@@ -56,23 +56,19 @@ module.exports.addTagToPhoto = async (req, res) => {
         tag = await Tag.create({ name: tagName });
     }
     let found = false;
-    console.log(tag._id);
-    console.log(photo.tags[0]);
-    console.log(photo.tags[1]);
-    console.log(photo.tags[2]);
-    console.log(photo.tags[3]);
-    console.log(photo.tags[4]);
     for (var i = 0; i < photo.tags.length; i++) {
         if (photo.tags[i].toString() === tag._id.toString()) {
-            console.log('found itttttttttttttttttttttttttttttttttttttttttt');
             found = true;
         }
     }
     if (!found) {
         await tag.updateOne({ $inc: { count: 1 } });
+        await photo.updateOne({ $push: { tags: tag } });
+        res.status(200).json({
+            message: 'Tag Added to photo successfully',
+        });
     }
-    await photo.updateOne({ $addToSet: { tags: tag } });
-    res.status(200).json({
-        message: 'Tag Added to photo successfully',
+    res.status(409).json({
+        message: 'Tag already exists in this photo add another tag',
     });
 };

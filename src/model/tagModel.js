@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const tagSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -7,16 +7,16 @@ const tagSchema = new mongoose.Schema({
     },
     count: {
         type: Number,
-        default: 1
-    }
-})
+        default: 0,
+    },
+});
 //virtuals
-tagSchema.virtual('photos',{
+tagSchema.virtual('photos', {
     ref: 'Photo',
     localField: '_id',
-    foreignField: 'tags'
-})
+    foreignField: 'tags',
+});
 
-const Tag = mongoose.model('Tag',tagSchema)
+const Tag = mongoose.model('Tag', tagSchema);
 
-module.exports = Tag
+module.exports = Tag;

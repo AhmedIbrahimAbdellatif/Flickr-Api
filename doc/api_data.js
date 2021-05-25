@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
-    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -2208,8 +2208,8 @@ define({ "api": [
     }
   },
   {
-    "type": "post",
-    "url": "/photo/addTags",
+    "type": "patch",
+    "url": "/photo/addTags/:photoId",
     "title": "Add Tags",
     "name": "Add_Tags",
     "group": "Photo",
@@ -2222,13 +2222,6 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "photoId",
-            "description": "<p>ID of the photo to add tags to</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "tag",
             "description": "<p>The text to be added as a tag</p>"
           }
@@ -2237,7 +2230,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    photoId: \"asdn574hfjjhdfu74sdknfn\"\n    tag: \"Sunset\"\n}",
+          "content": "{\n    tag: \"Sunset\"\n}",
           "type": "json"
         }
       ]
@@ -2246,7 +2239,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    message: \"Tag Added to photo successfully\"\n}",
           "type": "json"
         }
       ]
@@ -2286,12 +2279,25 @@ define({ "api": [
             "field": "PhotoNotFound",
             "description": "<p>The id of the photo wasn't found</p>"
           }
+        ],
+        "409": [
+          {
+            "group": "409",
+            "optional": false,
+            "field": "TagAlreadyInPhoto",
+            "description": "<p>The added tag is already added to this photo</p>"
+          }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\" \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Tag already exists in this photo add another tag\" \n}",
           "type": "json"
         },
         {
