@@ -335,29 +335,26 @@
 /////////////////////////KARIM//////////////////////////
 /** 
  * @apiUse Authentication
- * @api {post} /photo/addTags Add Tags
+ * @api {patch} /photo/addTags/:photoId Add Tags
  * @apiName Add Tags
  * @apiGroup Photo
  * @apiVersion 1.0.0
  * @apiDescription Add more tags to a media
- * @apiParam {String} photoId ID of the photo to add tags to
  * @apiParam {String} tag The text to be added as a tag
  * @apiParamExample {json} Request-Example:
  * {
- *     photoId: "asdn574hfjjhdfu74sdknfn"
  *     tag: "Sunset"
  * }
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  * {
+ *     message: "Tag Added to photo successfully"
  * }
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
- *          "message": "Photo Not Found"
- *        
+ *          "message": "Photo Not Found" 
  *     }
  * 
 */

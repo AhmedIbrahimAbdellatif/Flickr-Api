@@ -5,6 +5,10 @@ const tagSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
+    count: {
+        type: Number,
+        default: 1
+    }
 })
 //virtuals
 tagSchema.virtual('photos',{
@@ -12,6 +16,7 @@ tagSchema.virtual('photos',{
     localField: '_id',
     foreignField: 'tags'
 })
+
 const Tag = mongoose.model('Tag',tagSchema)
 
 module.exports = Tag
