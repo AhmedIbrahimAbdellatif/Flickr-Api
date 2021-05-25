@@ -2246,6 +2246,20 @@
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "TagRequired",
+            "description": "<p>The Tag Name is Missing</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdInvalid",
+            "description": "<p>PhotoId in params is invalid</p>"
+          }
+        ],
         "401": [
           {
             "group": "401",
@@ -2292,12 +2306,22 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\" \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Tag name is required\"\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Tag already exists in this photo add another tag\" \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"PhotoId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 409 Conflict\n{\n     \"message\": \"Tag already exists in this photo add another tag\"\n}",
           "type": "json"
         },
         {
@@ -2430,7 +2454,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -2992,7 +3016,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n              \n             ]\n}",
+          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n\n             ]\n}",
           "type": "json"
         }
       ]
@@ -3089,7 +3113,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
           "type": "json"
         },
         {
@@ -3113,7 +3137,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -3191,7 +3215,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {

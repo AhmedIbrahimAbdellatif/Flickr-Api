@@ -40,7 +40,7 @@
  * @apiGroup Photo
  * @apiVersion  1.0.0
  * @apiParam  {String} searchText  Text to search by
- * 
+ *
  * @apiParamExample  {json} Request-Example:
  * {
  *     "searchText" : "All rights reserved",
@@ -79,7 +79,7 @@
  * @apiName Explore Recent Photos
  * @apiGroup Photo
  * @apiVersion  1.0.0
- * 
+ *
  *
  * @apiSuccessExample {json} Success-Response:
  * {
@@ -94,7 +94,7 @@
  *                "favouriteCount" : Number
  *                "commentsNum" : Number
  *               },
- *               
+ *
  *              ]
  * }
  */
@@ -202,7 +202,7 @@
  * @apiParam {String} contentType Type of the uploaded Photo
  * @apiParam {String} license License of the photo
  * @apiParam {String} safety Safety of the photo
- * 
+ *
  * @apiParam {String} description Description for the uploaded photo
  * @apiParamExample {json} Request-Example:
  *     {
@@ -220,7 +220,7 @@
  *    {
  *      "url": String
  *     }
-  * @apiError (400) PhotoMissing This Photo is required
+ * @apiError (400) PhotoMissing This Photo is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
@@ -240,7 +240,7 @@
  *  @apiError (400) SafetyOptionWrongFormat This Photo SafetyOption should be string
  *  @apiError (400) FileExtension Invalid File extension
  *  @apiError (400) FileSizeLimit Something Went Wrong
- * 
+ *
  */
 ///////////////////////////////////////// KARIM ///////////////////////////////////////////
 /**
@@ -300,7 +300,7 @@
 */
 
 ////////////////////////////////HIMA//////////////////////////////
-/** 
+/**
  * @apiUse Authentication
  * @api {post} /photo/addToFavorites Add to Favorites
  * @apiName Add to Favorites
@@ -320,20 +320,20 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *      
+ *
  *      "message": "Photo Not Found"
- *        
+ *
  *     }
-  * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiError (400) PhotoIdMissing This Photo is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
  *        "message" : "PhotoId is required"
  *     }
- * 
-*/
+ *
+ */
 /////////////////////////KARIM//////////////////////////
-/** 
+/**
  * @apiUse Authentication
  * @api {patch} /photo/addTags/:photoId Add Tags
  * @apiName Add Tags
@@ -350,21 +350,33 @@
  * {
  *     message: "Tag Added to photo successfully"
  * }
+ * @apiError (400) TagRequired  The Tag Name is Missing
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *          "message": "Tag name is required"
+ *     }
+ * @apiError (400) PhotoIdInvalid  PhotoId in params is invalid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *          "message": "PhotoId is required"
+ *     }
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *          "message": "Photo Not Found" 
+ *          "message": "Photo Not Found"
  *     }
  * @apiError (409) TagAlreadyInPhoto  The added tag is already added to this photo
  * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
+ *     HTTP/1.1 409 Conflict
  *     {
- *          "message": "Tag already exists in this photo add another tag" 
+ *          "message": "Tag already exists in this photo add another tag"
  *     }
-*/
+ */
 ////////////////////////////////HIMA////////////////////
-/** 
+/**
  * @api {get} /photo/whoFavortied/:photoId See who favorited
  * @apiName See who favorited
  * @apiGroup Photo
@@ -391,9 +403,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "Photo Not Found"
- *        
+ *
  *     }
  * @apiError (400) PhotoIdMissing This PhotoId is required
  * @apiErrorExample {json} Error-Response:
@@ -401,8 +413,8 @@
  *     {
  *        "message" : "PhotoId is required"
  *     }
- * 
-*/
+ *
+ */
 /**
  * @apiUse photoObjects
  * @api {get} /photo/searchPhotos/:searchText Search Photos
@@ -433,16 +445,16 @@
  *               "url": '',
  *               "title": 'Cairo Tower',
  *               "description": 'Cairo tower at the sunset'
- *          },              
+ *          },
  *       ],
  *     }
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "Photo Not Found"
- *        
+ *
  *     }
- * 
-*/
+ *
+ */

@@ -9,6 +9,7 @@ const {
     validatePhotoId,
     validatePhotoIdParam,
     validatePhotoUpload,
+    validateAddTagsToPhoto,
 } = require('../middleware/request-validator');
 const { upload } = require('../middleware/photo-multer-handler');
 
@@ -31,7 +32,10 @@ router.post(
 
 router.patch(
     '/addTags/:photoId',
-    validatePhotoId,
+    auth,
+    validateRequest,
+    validatePhotoIdParam,
+    validateAddTagsToPhoto,
     photoController.addTagToPhoto
 );
 
