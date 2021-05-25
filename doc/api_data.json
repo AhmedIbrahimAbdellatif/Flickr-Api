@@ -4271,7 +4271,7 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n  \"message\": \"Tag Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Tag Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -4286,7 +4286,7 @@
     "name": "Get_Trending_Tags",
     "group": "Tag",
     "version": "1.0.0",
-    "description": "<p>View trending tags</p>",
+    "description": "<p>View Tags that has a count greater than a certain number</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -4302,7 +4302,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"count\": 120,\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\"\n         }\n     ]\n}",
           "type": "json"
         }
       ]
