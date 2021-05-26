@@ -65,15 +65,30 @@ const validateUserIdParam = [
     param('userId').isMongoId().withMessage('UserId is required')
 ];
 
+const validateCreateAlbum = [
+    body('title').isString().withMessage('Title is required'),
+    body('description').optional().isString().withMessage('Description should be string')
+]
+
+const validateAlbumParam = [
+    param('albumId').isMongoId().withMessage('albumId is required')
+]
+const validateAlbumId = [
+    body('albumId').isMongoId().withMessage('albumId is required')
+]
+
 module.exports = {
     validateRequest,
     validatePhotoId,
     validateSignUp,
     validateLogIn,
     validatePhotoIdParam,
+    validateAlbumParam,
     validatePhotoUpload,
     validateUserIdParam,
     validateUserIdBody,
     validateChangePassword,
-    validateUserEmailBody
+    validateUserEmailBody,
+    validateCreateAlbum,
+    validateAlbumId
 };

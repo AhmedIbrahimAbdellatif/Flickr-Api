@@ -1,5 +1,0 @@
-Create Album
-Delete Album
-Add Media to Album
-Delete Media from Album
-Search Tags
