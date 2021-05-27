@@ -19,6 +19,13 @@
  *              }
  *          ]
  *     }
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *       "message": "Tag name is required"
+ *
+ *     }
  */
 
 /**

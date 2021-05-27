@@ -4307,6 +4307,15 @@
         }
       ]
     },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n  \"message\": \"Tag name is required\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
     "filename": "doc/apiDoc/tag.js",
     "groupTitle": "Tag"
   },

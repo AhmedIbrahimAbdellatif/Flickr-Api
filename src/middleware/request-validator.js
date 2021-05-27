@@ -72,7 +72,7 @@ const validatePhotoUpload = [
 const validateUserEmailBody = [
     body('email').isEmail().withMessage('Email is required'),
 ];
-const validateAddTagsToPhoto = [
+const validateTag = [
     body('tag').isString().withMessage('Tag name is required'),
 ];
 //Params Validations
@@ -95,5 +95,5 @@ module.exports = {
     validateUserIdBody,
     validateChangePassword,
     validateUserEmailBody,
-    validateAddTagsToPhoto,
+    validateTag,
 };
