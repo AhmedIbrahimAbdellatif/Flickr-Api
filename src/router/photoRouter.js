@@ -8,13 +8,41 @@ const {
     validateRequest,
     validatePhotoId,
     validatePhotoIdParam,
-    validatePhotoUpload
+    validatePhotoUpload,
+    validateAddTagsToPhoto,
 } = require('../middleware/request-validator');
 const { upload } = require('../middleware/photo-multer-handler');
 
-router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadImage);
+router.post(
+    '/upload',
+    auth,
+    upload.single('file'),
+    validatePhotoUpload,
+    validateRequest,
+    photoController.uploadImage
+);
 
-router.post('/addToFavorites', auth, validatePhotoId, validateRequest, photoController.addToFavorites);
+router.post(
+    '/addToFavorites',
+    auth,
+    validatePhotoId,
+    validateRequest,
+    photoController.addToFavorites
+);
 
-router.get('/whoFavorited/:photoId', validatePhotoIdParam, validateRequest, photoController.whoFavorited);
+router.patch(
+    '/addTags/:photoId',
+    auth,
+    validateRequest,
+    validatePhotoIdParam,
+    validateAddTagsToPhoto,
+    photoController.addTagToPhoto
+);
+
+router.get(
+    '/whoFavorited/:photoId',
+    validatePhotoIdParam,
+    validateRequest,
+    photoController.whoFavorited
+);
 module.exports = router;

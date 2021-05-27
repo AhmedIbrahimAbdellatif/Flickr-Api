@@ -6,22 +6,22 @@
  * @apiName Get Trending Tags
  * @apiGroup Tag
  * @apiVersion 1.0.0
- * @apiDescription View trending tags
+ * @apiDescription View Tags that has a count greater than a certain number
  * @apiSuccess {Object[]} trendingTags An array of objects containing tags data
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
  *          "trendingTags": [
  *              {
- *                  "_id": "5349b4ddd2781d08c09890f4",
  *                  "count": 120,
+ *                  "_id": "5349b4ddd2781d08c09890f4",
  *                  "name": "nature"
  *              }
  *          ]
  *     }
  */
 
-/** 
+/**
  * @api {get} /tag/:id Get tag media
  * @apiName Get Tag Media
  * @apiGroup Tag
@@ -52,8 +52,8 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *       "message": "Tag Not Found"
- *        
+ *
  *     }
-*/
+ */
