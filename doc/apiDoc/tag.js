@@ -29,12 +29,12 @@
  */
 
 /**
- * @api {get} /tag/:id Get tag media
+ * @api {get} /tag/:tagName Get tag media
  * @apiName Get Tag Media
  * @apiGroup Tag
  * @apiVersion 1.0.0
  * @apiDescription Get tag media
- * @apiParam {String} id Tag to view its media
+ * @apiParam {String} Name of the Tag requested it's media
  * @apiSuccess {Object[]} media An array of objects containing the photos with its data
  * @apiSuccessExample {json} Error-Response:
  *     HTTP/1.1 200 OK

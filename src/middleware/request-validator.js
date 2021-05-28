@@ -83,7 +83,9 @@ const validatePhotoIdParam = [
 const validateUserIdParam = [
     param('userId').isMongoId().withMessage('UserId is required'),
 ];
-
+const validateTagParam = [
+    param('tagName').isString().withMessage('Tag Name is Required'),
+];
 module.exports = {
     validateRequest,
     validatePhotoId,
@@ -96,4 +98,5 @@ module.exports = {
     validateChangePassword,
     validateUserEmailBody,
     validateTag,
+    validateTagParam,
 };
