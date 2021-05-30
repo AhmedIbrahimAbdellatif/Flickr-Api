@@ -2,6 +2,7 @@ const User = require('../model/userModel');
 const Photo = require('../model/photoModel');
 const mongoose = require('mongoose');
 const { LogicError } = require('../error/logic-error');
+const Album = require('../model/albumModel');
 
 module.exports.getFavorites = async (req, res) => {
     const user = await User.findById(req.params.userId);
@@ -88,4 +89,32 @@ module.exports.getUserPhotoStream = async(req,res) => {
 
 
     res.send({photos});
+}
+module.exports.editCoverPhoto = async(req,res) => {
+    const photo = await Photo.findById(req.body.photoId);
+    if(!photo)
+        throw new LogicError(404,"Photo not found");
+    
+    if(!(photo.creator.toString() === req.user.id.toString()))
+    {
+        const albums =await Album.findOne({ creator: req.user.id, featured:photo.id });
+        if(!albums)
+            throw new LogicError(400, "You cant use this photo as cover photo")
+    }
+    const user = req.user;
+    user.coverPhotoUrl= photo.url;
+    await user.save();
+    res.send({});
+}
+
+module.exports.editInfo = async(req,res) => {
+    let isValid = true;
+    const validEdits = ['currentCity', 'homeTown', 'occupation']
+    Object.keys(req.body).forEach((edit) => {
+        if(!validEdits.includes(edit)) isValid = false;
+    })
+    if(!isValid) throw new LogicError(400, "Invalid Edit");
+    const user =req.user;
+    await user.updateOne({ ...req.body });
+    res.send({})
 }
