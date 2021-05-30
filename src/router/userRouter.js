@@ -7,7 +7,8 @@ const {
     validateRequest,
     validateUserIdParam,
     validateUserIdBody,
-    validatePhotoId
+    validatePhotoId,
+    validateEditInfo
 } = require('../middleware/request-validator');
 const { validate } = require('../model/userModel');
 
@@ -23,7 +24,9 @@ router.get('/followings/:userId', validateUserIdParam, validateRequest, userCont
 
 router.get('/about/:userId', validateUserIdParam, validateRequest, userController.getUserAbout);
 
-router.get('/photostream/:userId', validateUserIdParam, validateRequest, userController.getUserPhotoStream)
+router.get('/photostream/:userId', validateUserIdParam, validateRequest, userController.getUserPhotoStream);
 
-router.patch('/editCoverPhoto',auth, validatePhotoId, validateRequest, userController.editCoverPhoto)
+router.patch('/editCoverPhoto',auth, validatePhotoId, validateRequest, userController.editCoverPhoto);
+
+router.patch('/editInfo', auth,validateEditInfo, validateRequest,userController.editInfo);
 module.exports = router;

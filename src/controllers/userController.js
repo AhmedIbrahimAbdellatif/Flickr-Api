@@ -106,3 +106,15 @@ module.exports.editCoverPhoto = async(req,res) => {
     await user.save();
     res.send({});
 }
+
+module.exports.editInfo = async(req,res) => {
+    let isValid = true;
+    const validEdits = ['currentCity', 'homeTown', 'occupation']
+    Object.keys(req.body).forEach((edit) => {
+        if(!validEdits.includes(edit)) isValid = false;
+    })
+    if(!isValid) throw new LogicError(400, "Invalid Edit");
+    const user =req.user;
+    await user.updateOne({ ...req.body });
+    res.send({})
+}

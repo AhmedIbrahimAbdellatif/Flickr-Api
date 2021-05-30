@@ -30,6 +30,11 @@ const validateRegisterWithFacebook = [
 const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
 ];
+const validateEditInfo = [
+    body('occupation').optional().isString().withMessage("Occupations should be a String"),
+    body('currentCity').optional().isString().withMessage("Current City should be a String"),
+    body('homeTown').optional().isString().withMessage("Home Town should be a String"),
+];
 const validateSignUp = [
     body('email').isEmail().withMessage('Email is required'),
     body('password')
@@ -113,5 +118,6 @@ module.exports = {
     validateAlbumId,
     validateRegisterWithFacebook,
     validateTag,
+    validateEditInfo
 
 };
