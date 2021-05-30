@@ -18,7 +18,10 @@ router.post(
     validateRequest,
     registerController.signUp
 );
-router.post('/signUpWithFacebook',validateRegisterWithFacebook, validateRequest, registerController.signUpWithFacebook)
+router.post('/signUpWithFacebook',validateRegisterWithFacebook, validateRequest, registerController.signUpWithFacebook);
+
+router.post('/loginWithFacebook',validateRegisterWithFacebook, validateRequest, registerController.loginnWithFacebook);
+
 router.post('/logIn', validateLogIn, validateRequest, registerController.logIn);
 
 router.post('/logOut', auth, registerController.logOut);

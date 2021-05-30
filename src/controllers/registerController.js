@@ -74,6 +74,25 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
         });
     }
 };
+module.exports.loginnWithFacebook = async (req, res, next) => {
+    const { accessToken } = req.body;
+    const userData = await getFacebookData(accessToken);
+    let user = await User.findOne({ facebookId: userData.id })
+    if (!user) 
+        throw LogicError(404,"User Not Found");
+    
+    const token = user.signToken(user._id);
+    res.status(200).json({
+        accessToken: token,
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        userName: user.userName,
+        age: user.age,
+    });
+    
+};
 
 module.exports.logIn = async (req, res, next) => {
     const { email, password } = req.body;
