@@ -4656,7 +4656,7 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"You can't use this photo as coverPhoto\"\n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"You can't use this photo as coverPhoto0\"\n}",
           "type": "json"
         },
         {

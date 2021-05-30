@@ -235,7 +235,7 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *        "message" : "You can't use this photo as coverPhoto"
+ *        "message" : "You can't use this photo as coverPhoto0"
  *     }
  */
 
