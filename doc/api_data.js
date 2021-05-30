@@ -4766,6 +4766,12 @@ define({ "api": [
             "optional": false,
             "field": "HomeTownInvalid",
             "description": "<p>Home Town should be String</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "InvalidEdit",
+            "description": "<p>Invalid Edit</p>"
           }
         ],
         "401": [
@@ -4809,6 +4815,11 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Home Town should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Invalid Edit\"\n   \n}",
           "type": "json"
         },
         {

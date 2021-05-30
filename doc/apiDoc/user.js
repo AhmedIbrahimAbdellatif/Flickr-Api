@@ -280,6 +280,14 @@
  *       "message": "Home Town should be String"
  *        
  *     }
+  * @apiError (400) InvalidEdit  Invalid Edit
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Invalid Edit"
+ *        
+ *     }
  */
 /**
  * @apiUse Authentication
