@@ -736,8 +736,10 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
+
     "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+
     "name": ""
   },
   {
@@ -2208,8 +2210,8 @@ define({ "api": [
     }
   },
   {
-    "type": "post",
-    "url": "/photo/addTags",
+    "type": "patch",
+    "url": "/photo/addTags/:photoId",
     "title": "Add Tags",
     "name": "Add_Tags",
     "group": "Photo",
@@ -2222,13 +2224,6 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "photoId",
-            "description": "<p>ID of the photo to add tags to</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "tag",
             "description": "<p>The text to be added as a tag</p>"
           }
@@ -2237,7 +2232,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    photoId: \"asdn574hfjjhdfu74sdknfn\"\n    tag: \"Sunset\"\n}",
+          "content": "{\n    tag: \"Sunset\"\n}",
           "type": "json"
         }
       ]
@@ -2246,13 +2241,27 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    message: \"Tag Added to photo successfully\"\n}",
           "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "TagRequired",
+            "description": "<p>The Tag Name is Missing</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdInvalid",
+            "description": "<p>PhotoId in params is invalid</p>"
+          }
+        ],
         "401": [
           {
             "group": "401",
@@ -2286,12 +2295,35 @@ define({ "api": [
             "field": "PhotoNotFound",
             "description": "<p>The id of the photo wasn't found</p>"
           }
+        ],
+        "409": [
+          {
+            "group": "409",
+            "optional": false,
+            "field": "TagAlreadyInPhoto",
+            "description": "<p>The added tag is already added to this photo</p>"
+          }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Tag name is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"PhotoId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 409 Conflict\n{\n     \"message\": \"Tag already exists in this photo add another tag\"\n}",
           "type": "json"
         },
         {
@@ -2424,7 +2456,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -2986,7 +3018,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n              \n             ]\n}",
+          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n\n             ]\n}",
           "type": "json"
         }
       ]
@@ -3083,7 +3115,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
           "type": "json"
         },
         {
@@ -3107,7 +3139,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -3185,7 +3217,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -4241,7 +4273,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n  \"message\": \"Tag Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Tag Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -4256,7 +4288,7 @@ define({ "api": [
     "name": "Get_Trending_Tags",
     "group": "Tag",
     "version": "1.0.0",
-    "description": "<p>View trending tags</p>",
+    "description": "<p>View Tags that has a count greater than a certain number</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -4272,7 +4304,16 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"count\": 120,\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n  \"message\": \"Tag name is required\"\n\n}",
           "type": "json"
         }
       ]
