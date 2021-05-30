@@ -9,7 +9,6 @@ const validateRequest = (req, res, next) => {
 };
 
 //Body Validations
-
 const validateChangePassword = [
     body('oldPass')
         .isString()
@@ -25,7 +24,9 @@ const validateChangePassword = [
 const validateUserIdBody = [
     body('userId').isMongoId().withMessage('User Id to be followed is missing'),
 ];
-
+const validateRegisterWithFacebook = [
+    body('accessToken').isString().withMessage('Access Token is missing'),
+];
 const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
 ];
@@ -84,16 +85,33 @@ const validateUserIdParam = [
     param('userId').isMongoId().withMessage('UserId is required'),
 ];
 
+const validateCreateAlbum = [
+    body('title').isString().withMessage('Title is required'),
+    body('description').optional().isString().withMessage('Description should be string')
+]
+
+const validateAlbumParam = [
+    param('albumId').isMongoId().withMessage('albumId is required')
+]
+const validateAlbumId = [
+    body('albumId').isMongoId().withMessage('albumId is required')
+]
+
 module.exports = {
     validateRequest,
     validatePhotoId,
     validateSignUp,
     validateLogIn,
     validatePhotoIdParam,
+    validateAlbumParam,
     validatePhotoUpload,
     validateUserIdParam,
     validateUserIdBody,
     validateChangePassword,
     validateUserEmailBody,
+    validateCreateAlbum,
+    validateAlbumId,
+    validateRegisterWithFacebook,
     validateTag,
+
 };

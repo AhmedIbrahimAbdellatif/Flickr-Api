@@ -2,6 +2,8 @@ const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
 const { setAsync, getAsync } = require('../third-Parties/redis');
 const { sendResetPasswordEmail } = require('../third-Parties/email');
+const { getFacebookData } = require('../third-Parties/facebook');
+const crypto = require('crypto')
 
 module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
@@ -20,37 +22,73 @@ module.exports.signUp = async (req, res, next) => {
     const token = newUser.signToken(newUser._id);
     res.status(201).json({
         accessToken: token,
-        _id: newUser._id,
-        email: newUser.email,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        userName: newUser.userName,
-        age: newUser.age,
+        user:newUser
     });
+};
+
+module.exports.signUpWithFacebook = async (req, res, next) => {
+    const { accessToken } = req.body;
+    const userData = await getFacebookData(accessToken);
+
+    let user = await User.findOne({ email: userData.email })
+    if (user) {
+        user.facebookId = userData.id;
+        await user.save();
+        await user.populate({
+            path: 'numberOfFollowers'
+        }).execPopulate();
+        const token = user.signToken(user._id);
+        res.status(201).json({
+            accessToken: token,
+            user
+        });
+        return;
+    }else{
+        const userName = userData.email.split('@')[0];
+        const password = await await crypto.randomBytes(11).toString('hex');
+        const user = await User.create({
+            email:userData.email,
+            password,
+            firstName: userData.first_name,
+            lastName: userData.last_name,
+            userName,
+            age: userData.age,
+            facebookId: userData.id
+        });
+        const token = user.signToken(user._id);
+        res.status(201).json({
+            accessToken: token,
+            user
+        });
+    }
+};
+module.exports.loginnWithFacebook = async (req, res, next) => {
+    const { accessToken } = req.body;
+    const userData = await getFacebookData(accessToken);
+    let user = await (await User.findOne({ facebookId: userData.id })).populate('numberOfFollowers').populate({
+        path: 'showCase.photos'
+    }).execPopulate();
+    if (!user) 
+        throw new LogicError(404,"User Not Found");
+    
+    const token = user.signToken(user._id);
+    res.status(200).json({
+        accessToken: token,
+        user
+    });
+    
 };
 
 module.exports.logIn = async (req, res, next) => {
     const { email, password } = req.body;
-    const user = await User.findOne({ email }).select('+password');
+    const user = await (await User.findOne({ email }).select('+password').populate('numberOfFollowers')).execPopulate();
     if (!user || !(await user.correctPassword(password, user.password))) {
         throw new LogicError(401, 'Invalid Credentials');
     }
     const token = user.signToken(user._id);
     res.status(200).json({
         accessToken: token,
-        _id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        userName: user.userName,
-        age: user.age,
-        showCase: user.showCase,
-        favourites: user.favourites,
-        following: user.following,
-        description: user.description,
-        occupation: user.occupation,
-        homeTown: user.homeTown,
-        currentCity: user.currentCity,
+        user
     });
 };
 

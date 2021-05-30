@@ -28,13 +28,20 @@ const userSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        showCase: [
+        showCase: {
+            
+            _id:false,
+            title:{
+                type:String,
+                default: 'Showcase'
+            },
+            photos: [
             {
                 type: mongoose.SchemaTypes.ObjectId,
                 ref: 'Photo',
                 default: [],
             },
-        ],
+        ]},
         favourites: [
             {
                 type: mongoose.SchemaTypes.ObjectId,
@@ -74,9 +81,29 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: '',
         },
+        facebookId:{
+            type:String,
+            select: false
+        }
     },
     {
         timestamps: true,
+        toJSON: {
+            transform: function(doc,ret,options){
+                
+                if(!ret.numberOfFollowers)
+                    ret.numberOfFollowers = 0;
+                ret.numberOfFollowings = ret.following.length;
+                delete ret.following;
+                delete ret.facebookId;
+                delete ret.favourites;
+                delete ret.password;
+            },
+            virtuals:true
+        },
+        toObject: {
+            virtuals: true
+        }
     }
 );
 //virtuals
@@ -84,6 +111,12 @@ userSchema.virtual('followers', {
     ref: 'User',
     localField: '_id',
     foreignField: 'following',
+});
+userSchema.virtual('numberOfFollowers', {
+    ref: 'User',
+    localField: '_id',
+    foreignField: 'following',
+    count: true
 });
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();

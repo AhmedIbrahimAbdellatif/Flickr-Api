@@ -736,8 +736,10 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
-    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+
+    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+
     "name": ""
   },
   {
@@ -3668,7 +3670,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n     }\n\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n   }\n}",
           "type": "json"
         }
       ]
@@ -3726,7 +3728,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n  }\n\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n   }\n}",
           "type": "json"
         }
       ]
@@ -3967,7 +3969,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"_id\": \"5349b4ddd2781d08c09890f4\",\n  \"email\": \"test@email.com\",\n  \"firstName\": \"User\",\n  \"lastName\": \"User\",\n  \"userName\": \"test\",\n  \"age\": 18,\n  \"showCase\": [],\n  \"favourites\": [],\n  \"following\": [],\n  \"description\": \"\",\n  \"occupation\": \"\",\n  \"homeTown\": \"\",\n  \"currentCity\": \"\",\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n   }\n}",
           "type": "json"
         }
       ]
@@ -4131,7 +4133,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 201 OK\n{\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"test@email.com\",\n    \"firstName\": \"User\",\n    \"lastName\": \"User\",\n    \"userName\": \"test\",\n    \"age\": 18,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n   }\n}",
           "type": "json"
         }
       ]
