@@ -36,6 +36,8 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
         await user.save();
         await user.populate({
             path: 'numberOfFollowers'
+        }).populate({
+            path: 'showCase.photos'
         }).execPopulate();
         const token = user.signToken(user._id);
         res.status(201).json({
@@ -81,7 +83,9 @@ module.exports.loginnWithFacebook = async (req, res, next) => {
 
 module.exports.logIn = async (req, res, next) => {
     const { email, password } = req.body;
-    const user = await (await User.findOne({ email }).select('+password').populate('numberOfFollowers')).execPopulate();
+    const user = await (await User.findOne({ email }).select('+password').populate('numberOfFollowers')).populate({
+        path: 'showCase.photos'
+    }).execPopulate();
     if (!user || !(await user.correctPassword(password, user.password))) {
         throw new LogicError(401, 'Invalid Credentials');
     }
