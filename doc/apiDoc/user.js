@@ -256,7 +256,30 @@
  *      "currentCity": ""
  *      
  * }
-
+ * @apiError (400) OccupationInvalid  Occupation should be String
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Occupation should be String"
+ *        
+ *     }
+ * @apiError (400) CurrentCityInvalid  Current City should be String
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Current City should be String"
+ *        
+ *     }
+ * @apiError (400) HomeTownInvalid  Home Town should be String
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Home Town should be String"
+ *        
+ *     }
  */
 /**
  * @apiUse Authentication

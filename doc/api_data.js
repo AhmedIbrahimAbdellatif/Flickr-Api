@@ -4746,30 +4746,28 @@ define({ "api": [
         }
       ]
     },
-    "filename": "doc/apiDoc/user.js",
-    "groupTitle": "User",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users access-token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
-          "type": "json"
-        }
-      ]
-    },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "OccupationInvalid",
+            "description": "<p>Occupation should be String</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "CurrentCityInvalid",
+            "description": "<p>Current City should be String</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "HomeTownInvalid",
+            "description": "<p>Home Town should be String</p>"
+          }
+        ],
         "401": [
           {
             "group": "401",
@@ -4800,6 +4798,21 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Occupation should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Current City should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Home Town should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
           "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
           "type": "json"
         },
@@ -4816,6 +4829,28 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
           "type": "json"
         }
       ]
