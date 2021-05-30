@@ -76,6 +76,7 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (400) Bad Request  AccessToken Is Required
@@ -126,6 +127,7 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (400) AccessTokenMissing  AccessToken Is Required
@@ -175,6 +177,7 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (401) Unauthorized   Wrong user credentials
@@ -264,6 +267,7 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (403) UserExists  The Email is already registered

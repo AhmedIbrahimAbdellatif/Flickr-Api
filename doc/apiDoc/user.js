@@ -208,6 +208,30 @@
  *        "message" : "UserId is required"
  *     }
  */
+/**
+ * @api {patch} /user/editCoverPhoto Edit User CoverPhtot
+ * @apiUse Authentication
+ * @apiName Edit User CoverPhtot
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Edit User CoverPhtot
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     photoId: "5349b4ddd2781d08c09890f4"
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {    
+ *       "message": "Photo Not Found" 
+ *     }
+ * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhtotId is required"
+ *     }
+ */
 
 /**
  * @apiUse Authentication
