@@ -22,12 +22,7 @@ module.exports.signUp = async (req, res, next) => {
     const token = newUser.signToken(newUser._id);
     res.status(201).json({
         accessToken: token,
-        _id: newUser._id,
-        email: newUser.email,
-        firstName: newUser.firstName,
-        lastName: newUser.lastName,
-        userName: newUser.userName,
-        age: newUser.age,
+        user:newUser
     });
 };
 
@@ -39,15 +34,13 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
     if (user) {
         user.facebookId = userData.id;
         await user.save();
-          const token = user.signToken(user._id);
+        await user.populate({
+            path: 'numberOfFollowers'
+        }).execPopulate();
+        const token = user.signToken(user._id);
         res.status(201).json({
             accessToken: token,
-            _id: user._id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            userName: user.userName,
-            age: user.age,
+            user
         });
         return;
     }else{
@@ -65,57 +58,37 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
         const token = user.signToken(user._id);
         res.status(201).json({
             accessToken: token,
-            _id: user._id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            userName: user.userName,
-            age: user.age,
+            user
         });
     }
 };
 module.exports.loginnWithFacebook = async (req, res, next) => {
     const { accessToken } = req.body;
     const userData = await getFacebookData(accessToken);
-    let user = await User.findOne({ facebookId: userData.id })
+    let user = await (await User.findOne({ facebookId: userData.id })).populate('numberOfFollowers').populate({
+        path: 'showCase.photos'
+    }).execPopulate();
     if (!user) 
-        throw LogicError(404,"User Not Found");
+        throw new LogicError(404,"User Not Found");
     
     const token = user.signToken(user._id);
     res.status(200).json({
         accessToken: token,
-        _id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        userName: user.userName,
-        age: user.age,
+        user
     });
     
 };
 
 module.exports.logIn = async (req, res, next) => {
     const { email, password } = req.body;
-    const user = await User.findOne({ email }).select('+password');
+    const user = await (await User.findOne({ email }).select('+password').populate('numberOfFollowers')).execPopulate();
     if (!user || !(await user.correctPassword(password, user.password))) {
         throw new LogicError(401, 'Invalid Credentials');
     }
     const token = user.signToken(user._id);
     res.status(200).json({
         accessToken: token,
-        _id: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        userName: user.userName,
-        age: user.age,
-        showCase: user.showCase,
-        favourites: user.favourites,
-        following: user.following,
-        description: user.description,
-        occupation: user.occupation,
-        homeTown: user.homeTown,
-        currentCity: user.currentCity,
+        user
     });
 };
 

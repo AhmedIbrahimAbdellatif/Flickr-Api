@@ -2,6 +2,7 @@ const express = require('express');
 const registerController = require('../controllers/registerController');
 const router = new express.Router();
 const auth = require('../middleware/authentication');
+
 //Import Middlewares
 const {
     validateChangePassword,
