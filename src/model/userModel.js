@@ -74,6 +74,9 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: '',
         },
+        facebookId:{
+            type:String
+        }
     },
     {
         timestamps: true,
