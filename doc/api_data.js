@@ -4705,6 +4705,123 @@ define({ "api": [
     }
   },
   {
+    "type": "patch",
+    "url": "/user/editInfo",
+    "title": "Edit User Info",
+    "name": "Edit_User_Info",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Edit User Info</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "occupation",
+            "description": "<p>User's Occupation</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "homeTown",
+            "description": "<p>User's Home Town</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "currentCity",
+            "description": "<p>User's Current City</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"occupation\": \"Engineer\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\"\n     \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "post",
     "url": "/user/followUser",
     "title": "Follow User",

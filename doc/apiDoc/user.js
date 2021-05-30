@@ -238,7 +238,26 @@
  *        "message" : "You can't use this photo as coverPhoto0"
  *     }
  */
+/**
+ * @api {patch} /user/editInfo Edit User Info
+ * @apiUse Authentication
+ * @apiName Edit User Info
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Edit User Info
+ * @apiParam {String} occupation User's Occupation
+ * @apiParam {String} homeTown User's Home Town
+ * @apiParam {String} currentCity User's Current City
+ * 
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "occupation": "Engineer",
+ *      "homeTown": "",
+ *      "currentCity": ""
+ *      
+ * }
 
+ */
 /**
  * @apiUse Authentication
  * @api {post} /user/sendMessage Message User
