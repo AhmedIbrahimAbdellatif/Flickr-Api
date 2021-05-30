@@ -6,7 +6,8 @@ const auth = require('../middleware/authentication');
 const {
     validateRequest,
     validateUserIdParam,
-    validateUserIdBody
+    validateUserIdBody,
+    validatePhotoId
 } = require('../middleware/request-validator');
 const { validate } = require('../model/userModel');
 
@@ -24,4 +25,5 @@ router.get('/about/:userId', validateUserIdParam, validateRequest, userControlle
 
 router.get('/photostream/:userId', validateUserIdParam, validateRequest, userController.getUserPhotoStream)
 
+router.patch('/editCoverPhoto',auth, validatePhotoId, validateRequest, userController.editCoverPhoto)
 module.exports = router;

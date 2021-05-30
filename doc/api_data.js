@@ -4600,6 +4600,12 @@ define({ "api": [
             "optional": false,
             "field": "PhotoIdMissing",
             "description": "<p>This Photo is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoInvalid",
+            "description": "<p>This Photo is invalid</p>"
           }
         ],
         "401": [
@@ -4646,6 +4652,11 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"PhtotId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"You can't use this photo as coverPhoto\"\n}",
           "type": "json"
         },
         {

@@ -231,6 +231,12 @@
  *     {
  *        "message" : "PhtotId is required"
  *     }
+ * @apiError (400) PhotoInvalid This Photo is invalid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "You can't use this photo as coverPhoto"
+ *     }
  */
 
 /**
