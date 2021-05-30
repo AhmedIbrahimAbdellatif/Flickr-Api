@@ -1,5 +1,6 @@
 const Photo = require('../model/photoModel');
 const Tag = require('../model/tagModel');
+const Comment = require('../model/commentModel');
 const { LogicError } = require('../error/logic-error');
 
 module.exports.uploadImage = async (req, res) => {
@@ -70,5 +71,35 @@ module.exports.addTagToPhoto = async (req, res) => {
     }
     res.status(409).json({
         message: 'Tag already exists in this photo add another tag',
+    });
+};
+
+module.exports.commentOnPhoto = async (req, res) => {
+    const userId = req.user._id;
+    const comment = req.body.comment;
+    const photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const newComment = await Comment.create({
+        creator: userId,
+        text: comment,
+        photo: photoId,
+    });
+    await photo.updateOne({ $push: { comments: newComment } });
+    res.status(200).json({
+        message: 'Comment Added Successfully',
+    });
+};
+
+module.exports.getMediaComments = async (req, res) => {
+    const photo = await Photo.findById(req.params.photoId).populate('comments');
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const comments = photo.comments;
+    res.status(200).json({
+        comments,
     });
 };

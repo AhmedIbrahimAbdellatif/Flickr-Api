@@ -10,6 +10,7 @@ const {
     validatePhotoIdParam,
     validatePhotoUpload,
     validateTag,
+    validateComment,
 } = require('../middleware/request-validator');
 const { upload } = require('../middleware/photo-multer-handler');
 
@@ -44,5 +45,19 @@ router.get(
     validatePhotoIdParam,
     validateRequest,
     photoController.whoFavorited
+);
+router.get(
+    '/:photoId',
+    validateRequest,
+    validatePhotoIdParam,
+    photoController.getMediaComments
+);
+router.post(
+    '/:photoId/comment',
+    auth,
+    validateRequest,
+    validatePhotoIdParam,
+    validateComment,
+    photoController.commentOnPhoto
 );
 module.exports = router;

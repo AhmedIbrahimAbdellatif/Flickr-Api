@@ -130,17 +130,57 @@
  */
 /**
  *
- * @api {post} /photo/comment Comment on Photo
- * @apiName Comment On a photo
+ * @api {get} /photo/:photoId Get Photo Comments
+ * @apiName Get Media Comments
  * @apiGroup Photo
  * @apiVersion  1.0.0
  *
+ * @apiSuccess (200) {type} name description
  *
- * @apiParam  {String} comment The Comment to be added
- * @apiParam  {String} photoId
+ * @apiSuccessExample {type} Success-Response:
+ * {
+ *   [
+ *       {
+ *           _id: 60b4088d7479db25003075fb,
+ *           creator: {
+ *           _id: 60b372e4119d063e48ad223f,
+ *           userName: 'userName',
+ *           },
+ *           text: 'Nice photo',
+ *           photo: 60b38240a7e6682ee42c80f7,
+ *           createdAt: 2021-05-30T21:50:05.602Z,
+ *           updatedAt: 2021-05-30T21:50:05.602Z,
+ *       },
+ *       {
+ *           _id: 60b408a77479db25003075fd,
+ *           creator: {
+ *           _id: 60b372e4119d063e48ad223f,
+ *           userName: 'coolabdoana',
+ *           },
+ *           text: 'This is Very Cool!',
+ *           photo: 60b38240a7e6682ee42c80f7,
+ *           createdAt: 2021-05-30T21:50:31.503Z,
+ *           updatedAt: 2021-05-30T21:50:31.503Z,
+ *       }
+ *   ]
+ * }
+ *
+ * @apiError (404) PhotoNotFound
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *          "message": "Photo Not Found"
+ *     }
+ */
+/**
+ *
+ * @api {post} /photo/:photoId/comment Comment on Photo
+ * @apiName Comment On a photo
+ * @apiGroup Photo
+ * @apiVersion  1.0.0
+ * @apiParam  {String} The Comment to be added
  * @apiParamExample  {json} Request-Example:
  * {
- *     photoId : "5349b4ddd2781d08c09890f4",
  *     comment : "Awesome"
  * }
  * @apiSuccessExample {json} Success-Response:
@@ -148,7 +188,14 @@
  *     message : "Comment Added Successfully"
  * }
  *
- * @apiError (404) Photo Not Found
+ * @apiError (400) MissingComment   Provide a comment
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *          "message": "Please write your Comment"
+ *     }
+ *
+ * @apiError (404) PhotoNotFound
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
