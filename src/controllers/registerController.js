@@ -2,6 +2,8 @@ const User = require('../model/userModel');
 const { LogicError } = require('../error/logic-error');
 const { setAsync, getAsync } = require('../third-Parties/redis');
 const { sendResetPasswordEmail } = require('../third-Parties/email');
+const { getFacebookData } = require('../third-Parties/facebook');
+const crypto = require('crypto')
 
 module.exports.signUp = async (req, res, next) => {
     const { email, password, firstName, lastName, age } = req.body;
@@ -27,6 +29,50 @@ module.exports.signUp = async (req, res, next) => {
         userName: newUser.userName,
         age: newUser.age,
     });
+};
+
+module.exports.signUpWithFacebook = async (req, res, next) => {
+    const { accessToken } = req.body;
+    const userData = await getFacebookData(accessToken);
+
+    let user = await User.findOne({ email: userData.email })
+    if (user) {
+        user.facebookId = userData.id;
+        await user.save();
+          const token = user.signToken(user._id);
+        res.status(201).json({
+            accessToken: token,
+            _id: user._id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            userName: user.userName,
+            age: user.age,
+        });
+        return;
+    }else{
+        const userName = userData.email.split('@')[0];
+        const password = await await crypto.randomBytes(11).toString('hex');
+        const user = await User.create({
+            email:userData.email,
+            password,
+            firstName: userData.first_name,
+            lastName: userData.last_name,
+            userName,
+            age: userData.age,
+            facebookId: userData.id
+        });
+        const token = user.signToken(user._id);
+        res.status(201).json({
+            accessToken: token,
+            _id: user._id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            userName: user.userName,
+            age: user.age,
+        });
+    }
 };
 
 module.exports.logIn = async (req, res, next) => {
