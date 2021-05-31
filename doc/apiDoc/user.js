@@ -231,6 +231,36 @@
  *     {
  *        "message" : "PhtotId is required"
  *     }
+ * @apiError (400) PhotoInvalid This Photo  can't be used as coverPhoto
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "You can't use this photo as coverPhoto"
+ *     }
+ */
+/**
+ * @api {patch} /user/editProfilePhoto Edit User Profile Photo
+ * @apiUse Authentication
+ * @apiName Edit User Profile Photo
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Edit User Profile Photo
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     photoId: "5349b4ddd2781d08c09890f4"
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {    
+ *       "message": "Photo Not Found" 
+ *     }
+ * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhtotId is required"
+ *     }
  * @apiError (400) PhotoInvalid This Photo is invalid
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
