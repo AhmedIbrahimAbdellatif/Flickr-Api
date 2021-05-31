@@ -59,19 +59,16 @@ module.exports.getFollowings = async(req, res) => {
 //Add Statistics
 module.exports.getUserAbout = async(req,res) => {
     const user = await User.findById(req.params.userId).populate({
-        path:'showCase',
+        path:'showCase.photos',
         populate: {
             path: 'creator',
             select: 'firstName lastName _id'
         }
+    }).populate({
+        path: "numberOfFollowers"
     }).exec();
     if(!user) throw new LogicError(404, 'User not found')
-    const statistics = {
-        view: 0,
-        groups: 0,
-        faves: 0
-    };
-    res.send({...user._doc, statistics});
+    res.send({user});
 }
 
 module.exports.getUserPhotoStream = async(req,res) => {
