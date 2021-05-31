@@ -88,6 +88,10 @@ const userSchema = new mongoose.Schema(
         coverPhotoUrl:{
             type: String,
             default: process.env.HOSTNAME + "public/images/default/8.jpeg"
+        },
+        profilePhotoUrl:{
+            type: String,
+            default: process.env.HOSTNAME + "public/images/default/8.jpeg"
         }
     },
     {
