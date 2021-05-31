@@ -67,12 +67,12 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
 module.exports.loginnWithFacebook = async (req, res, next) => {
     const { accessToken } = req.body;
     const userData = await getFacebookData(accessToken);
-    let user = await (await User.findOne({ facebookId: userData.id })).populate('numberOfFollowers').populate({
-        path: 'showCase.photos'
-    }).execPopulate();
+    let user = await User.findOne({ facebookId: userData.id })
     if (!user) 
         throw new LogicError(404,"User Not Found");
-    
+    await user.populate('numberOfFollowers').populate({
+        path: 'showCase.photos'
+    }).execPopulate();
     const token = user.signToken(user._id);
     res.status(200).json({
         accessToken: token,
@@ -83,12 +83,13 @@ module.exports.loginnWithFacebook = async (req, res, next) => {
 
 module.exports.logIn = async (req, res, next) => {
     const { email, password } = req.body;
-    const user = await (await User.findOne({ email }).select('+password').populate('numberOfFollowers')).populate({
-        path: 'showCase.photos'
-    }).execPopulate();
+    const user = await User.findOne({ email }).select('+password')
     if (!user || !(await user.correctPassword(password, user.password))) {
         throw new LogicError(401, 'Invalid Credentials');
     }
+    await user.populate('numberOfFollowers').populate({
+        path: 'showCase.photos'
+    }).execPopulate();
     const token = user.signToken(user._id);
     res.status(200).json({
         accessToken: token,

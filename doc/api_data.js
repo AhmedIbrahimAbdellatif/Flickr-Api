@@ -4320,6 +4320,37 @@ define({ "api": [
     "groupTitle": "Tag"
   },
   {
+    "type": "get",
+    "url": "/tag/search/:searchKeyword",
+    "title": "Search for tag",
+    "name": "Search_for_tag",
+    "group": "Tag",
+    "version": "1.0.0",
+    "description": "<p>View Tags that has a count greater than a certain number</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "trendingTags",
+            "description": "<p>An array of objects containing tags data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"searchResult\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/tag.js",
+    "groupTitle": "Tag"
+  },
+  {
     "type": "post",
     "url": "/users/:userId",
     "title": "Edit Showcase and Description",

@@ -5,11 +5,17 @@ const tagSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-    count: {
+  count: {
         type: Number,
         default: 0,
     },
-});
+
+}, {
+    timestamps: true
+})
+
+    
+
 //virtuals
 tagSchema.virtual('photos', {
     ref: 'Photo',
