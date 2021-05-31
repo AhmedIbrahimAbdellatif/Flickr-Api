@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
-    "groupTitle": "C:\\Users\\moh_p\\Desktop\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "name": ""
   },
   {
@@ -2208,8 +2208,8 @@ define({ "api": [
     }
   },
   {
-    "type": "post",
-    "url": "/photo/addTags",
+    "type": "patch",
+    "url": "/photo/addTags/:photoId",
     "title": "Add Tags",
     "name": "Add_Tags",
     "group": "Photo",
@@ -2222,13 +2222,6 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "photoId",
-            "description": "<p>ID of the photo to add tags to</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
             "field": "tag",
             "description": "<p>The text to be added as a tag</p>"
           }
@@ -2237,7 +2230,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    photoId: \"asdn574hfjjhdfu74sdknfn\"\n    tag: \"Sunset\"\n}",
+          "content": "{\n    tag: \"Sunset\"\n}",
           "type": "json"
         }
       ]
@@ -2246,13 +2239,27 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    message: \"Tag Added to photo successfully\"\n}",
           "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "TagRequired",
+            "description": "<p>The Tag Name is Missing</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdInvalid",
+            "description": "<p>PhotoId in params is invalid</p>"
+          }
+        ],
         "401": [
           {
             "group": "401",
@@ -2286,12 +2293,35 @@ define({ "api": [
             "field": "PhotoNotFound",
             "description": "<p>The id of the photo wasn't found</p>"
           }
+        ],
+        "409": [
+          {
+            "group": "409",
+            "optional": false,
+            "field": "TagAlreadyInPhoto",
+            "description": "<p>The added tag is already added to this photo</p>"
+          }
         ]
       },
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Tag name is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"PhotoId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 409 Conflict\n{\n     \"message\": \"Tag already exists in this photo add another tag\"\n}",
           "type": "json"
         },
         {
@@ -2424,7 +2454,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -2986,7 +3016,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n              \n             ]\n}",
+          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n\n             ]\n}",
           "type": "json"
         }
       ]
@@ -3083,7 +3113,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
           "type": "json"
         },
         {
@@ -3107,7 +3137,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -3185,7 +3215,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -3638,7 +3668,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n     }\n\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -3696,7 +3726,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n\n      status: 'connected', The person is logged into Facebook, and has logged into your webpage.\n                           not_authorized    The person is logged into Facebook, but has not logged into your webpage.\n                           unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.\n      authResponse: {\n      accessToken: '{access-token}',   An access token for the person using the webpage\n      expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.\n      reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.\n      signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.\n      userID:'{user-id}'   The ID of the person using your webpage.\n  }\n\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -3937,7 +3967,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"_id\": \"5349b4ddd2781d08c09890f4\",\n  \"email\": \"test@email.com\",\n  \"firstName\": \"User\",\n  \"lastName\": \"User\",\n  \"userName\": \"test\",\n  \"age\": 18,\n  \"showCase\": [],\n  \"favourites\": [],\n  \"following\": [],\n  \"description\": \"\",\n  \"occupation\": \"\",\n  \"homeTown\": \"\",\n  \"currentCity\": \"\",\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4101,7 +4131,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 201 OK\n{\n    \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"email\": \"test@email.com\",\n    \"firstName\": \"User\",\n    \"lastName\": \"User\",\n    \"userName\": \"test\",\n    \"age\": 18,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4241,7 +4271,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n  \"message\": \"Tag Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Tag Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -4256,7 +4286,7 @@ define({ "api": [
     "name": "Get_Trending_Tags",
     "group": "Tag",
     "version": "1.0.0",
-    "description": "<p>View trending tags</p>",
+    "description": "<p>View Tags that has a count greater than a certain number</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -4272,7 +4302,16 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"count\": 120,\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n  \"message\": \"Tag name is required\"\n\n}",
           "type": "json"
         }
       ]
@@ -4489,6 +4528,298 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"User Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "patch",
+    "url": "/user/editCoverPhoto",
+    "title": "Edit User CoverPhtot",
+    "name": "Edit_User_CoverPhtot",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Edit User CoverPhtot</p>",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    photoId: \"5349b4ddd2781d08c09890f4\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdMissing",
+            "description": "<p>This Photo is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoInvalid",
+            "description": "<p>This Photo is invalid</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "PhotoNotFound",
+            "description": "<p>The id of the photo wasn't found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{    \n  \"message\": \"Photo Not Found\" \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"PhtotId is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"You can't use this photo as coverPhoto0\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/user.js",
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "patch",
+    "url": "/user/editInfo",
+    "title": "Edit User Info",
+    "name": "Edit_User_Info",
+    "group": "User",
+    "version": "1.0.0",
+    "description": "<p>Edit User Info</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "occupation",
+            "description": "<p>User's Occupation</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "homeTown",
+            "description": "<p>User's Home Town</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "currentCity",
+            "description": "<p>User's Current City</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"occupation\": \"Engineer\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\"\n     \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "OccupationInvalid",
+            "description": "<p>Occupation should be String</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "CurrentCityInvalid",
+            "description": "<p>Current City should be String</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "HomeTownInvalid",
+            "description": "<p>Home Town should be String</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "InvalidEdit",
+            "description": "<p>Invalid Edit</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Occupation should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Current City should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Home Town should be String\"\n   \n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Invalid Edit\"\n   \n}",
           "type": "json"
         },
         {

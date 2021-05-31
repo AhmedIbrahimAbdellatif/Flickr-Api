@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "env-cmd -f ./config/.env nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "start": "node src/index.js"
   },
   "keywords": [],
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Abdelrahman-Shahda/Flicker-Api#readme",
   "description": "",
   "dependencies": {
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",

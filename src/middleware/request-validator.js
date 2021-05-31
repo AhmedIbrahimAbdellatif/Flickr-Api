@@ -8,24 +8,32 @@ const validateRequest = (req, res, next) => {
     next();
 };
 
-
 //Body Validations
-
 const validateChangePassword = [
-    body('oldPass').isString().withMessage('Old password is required').isLength({ min: 8 })
-    .withMessage('Old Password must be more than 8 characters'),
+    body('oldPass')
+        .isString()
+        .withMessage('Old password is required')
+        .isLength({ min: 8 })
+        .withMessage('Old Password must be more than 8 characters'),
     body('newPass')
-    .isString()
-    .withMessage('Password is required')
-    .isLength({ min: 8 })
-    .withMessage('New Password must be more than 8 characters'),
+        .isString()
+        .withMessage('Password is required')
+        .isLength({ min: 8 })
+        .withMessage('New Password must be more than 8 characters'),
 ];
 const validateUserIdBody = [
     body('userId').isMongoId().withMessage('User Id to be followed is missing'),
 ];
-
+const validateRegisterWithFacebook = [
+    body('accessToken').isString().withMessage('Access Token is missing'),
+];
 const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
+];
+const validateEditInfo = [
+    body('occupation').optional().isString().withMessage("Occupations should be a String"),
+    body('currentCity').optional().isString().withMessage("Current City should be a String"),
+    body('homeTown').optional().isString().withMessage("Home Town should be a String"),
 ];
 const validateSignUp = [
     body('email').isEmail().withMessage('Email is required'),
@@ -46,23 +54,40 @@ const validatePhotoUpload = [
     body('file').exists().withMessage('File is required'),
     body('title').isString().withMessage('Title is required'),
     body('contentType').isString().withMessage('Content Type is required'),
-    body('isPublic').optional().isBoolean().withMessage('Is Public should be boolean'),
-    body('allowCommenting').optional().isBoolean().withMessage('Allow Commenting should be boolean'),
-    body('license').optional().isString().withMessage('license should be string'),
-    body('description').optional().isString().withMessage('Description should be string'),
-    body('safetyOption').optional().isString().withMessage('Safety Option should be string'),
- 
+    body('isPublic')
+        .optional()
+        .isBoolean()
+        .withMessage('Is Public should be boolean'),
+    body('allowCommenting')
+        .optional()
+        .isBoolean()
+        .withMessage('Allow Commenting should be boolean'),
+    body('license')
+        .optional()
+        .isString()
+        .withMessage('license should be string'),
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+    body('safetyOption')
+        .optional()
+        .isString()
+        .withMessage('Safety Option should be string'),
 ];
 const validateUserEmailBody = [
-    body('email').isEmail().withMessage('Email is required')
-]
+    body('email').isEmail().withMessage('Email is required'),
+];
+const validateTag = [
+    body('tag').isString().withMessage('Tag name is required'),
+];
 //Params Validations
 const validatePhotoIdParam = [
-    param('photoId').isMongoId().withMessage('PhotoId is required')
+    param('photoId').isMongoId().withMessage('PhotoId is required'),
 ];
 
 const validateUserIdParam = [
-    param('userId').isMongoId().withMessage('UserId is required')
+    param('userId').isMongoId().withMessage('UserId is required'),
 ];
 
 const validateCreateAlbum = [
@@ -90,5 +115,9 @@ module.exports = {
     validateChangePassword,
     validateUserEmailBody,
     validateCreateAlbum,
-    validateAlbumId
+    validateAlbumId,
+    validateRegisterWithFacebook,
+    validateTag,
+    validateEditInfo
+
 };

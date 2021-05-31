@@ -208,7 +208,87 @@
  *        "message" : "UserId is required"
  *     }
  */
-
+/**
+ * @api {patch} /user/editCoverPhoto Edit User CoverPhtot
+ * @apiUse Authentication
+ * @apiName Edit User CoverPhtot
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Edit User CoverPhtot
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     photoId: "5349b4ddd2781d08c09890f4"
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {    
+ *       "message": "Photo Not Found" 
+ *     }
+ * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhtotId is required"
+ *     }
+ * @apiError (400) PhotoInvalid This Photo is invalid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "You can't use this photo as coverPhoto0"
+ *     }
+ */
+/**
+ * @api {patch} /user/editInfo Edit User Info
+ * @apiUse Authentication
+ * @apiName Edit User Info
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Edit User Info
+ * @apiParam {String} occupation User's Occupation
+ * @apiParam {String} homeTown User's Home Town
+ * @apiParam {String} currentCity User's Current City
+ * 
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "occupation": "Engineer",
+ *      "homeTown": "",
+ *      "currentCity": ""
+ *      
+ * }
+ * @apiError (400) OccupationInvalid  Occupation should be String
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Occupation should be String"
+ *        
+ *     }
+ * @apiError (400) CurrentCityInvalid  Current City should be String
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Current City should be String"
+ *        
+ *     }
+ * @apiError (400) HomeTownInvalid  Home Town should be String
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Home Town should be String"
+ *        
+ *     }
+  * @apiError (400) InvalidEdit  Invalid Edit
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *      
+ *       "message": "Invalid Edit"
+ *        
+ *     }
+ */
 /**
  * @apiUse Authentication
  * @api {post} /user/sendMessage Message User
