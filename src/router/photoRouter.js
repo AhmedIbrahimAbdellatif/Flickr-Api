@@ -12,9 +12,11 @@ const {
 } = require('../middleware/request-validator');
 const { upload } = require('../middleware/photo-multer-handler');
 
-router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadImage);
+router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadPhoto);
 
 router.post('/addToFavorites', auth, validatePhotoId, validateRequest, photoController.addToFavorites);
 
 router.get('/whoFavorited/:photoId', validatePhotoIdParam, validateRequest, photoController.whoFavorited);
+
+router.delete('/delete/:photoId', validatePhotoIdParam, validateRequest, photoController.deletePhoto);
 module.exports = router;

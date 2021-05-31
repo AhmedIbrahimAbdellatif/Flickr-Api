@@ -5,6 +5,8 @@ const tagSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
+}, {
+    timestamps: true
 })
 //virtuals
 tagSchema.virtual('photos',{
