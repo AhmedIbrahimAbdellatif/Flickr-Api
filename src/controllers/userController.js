@@ -106,6 +106,22 @@ module.exports.editCoverPhoto = async(req,res) => {
     await user.save();
     res.send({});
 }
+module.exports.editProfilePhoto = async(req,res) => {
+    const photo = await Photo.findById(req.body.photoId);
+    if(!photo)
+        throw new LogicError(404,"Photo not found");
+    
+    if(!(photo.creator.toString() === req.user.id.toString()))
+    {
+        const albums =await Album.findOne({ creator: req.user.id, featured:photo.id });
+        if(!albums)
+            throw new LogicError(400, "You cant use this photo as cover photo")
+    }
+    const user = req.user;
+    user.profilePhotoUrl= photo.url;
+    await user.save();
+    res.send({});
+}
 
 module.exports.editInfo = async(req,res) => {
     let isValid = true;

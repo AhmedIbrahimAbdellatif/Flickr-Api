@@ -27,6 +27,6 @@ router.get('/about/:userId', validateUserIdParam, validateRequest, userControlle
 router.get('/photostream/:userId', validateUserIdParam, validateRequest, userController.getUserPhotoStream);
 
 router.patch('/editCoverPhoto',auth, validatePhotoId, validateRequest, userController.editCoverPhoto);
-
+router.patch('/editProfilePhoto',auth, validatePhotoId, validateRequest, userController.editProfilePhoto);
 router.patch('/editInfo', auth,validateEditInfo, validateRequest,userController.editInfo);
 module.exports = router;
