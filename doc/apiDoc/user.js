@@ -650,7 +650,8 @@
  *        "coverPhotoUrl": "",
  *        "profilePhotoUrl": "",
  *        "numberOfFollowers": 12,
- *        "numberOfFollowings": 12
+ *        "numberOfFollowings": 12,
+ *        "isFollowing": false
  * }   
  *     }
  * @apiError (404) User Not Found
