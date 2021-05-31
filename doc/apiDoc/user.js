@@ -618,7 +618,8 @@
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "showcase": 
+ *       "user":{
+ *          "showcase": 
  *         {
  *          title: String
  *          photos: [
@@ -638,11 +639,19 @@
  *          },              
  *       ],
  *       "description": "A talented photographer",
+ *        "firstName": "",
+ *        "LastName": "",
+ *        "userName": "",
  *        "email": "asdasd@test.com",
  *        "occupation": "",
  *        "currentCity": "",
  *        "homeTown": "",
- *        "createdAt": ""  
+ *        "createdAt": "" ,
+ *        "coverPhotoUrl": "",
+ *        "profilePhotoUrl": "",
+ *        "numberOfFollowers": "",
+ *        "numberOfFollowings": ""
+ * }   
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
