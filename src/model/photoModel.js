@@ -19,6 +19,11 @@ const photoSchema = new mongoose.Schema({
         unique: true,
         default: []
     }],
+    albums: [{
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: 'Album',
+        default: []
+    }],
     comments: [{
         type: [mongoose.SchemaTypes.ObjectId],
         ref: 'Comment',
