@@ -11,7 +11,7 @@ const {
     validatePhotoUpload,
     validateTag,
 } = require('../middleware/request-validator');
-const { upload } = require('../middleware/photo-multer-handler');
+const { upload } = require('../middleware/photoMulterHandler');
 
 router.post(
     '/upload',
