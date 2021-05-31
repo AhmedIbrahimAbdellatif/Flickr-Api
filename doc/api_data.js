@@ -4321,131 +4321,6 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/user/editCoverPhoto",
-    "title": "Edit Cover Photo",
-    "name": "Change_User's_Cover_Photo",
-    "group": "User",
-    "version": "1.0.0",
-    "description": "<p>Return User's Camera Roll</p>",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "photoId",
-            "description": "<p>Photo to set as cover photo</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    photoId: \"5349b4ddd2781d08c09890f4\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "401": [
-          {
-            "group": "401",
-            "optional": false,
-            "field": "InvalidToken",
-            "description": "<p>Token May be Expired or Invalid</p>"
-          },
-          {
-            "group": "401",
-            "optional": false,
-            "field": "UserDeleted",
-            "description": "<p>The user linked to this token does no longer exist</p>"
-          },
-          {
-            "group": "401",
-            "optional": false,
-            "field": "UserChangedPassword",
-            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
-          },
-          {
-            "group": "401",
-            "optional": false,
-            "field": "unauthorized",
-            "description": "<p>User is not authorized</p>"
-          }
-        ],
-        "404": [
-          {
-            "group": "404",
-            "optional": false,
-            "field": "PhotoNotFound",
-            "description": "<p>The id of the Photo wasn't found</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "doc/apiDoc/user.js",
-    "groupTitle": "User",
-    "header": {
-      "fields": {
-        "Header": [
-          {
-            "group": "Header",
-            "type": "String",
-            "optional": false,
-            "field": "Authorization",
-            "description": "<p>Users access-token</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Header-Example:",
-          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
-          "type": "json"
-        }
-      ]
-    }
-  },
-  {
-    "type": "post",
     "url": "/users/:userId",
     "title": "Edit Showcase and Description",
     "name": "Edit_Showcase_and_Description",
@@ -4578,8 +4453,8 @@ define({ "api": [
   {
     "type": "patch",
     "url": "/user/editCoverPhoto",
-    "title": "Edit User CoverPhtot",
-    "name": "Edit_User_CoverPhtot",
+    "title": "Edit User CoverPhoto",
+    "name": "Edit_User_CoverPhoto",
     "group": "User",
     "version": "1.0.0",
     "description": "<p>Edit User CoverPhtot</p>",
