@@ -27,7 +27,25 @@
  *
  *     }
  */
-
+/**
+ * @api {get} /tag/search/:searchKeyword Search for tag
+ * @apiName Search for tag
+ * @apiGroup Tag
+ * @apiVersion 1.0.0
+ * @apiDescription View Tags that has a count greater than a certain number
+ * @apiSuccess {Object[]} trendingTags An array of objects containing tags data
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *          "searchResult": [
+ *              {
+ *                  "count": 120,
+ *                  "_id": "5349b4ddd2781d08c09890f4",
+ *                  "name": "nature"
+ *              }
+ *          ]
+ *     }
+ */
 /**
  * @api {get} /tag/:id Get tag media
  * @apiName Get Tag Media

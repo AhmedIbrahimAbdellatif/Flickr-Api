@@ -98,6 +98,11 @@ const validateCreateAlbum = [
 const validateAlbumParam = [
     param('albumId').isMongoId().withMessage('albumId is required')
 ]
+
+const validateSearchKeywordParam = [
+    param('searchKeyword').isString().withMessage('searchKeyword is required')
+]
+
 const validateAlbumId = [
     body('albumId').isMongoId().withMessage('albumId is required')
 ]
@@ -118,6 +123,7 @@ module.exports = {
     validateAlbumId,
     validateRegisterWithFacebook,
     validateTag,
-    validateEditInfo
+    validateEditInfo,
+    validateSearchKeywordParam
 
 };

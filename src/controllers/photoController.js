@@ -1,8 +1,10 @@
 const Photo = require('../model/photoModel');
+const Album = require('../model/albumModel');
 const Tag = require('../model/tagModel');
+
 const { LogicError } = require('../error/logic-error');
 
-module.exports.uploadImage = async (req, res) => {
+module.exports.uploadPhoto = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
     const photo = new Photo({
@@ -15,6 +17,21 @@ module.exports.uploadImage = async (req, res) => {
     photo.favouriteCount = 0;
     await photo.save();
     res.status(201).send({ url: photo.url });
+};
+
+module.exports.deletePhoto = async (req, res) => {
+    photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo is not found');
+    }
+    photo.albums.forEach(async function (albumId) {
+        await Album.findByIdAndUpdate(albumId, {
+            $pull: {photoIds: photoId}
+        });
+    })
+    await photo.remove();
+    res.status(200).send();
 };
 
 module.exports.addToFavorites = async (req, res) => {
