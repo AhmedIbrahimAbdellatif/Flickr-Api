@@ -5,7 +5,7 @@
 ////////////////////////////GHALLAB///////////////////////////
 
 /**
- *
+ * @apiUser Authentication
  * @api {get} /user/followers/:userId  Get the followers of a certain User
  * @apiName Get User Followers
  * @apiGroup User
@@ -20,14 +20,24 @@
  * {
  *     followers : [
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                      "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String   
  *                  },
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                     "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String  
  *                  },
  *                 ]
  * }
@@ -47,7 +57,7 @@
  */
 
 /**
- *
+ * @apiUse Authentication
  * @api {get} /user/followings/:userId  Get the followings of a certain User
  * @apiName Get User Followings
  * @apiGroup User
@@ -68,14 +78,24 @@
  * {
  *     following : [
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                      "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String 
  *                  },
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                      "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String 
  *                  },
  *                 ]
  * }
@@ -95,7 +115,7 @@
  */
 
 /**
- *
+ * @apiUse Authentication
  * @api {get} /user/search/:username     Search on user
  * @apiName Search on user username is the keyword you want to search fo
  * @apiGroup User
@@ -115,14 +135,24 @@
  * HTTP/1.1 200 Success
  * {
  *     users : [{
- *                _id : String,
- *                firstName : String,
- *                lastName : String
+ *                  "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String   
  *              },
  *              {
- *                _id : String,
- *                firstName : String,
- *                lastName : String
+ *                "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String 
  *              },
  *             ]
  * }
@@ -142,7 +172,10 @@
  * @apiParamExample  {type} Request-Example:
  * {
  *     desciption : "Photos are my passion"
- *     showcase : "a glimpse of my life"
+ *     showcase : {
+ *         "title": "",
+ *         "photos": [photoIds]
+ * }
  * }
  *
  *
@@ -486,7 +519,7 @@
  *               "description": "Paris pics 2019"
  *               "creator": "2149b4ddd2781d08c09890a1",
  *               "views": 1023,
- *               "images": ["8349b4ddd2781d08c0989111","8249b4ddd2781d08c0989000"],
+ *               "numberOfPhotos": 6,
  *          },
  *       ]
  *     }
@@ -585,7 +618,10 @@
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "showcase": [
+ *       "showcase": 
+ *         {
+ *          title: String
+ *          photos: [
  *          {
  *               "_id": "5349b4ddd2781d08c09890f4",
  *               "tags": ["Tower","Egypt"],
@@ -602,12 +638,6 @@
  *          },              
  *       ],
  *       "description": "A talented photographer",
- *       "statistics": 
- *               {
- *                   "views": 27
- *                   "faves": 9
- *                   "groups": 10
- *               },
  *        "email": "asdasd@test.com",
  *        "occupation": "",
  *        "currentCity": "",

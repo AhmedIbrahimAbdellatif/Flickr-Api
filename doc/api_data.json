@@ -3188,7 +3188,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n    \"user\":[\n         {\n             _id:'60953562224d432a505e8d07',\n             firstName:'Ahmed',\n             lastName:'Ibrahim'\n}\n]\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"user\":[\n         {\n               \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String \n}\n]\n}",
           "type": "json"
         }
       ]
@@ -3668,7 +3668,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -3726,7 +3726,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -3967,7 +3967,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4131,7 +4131,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4348,7 +4348,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    desciption : \"Photos are my passion\"\n    showcase : \"a glimpse of my life\"\n}",
+          "content": "{\n    desciption : \"Photos are my passion\"\n    showcase : {\n        \"title\": \"\",\n        \"photos\": [photoIds]\n}\n}",
           "type": "type"
         }
       ]
@@ -5293,7 +5293,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 Success\n{\n    followers : [\n                 {\n                   _id : String\n                   firstName : String\n                   lastName : String\n                 },\n                 {\n                   _id : String\n                   firstName : String\n                   lastName : String\n                 },\n                ]\n}",
+          "content": "HTTP/1.1 200 Success\n{\n    followers : [\n                 {\n                     \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String   \n                 },\n                 {\n                    \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String  \n                 },\n                ]\n}",
           "type": "json"
         }
       ]
@@ -5364,7 +5364,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 Success\n{\n    following : [\n                 {\n                   _id : String\n                   firstName : String\n                   lastName : String\n                 },\n                 {\n                   _id : String\n                   firstName : String\n                   lastName : String\n                 },\n                ]\n}",
+          "content": "HTTP/1.1 200 Success\n{\n    following : [\n                 {\n                     \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String \n                 },\n                 {\n                     \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String \n                 },\n                ]\n}",
           "type": "json"
         }
       ]
@@ -5377,6 +5377,32 @@
             "optional": false,
             "field": "UserIdMissing",
             "description": "<p>This user is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
           }
         ],
         "404": [
@@ -5398,11 +5424,51 @@
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"UserId is required\"\n}",
           "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
         }
       ]
     },
     "filename": "doc/apiDoc/user.js",
-    "groupTitle": "User"
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "get",
@@ -5575,7 +5641,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"albums\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"title\": \"Paris pics\",\n          \"description\": \"Paris pics 2019\"\n          \"creator\": \"2149b4ddd2781d08c09890a1\",\n          \"views\": 1023,\n          \"images\": [\"8349b4ddd2781d08c0989111\",\"8249b4ddd2781d08c0989000\"],\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"albums\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"title\": \"Paris pics\",\n          \"description\": \"Paris pics 2019\"\n          \"creator\": \"2149b4ddd2781d08c09890a1\",\n          \"views\": 1023,\n          \"numberOfPhotos\": 6,\n     },\n  ]\n}",
           "type": "json"
         },
         {
@@ -5768,13 +5834,85 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 Success\n{\n    users : [{\n               _id : String,\n               firstName : String,\n               lastName : String\n             },\n             {\n               _id : String,\n               firstName : String,\n               lastName : String\n             },\n            ]\n}",
+          "content": "HTTP/1.1 200 Success\n{\n    users : [{\n                 \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String   \n             },\n             {\n               \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String \n             },\n            ]\n}",
           "type": "json"
         }
       ]
     },
     "filename": "doc/apiDoc/user.js",
-    "groupTitle": "User"
+    "groupTitle": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "get",
@@ -5833,7 +5971,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"showcase\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n  \"description\": \"A talented photographer\",\n  \"statistics\": \n          {\n              \"views\": 27\n              \"faves\": 9\n              \"groups\": 10\n          },\n   \"email\": \"asdasd@test.com\",\n   \"occupation\": \"\",\n   \"currentCity\": \"\",\n   \"homeTown\": \"\",\n   \"createdAt\": \"\"  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"showcase\": \n    {\n     title: String\n     photos: [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n  \"description\": \"A talented photographer\",\n   \"email\": \"asdasd@test.com\",\n   \"occupation\": \"\",\n   \"currentCity\": \"\",\n   \"homeTown\": \"\",\n   \"createdAt\": \"\"  \n}",
           "type": "json"
         }
       ]
