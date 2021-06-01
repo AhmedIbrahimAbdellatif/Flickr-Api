@@ -88,6 +88,7 @@ module.exports.commentOnPhoto = async (req, res) => {
         photo: photoId,
     });
     await photo.updateOne({ $push: { comments: newComment } });
+    console.log(photo)
     res.status(200).json({
         message: 'Comment Added Successfully',
     });
