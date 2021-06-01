@@ -243,6 +243,53 @@
  *          "message": "Photo Not Found"
  *     }
  */
+/**
+ * @apiUse Authentication
+ * @api {delete} /photo/:photoId/comment Delete Comment
+ * @apiName Delete Comment
+ * @apiGroup Photo
+ * @apiVersion  1.0.0
+ *
+ *
+ * @apiParam  {String} commentId The ID of the comment required to be deleted
+ *
+ * @apiSuccess (200) {String} message Comment Deleted
+ *
+ * @apiParamExample  {type} Request-Example:
+ * {
+ *     "commentId" : "60b5969764664624dc230989"
+ * }
+ *
+ *
+ * @apiSuccessExample {type} Success-Response:
+ * {
+ *     "message" : "Comment Deleted Successfully",
+ * }
+ * @apiError (400) CommentIDMissing Comment ID is Missing or invalid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *        "message" : "Comment ID Missing"
+ *     }
+ * @apiError (404) CommentNotFound The comment is not found maybe already deleted
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "Comment Not Found"
+ *     }
+ * @apiError (404) PhotoNotFound
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "Photo Not Found"
+ *     }
+ * @apiError (403) NotAllowed You have no authority on this comment it must be created by you to be deleted
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 403 Forbidden
+ *     {
+ *        "message" : "You do not have permission to delete comments belonging to other users"
+ *     }
+ */
 /////////////////////////////////SHAHDA///////////////////////////
 /**
  * @apiUse Authentication

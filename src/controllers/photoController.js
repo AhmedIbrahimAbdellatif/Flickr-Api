@@ -2,6 +2,7 @@ const Photo = require('../model/photoModel');
 const Tag = require('../model/tagModel');
 const Comment = require('../model/commentModel');
 const { LogicError } = require('../error/logic-error');
+const { findByIdAndDelete } = require('../model/photoModel');
 
 module.exports.uploadImage = async (req, res) => {
     reqBody = { ...req.body };
@@ -101,5 +102,35 @@ module.exports.getMediaComments = async (req, res) => {
     const comments = photo.comments;
     res.status(200).json({
         comments,
+    });
+};
+
+module.exports.deleteComment = async (req, res) => {
+    const photoId = req.params.photoId;
+    const userId = req.user._id;
+    const commentId = req.body.commentId;
+    const comment = await Comment.findById(commentId);
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    if (!comment || photoId.toString() != comment.photo.toString()) {
+        throw new LogicError(404, 'Comment Not Found');
+    }
+    if (comment.user._id.toString() != userId.toString()) {
+        throw new LogicError(
+            403,
+            'You do not have permission to delete comments belonging to other users'
+        );
+    }
+    for (var i = 0; i < photo.comments.length; i++) {
+        if (photo.comments[i].toString() === comment._id.toString()) {
+            photo.comments.splice(i, 1);
+        }
+    }
+    await photo.save();
+    await comment.remove();
+    res.status(200).json({
+        message: 'Comment Deleted Successfully',
     });
 };

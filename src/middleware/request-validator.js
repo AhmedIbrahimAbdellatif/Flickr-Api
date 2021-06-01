@@ -93,6 +93,9 @@ const validateTag = [
 const validateComment = [
     body('comment').isString().withMessage('Please write your Comment'),
 ];
+const validateCommentId = [
+    body('commentId').isMongoId().withMessage('Comment ID Missing'),
+];
 //Params Validations
 const validatePhotoIdParam = [
     param('photoId').isMongoId().withMessage('PhotoId is required'),
@@ -135,4 +138,5 @@ module.exports = {
     validateTag,
     validateEditInfo,
     validateComment,
+    validateCommentId,
 };
