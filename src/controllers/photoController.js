@@ -1,9 +1,11 @@
 const Photo = require('../model/photoModel');
+const Album = require('../model/albumModel');
 const Tag = require('../model/tagModel');
 const Comment = require('../model/commentModel');
+
 const { LogicError } = require('../error/logic-error');
 
-module.exports.uploadImage = async (req, res) => {
+module.exports.uploadPhoto = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
     const photo = new Photo({
@@ -16,6 +18,21 @@ module.exports.uploadImage = async (req, res) => {
     photo.favouriteCount = 0;
     await photo.save();
     res.status(201).send({ url: photo.url });
+};
+
+module.exports.deletePhoto = async (req, res) => {
+    photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo is not found');
+    }
+    photo.albums.forEach(async function (albumId) {
+        await Album.findByIdAndUpdate(albumId, {
+            $pull: {photoIds: photoId}
+        });
+    })
+    await photo.remove();
+    res.status(200).send();
 };
 
 module.exports.addToFavorites = async (req, res) => {
@@ -102,4 +119,26 @@ module.exports.getMediaComments = async (req, res) => {
     res.status(200).json({
         comments,
     });
+
+module.exports.getPhotoDetails = async (req, res) => {
+    const photo = await Photo.findById(req.body.photoId).populate({
+        path:'creator',
+        select: '_id lastName firstName userName profilePhotoUrl coverPhotoUrl'
+    }).populate({
+        path: 'tags'
+    })
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const user = req.user
+    if(user){
+        let isFollowing = false;
+        user.following.forEach((id) => {
+            
+            if(id.toString() === photo.creator._id.toString())
+                isFollowing = true
+        });
+        photo.creator.isFollowing = isFollowing
+    }
+    res.status(200).send(photo);
 };

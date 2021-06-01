@@ -84,11 +84,21 @@ const userSchema = new mongoose.Schema(
         facebookId: {
             type: String,
             select: false,
+
         },
+       
         coverPhotoUrl: {
             type: String,
             default: process.env.HOSTNAME + 'public/images/default/8.jpeg',
         },
+        profilePhotoUrl:{
+            type: String,
+            default: process.env.HOSTNAME + "public/images/default/8.jpeg"
+        },
+        isFollowing:{
+            type:Boolean
+        }
+
     },
     {
         timestamps: true,
@@ -98,6 +108,8 @@ const userSchema = new mongoose.Schema(
                 if (ret.following)
                     ret.numberOfFollowings = ret.following.length;
                 delete ret.following;
+                if(!ret.isFollowing)
+                    ret.isFollowing = false
                 delete ret.facebookId;
                 delete ret.favourites;
                 delete ret.password;

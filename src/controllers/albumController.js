@@ -3,15 +3,15 @@ const Photo = require('../model/photoModel');
 const { LogicError } = require('../error/logic-error');
 
 module.exports.createAlbum = async (req, res) => {
+    
     reqBody = { ...req.body };
     const album = new Album({
         ...reqBody,
         creator: req.user._id,
     });
     album.views = 0;
-    album.photos = [];
     await album.save();
-    res.status(201).send();
+    res.status(201).send({album: album});
 };
 
 module.exports.deleteAlbum = async (req, res) => {
@@ -34,7 +34,10 @@ module.exports.addPhoto = async (req, res) => {
         throw new LogicError(404, 'Photo is not found');
     }
     await Album.findByIdAndUpdate(albumId, {
-        $addToSet: {featured: photoId}
+        $addToSet: {photoIds: photoId}
+    });
+    await Photo.findByIdAndUpdate(photoId, {
+        $addToSet: {albums: albumId}
     });
     res.status(200).send();
 }
@@ -51,7 +54,7 @@ module.exports.deletePhoto = async (req, res) => {
         throw new LogicError(404, 'Photo is not found');
     }
     await Album.findByIdAndUpdate(albumId, {
-        $pull: {featured: photoId}
+        $pull: {photoIds: photoId}
     });
     res.status(200).send();
 }
