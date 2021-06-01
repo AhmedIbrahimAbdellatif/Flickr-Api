@@ -46,10 +46,25 @@ module.exports.getFollowers = async (req, res) => {
     if (!user) throw new LogicError(404, 'User not found');
     await user
         .populate({
-            path: 'followers',
-            select: '_id firstName lastName -following',
-        })
+             path: 'followers', 
+            select:'-showCase', 
+            populate:{
+            path: 'numberOfFollowers'
+        } })
         .execPopulate();
+    const loggedInUser = req.user;
+    if(loggedInUser){
+        user.followers.forEach((user) => {
+            for(let i =0 ;i< loggedInUser.following.length;i++){
+                if(loggedInUser.following[i].toString() === user._id.toString())
+                {
+                    user.isFollowing = true;
+                    break;
+                }
+            }
+
+        })
+    }
     res.send({ followers: user.followers });
 };
 
@@ -57,8 +72,26 @@ module.exports.getFollowings = async (req, res) => {
     const user = await User.findById(req.params.userId);
     if (!user) throw new LogicError(404, 'User not found');
     await user
-        .populate({ path: 'following', select: '_id firstName lastName' })
+        .populate({
+             path: 'following', 
+            select:'-showCase', 
+            populate:{
+            path: 'numberOfFollowers'
+        } })
         .execPopulate();
+    const loggedInUser = req.user;
+    if(loggedInUser){
+        user.following.forEach((user) => {
+            for(let i =0 ;i< loggedInUser.following.length;i++){
+                if(loggedInUser.following[i].toString() === user._id.toString())
+                {
+                    user.isFollowing = true;
+                    break;
+                }
+            }
+
+        })
+    }
     res.send({ following: user.following });
 };
 

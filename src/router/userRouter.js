@@ -11,7 +11,6 @@ const {
     validatePhotoId,
     validateEditInfo,
     validateShowCaseDescription,
-    validateUserNameParam,
     validateSearchKeywordParam,
 } = require('../middleware/request-validator');
 const { validate } = require('../model/userModel');
@@ -41,6 +40,7 @@ router.post(
 
 router.get(
     '/followers/:userId',
+    authOptional,
     validateUserIdParam,
     validateRequest,
     userController.getFollowers
@@ -48,6 +48,7 @@ router.get(
 
 router.get(
     '/followings/:userId',
+    authOptional,
     validateUserIdParam,
     validateRequest,
     userController.getFollowings
