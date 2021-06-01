@@ -1,14 +1,27 @@
 const express = require('express');
 const router = new express.Router();
 const tagController = require('../controllers/tagController');
-const auth = require('../middleware/authentication');
+
 const {
     validateRequest,
-    validateSearchKeywordParam,
     validateTag,
+    validateTagParam,
+    validateSearchKeywordParam
 } = require('../middleware/request-validator');
+const auth = require('../middleware/authentication');
+router.get(
+    '/trending',
+    validateRequest,
+    tagController.getTrendingTags
+);
 
-router.get('/trending', validateTag, tagController.getTrendingTags);
+router.get(
+    '/:tagName',
+    validateRequest,
+    validateTagParam,
+    tagController.getTagMedia
+);
 router.get('/search/:searchKeyword', validateSearchKeywordParam, validateRequest, tagController.searchTags);
+
 
 module.exports = router;

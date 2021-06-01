@@ -114,9 +114,11 @@ const validatePhotoIdParam = [
 const validateUserIdParam = [
     param('userId').isMongoId().withMessage('UserId is required'),
 ];
-const validateUserNameParam = [
 
-]
+const validateTagParam = [
+    param('tagName').isString().withMessage('Tag Name is Required'),
+];
+
 const validateCreateAlbum = [
     body('title').isString().withMessage('Title is required'),
     body('description')
@@ -143,6 +145,7 @@ const validateAlbumId = [
     body('albumId').isMongoId().withMessage('albumId is required'),
 ];
 
+
 module.exports = {
     validateRequest,
     validatePhotoId,
@@ -159,11 +162,11 @@ module.exports = {
     validateAlbumId,
     validateRegisterWithFacebook,
     validateTag,
+    validateTagParam,
     validateEditInfo,
     validateComment,
     validateCommentId,
     validateShowCaseDescription,
     validateSearchKeywordParam,
-
 
 };
