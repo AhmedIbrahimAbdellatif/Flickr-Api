@@ -70,6 +70,7 @@ router.get(
 
 router.get(
     '/search/:searchKeyword',
+    authOptional,
     validateSearchKeywordParam,
     validateRequest,
     userController.searchUser

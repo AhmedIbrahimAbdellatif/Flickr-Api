@@ -180,6 +180,20 @@ module.exports.searchUser = async (req, res) => {
             $options: 'i',
         },
     }).sort({ userName: -1 });
+    const loggedInUser = req.user;
+    if(loggedInUser){
+        users.forEach((user) => {
+            for(let i =0 ;i< loggedInUser.following.length;i++){
+                if(loggedInUser.following[i].toString() === user._id.toString())
+                {
+                    user.isFollowing = true;
+                    break;
+                }
+            }
+
+        })
+    }
+    
     res.status(200).send({
         users,
     });

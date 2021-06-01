@@ -149,7 +149,8 @@
  *           "__v": 0,
  *           "id": "60b5f3e483681736e0959605",
  *           "numberOfFollowers": 0,
- *           "numberOfFollowings": 0
+ *           "numberOfFollowings": 0,
+ *           "isFollowing": false
  *       }
  *    ]
  *  }
