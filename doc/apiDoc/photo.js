@@ -178,7 +178,7 @@
  *          "message": "Photo Not Found"
  *        }
  *     }
- * 
+ *  
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
@@ -225,6 +225,31 @@
  *          "message": "Photo Not Found"
  *        }
  *     }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *         "_id": "5349b4ddd2781d08c09890f4",
+ *         "tags": ["Tower","Egypt"],
+ *         "views": 1023,
+ *         "favouriteCount": 1023,
+ *         "commentsNum": 1023,
+ *         "creator": {
+ *                "_id": "123123",
+ *                "isFollowing": false,
+ *               "firstName": "Ahmed",
+ *               "lastName": "Ibrahim",
+ *               "userName": "",
+ *               "profilePhotoUrl":"",
+ *               "coverPhotoUrl": ""
+ *          },
+ *          "url": '',
+ *          "title": 'Cairo Tower',
+ *          "description": 'Cairo tower at the sunset',
+ *          "createdAt": "Date"
+ *          
+ *       
+ *     }
+
 
  */
 ///////////////////////////////HIMA/////////////////////////////
