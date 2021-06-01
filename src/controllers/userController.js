@@ -48,9 +48,14 @@ module.exports.getFollowers = async (req, res) => {
         .populate({
              path: 'followers', 
             select:'-showCase', 
-            populate:{
-            path: 'numberOfFollowers'
-        } })
+            populate:[{
+                path: 'numberOfFollowers'
+            },
+            {
+                path:'numberOfPhotos'
+            }
+        ] 
+    })
         .execPopulate();
     const loggedInUser = req.user;
     if(loggedInUser){
@@ -75,9 +80,14 @@ module.exports.getFollowings = async (req, res) => {
         .populate({
              path: 'following', 
             select:'-showCase', 
-            populate:{
-            path: 'numberOfFollowers'
-        } })
+            populate:[{
+                path: 'numberOfFollowers'
+            },
+            {
+                path:'numberOfPhotos'
+            }
+            ]  
+    })
         .execPopulate();
     const loggedInUser = req.user;
     if(loggedInUser){
@@ -107,6 +117,9 @@ module.exports.getUserAbout = async (req, res) => {
         })
         .populate({
             path: 'numberOfFollowers',
+        })
+        .populate({
+            path: 'numberOfPhotos'
         })
         .exec();
     if (!user) throw new LogicError(404, 'User not found');
@@ -212,6 +225,11 @@ module.exports.searchUser = async (req, res) => {
             $regex: '.*' + req.params.searchKeyword + '.*',
             $options: 'i',
         },
+    }).populate({
+        path: 'numberOfFollowers',
+    })
+    .populate({
+        path: 'numberOfPhotos'
     }).sort({ userName: -1 });
     const loggedInUser = req.user;
     if(loggedInUser){

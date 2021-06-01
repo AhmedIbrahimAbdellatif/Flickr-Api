@@ -59,6 +59,13 @@ module.exports.whoFavorited = async (req, res) => {
         .populate({
             path: 'favoured',
             select: '-showCase',
+            populate: [{
+                path: 'numberOfFollowers'
+            },
+            {
+                path:'numberOfPhotos'
+            }
+        ] 
         })
         .execPopulate();
     const loggedInUser = req.user;
