@@ -109,5 +109,10 @@ router.patch(
     validateRequest,
     userController.editProfilePhoto
 );
-
+router.get(
+    '/albums/:userId', 
+    validateUserIdParam,
+    validateRequest,
+    userController.viewUserAlbums
+    );
 module.exports = router;
