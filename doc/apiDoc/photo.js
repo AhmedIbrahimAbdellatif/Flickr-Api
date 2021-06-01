@@ -178,14 +178,53 @@
  *          "message": "Photo Not Found"
  *        }
  *     }
- * @apiError (404) GroupNotFound  The Group isn't found
+ * 
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       
+ *          
+ *         "_id": "5349b4ddd2781d08c09890f4",
+ *         "tags": ["Tower","Egypt"],
+ *         "views": 1023,
+ *         "favouriteCount": 1023,
+ *         "commentsNum": 1023,
+ *         "creator": {
+ *                "_id": "123123",
+ *                "isFollowing": false,
+ *               "firstName": "Ahmed",
+ *               "lastName": "Ibrahim"
+ *          },
+ *          "url": '',
+ *          "title": 'Cairo Tower',
+ *          "description": 'Cairo tower at the sunset',
+ *          "createdAt": "Date"
+ *          
+ *       
+ *     }
+ */
+/**
+ * @apiUse AuthenticationOptional
+ * @api {post} /photo/getDetails Get Photo Details
+ * @apiName Get Photo Details
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Get Photo Details 
+ * @apiParam {String} photoId Photo to be added to group
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "photoId": "5349b4ddd2781d08c09890f4",
+ * }
+ * 
+ * @apiError (404) PhotoNotFound  The Photo isn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
  *       "error": {
- *          "message": "Group Not Found"
+ *          "message": "Photo Not Found"
  *        }
  *     }
+
  */
 ///////////////////////////////HIMA/////////////////////////////
 /**

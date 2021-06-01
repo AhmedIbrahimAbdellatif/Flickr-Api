@@ -77,8 +77,6 @@ module.exports.getUserAbout = async(req,res) => {
     res.send({user});
 }
 
-module.exports.getUserPhotoStream = async(req,res) => {
-
 
 module.exports.getUserPhotoStream = async (req, res) => {
     const isUserExist = await User.exists({ _id: req.params.userId });
