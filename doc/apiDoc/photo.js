@@ -491,6 +491,7 @@
  *    HTTP/1.1 200 OK
  *    {
  *      "url": String
+ *      "_id": "asdasdasdas"
  *     }
  * @apiError (400) PhotoMissing This Photo is required
  * @apiErrorExample {json} Error-Response:

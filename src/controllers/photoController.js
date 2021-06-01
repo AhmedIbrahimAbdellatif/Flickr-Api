@@ -9,6 +9,8 @@ const { findByIdAndDelete } = require('../model/photoModel');
 module.exports.uploadPhoto = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
+    const tags = reqBody['tags'].split(',');
+    delete reqBody['tags'];
     const photo = new Photo({
         ...reqBody,
         url:
@@ -16,9 +18,21 @@ module.exports.uploadPhoto = async (req, res) => {
             req.file.path.toString().replaceAll('\\', '/'),
         creator: req.user._id,
     });
+    const photoTags = [];
+    for(var i =0; i< tags.length; i++){
+        let tag = await Tag.findOne({name: tags[i] });
+        if(!tag){
+            tag = await Tag.create({ name: tags[i] , count :1});
+            await tag.save();
+        }else{
+            await tag.updateOne({ $inc: { count: 1 } });
+        }
+        photoTags.push(tag)
+    }
+    photo.tags = photoTags
     photo.favouriteCount = 0;
     await photo.save();
-    res.status(201).send({ url: photo.url });
+    res.status(201).send({url:photo.url,_id:photo._id});
 };
 
 module.exports.deletePhoto = async (req, res) => {
