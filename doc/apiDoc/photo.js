@@ -517,7 +517,7 @@
  */
 ///////////////////////////////////////// KARIM ///////////////////////////////////////////
 /**
- * * @apiUse Authentication
+ * @apiUse Authentication
  * @api {post} /photo/privacy Adjust Privacy
  * @apiName Adjust Privacy
  * @apiGroup Photo
