@@ -5,7 +5,7 @@
 ////////////////////////////GHALLAB///////////////////////////
 
 /**
- * @apiUser Authentication
+ * @apiUse AuthenticationOptional
  * @api {get} /user/followers/:userId  Get the followers of a certain User
  * @apiName Get User Followers
  * @apiGroup User
@@ -57,7 +57,7 @@
  */
 
 /**
- * @apiUse Authentication
+ * @apiUse AuthenticationOptional
  * @api {get} /user/followings/:userId  Get the followings of a certain User
  * @apiName Get User Followings
  * @apiGroup User
@@ -115,7 +115,7 @@
  */
 
 /**
- * @apiUse Authentication
+ * @apiUse AuthenticationOptional
  * @api {get} /user/search/:username     Search on user
  * @apiName Search on user username is the keyword you want to search fo
  * @apiGroup User
@@ -160,7 +160,7 @@
 
 /**
  * @apiUse Authentication
- * @api {patch} /users/:userId   Edit Showcase and Description
+ * @api {patch} /user/:userId   Edit Showcase and Description
  * @apiName Edit Showcase and Description
  * @apiGroup User
  * @apiVersion  1.0.0

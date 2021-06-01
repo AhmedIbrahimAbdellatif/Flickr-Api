@@ -377,6 +377,7 @@
  */
 ////////////////////////////////HIMA////////////////////
 /**
+ * @apiUse AuthenticationOptional
  * @api {get} /photo/whoFavortied/:photoId See who favorited
  * @apiName See who favorited
  * @apiGroup Photo

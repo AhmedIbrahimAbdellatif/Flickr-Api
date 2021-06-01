@@ -39,6 +39,15 @@
  *     }
  */
 /**
+ * @apiDefine AuthenticationOptional
+ * @apiHeader {String} Authorization Users access-token
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Bearer asdasdkasdliuaslidas"
+ *     }
+ 
+ */
+/**
  *
  * @api {post} /register/loginWithFacebook Login using Facebook
  * @apiName Facebook Login
