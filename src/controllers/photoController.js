@@ -89,3 +89,25 @@ module.exports.addTagToPhoto = async (req, res) => {
         message: 'Tag already exists in this photo add another tag',
     });
 };
+module.exports.getPhotoDetails = async (req, res) => {
+    const photo = await Photo.findById(req.body.photoId).populate({
+        path:'creator',
+        select: '_id lastName firstName userName profilePhotoUrl coverPhotoUrl'
+    }).populate({
+        path: 'tags'
+    })
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const user = req.user
+    if(user){
+        let isFollowing = false;
+        user.following.forEach((id) => {
+            
+            if(id.toString() === photo.creator._id.toString())
+                isFollowing = true
+        });
+        photo.creator.isFollowing = isFollowing
+    }
+    res.status(200).json(photo);
+};
