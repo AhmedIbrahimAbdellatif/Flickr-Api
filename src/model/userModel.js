@@ -133,6 +133,12 @@ userSchema.virtual('numberOfFollowers', {
     foreignField: 'following',
     count: true,
 });
+userSchema.virtual('numberOfPhotos', {
+    ref: 'Photo',
+    localField: '_id',
+    foreignField: 'creator',
+    count: true,
+});
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     this.password = await bcrypt.hash(this.password, 10);
