@@ -15,10 +15,18 @@ module.exports.uploadPhoto = async (req, res) => {
             process.env.HOSTNAME +
             req.file.path.toString().replaceAll('\\', '/'),
         creator: req.user._id,
+        tags: []
     });
     photo.favouriteCount = 0;
+    const tagNames = req.body.tags.split(',');
+    tagNames.forEach(function(tagName) {
+        Tag.findOneAndUpdate( {name: tagName}, {$inc: {count: 1}},  { upsert: true, new: true }, function(err,tag) {
+          photo.tags.push(tag._id);
+        });
+      
+      });
     await photo.save();
-    res.status(201).send({ url: photo.url });
+    res.status(201).send({ url: photo.url, photoId: photo._id, tagIds: photo.tags});
 };
 
 module.exports.deletePhoto = async (req, res) => {
