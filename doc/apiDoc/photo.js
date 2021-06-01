@@ -339,7 +339,8 @@
  *          "title": 'Cairo Tower',
  *          "description": 'Cairo tower at the sunset',
  *          "createdAt": "Date"
- *          
+ *          "isPublic": false,
+ *          "allowCommenting": true  
  *       
  *     }
  */
@@ -388,7 +389,9 @@
  *          "url": '',
  *          "title": 'Cairo Tower',
  *          "description": 'Cairo tower at the sunset',
- *          "createdAt": "Date"
+ *          "createdAt": "Date",
+ *          "isPublic": false,
+ *          "allowCommenting": true
  *          
  *       
  *     }
@@ -480,6 +483,7 @@
  *       "allowCommenting": true,
  *        "license": "",
  *        "contentType":'',
+ *        "tags": "snow,white,dog"
  *        "safetyOption":'',
  *       "description": "A photo of Cairo tower at the sunset"
  *     }
@@ -722,7 +726,9 @@
  *               },
  *               "url": '',
  *               "title": 'Cairo Tower',
- *               "description": 'Cairo tower at the sunset'
+ *               "description": 'Cairo tower at the sunset',
+ *               "isPublic": false,
+ *               "allowCommenting": true
  *          },
  *       ],
  *     }

@@ -95,7 +95,9 @@
  *               },
  *              'url': '',
  *              'title': 'Cairo Tower',
- *              'description': 'Cairo tower at the sunset'
+ *              'description': 'Cairo tower at the sunset',
+ *              "isPublic": false,
+ *              "allowCommenting": true
  *          },
  *       ]
  *     }
