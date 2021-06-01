@@ -58,9 +58,22 @@ module.exports.whoFavorited = async (req, res) => {
     await photo
         .populate({
             path: 'favoured',
-            select: ['firstName', 'lastName', '-favourites'],
+            select: '-showCase',
         })
         .execPopulate();
+    const loggedInUser = req.user;
+    if(loggedInUser){
+        photo.favoured.forEach((user) => {
+            for(let i =0 ;i< loggedInUser.following.length;i++){
+                if(loggedInUser.following[i].toString() === user._id.toString())
+                {
+                    user.isFollowing = true;
+                    break;
+                }
+            }
+
+        })
+    }
     res.send({ user: photo.favoured });
 };
 

@@ -48,6 +48,7 @@ router.patch(
 
 router.get(
     '/whoFavorited/:photoId',
+    authOptional,
     validatePhotoIdParam,
     validateRequest,
     photoController.whoFavorited
