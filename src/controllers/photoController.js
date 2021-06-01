@@ -119,7 +119,7 @@ module.exports.getMediaComments = async (req, res) => {
     res.status(200).json({
         comments,
     });
-
+};
 module.exports.getPhotoDetails = async (req, res) => {
     const photo = await Photo.findById(req.body.photoId).populate({
         path:'creator',
