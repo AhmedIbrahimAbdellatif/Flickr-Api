@@ -126,7 +126,6 @@ module.exports.changePassword = async (req, res) => {
     const dateObj = new Date(Date.now());
 
     userPass.passwordChangedAt = dateObj;
-    console.log({ ...userPass });
     await userPass.save();
     res.send();
 };
