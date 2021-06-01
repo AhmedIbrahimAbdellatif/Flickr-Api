@@ -5,7 +5,7 @@
 ////////////////////////////GHALLAB///////////////////////////
 
 /**
- *
+ * @apiUser Authentication
  * @api {get} /user/followers/:userId  Get the followers of a certain User
  * @apiName Get User Followers
  * @apiGroup User
@@ -20,14 +20,24 @@
  * {
  *     followers : [
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                      "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String   
  *                  },
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                     "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String  
  *                  },
  *                 ]
  * }
@@ -47,7 +57,7 @@
  */
 
 /**
- *
+ * @apiUse Authentication
  * @api {get} /user/followings/:userId  Get the followings of a certain User
  * @apiName Get User Followings
  * @apiGroup User
@@ -68,14 +78,24 @@
  * {
  *     following : [
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                      "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String 
  *                  },
  *                  {
- *                    _id : String
- *                    firstName : String
- *                    lastName : String
+ *                      "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String 
  *                  },
  *                 ]
  * }
@@ -95,7 +115,7 @@
  */
 
 /**
- *
+ * @apiUse Authentication
  * @api {get} /user/search/:username     Search on user
  * @apiName Search on user username is the keyword you want to search fo
  * @apiGroup User
@@ -115,14 +135,24 @@
  * HTTP/1.1 200 Success
  * {
  *     users : [{
- *                _id : String,
- *                firstName : String,
- *                lastName : String
+ *                  "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String   
  *              },
  *              {
- *                _id : String,
- *                firstName : String,
- *                lastName : String
+ *                "_id":'60953562224d432a505e8d07',
+ *              "firstName":'Ahmed',
+ *              "lastName":'Ibrahim'
+ *              "profilePhotoUrl": "https://img.jpg",
+ *              "numberOfPhotos": 123,
+ *              "numberOfFollowers": 123,
+ *              "isFollowing": false,
+ *              "createdAt":  String 
  *              },
  *             ]
  * }
@@ -151,6 +181,7 @@
  *           ]
  *       }
  *   }
+
  * }
  * @apiParamExample  {json} Request-Example:
  * {
@@ -275,9 +306,9 @@
  *     }
  */
 /**
- * @api {patch} /user/editCoverPhoto Edit User CoverPhtot
+ * @api {patch} /user/editCoverPhoto Edit User CoverPhoto
  * @apiUse Authentication
- * @apiName Edit User CoverPhtot
+ * @apiName Edit User CoverPhoto
  * @apiGroup User
  * @apiVersion 1.0.0
  * @apiDescription Edit User CoverPhtot
@@ -290,6 +321,36 @@
  *     HTTP/1.1 404 Not Found
  *     {
  *       "message": "Photo Not Found"
+ *     }
+ * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhtotId is required"
+ *     }
+ * @apiError (400) PhotoInvalid This Photo  can't be used as coverPhoto
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "You can't use this photo as coverPhoto"
+ *     }
+ */
+/**
+ * @api {patch} /user/editProfilePhoto Edit User Profile Photo
+ * @apiUse Authentication
+ * @apiName Edit User Profile Photo
+ * @apiGroup User
+ * @apiVersion 1.0.0
+ * @apiDescription Edit User Profile Photo
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     photoId: "5349b4ddd2781d08c09890f4"
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {    
+ *       "message": "Photo Not Found" 
  *     }
  * @apiError (400) PhotoIdMissing This Photo is required
  * @apiErrorExample {json} Error-Response:
@@ -522,7 +583,7 @@
  *               "description": "Paris pics 2019"
  *               "creator": "2149b4ddd2781d08c09890a1",
  *               "views": 1023,
- *               "images": ["8349b4ddd2781d08c0989111","8249b4ddd2781d08c0989000"],
+ *               "numberOfPhotos": 6,
  *          },
  *       ]
  *     }
@@ -621,7 +682,11 @@
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "showcase": [
+ *       "user":{
+ *          "showcase": 
+ *         {
+ *          title: String
+ *          photos: [
  *          {
  *               "_id": "5349b4ddd2781d08c09890f4",
  *               "tags": ["Tower","Egypt"],
@@ -638,17 +703,22 @@
  *          },
  *       ],
  *       "description": "A talented photographer",
- *       "statistics":
- *               {
- *                   "views": 27
- *                   "faves": 9
- *                   "groups": 10
- *               },
+
+ *        "firstName": "",
+ *        "LastName": "",
+ *        "userName": "",
  *        "email": "asdasd@test.com",
  *        "occupation": "",
  *        "currentCity": "",
  *        "homeTown": "",
- *        "createdAt": ""
+
+ *        "createdAt": "" ,
+ *        "coverPhotoUrl": "",
+ *        "profilePhotoUrl": "",
+ *        "numberOfFollowers": 12,
+ *        "numberOfFollowings": 12,
+ *        "isFollowing": false
+ * }   
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
@@ -744,34 +814,6 @@
  *     {
  *
  *          "message": "User Not Found"
- *
- *     }
- */
-
-/**
- * @apiUse Authentication
- * @api {post} /user/editCoverPhoto Edit Cover Photo
- * @apiName Change User's Cover Photo
- * @apiGroup User
- * @apiVersion 1.0.0
- * @apiDescription Return User's Camera Roll
- * @apiParam {String} photoId Photo to set as cover photo
- *  @apiSuccessExample {json} Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *
- *     }
- * @apiParamExample {json} Request-Example:
- * {
- *     photoId: "5349b4ddd2781d08c09890f4"
- * }
- *
- * @apiError (404) PhotoNotFound  The id of the Photo wasn't found
- * @apiErrorExample {json} Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *
- *          "message": "Photo Not Found"
  *
  *     }
  */

@@ -11,16 +11,11 @@ const {
     validatePhotoUpload,
     validateTag,
 } = require('../middleware/request-validator');
-const { upload } = require('../middleware/photo-multer-handler');
+const { upload } = require('../middleware/photoMulterHandler');
 
-router.post(
-    '/upload',
-    auth,
-    upload.single('file'),
-    validatePhotoUpload,
-    validateRequest,
-    photoController.uploadImage
-);
+
+router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadPhoto);
+
 
 router.post(
     '/addToFavorites',
@@ -29,6 +24,7 @@ router.post(
     validateRequest,
     photoController.addToFavorites
 );
+
 
 router.patch(
     '/addTags/:photoId',
@@ -39,10 +35,9 @@ router.patch(
     photoController.addTagToPhoto
 );
 
-router.get(
-    '/whoFavorited/:photoId',
-    validatePhotoIdParam,
-    validateRequest,
-    photoController.whoFavorited
-);
+
+router.get('/whoFavorited/:photoId', validatePhotoIdParam, validateRequest, photoController.whoFavorited);
+
+router.delete('/delete/:photoId', validatePhotoIdParam, validateRequest, photoController.deletePhoto);
+
 module.exports = router;

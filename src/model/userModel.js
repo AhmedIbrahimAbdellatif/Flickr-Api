@@ -89,6 +89,11 @@ const userSchema = new mongoose.Schema(
             type: String,
             default: process.env.HOSTNAME + 'public/images/default/8.jpeg',
         },
+        profilePhotoUrl:{
+            type: String,
+            default: process.env.HOSTNAME + "public/images/default/8.jpeg"
+        }
+
     },
     {
         timestamps: true,

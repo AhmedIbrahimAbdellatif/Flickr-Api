@@ -72,6 +72,7 @@ router.patch(
     userController.editCoverPhoto
 );
 
+
 router.patch(
     '/editInfo',
     auth,
@@ -88,4 +89,13 @@ router.patch(
     validateRequest,
     userController.editShowCaseAndDescription
 );
+
+
+router.patch('/editProfilePhoto',
+             auth,
+             validatePhotoId,
+             validateRequest,
+             userController.editProfilePhoto
+ );
+
 module.exports = router;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const albumSchema = new mongoose.Schema(
     {
-        featured: [
+        photoIds : [
             {
                 type: mongoose.SchemaTypes.ObjectId,
                 ref: 'Photo',
@@ -15,7 +15,7 @@ const albumSchema = new mongoose.Schema(
         },
         views: {
             type: Number,
-            default: 0
+            default: 0,
         },
         description: {
             type: String,
@@ -33,7 +33,7 @@ const albumSchema = new mongoose.Schema(
 //virtuals
 albumSchema.virtual('photos', {
     ref: 'Photo',
-    localField: 'photos',
+    localField: 'photoIds',
     foreignField: '_id',
 });
 

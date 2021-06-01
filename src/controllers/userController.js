@@ -63,24 +63,22 @@ module.exports.getFollowings = async (req, res) => {
 };
 
 //Add Statistics
-module.exports.getUserAbout = async (req, res) => {
-    const user = await User.findById(req.params.userId)
-        .populate({
-            path: 'showCase',
-            populate: {
-                path: 'creator',
-                select: 'firstName lastName _id',
-            },
-        })
-        .exec();
-    if (!user) throw new LogicError(404, 'User not found');
-    const statistics = {
-        view: 0,
-        groups: 0,
-        faves: 0,
-    };
-    res.send({ ...user._doc, statistics });
-};
+module.exports.getUserAbout = async(req,res) => {
+    const user = await User.findById(req.params.userId).populate({
+        path:'showCase.photos',
+        populate: {
+            path: 'creator',
+            select: 'firstName lastName _id'
+        }
+    }).populate({
+        path: "numberOfFollowers"
+    }).exec();
+    if(!user) throw new LogicError(404, 'User not found')
+    res.send({user});
+}
+
+module.exports.getUserPhotoStream = async(req,res) => {
+
 
 module.exports.getUserPhotoStream = async (req, res) => {
     const isUserExist = await User.exists({ _id: req.params.userId });
@@ -113,7 +111,26 @@ module.exports.editCoverPhoto = async (req, res) => {
     user.coverPhotoUrl = photo.url;
     await user.save();
     res.send({});
+
 };
+
+module.exports.editProfilePhoto = async(req,res) => {
+    const photo = await Photo.findById(req.body.photoId);
+    if(!photo)
+        throw new LogicError(404,"Photo not found");
+    
+    if(!(photo.creator.toString() === req.user.id.toString()))
+    {
+        const albums =await Album.findOne({ creator: req.user.id, featured:photo.id });
+        if(!albums)
+            throw new LogicError(400, "You cant use this photo as cover photo")
+    }
+    const user = req.user;
+    user.profilePhotoUrl= photo.url;
+    await user.save();
+    res.send({});
+}
+
 
 module.exports.editInfo = async (req, res) => {
     let isValid = true;
