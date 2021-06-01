@@ -129,19 +129,21 @@ module.exports.editInfo = async (req, res) => {
 
 module.exports.editShowCaseAndDescription = async (req, res) => {
     const user = req.user;
-    if(!user){
-        throw new LogicError(404,'User Not Found');
+    if (!user) {
+        throw new LogicError(404, 'User Not Found');
     }
     user.description = req.body.description;
     const photos = req.body.photos;
     const showCaseTitle = req.body.showCaseTitle;
     user.showCase = { title: showCaseTitle, photos };
     await user.save();
-    const userShowcase = await User.findById(user._id);
+    const userShowcase = await User.findById(user._id)
+        .populate('showCase.photos')
+        .exec();
     console.log(userShowcase);
     res.status(200).json({
         description: userShowcase.description,
         showCaseTitle: userShowcase.showCase.title,
-        photos,
+        photos: userShowcase.showCase.photos,
     });
 };
