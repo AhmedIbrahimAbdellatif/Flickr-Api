@@ -9,7 +9,8 @@ const {
     validateCreateAlbum,
     validateAlbumParam,
     validateAlbumId,
-    validatePhotoId
+    validatePhotoId,
+    validateEditAlbum,
 } = require('../middleware/request-validator');
 
 router.post('/createAlbum', auth, validateCreateAlbum, validateRequest ,albumController.createAlbum);
@@ -17,5 +18,6 @@ router.delete('/deleteAlbum/:albumId', auth, validateAlbumParam, validateRequest
 router.post('/addPhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.addPhoto);
 router.delete('/deletePhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.deletePhoto);
 router.get('/:albumId', validateAlbumParam, validateRequest, albumController.viewAlbumMedia);
+router.patch('/:albumId', validateAlbumParam, validateEditAlbum, validateRequest, albumController.editAlbum);
 
 module.exports = router;
