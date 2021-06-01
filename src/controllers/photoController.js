@@ -18,7 +18,10 @@ module.exports.uploadPhoto = async (req, res) => {
         tags: []
     });
     photo.favouriteCount = 0;
-    const tagNames = req.body.tags.split(',');
+    var tagNames = []
+    if(req.body.tags) {
+        tagNames = req.body.tags.split(',');
+    }
     tagNames.forEach(function(tagName) {
         Tag.findOneAndUpdate( {name: tagName}, {$inc: {count: 1}},  { upsert: true, new: true }, function(err,tag) {
           photo.tags.push(tag._id);
