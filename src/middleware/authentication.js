@@ -1,5 +1,5 @@
 const User = require('../model/userModel');
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const { redisClient, getAsync, setAsync } = require('../third-Parties/redis');
@@ -76,7 +76,7 @@ const authOptional = async (req, res, next) => {
     }
     const user = await User.findById(decoded.id).select('+passwordChangedAt');
     if (!user) {
-        next()
+        return next()
     }
     if (user.changedPassword(decoded.iat)) {
         return next()
@@ -85,5 +85,7 @@ const authOptional = async (req, res, next) => {
     next();
 };
 
-module.exports = auth;
-module.exports = authOptional;
+module.exports = {
+    auth,
+    authOptional
+};

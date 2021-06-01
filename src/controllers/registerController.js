@@ -1,5 +1,5 @@
 const User = require('../model/userModel');
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const { setAsync, getAsync } = require('../third-Parties/redis');
 const { sendResetPasswordEmail } = require('../third-Parties/email');
 const { getFacebookData } = require('../third-Parties/facebook');

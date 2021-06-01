@@ -7,7 +7,7 @@ const {
     validateTag,
     validateTagParam,
     validateSearchKeywordParam
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 const auth = require('../middleware/authentication');
 router.get(
     '/trending',

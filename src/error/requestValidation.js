@@ -1,4 +1,4 @@
-const { CustomError } = require('./custom-error')
+const { CustomError } = require('./customError')
 
 class RequestValidationError extends CustomError {
     statusCode = 400;

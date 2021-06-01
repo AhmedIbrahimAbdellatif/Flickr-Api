@@ -3,12 +3,13 @@ const Album = require('../model/albumModel');
 const Tag = require('../model/tagModel');
 const Comment = require('../model/commentModel');
 
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const { findByIdAndDelete } = require('../model/photoModel');
 
 module.exports.uploadPhoto = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
+    delete reqBody['tags'];
     const photo = new Photo({
         ...reqBody,
         url:
@@ -23,13 +24,14 @@ module.exports.uploadPhoto = async (req, res) => {
         tagNames = req.body.tags.split(',');
     }
     tagNames.forEach(function(tagName) {
-        Tag.findOneAndUpdate( {name: tagName}, {$inc: {count: 1}},  { upsert: true, new: true }, function(err,tag) {
-          photo.tags.push(tag._id);
-        });
+        const tag =await Tag.findOneAndUpdate( {name: tagName}, {$inc: {count: 1}},  { upsert: true, new: true });
+        photo.tags.push(tag._id);
       
       });
+  
     await photo.save();
-    res.status(201).send({ url: photo.url, photoId: photo._id, tagIds: photo.tags});
+    res.status(201).send({ url: photo.url, _id: photo._id, tagIds: photo.tags});
+
 };
 
 module.exports.deletePhoto = async (req, res) => {
@@ -203,6 +205,49 @@ module.exports.getPhotoDetails = async (req, res) => {
         });
         photo.creator.isFollowing = isFollowing
     }
+    await photo.updateOne({
+        $inc: { views: 1}
+    });
     res.status(200).send(photo);
-
 };
+module.exports.editPhoto = async (req,res) =>{
+    const photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    const tags = [];
+    if(!photo) throw new LogicError(404, 'Photo Not Found');
+    for(var i =0; i< req.body.tags.length; i++){
+        let tag = await Tag.findOne({name: req.body.tags[i] });
+        if(!tag){
+            tag = await Tag.create({ name: req.body.tags[i] , count :1});
+            await tag.save();
+        }else{
+            let found = false;
+            for (var i = 0; i < photo.tags.length; i++) {
+                if (photo.tags[i].toString() === tag._id.toString()) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                console.log(tag);
+                await tag.updateOne({ $inc: { count: 1 } });
+
+            }
+        }
+        tags.push(tag)
+    }
+   const updatedPhoto = await Photo.findByIdAndUpdate( photoId,{ $addToSet: {tags}, 
+        isPublic: req.body.isPublic, 
+        allowCommenting: req.body.allowCommenting, 
+        title: req.body.title, 
+        description: req.body.description,}
+        ,{new:true}).populate({path: "tags"});
+    res.status(200).send(updatedPhoto);
+};
+module.exports.explorePhotos = async(req,res) => {
+    const photos = await Photo.find({}).sort({'createdAt':-1}).populate({
+        path:'creator'
+    });
+    res.send({photos});
+
+}

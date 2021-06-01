@@ -1,8 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const photoController = require('../controllers/photoController');
-const auth = require('../middleware/authentication');
-const authOptional = require('../middleware/authentication');
+const { auth, authOptional} = require('../middleware/authentication');
 
 //Import Middlewares
 const {
@@ -13,7 +12,8 @@ const {
     validateTag,
     validateComment,
     validateCommentId,
-} = require('../middleware/request-validator');
+    validateEditPhoto,
+} = require('../middleware/requestValidator');
 const { upload } = require('../middleware/photoMulterHandler');
 
 
@@ -91,7 +91,17 @@ router.post(
     validatePhotoId,
     validateRequest,
     photoController.getPhotoDetails
+);
 
-
+router.patch(
+    '/:photoId',
+    validatePhotoIdParam,
+    validateEditPhoto,
+    validateRequest,
+    photoController.editPhoto
+);
+router.get(
+    '/explore',
+    photoController.explorePhotos
 );
 module.exports = router;

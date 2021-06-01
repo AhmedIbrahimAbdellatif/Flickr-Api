@@ -9,12 +9,12 @@
  * @apiGroup Album
  * @apiVersion 1.0.0
  * @apiDescription Create a new album
- * @apiParam {String} albumTitle title for the new album
- * @apiParam {String} albumDescription description for the new album
+ * @apiParam {String} title title for the new album
+ * @apiParam {String} description description for the new album
  * @apiParamExample {json} Request-Example:
  *     {
- *       "albumTitle": "Paris Pics",
- *       "albumDescription": "Pics of Paris 2019"
+ *       "title": "Paris Pics",
+ *       "description": "Pics of Paris 2019"
  *     }
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
@@ -81,7 +81,11 @@
  *       "media": [
  *          {
  *              "_id": "5349b4ddd2781d08c09890f4",
- *               "tags": ["Tower","Egypt"],
+ *               "tags": [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],
  *               "views": 1023,
  *               "favouritesNum": 1023,
  *               "commentsNum": 1023,
@@ -91,7 +95,9 @@
  *               },
  *              'url': '',
  *              'title': 'Cairo Tower',
- *              'description': 'Cairo tower at the sunset'
+ *              'description': 'Cairo tower at the sunset',
+ *              "isPublic": false,
+ *              "allowCommenting": true
  *          },
  *       ]
  *     }

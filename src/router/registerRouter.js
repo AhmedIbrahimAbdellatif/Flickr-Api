@@ -1,7 +1,7 @@
 const express = require('express');
 const registerController = require('../controllers/registerController');
 const router = new express.Router();
-const auth = require('../middleware/authentication');
+const {auth} = require('../middleware/authentication');
 
 //Import Middlewares
 const {
@@ -11,7 +11,7 @@ const {
     validateLogIn,
     validateUserEmailBody,
     validateRegisterWithFacebook
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 
 router.post(
     '/signUp',

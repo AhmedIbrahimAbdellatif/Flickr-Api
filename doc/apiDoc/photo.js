@@ -318,7 +318,11 @@
  *     HTTP/1.1 200 OK
  *     {
  *         "_id": "5349b4ddd2781d08c09890f4",
- *         "tags": ["Tower","Egypt"],
+ *         "tags": [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],
  *         "views": 1023,
  *         "favouriteCount": 1023,
  *         "commentsNum": 1023,
@@ -335,7 +339,8 @@
  *          "title": 'Cairo Tower',
  *          "description": 'Cairo tower at the sunset',
  *          "createdAt": "Date"
- *          
+ *          "isPublic": false,
+ *          "allowCommenting": true  
  *       
  *     }
  */
@@ -364,7 +369,73 @@
  *     HTTP/1.1 200 OK
  *     {
  *         "_id": "5349b4ddd2781d08c09890f4",
- *         "tags": ["Tower","Egypt"],
+ *         "tags": "tags": [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],
+ *         "views": 1023,
+ *         "favouriteCount": 1023,
+ *         "commentsNum": 1023,
+ *         "creator": {
+ *                "_id": "123123",
+ *                "isFollowing": false,
+ *               "firstName": "Ahmed",
+ *               "lastName": "Ibrahim",
+ *               "userName": "",
+ *               "profilePhotoUrl":"",
+ *               "coverPhotoUrl": ""
+ *          },
+ *          "url": '',
+ *          "title": 'Cairo Tower',
+ *          "description": 'Cairo tower at the sunset',
+ *          "createdAt": "Date",
+ *          "isPublic": false,
+ *          "allowCommenting": true
+ *          
+ *       
+ *     }
+
+
+ */
+/**
+ * @apiUse AuthenticationOptional
+ * @api {patch} /photo/:photoId Edit Photo
+ * @apiName Edit Photo
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Edit Photo 
+ * @apiParam {Boolean} isPublic Photo is public
+ * @apiParam {Boolean} allowCommenting Photo allowCommenting
+ * @apiParam {String} description Photo Description
+ * @apiParam {String} title Photo Title
+ * @apiParam {String[]} tags Photo tags
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "isPublic": false,
+ *     "allowCommenting": false,
+ *      "description": "IASJDSA",
+ *      "title": "test",
+ *      "tags": ["snow", "white"],
+ * }
+ * 
+ * @apiError (404) PhotoNotFound  The Photo isn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": {
+ *          "message": "Photo Not Found"
+ *        }
+ *     }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *         "_id": "5349b4ddd2781d08c09890f4",
+ *         "tags": [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],
  *         "views": 1023,
  *         "favouriteCount": 1023,
  *         "commentsNum": 1023,
@@ -412,6 +483,7 @@
  *       "allowCommenting": true,
  *        "license": "",
  *        "contentType":'',
+ *        "tags": "snow,white,dog"
  *        "safetyOption":'',
  *       "description": "A photo of Cairo tower at the sunset"
  *     }
@@ -419,6 +491,7 @@
  *    HTTP/1.1 200 OK
  *    {
  *      "url": String
+ *      "_id": "asdasdasdas"
  *     }
  * @apiError (400) PhotoMissing This Photo is required
  * @apiErrorExample {json} Error-Response:
@@ -640,7 +713,11 @@
  *       "media": [
  *          {
  *               "_id": "5349b4ddd2781d08c09890f4",
- *               "tags": ["Tower","Egypt"],
+ *               "tags": [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],
  *               "views": 1023,
  *               "favouriteCount": 1023,
  *               "commentsNum": 1023,
@@ -650,7 +727,9 @@
  *               },
  *               "url": '',
  *               "title": 'Cairo Tower',
- *               "description": 'Cairo tower at the sunset'
+ *               "description": 'Cairo tower at the sunset',
+ *               "isPublic": false,
+ *               "allowCommenting": true
  *          },
  *       ],
  *     }

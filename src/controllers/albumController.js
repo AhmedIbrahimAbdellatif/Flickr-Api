@@ -1,6 +1,6 @@
 const Album = require('../model/albumModel');
 const Photo = require('../model/photoModel');
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 
 module.exports.createAlbum = async (req, res) => {
 

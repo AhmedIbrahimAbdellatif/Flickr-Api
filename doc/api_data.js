@@ -156,14 +156,14 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "albumTitle",
+            "field": "title",
             "description": "<p>title for the new album</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "albumDescription",
+            "field": "description",
             "description": "<p>description for the new album</p>"
           }
         ]
@@ -171,7 +171,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"albumTitle\": \"Paris Pics\",\n  \"albumDescription\": \"Pics of Paris 2019\"\n}",
+          "content": "{\n  \"title\": \"Paris Pics\",\n  \"description\": \"Pics of Paris 2019\"\n}",
           "type": "json"
         }
       ]
@@ -553,7 +553,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n         'url': '',\n         'title': 'Cairo Tower',\n         'description': 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n         \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [{\n             \"_id\": \"12321\",\n             \"name\": \"Gamed\",\n             \"count\": \"Asdasd\"\n         }],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n         'url': '',\n         'title': 'Cairo Tower',\n         'description': 'Cairo tower at the sunset',\n         \"isPublic\": false,\n         \"allowCommenting\": true\n     },\n  ]\n}",
           "type": "json"
         }
       ]
@@ -2177,7 +2177,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"tags\": [\"Tower\",\"Egypt\"],\n    \"views\": 1023,\n    \"favouriteCount\": 1023,\n    \"commentsNum\": 1023,\n    \"creator\": {\n           \"_id\": \"123123\",\n           \"isFollowing\": false,\n          \"firstName\": \"Ahmed\",\n          \"lastName\": \"Ibrahim\",\n          \"userName\": \"\",\n          \"profilePhotoUrl\":\"\",\n          \"coverPhotoUrl\": \"\"\n     },\n     \"url\": '',\n     \"title\": 'Cairo Tower',\n     \"description\": 'Cairo tower at the sunset',\n     \"createdAt\": \"Date\"\n     \n  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"tags\": [{\n             \"_id\": \"12321\",\n             \"name\": \"Gamed\",\n             \"count\": \"Asdasd\"\n         }],\n    \"views\": 1023,\n    \"favouriteCount\": 1023,\n    \"commentsNum\": 1023,\n    \"creator\": {\n           \"_id\": \"123123\",\n           \"isFollowing\": false,\n          \"firstName\": \"Ahmed\",\n          \"lastName\": \"Ibrahim\",\n          \"userName\": \"\",\n          \"profilePhotoUrl\":\"\",\n          \"coverPhotoUrl\": \"\"\n     },\n     \"url\": '',\n     \"title\": 'Cairo Tower',\n     \"description\": 'Cairo tower at the sunset',\n     \"createdAt\": \"Date\"\n     \"isPublic\": false,\n     \"allowCommenting\": true  \n  \n}",
           "type": "json"
         }
       ]
@@ -3182,6 +3182,113 @@ define({ "api": [
     }
   },
   {
+    "type": "patch",
+    "url": "/photo/:photoId",
+    "title": "Edit Photo",
+    "name": "Edit_Photo",
+    "group": "Photo",
+    "version": "1.0.0",
+    "description": "<p>Edit Photo</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "isPublic",
+            "description": "<p>Photo is public</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "allowCommenting",
+            "description": "<p>Photo allowCommenting</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Photo Description</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Photo Title</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String[]",
+            "optional": false,
+            "field": "tags",
+            "description": "<p>Photo tags</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"isPublic\": false,\n    \"allowCommenting\": false,\n     \"description\": \"IASJDSA\",\n     \"title\": \"test\",\n     \"tags\": [\"snow\", \"white\"],\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "PhotoNotFound",
+            "description": "<p>The Photo isn't found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"tags\": [{\n             \"_id\": \"12321\",\n             \"name\": \"Gamed\",\n             \"count\": \"Asdasd\"\n         }],\n    \"views\": 1023,\n    \"favouriteCount\": 1023,\n    \"commentsNum\": 1023,\n    \"creator\": {\n           \"_id\": \"123123\",\n           \"isFollowing\": false,\n          \"firstName\": \"Ahmed\",\n          \"lastName\": \"Ibrahim\",\n          \"userName\": \"\",\n          \"profilePhotoUrl\":\"\",\n          \"coverPhotoUrl\": \"\"\n     },\n     \"url\": '',\n     \"title\": 'Cairo Tower',\n     \"description\": 'Cairo tower at the sunset',\n     \"createdAt\": \"Date\"\n     \n  \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/photo.js",
+    "groupTitle": "Photo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "get",
     "url": "/photo/explore",
     "title": "Explore Photos",
@@ -3333,7 +3440,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"tags\": [\"Tower\",\"Egypt\"],\n    \"views\": 1023,\n    \"favouriteCount\": 1023,\n    \"commentsNum\": 1023,\n    \"creator\": {\n           \"_id\": \"123123\",\n           \"isFollowing\": false,\n          \"firstName\": \"Ahmed\",\n          \"lastName\": \"Ibrahim\",\n          \"userName\": \"\",\n          \"profilePhotoUrl\":\"\",\n          \"coverPhotoUrl\": \"\"\n     },\n     \"url\": '',\n     \"title\": 'Cairo Tower',\n     \"description\": 'Cairo tower at the sunset',\n     \"createdAt\": \"Date\"\n     \n  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"tags\": \"tags\": [{\n             \"_id\": \"12321\",\n             \"name\": \"Gamed\",\n             \"count\": \"Asdasd\"\n         }],\n    \"views\": 1023,\n    \"favouriteCount\": 1023,\n    \"commentsNum\": 1023,\n    \"creator\": {\n           \"_id\": \"123123\",\n           \"isFollowing\": false,\n          \"firstName\": \"Ahmed\",\n          \"lastName\": \"Ibrahim\",\n          \"userName\": \"\",\n          \"profilePhotoUrl\":\"\",\n          \"coverPhotoUrl\": \"\"\n     },\n     \"url\": '',\n     \"title\": 'Cairo Tower',\n     \"description\": 'Cairo tower at the sunset',\n     \"createdAt\": \"Date\",\n     \"isPublic\": false,\n     \"allowCommenting\": true\n     \n  \n}",
           "type": "json"
         }
       ]
@@ -3450,12 +3557,12 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [{\n             \"_id\": \"12321\",\n             \"name\": \"Gamed\",\n             \"count\": \"Asdasd\"\n         }],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset',\n          \"isPublic\": false,\n          \"allowCommenting\": true\n     },\n  ],\n}",
           "type": "json"
         },
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n    }]\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n      \"isPublic\": false,\n      \"allowCommenting\": true\n    }]\n}",
           "type": "json"
         }
       ]
@@ -3657,7 +3764,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"photo\" : <binary data>,\n  \"isPublic\": true,\n  \"title\": \"Cairo Tower\",\n  \"allowCommenting\": true,\n   \"license\": \"\",\n   \"contentType\":'',\n   \"safetyOption\":'',\n  \"description\": \"A photo of Cairo tower at the sunset\"\n}",
+          "content": "{\n  \"photo\" : <binary data>,\n  \"isPublic\": true,\n  \"title\": \"Cairo Tower\",\n  \"allowCommenting\": true,\n   \"license\": \"\",\n   \"contentType\":'',\n   \"tags\": \"snow,white,dog\"\n   \"safetyOption\":'',\n  \"description\": \"A photo of Cairo tower at the sunset\"\n}",
           "type": "json"
         }
       ]
@@ -3666,7 +3773,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"url\": String\n }",
+          "content": "HTTP/1.1 200 OK\n{\n  \"url\": String\n  \"_id\": \"asdasdasdas\"\n }",
           "type": "json"
         }
       ]
@@ -6002,7 +6109,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n    }]\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n      \"isPublic\": false,\n      \"allowCommenting\": true\n    }]\n}",
           "type": "json"
         }
       ]
@@ -6409,7 +6516,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/user/cameraRoll/:userId",
+    "url": "/user/cameraRoll",
     "title": "User Camera Roll",
     "name": "Show_User_Camera_Roll",
     "group": "User",
@@ -6437,12 +6544,12 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"cameraRoll\": [\n     {\n        \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"cameraRoll\": [\n     {\n        \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset',\n          \"isPublic\": false,\n          \"allowCommenting\": true\n     },\n  ],\n}",
           "type": "json"
         },
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n    }]\n}",
+          "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n      \"isPublic\": false,\n      \"allowCommenting\": true\n    }]\n}",
           "type": "json"
         }
       ]

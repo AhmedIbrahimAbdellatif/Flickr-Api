@@ -1,7 +1,7 @@
 const User = require('../model/userModel');
 const Photo = require('../model/photoModel');
 const mongoose = require('mongoose');
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const Album = require('../model/albumModel');
 
 module.exports.getFavorites = async (req, res) => {
@@ -254,3 +254,14 @@ module.exports.viewUserAlbums = async (req, res) => {
     const albums = await Album.find({creator: userId});
     res.status(200).send({albums});
 };
+module.exports.viewCameraRoll = async (req, res) => {
+    const photos = await Photo.find({
+        creator: req.user._id,
+    })
+        .populate({
+            path: 'creator',
+            select: 'firstName lastName _id',
+        });
+
+    res.status(200).send({ cameraRoll: photos});
+}

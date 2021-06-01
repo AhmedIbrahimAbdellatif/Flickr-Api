@@ -1,5 +1,5 @@
 const { validationResult, body, param } = require('express-validator');
-const { RequestValidationError } = require('../error/request-validation');
+const { RequestValidationError } = require('../error/requestValidation');
 
 const validateRequest = (req, res, next) => {
     const errors = validationResult(req);
@@ -151,6 +151,13 @@ const validateAlbumId = [
     body('albumId').isMongoId().withMessage('albumId is required'),
 ];
 
+const validateEditPhoto = [
+    body('title').isString().withMessage('title is required'),
+    body('description').isString().withMessage('description is required'),
+    body('isPublic').isBoolean().withMessage('isPublic is required'),
+    body('allowCommenting').isBoolean().withMessage('allowCommenting is required'),
+];
+
 
 module.exports = {
     validateRequest,
@@ -175,5 +182,6 @@ module.exports = {
     validateShowCaseDescription,
     validateSearchKeywordParam,
     validateEditAlbum,
+    validateEditPhoto,
 
 };

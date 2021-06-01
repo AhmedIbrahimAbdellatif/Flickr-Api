@@ -1,8 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const userController = require('../controllers/userController');
-const auth = require('../middleware/authentication');
-const authOptional = require('../middleware/authentication');
+const {auth , authOptional} = require('../middleware/authentication');
 
 const {
     validateRequest,
@@ -12,7 +11,7 @@ const {
     validateEditInfo,
     validateShowCaseDescription,
     validateSearchKeywordParam,
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 const { validate } = require('../model/userModel');
 
 router.get(
@@ -115,4 +114,9 @@ router.get(
     validateRequest,
     userController.viewUserAlbums
     );
+router.get(
+    '/cameraRoll',
+    auth,
+    userController.viewCameraRoll
+);
 module.exports = router;
