@@ -192,6 +192,8 @@ module.exports.getPhotoDetails = async (req, res) => {
         });
         photo.creator.isFollowing = isFollowing
     }
+    photo.views++;
+    await photo.save();
     res.status(200).send(photo);
 
 };
