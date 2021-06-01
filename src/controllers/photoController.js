@@ -192,8 +192,39 @@ module.exports.getPhotoDetails = async (req, res) => {
         });
         photo.creator.isFollowing = isFollowing
     }
-    photo.views++;
-    await photo.save();
     res.status(200).send(photo);
+};
+module.exports.editPhoto = async (req,res) =>{
+    const photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    const tags = [];
+    if(!photo) throw new LogicError(404, 'Photo Not Found');
+    for(var i =0; i< req.body.tags.length; i++){
+        let tag = await Tag.findOne({name: req.body.tags[i] });
+        if(!tag){
+            tag = await Tag.create({ name: req.body.tags[i] , count :1});
+            await tag.save();
+        }else{
+            let found = false;
+            for (var i = 0; i < photo.tags.length; i++) {
+                if (photo.tags[i].toString() === tag._id.toString()) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                console.log(tag);
+                await tag.updateOne({ $inc: { count: 1 } });
 
+            }
+        }
+        tags.push(tag)
+    }
+   const updatedPhoto = await Photo.findByIdAndUpdate( photoId,{ $addToSet: {tags}, 
+        isPublic: req.body.isPublic, 
+        allowCommenting: req.body.allowCommenting, 
+        title: req.body.title, 
+        description: req.body.description,}
+        ,{new:true}).populate({path: "tags"});
+    res.status(200).send(updatedPhoto);
 };

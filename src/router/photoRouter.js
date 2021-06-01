@@ -13,6 +13,7 @@ const {
     validateTag,
     validateComment,
     validateCommentId,
+    validateEditPhoto,
 } = require('../middleware/request-validator');
 const { upload } = require('../middleware/photoMulterHandler');
 
@@ -91,7 +92,14 @@ router.post(
     validatePhotoId,
     validateRequest,
     photoController.getPhotoDetails
-
-
 );
+
+router.patch(
+    '/:photoId',
+    validatePhotoIdParam,
+    validateEditPhoto,
+    validateRequest,
+    photoController.editPhoto
+);
+
 module.exports = router;
