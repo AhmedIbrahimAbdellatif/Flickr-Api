@@ -93,7 +93,7 @@ const validateTag = [
 
 const validateComment = [
     body('comment').isString().withMessage('Please write your Comment'),
-  ]
+]
 
 const validateShowCaseDescription = [
     body('description').isString().withMessage('Description is required'),
@@ -126,7 +126,13 @@ const validateCreateAlbum = [
         .isString()
         .withMessage('Description should be string'),
 ];
-
+const validateEditAlbum = [
+    body('title').optional().isString().withMessage('Title is required'),
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+];
 const validateAlbumParam = [
 
     param('albumId').isMongoId().withMessage('albumId is required'),
@@ -168,5 +174,6 @@ module.exports = {
     validateCommentId,
     validateShowCaseDescription,
     validateSearchKeywordParam,
+    validateEditAlbum,
 
 };

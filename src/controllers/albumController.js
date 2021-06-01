@@ -76,3 +76,13 @@ module.exports.viewAlbumMedia = async (req, res) => {
     await album.save();
     res.status(200).send({media: album.photoIds});
 };
+module.exports.editAlbum = async (req, res) => {
+    const albumId = req.params.albumId;
+    const update = {};
+    if(req.body.title) update.title = req.body.title;
+    if(req.body.description) update.description = req.body.description;
+    const album = await Album.findByIdAndUpdate(albumId, update);
+    if(!album) throw new LogicError(404, 'Album is not Found');
+    await album.save();
+    res.status(200).send(album);
+}
