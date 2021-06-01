@@ -192,6 +192,9 @@ module.exports.getPhotoDetails = async (req, res) => {
         });
         photo.creator.isFollowing = isFollowing
     }
+    await photo.updateOne({
+        $inc: { views: 1}
+    });
     res.status(200).send(photo);
 };
 module.exports.editPhoto = async (req,res) =>{
