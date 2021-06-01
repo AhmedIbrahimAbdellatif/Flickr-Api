@@ -2743,6 +2743,178 @@
   },
   {
     "type": "delete",
+    "url": "/photo/:photoId/comment",
+    "title": "Delete Comment",
+    "name": "Delete_Comment",
+    "group": "Photo",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "commentId",
+            "description": "<p>The ID of the comment required to be deleted</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"commentId\" : \"60b5969764664624dc230989\"\n}",
+          "type": "type"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Comment Deleted</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"message\" : \"Comment Deleted Successfully\",\n}",
+          "type": "type"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "CommentIDMissing",
+            "description": "<p>Comment ID is Missing or invalid</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "NotAllowed",
+            "description": "<p>You have no authority on this comment it must be created by you to be deleted</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "CommentNotFound",
+            "description": "<p>The comment is not found maybe already deleted</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "PhotoNotFound",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n   \"message\" : \"Comment ID Missing\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"Comment Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"Photo Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 403 Forbidden\n{\n   \"message\" : \"You do not have permission to delete comments belonging to other users\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/photo.js",
+    "groupTitle": "Photo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
     "url": "/photo",
     "title": "Delete Photo",
     "name": "Delete_Photo",
@@ -4413,7 +4585,7 @@
   },
   {
     "type": "get",
-    "url": "/tag/:id",
+    "url": "/tag/:tagName",
     "title": "Get tag media",
     "name": "Get_Tag_Media",
     "group": "Tag",
@@ -4426,8 +4598,8 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "id",
-            "description": "<p>Tag to view its media</p>"
+            "field": "Name",
+            "description": "<p>of the Tag requested it's media</p>"
           }
         ]
       }
@@ -4447,13 +4619,18 @@
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"media\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouritesNum\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "content": "    HTTP/1.1 200 OK\n    {\n     \"media\": [\n      {\n          \"description\": \"\",\n          \"tags\": [\n              \"60b596e63e57db3fe858f46c\",\n              \"60b596ec3e57db3fe858f46d\",\n              \"60b596f03e57db3fe858f46e\"\n          ],\n          \"comments\": [\n              \"60b5df64bc0b9e3c283fa482\",\n              \"60b5df67bc0b9e3c283fa483\",\n              \"60b5df70bc0b9e3c283fa484\",\n              \"60b5e3317214fe0f8485fa89\",\n              \"60b5e33e7214fe0f8485fa8a\",\n              \"60b5e33f7214fe0f8485fa8b\"\n          ],\n          \"views\": 0,\n          \"favouriteCount\": 0,\n          \"isPublic\": true,\n          \"license\": \"None\",\n          \"safety\": \"Safe\",\n          \"allowCommenting\": true,\n          \"_id\": \"60b5969764664624dc230989\",\n          \"albums\": [],\n          \"contentType\": \"Photo\",\n          \"title\": \"test100\",\n          \"url\": \"http://localhost:3000/public/images/60b48a649f4f7a3e5c45aee4/60b5969764664624dc230988.png\",\n          \"creator\": \"60b48a649f4f7a3e5c45aee4\",\n          \"createdAt\": \"2021-06-01T02:08:23.334Z\",\n          \"updatedAt\": \"2021-06-01T07:35:27.359Z\",\n          \"__v\": 0,\n          \"commentsNum\": 6\n      }\n  ]\n}",
           "type": "json"
         }
       ]
     },
     "error": {
       "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n    \"message\" : \"Tag Name is Required\"\n}",
+          "type": "json"
+        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Tag Not Found\"\n\n}",
@@ -4471,7 +4648,7 @@
     "name": "Get_Trending_Tags",
     "group": "Tag",
     "version": "1.0.0",
-    "description": "<p>View Tags that has a count greater than a certain number</p>",
+    "description": "<p>View Tags that has a count greater than a certain number (3 times)</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -4488,15 +4665,6 @@
         {
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\"\n         }\n     ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n\n  \"message\": \"Tag name is required\"\n\n}",
           "type": "json"
         }
       ]
@@ -5556,7 +5724,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 Success\n{\n    followers : [\n                 {\n                     \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                 {\n                    \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                ]\n}",
+          "content": "HTTP/1.1 200 Success\n{\n    followers : [\n                 {\n                       \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim',\n             \"userName\": \"Kim\",\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"numberOfFollowings\": 123\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                 {\n                    \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim',\n             \"userName\": \"Kim\",\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"numberOfFollowings\": 123\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                ]\n}",
           "type": "json"
         }
       ]
@@ -5647,7 +5815,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 Success\n{\n    following : [\n                 {\n                     \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                 {\n                     \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim'\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                ]\n}",
+          "content": "HTTP/1.1 200 Success\n{\n    following : [\n                 {\n                       \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim',\n             \"userName\": \"Kim\",\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"numberOfFollowings\": 123\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                 {\n                       \"_id\":'60953562224d432a505e8d07',\n             \"firstName\":'Ahmed',\n             \"lastName\":'Ibrahim',\n             \"userName\": \"Kim\",\n             \"profilePhotoUrl\": \"https://img.jpg\",\n             \"numberOfPhotos\": 123,\n             \"numberOfFollowers\": 123,\n             \"numberOfFollowings\": 123\n             \"isFollowing\": false,\n             \"createdAt\":  String\n                 },\n                ]\n}",
           "type": "json"
         }
       ]
@@ -6064,7 +6232,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 Success\n{\n {\n  \"users\": [\n      {\n          \"showCase\": {\n              \"title\": \"Showcase\",\n              \"photos\": []\n          },\n          \"description\": \"\",\n          \"occupation\": \"\",\n          \"homeTown\": \"\",\n          \"currentCity\": \"\",\n          \"coverPhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n          \"profilePhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n          \"_id\": \"60b5f3e483681736e0959605\",\n          \"email\": \"coolabdoana@yahoo.com\",\n          \"firstName\": \"Abdelrhman\",\n          \"lastName\": \"Shahda\",\n          \"userName\": \"coolabdoana\",\n          \"age\": 21,\n          \"createdAt\": \"2021-06-01T08:46:28.064Z\",\n          \"updatedAt\": \"2021-06-01T08:46:28.064Z\",\n          \"__v\": 0,\n          \"id\": \"60b5f3e483681736e0959605\",\n          \"numberOfFollowers\": 0,\n          \"numberOfFollowings\": 0\n      }\n   ]\n }\n}",
+          "content": "HTTP/1.1 200 Success\n{\n {\n  \"users\": [\n      {\n          \"showCase\": {\n              \"title\": \"Showcase\",\n              \"photos\": []\n          },\n          \"description\": \"\",\n          \"occupation\": \"\",\n          \"homeTown\": \"\",\n          \"currentCity\": \"\",\n          \"coverPhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n          \"profilePhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n          \"_id\": \"60b5f3e483681736e0959605\",\n          \"email\": \"coolabdoana@yahoo.com\",\n          \"firstName\": \"Abdelrhman\",\n          \"lastName\": \"Shahda\",\n          \"userName\": \"coolabdoana\",\n          \"age\": 21,\n          \"createdAt\": \"2021-06-01T08:46:28.064Z\",\n          \"updatedAt\": \"2021-06-01T08:46:28.064Z\",\n          \"__v\": 0,\n          \"id\": \"60b5f3e483681736e0959605\",\n          \"numberOfFollowers\": 0,\n          \"numberOfFollowings\": 0,\n          \"isFollowing\": false\n      }\n   ]\n }\n}",
           "type": "json"
         }
       ]
@@ -6129,7 +6297,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "    HTTP/1.1 200 OK\n    {\n      \"user\":{\n         \"showcase\": \n        {\n         title: String\n         photos: [\n         {\n              \"_id\": \"5349b4ddd2781d08c09890f4\",\n              \"tags\": [\"Tower\",\"Egypt\"],\n              \"views\": 1023,\n              \"favouriteCount\": 1023,\n              \"commentsNum\": 1023,\n              \"creator\": {\n                  \"firstName\": \"Ahmed\",\n                  \"lastName\": \"Ibrahim\"\n              },\n              \"url\": '',\n              \"title\": 'Cairo Tower',\n              \"description\": 'Cairo tower at the sunset'\n         },\n      ],\n      \"description\": \"A talented photographer\",\n       \"firstName\": \"\",\n       \"LastName\": \"\",\n       \"userName\": \"\",\n       \"email\": \"asdasd@test.com\",\n       \"occupation\": \"\",\n       \"currentCity\": \"\",\n       \"homeTown\": \"\",\n       \"createdAt\": \"\" ,\n       \"coverPhotoUrl\": \"\",\n       \"profilePhotoUrl\": \"\",\n       \"numberOfFollowers\": 12,\n       \"numberOfFollowings\": 12,\n       \"isFollowing\": false\n}   \n    }",
+          "content": "    HTTP/1.1 200 OK\n    {\n      \"user\":{\n         \"showcase\": \n        {\n         title: String\n         photos: [\n         {\n              \"_id\": \"5349b4ddd2781d08c09890f4\",\n              \"tags\": [\"Tower\",\"Egypt\"],\n              \"views\": 1023,\n              \"favouriteCount\": 1023,\n              \"commentsNum\": 1023,\n              \"creator\": {\n                  \"firstName\": \"Ahmed\",\n                  \"lastName\": \"Ibrahim\"\n              },\n              \"url\": '',\n              \"title\": 'Cairo Tower',\n              \"description\": 'Cairo tower at the sunset'\n         },\n      ],\n      \"description\": \"A talented photographer\",\n       \n       \"firstName\": \"\",\n       \"LastName\": \"\",\n       \"userName\": \"\",\n       \"email\": \"asdasd@test.com\",\n       \"occupation\": \"\",\n       \"currentCity\": \"\",\n       \"homeTown\": \"\",\n       \"createdAt\": \"\" ,\n       \"coverPhotoUrl\": \"\",\n       \"profilePhotoUrl\": \"\",\n       \"numberOfFollowers\": 12,\n       \"numberOfFollowings\": 12,\n       \"isFollowing\": false\n}   \n    }",
           "type": "json"
         }
       ]
