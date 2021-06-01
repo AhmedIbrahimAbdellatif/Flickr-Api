@@ -28,6 +28,12 @@ const albumSchema = new mongoose.Schema(
     },
     {
         timestamps: true,
+        toJSON: {
+            transform: function (doc, ret, options) {
+                ret.numberOfPhotos = ret.photoIds.length;
+                delete ret.photoIds;
+            }
+        }
     }
 );
 //virtuals
