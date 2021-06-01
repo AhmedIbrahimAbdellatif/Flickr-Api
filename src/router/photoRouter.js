@@ -100,5 +100,8 @@ router.patch(
     validateRequest,
     photoController.editPhoto
 );
-
+router.get(
+    '/explore',
+    photoController.explorePhotos
+);
 module.exports = router;

@@ -231,3 +231,10 @@ module.exports.editPhoto = async (req,res) =>{
         ,{new:true}).populate({path: "tags"});
     res.status(200).send(updatedPhoto);
 };
+module.exports.explorePhotos = async(req,res) => {
+    const photos = await Photo.find({}).sort({'createdAt':-1}).populate({
+        path:'creator'
+    });
+    res.send({photos});
+
+}
