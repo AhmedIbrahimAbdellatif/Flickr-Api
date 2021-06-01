@@ -249,3 +249,8 @@ module.exports.searchUser = async (req, res) => {
         users,
     });
 };
+module.exports.viewUserAlbums = async (req, res) => {
+    const userId = req.params.userId;
+    const albums = await Album.find({creator: userId});
+    res.status(200).send({albums});
+};
