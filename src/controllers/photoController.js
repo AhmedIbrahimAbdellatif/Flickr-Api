@@ -9,7 +9,6 @@ const { findByIdAndDelete } = require('../model/photoModel');
 module.exports.uploadPhoto = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
-    const tags = reqBody['tags'].split(',');
     delete reqBody['tags'];
     const photo = new Photo({
         ...reqBody,
@@ -17,22 +16,22 @@ module.exports.uploadPhoto = async (req, res) => {
             process.env.HOSTNAME +
             req.file.path.toString().replaceAll('\\', '/'),
         creator: req.user._id,
+        tags: []
     });
-    const photoTags = [];
-    for(var i =0; i< tags.length; i++){
-        let tag = await Tag.findOne({name: tags[i] });
-        if(!tag){
-            tag = await Tag.create({ name: tags[i] , count :1});
-            await tag.save();
-        }else{
-            await tag.updateOne({ $inc: { count: 1 } });
-        }
-        photoTags.push(tag)
-    }
-    photo.tags = photoTags
     photo.favouriteCount = 0;
+    var tagNames = []
+    if(req.body.tags) {
+        tagNames = req.body.tags.split(',');
+    }
+    tagNames.forEach(function(tagName) {
+        const tag =await Tag.findOneAndUpdate( {name: tagName}, {$inc: {count: 1}},  { upsert: true, new: true });
+        photo.tags.push(tag._id);
+      
+      });
+  
     await photo.save();
-    res.status(201).send({url:photo.url,_id:photo._id});
+    res.status(201).send({ url: photo.url, _id: photo._id, tagIds: photo.tags});
+
 };
 
 module.exports.deletePhoto = async (req, res) => {
