@@ -11,7 +11,7 @@ const {
     validateLogIn,
     validateUserEmailBody,
     validateRegisterWithFacebook
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 
 router.post(
     '/signUp',

@@ -1,7 +1,7 @@
 const multer = require('multer');
 const mongoose = require('mongoose');
 var fs = require('fs');
-const { LogicError } = require('../error/logic-error')
+const { LogicError } = require('../error/logicError')
 storage = multer.diskStorage({
     destination: function (req, file, callback) {
         if (!fs.existsSync('public')) {

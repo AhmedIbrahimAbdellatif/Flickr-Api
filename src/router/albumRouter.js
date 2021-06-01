@@ -11,7 +11,7 @@ const {
     validateAlbumId,
     validatePhotoId,
     validateEditAlbum,
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 
 router.post('/createAlbum', auth, validateCreateAlbum, validateRequest ,albumController.createAlbum);
 router.delete('/deleteAlbum/:albumId', auth, validateAlbumParam, validateRequest, albumController.deleteAlbum);

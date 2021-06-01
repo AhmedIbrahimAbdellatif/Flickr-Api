@@ -3,7 +3,7 @@ const Album = require('../model/albumModel');
 const Tag = require('../model/tagModel');
 const Comment = require('../model/commentModel');
 
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const { findByIdAndDelete } = require('../model/photoModel');
 
 module.exports.uploadPhoto = async (req, res) => {

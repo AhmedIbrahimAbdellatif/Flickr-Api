@@ -1,7 +1,7 @@
 const User = require('../model/userModel');
 const Photo = require('../model/photoModel');
 const mongoose = require('mongoose');
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const Album = require('../model/albumModel');
 
 module.exports.getFavorites = async (req, res) => {

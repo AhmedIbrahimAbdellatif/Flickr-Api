@@ -5,10 +5,10 @@ const cors = require('cors');
 const app = express();
 const path = require('path');
 //Import Middlewares
-const { errorHandler } = require('./middleware/error-handler');
+const { errorHandler } = require('./middleware/errorHandler');
 
 //Import Errors
-const { NotFound } = require('./error/not-found');
+const { NotFound } = require('./error/notFound');
 //Import Routes
 const userRouter = require('./router/userRouter');
 const registerRouter = require('./router/registerRouter');

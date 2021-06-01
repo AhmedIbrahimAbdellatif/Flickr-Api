@@ -1,5 +1,5 @@
 const User = require('../model/userModel');
-const { LogicError } = require('../error/logic-error');
+const { LogicError } = require('../error/logicError');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const { redisClient, getAsync, setAsync } = require('../third-Parties/redis');

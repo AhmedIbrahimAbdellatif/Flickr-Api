@@ -11,7 +11,7 @@ const {
     validateEditInfo,
     validateShowCaseDescription,
     validateSearchKeywordParam,
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 const { validate } = require('../model/userModel');
 
 router.get(

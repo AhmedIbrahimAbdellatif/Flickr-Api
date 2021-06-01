@@ -13,7 +13,7 @@ const {
     validateComment,
     validateCommentId,
     validateEditPhoto,
-} = require('../middleware/request-validator');
+} = require('../middleware/requestValidator');
 const { upload } = require('../middleware/photoMulterHandler');
 
 
