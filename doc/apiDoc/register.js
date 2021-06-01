@@ -39,6 +39,15 @@
  *     }
  */
 /**
+ * @apiDefine AuthenticationOptional
+ * @apiHeader {String} Authorization Users access-token
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Bearer asdasdkasdliuaslidas"
+ *     }
+ 
+ */
+/**
  *
  * @api {post} /register/loginWithFacebook Login using Facebook
  * @apiName Facebook Login
@@ -56,20 +65,30 @@
  *
  *
  * @apiSuccessExample {json} Success-Response:
- * {
- *
- *       status: 'connected', The person is logged into Facebook, and has logged into your webpage.
- *                            not_authorized    The person is logged into Facebook, but has not logged into your webpage.
- *                            unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.
- *       authResponse: {
- *       accessToken: '{access-token}',   An access token for the person using the webpage
- *       expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.
- *       reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.
- *       signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.
- *       userID:'{user-id}'   The ID of the person using your webpage.
- *      }
- *
- * }
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "accessToken": "skdnksd7474g3kdbjfhf34",
+ *       "user": {
+ *           "_id": "5349b4ddd2781d08c09890f4",
+ *          "email": "test@email.com",
+ *          "firstName": "User",
+ *          "lastName": "User",
+ *          "userName": "test",
+ *          "age": 18,
+ *          "showCase": {
+ *              "photos": [],
+ *              "title": "showCase"   
+ *          },
+ *          "numberOfFollowings": 9,
+ *          "numberOfFollowers": 0,
+ *          "description": "",
+ *          "occupation": "",
+ *          "homeTown": "",
+ *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
+ *        }
+ *     }
  * @apiError (400) Bad Request  AccessToken Is Required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
@@ -98,20 +117,30 @@
  *
  *
  * @apiSuccessExample {json} Success-Response:
- * {
- *
- *       status: 'connected', The person is logged into Facebook, and has logged into your webpage.
- *                            not_authorized    The person is logged into Facebook, but has not logged into your webpage.
- *                            unknown   The person is not logged into Facebook, so you don't know if they have logged into your webpage.
- *       authResponse: {
- *       accessToken: '{access-token}',   An access token for the person using the webpage
- *       expiresIn:'{unix-timestamp}',    A UNIX time stamp when the token expires. Once the token expires, the person will need to login again.
- *       reauthorize_required_in:'{seconds-until-token-expires}',   The amount of time before the login expires, in seconds, and the person will need to login again.
- *       signedRequest:'{signed-parameter}',    A signed parameter that contains information about the person using your webpage.
- *       userID:'{user-id}'   The ID of the person using your webpage.
- *   }
- *
- * }
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "accessToken": "skdnksd7474g3kdbjfhf34",
+ *       "user": {
+ *           "_id": "5349b4ddd2781d08c09890f4",
+ *          "email": "test@email.com",
+ *          "firstName": "User",
+ *          "lastName": "User",
+ *          "userName": "test",
+ *          "age": 18,
+ *          "showCase": {
+ *              "photos": [],
+ *              "title": "showCase"   
+ *          },
+ *          "numberOfFollowings": 9,
+ *          "numberOfFollowers": 0,
+ *          "description": "",
+ *          "occupation": "",
+ *          "homeTown": "",
+ *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
+ *        }
+ *     }
  * @apiError (400) AccessTokenMissing  AccessToken Is Required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
@@ -142,19 +171,26 @@
  *     HTTP/1.1 200 OK
  *     {
  *       "accessToken": "skdnksd7474g3kdbjfhf34",
- *       "_id": "5349b4ddd2781d08c09890f4",
- *       "email": "test@email.com",
- *       "firstName": "User",
- *       "lastName": "User",
- *       "userName": "test",
- *       "age": 18,
- *       "showCase": [],
- *       "favourites": [],
- *       "following": [],
- *       "description": "",
- *       "occupation": "",
- *       "homeTown": "",
- *       "currentCity": "",
+ *       "user": {
+ *           "_id": "5349b4ddd2781d08c09890f4",
+ *          "email": "test@email.com",
+ *          "firstName": "User",
+ *          "lastName": "User",
+ *          "userName": "test",
+ *          "age": 18,
+ *          "showCase": {
+ *              "photos": [],
+ *              "title": "showCase"   
+ *          },
+ *          "numberOfFollowings": 9,
+ *          "numberOfFollowers": 0,
+ *          "description": "",
+ *          "occupation": "",
+ *          "homeTown": "",
+ *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
+ *        }
  *     }
  * @apiError (401) Unauthorized   Wrong user credentials
  * @apiErrorExample {json} Error-Response:
@@ -223,16 +259,30 @@
  * @apiSuccess {Number} user.age User's Age
  * @apiSuccess {String} user._id User's Id
  * @apiSuccessExample {json} Success-Response:
- *    HTTP/1.1 201 OK
- *   {
+ *     HTTP/1.1 200 OK
+ *     {
  *       "accessToken": "skdnksd7474g3kdbjfhf34",
- *       "_id": "5349b4ddd2781d08c09890f4",
- *       "email": "test@email.com",
- *       "firstName": "User",
- *       "lastName": "User",
- *       "userName": "test",
- *       "age": 18,
- *    }
+ *       "user": {
+ *           "_id": "5349b4ddd2781d08c09890f4",
+ *          "email": "test@email.com",
+ *          "firstName": "User",
+ *          "lastName": "User",
+ *          "userName": "test",
+ *          "age": 18,
+ *          "showCase": {
+ *              "photos": [],
+ *              "title": "showCase"   
+ *          },
+ *          "numberOfFollowings": 9,
+ *          "numberOfFollowers": 0,
+ *          "description": "",
+ *          "occupation": "",
+ *          "homeTown": "",
+ *          "currentCity": "",
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
+ *        }
+ *     }
  * @apiError (403) UserExists  The Email is already registered
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 403 Failed

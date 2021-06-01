@@ -13,22 +13,22 @@ const { NotFound } = require('./error/not-found');
 const userRouter = require('./router/userRouter');
 const registerRouter = require('./router/registerRouter');
 const photoRouter = require('./router/photoRouter');
+
+const albumRouter = require('./router/albumRouter');
 const tagRouter = require('./router/tagRouter');
 //Configure App
 app.use(express.json());
-app.use(cors());
-app.get('/public/images/:userId/:imageName', async (req, res) => {
-    res.sendFile(
-        path.join(
-            __dirname,
-            `../public/images/${req.params.userId}/${req.params.imageName}`
-        )
-    );
-});
+app.use(cors())
+app.get('/public/images/:userId/:imageName', async(req,res) => {
+    res.sendFile(path.join(__dirname, `../public/images/${req.params.userId}/${req.params.imageName}`))
+})
+
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/photo', photoRouter);
+app.use('/album', albumRouter);
 app.use('/tag', tagRouter);
+
 app.use('*', (req, res) => {
     throw new NotFound();
 });

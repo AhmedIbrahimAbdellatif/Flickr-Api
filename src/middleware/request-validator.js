@@ -9,7 +9,6 @@ const validateRequest = (req, res, next) => {
 };
 
 //Body Validations
-
 const validateChangePassword = [
     body('oldPass')
         .isString()
@@ -25,9 +24,25 @@ const validateChangePassword = [
 const validateUserIdBody = [
     body('userId').isMongoId().withMessage('User Id to be followed is missing'),
 ];
-
+const validateRegisterWithFacebook = [
+    body('accessToken').isString().withMessage('Access Token is missing'),
+];
 const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
+];
+const validateEditInfo = [
+    body('occupation')
+        .optional()
+        .isString()
+        .withMessage('Occupations should be a String'),
+    body('currentCity')
+        .optional()
+        .isString()
+        .withMessage('Current City should be a String'),
+    body('homeTown')
+        .optional()
+        .isString()
+        .withMessage('Home Town should be a String'),
 ];
 const validateSignUp = [
     body('email').isEmail().withMessage('Email is required'),
@@ -75,6 +90,22 @@ const validateUserEmailBody = [
 const validateTag = [
     body('tag').isString().withMessage('Tag name is required'),
 ];
+
+const validateComment = [
+    body('comment').isString().withMessage('Please write your Comment'),
+  ]
+
+const validateShowCaseDescription = [
+    body('description').isString().withMessage('Description is required'),
+    body('showCase.title').isString().withMessage('ShowCaseTitle is required'),
+    body('showCase.photos')
+        .optional()
+        .isArray()
+        .withMessage('Photos IDs Missing'),
+];
+const validateCommentId = [
+    body('commentId').isMongoId().withMessage('Comment ID Missing'),
+];
 //Params Validations
 const validatePhotoIdParam = [
     param('photoId').isMongoId().withMessage('PhotoId is required'),
@@ -83,20 +114,59 @@ const validatePhotoIdParam = [
 const validateUserIdParam = [
     param('userId').isMongoId().withMessage('UserId is required'),
 ];
+
 const validateTagParam = [
     param('tagName').isString().withMessage('Tag Name is Required'),
 ];
+
+const validateCreateAlbum = [
+    body('title').isString().withMessage('Title is required'),
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+];
+
+const validateAlbumParam = [
+
+    param('albumId').isMongoId().withMessage('albumId is required'),
+];
+
+
+
+
+const validateSearchKeywordParam = [
+    param('searchKeyword').isString().withMessage('searchKeyword is required')
+]
+
+
+
+const validateAlbumId = [
+    body('albumId').isMongoId().withMessage('albumId is required'),
+];
+
+
 module.exports = {
     validateRequest,
     validatePhotoId,
     validateSignUp,
     validateLogIn,
     validatePhotoIdParam,
+    validateAlbumParam,
     validatePhotoUpload,
     validateUserIdParam,
     validateUserIdBody,
     validateChangePassword,
     validateUserEmailBody,
+    validateCreateAlbum,
+    validateAlbumId,
+    validateRegisterWithFacebook,
     validateTag,
     validateTagParam,
+    validateEditInfo,
+    validateComment,
+    validateCommentId,
+    validateShowCaseDescription,
+    validateSearchKeywordParam,
+
 };

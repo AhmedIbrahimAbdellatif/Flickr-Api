@@ -6,8 +6,9 @@ const {
     validateRequest,
     validateTag,
     validateTagParam,
+    validateSearchKeywordParam
 } = require('../middleware/request-validator');
-
+const auth = require('../middleware/authentication');
 router.get(
     '/trending',
     validateRequest,
@@ -20,5 +21,7 @@ router.get(
     validateTagParam,
     tagController.getTagMedia
 );
+router.get('/search/:searchKeyword', validateSearchKeywordParam, validateRequest, tagController.searchTags);
+
 
 module.exports = router;

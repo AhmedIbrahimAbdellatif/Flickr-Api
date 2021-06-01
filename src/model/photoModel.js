@@ -65,7 +65,13 @@ const photoSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
+      albums: [{
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: 'Album',
+        default: []
+    }],
     },
+
     {
         timestamps: true,
         toJSON: {
@@ -74,6 +80,7 @@ const photoSchema = new mongoose.Schema(
                 ret.commentsNum = ret.comments.length;
             },
         },
+
     }
 );
 //virtuals

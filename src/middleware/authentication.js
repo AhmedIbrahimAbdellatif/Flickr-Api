@@ -51,5 +51,39 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
 };
+const authOptional = async (req, res, next) => {
+    let token;
+    if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith('Bearer')
+    ) {
+        token = req.headers.authorization.split(' ')[1];
+        req.token = token;
+    }
+    if (!token) {
+        return next()
+        
+    }
+    let decoded;
+    try {
+        decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    } catch (err) {
+        return next();
+    }
+    const redisValue = await getAsync(token);
+    if (redisValue == 'LoggedOut') {
+        return next();
+    }
+    const user = await User.findById(decoded.id).select('+passwordChangedAt');
+    if (!user) {
+        next()
+    }
+    if (user.changedPassword(decoded.iat)) {
+        return next()
+    }
+    req.user = user;
+    next();
+};
 
 module.exports = auth;
+module.exports = authOptional;

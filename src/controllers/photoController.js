@@ -1,8 +1,12 @@
 const Photo = require('../model/photoModel');
+const Album = require('../model/albumModel');
 const Tag = require('../model/tagModel');
-const { LogicError } = require('../error/logic-error');
+const Comment = require('../model/commentModel');
 
-module.exports.uploadImage = async (req, res) => {
+const { LogicError } = require('../error/logic-error');
+const { findByIdAndDelete } = require('../model/photoModel');
+
+module.exports.uploadPhoto = async (req, res) => {
     reqBody = { ...req.body };
     delete reqBody['file'];
     const photo = new Photo({
@@ -15,6 +19,21 @@ module.exports.uploadImage = async (req, res) => {
     photo.favouriteCount = 0;
     await photo.save();
     res.status(201).send({ url: photo.url });
+};
+
+module.exports.deletePhoto = async (req, res) => {
+    photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo is not found');
+    }
+    photo.albums.forEach(async function (albumId) {
+        await Album.findByIdAndUpdate(albumId, {
+            $pull: {photoIds: photoId}
+        });
+    })
+    await photo.remove();
+    res.status(200).send();
 };
 
 module.exports.addToFavorites = async (req, res) => {
@@ -71,4 +90,88 @@ module.exports.addTagToPhoto = async (req, res) => {
     res.status(409).json({
         message: 'Tag already exists in this photo add another tag',
     });
+};
+
+module.exports.commentOnPhoto = async (req, res) => {
+    const userId = req.user._id;
+    const comment = req.body.comment;
+    const photoId = req.params.photoId;
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const newComment = await Comment.create({
+        user: userId,
+        text: comment,
+        photo: photoId,
+    });
+    await photo.updateOne({ $push: { comments: newComment } });
+    res.status(200).json({
+        message: 'Comment Added Successfully',
+    });
+};
+
+module.exports.getMediaComments = async (req, res) => {
+    const photo = await Photo.findById(req.body.photoId).populate('comments');
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const comments = photo.comments;
+    res.status(200).json({
+        comments,
+    });
+};
+
+
+module.exports.deleteComment = async (req, res) => {
+    const photoId = req.params.photoId;
+    const userId = req.user._id;
+    const commentId = req.body.commentId;
+    const comment = await Comment.findById(commentId);
+    const photo = await Photo.findById(photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    if (!comment || photoId.toString() != comment.photo.toString()) {
+        throw new LogicError(404, 'Comment Not Found');
+    }
+    if (comment.user._id.toString() != userId.toString()) {
+        throw new LogicError(
+            403,
+            'You do not have permission to delete comments belonging to other users'
+        );
+    }
+    for (var i = 0; i < photo.comments.length; i++) {
+        if (photo.comments[i].toString() === comment._id.toString()) {
+            photo.comments.splice(i, 1);
+        }
+    }
+    await photo.save();
+    await comment.remove();
+    res.status(200).json({
+        message: 'Comment Deleted Successfully',
+    });
+};
+module.exports.getPhotoDetails = async (req, res) => {
+    const photo = await Photo.findById(req.body.photoId).populate({
+        path:'creator',
+        select: '_id lastName firstName userName profilePhotoUrl coverPhotoUrl'
+    }).populate({
+        path: 'tags'
+    })
+    if (!photo) {
+        throw new LogicError(404, 'Photo Not Found');
+    }
+    const user = req.user
+    if(user){
+        let isFollowing = false;
+        user.following.forEach((id) => {
+            
+            if(id.toString() === photo.creator._id.toString())
+                isFollowing = true
+        });
+        photo.creator.isFollowing = isFollowing
+    }
+    res.status(200).send(photo);
+
 };
