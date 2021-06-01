@@ -23,12 +23,12 @@ module.exports.uploadPhoto = async (req, res) => {
     if(req.body.tags) {
         tagNames = req.body.tags.split(',');
     }
-    tagNames.forEach(function(tagName) {
-        const tag =await Tag.findOneAndUpdate( {name: tagName}, {$inc: {count: 1}},  { upsert: true, new: true });
+    for(let i = 0;i<tagNames.length;i++){
+        const tag =await Tag.findOneAndUpdate( {name: tagNames[i]}, {$inc: {count: 1}},  { upsert: true, new: true });
+        console.log(tag._id)
         photo.tags.push(tag._id);
-      
-      });
-  
+    }
+    console.log('Hena')
     await photo.save();
     res.status(201).send({ url: photo.url, _id: photo._id, tagIds: photo.tags});
 
