@@ -84,7 +84,9 @@ const userSchema = new mongoose.Schema(
         facebookId: {
             type: String,
             select: false,
+
         },
+       
         coverPhotoUrl: {
             type: String,
             default: process.env.HOSTNAME + 'public/images/default/8.jpeg',
@@ -102,7 +104,6 @@ const userSchema = new mongoose.Schema(
         timestamps: true,
         toJSON: {
             transform: function (doc, ret, options) {
-                console.log(ret)
                 if (!ret.numberOfFollowers) ret.numberOfFollowers = 0;
                 if (ret.following)
                     ret.numberOfFollowings = ret.following.length;

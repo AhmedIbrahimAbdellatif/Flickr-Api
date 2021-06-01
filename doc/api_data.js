@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
-    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -2672,7 +2672,7 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/photo/comment",
+    "url": "/photo/:photoId/comment",
     "title": "Comment on Photo",
     "name": "Comment_On_a_photo",
     "group": "Photo",
@@ -2684,22 +2684,15 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "comment",
-            "description": "<p>The Comment to be added</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "photoId",
-            "description": ""
+            "field": "The",
+            "description": "<p>Comment to be added</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    photoId : \"5349b4ddd2781d08c09890f4\",\n    comment : \"Awesome\"\n}",
+          "content": "{\n    comment : \"Awesome\"\n}",
           "type": "json"
         }
       ]
@@ -2715,16 +2708,29 @@ define({ "api": [
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "MissingComment",
+            "description": "<p>Provide a comment</p>"
+          }
+        ],
         "404": [
           {
             "group": "404",
             "optional": false,
-            "field": "Photo",
-            "description": "<p>Not Found</p>"
+            "field": "PhotoNotFound",
+            "description": ""
           }
         ]
       },
       "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n     \"message\": \"Please write your Comment\"\n}",
+          "type": "json"
+        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
@@ -3100,6 +3106,55 @@ define({ "api": [
         }
       ]
     }
+  },
+  {
+    "type": "get",
+    "url": "/photo/:photoId",
+    "title": "Get Photo Comments",
+    "name": "Get_Media_Comments",
+    "group": "Photo",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "type",
+            "optional": false,
+            "field": "name",
+            "description": "<p>description</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n  [\n      {\n          _id: 60b4088d7479db25003075fb,\n          creator: {\n          _id: 60b372e4119d063e48ad223f,\n          userName: 'userName',\n          },\n          text: 'Nice photo',\n          photo: 60b38240a7e6682ee42c80f7,\n          createdAt: 2021-05-30T21:50:05.602Z,\n          updatedAt: 2021-05-30T21:50:05.602Z,\n      },\n      {\n          _id: 60b408a77479db25003075fd,\n          creator: {\n          _id: 60b372e4119d063e48ad223f,\n          userName: 'coolabdoana',\n          },\n          text: 'This is Very Cool!',\n          photo: 60b38240a7e6682ee42c80f7,\n          createdAt: 2021-05-30T21:50:31.503Z,\n          updatedAt: 2021-05-30T21:50:31.503Z,\n      }\n  ]\n}",
+          "type": "type"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "PhotoNotFound",
+            "description": ""
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Photo Not Found\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/photo.js",
+    "groupTitle": "Photo"
   },
   {
     "type": "get",

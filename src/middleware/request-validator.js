@@ -90,6 +90,11 @@ const validateUserEmailBody = [
 const validateTag = [
     body('tag').isString().withMessage('Tag name is required'),
 ];
+
+const validateComment = [
+    body('comment').isString().withMessage('Please write your Comment'),
+  ]
+
 const validateShowCaseDescription = [
     body('description').isString().withMessage('Description is required'),
     body('showCase.title').isString().withMessage('ShowCaseTitle is required'),
@@ -124,9 +129,11 @@ const validateAlbumParam = [
 
 
 
+
 const validateSearchKeywordParam = [
     param('searchKeyword').isString().withMessage('searchKeyword is required')
 ]
+
 
 
 const validateAlbumId = [
@@ -150,6 +157,10 @@ module.exports = {
     validateRegisterWithFacebook,
     validateTag,
     validateEditInfo,
+
+    validateComment,
+
     validateShowCaseDescription,
     validateSearchKeywordParam,
+
 };

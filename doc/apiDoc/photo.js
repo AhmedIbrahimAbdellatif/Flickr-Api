@@ -130,17 +130,98 @@
  */
 /**
  *
- * @api {post} /photo/comment Comment on Photo
+ * @api {post} /photo/getComments Get Photo Comments
+ * @apiName Get Media Comments
+ * @apiGroup Photo
+ * @apiVersion  1.0.0
+ * @apiParam  {String} photoId Photo Required to get its comments
+ * @apiParamExample  {json} Request-Example:
+ * {
+ *     "photoId" : "5349b4ddd2781d08c09890f4"
+ * }
+ * @apiSuccess (200) {Object[]} Comments Array of Comment Objects
+ *
+ * @apiSuccessExample {json} Success-Response:
+ * {
+ *   "comments": [
+ *       {
+ *           "_id": "60b5df64bc0b9e3c283fa482",
+ *           "user": {
+ *               "_id": "60b5a1cf64664624dc23098f",
+ *               "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+ *               "firstName": "Abdelrhman",
+ *               "lastName": "Shahda",
+ *               "userName": "coolabdoana",
+ *               "id": "60b5a1cf64664624dc23098f",
+ *               "numberOfFollowers": 0
+ *           },
+ *           "text": "This is Very Cool!",
+ *           "photo": "60b5969764664624dc230989",
+ *           "createdAt": "2021-06-01T07:19:00.427Z",
+ *           "updatedAt": "2021-06-01T07:19:00.427Z",
+ *           "__v": 0,
+ *           "id": "60b5df64bc0b9e3c283fa482"
+ *       },
+ *       {
+ *           "_id": "60b5df67bc0b9e3c283fa483",
+ *           "user": {
+ *               "_id": "60b5a1cf64664624dc23098f",
+ *               "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+ *               "firstName": "Abdelrhman",
+ *               "lastName": "Shahda",
+ *               "userName": "coolabdoana",
+ *               "id": "60b5a1cf64664624dc23098f",
+ *               "numberOfFollowers": 0
+ *           },
+ *           "text": "This is Very Cool!",
+ *           "photo": "60b5969764664624dc230989",
+ *           "createdAt": "2021-06-01T07:19:03.937Z",
+ *           "updatedAt": "2021-06-01T07:19:03.937Z",
+ *           "__v": 0,
+ *           "id": "60b5df67bc0b9e3c283fa483"
+ *       },
+ *       {
+ *           "_id": "60b5df70bc0b9e3c283fa484",
+ *           "creator": {
+ *               "_id": "60b5a1cf64664624dc23098f",
+ *               "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+ *               "firstName": "Abdelrhman",
+ *               "lastName": "Shahda",
+ *               "userName": "coolabdoana",
+ *               "id": "60b5a1cf64664624dc23098f",
+ *               "numberOfFollowers": 0
+ *           },
+ *           "text": "Nice Photo",
+ *           "photo": "60b5969764664624dc230989",
+ *           "createdAt": "2021-06-01T07:19:12.123Z",
+ *           "updatedAt": "2021-06-01T07:19:12.123Z",
+ *           "__v": 0,
+ *           "id": "60b5df70bc0b9e3c283fa484"
+ *       }
+ *   ]
+ *}
+ * @apiError (400) PhotoIDMissing   PhotoID is Missing
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *          "message": "Photo Id is missing"
+ *     }
+ * @apiError (404) PhotoNotFound
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *          "message": "Photo Not Found"
+ *     }
+ */
+/**
+ *
+ * @api {post} /photo/:photoId/comment Comment on Photo
  * @apiName Comment On a photo
  * @apiGroup Photo
  * @apiVersion  1.0.0
- *
- *
- * @apiParam  {String} comment The Comment to be added
- * @apiParam  {String} photoId
+ * @apiParam  {String} The Comment to be added
  * @apiParamExample  {json} Request-Example:
  * {
- *     photoId : "5349b4ddd2781d08c09890f4",
  *     comment : "Awesome"
  * }
  * @apiSuccessExample {json} Success-Response:
@@ -148,7 +229,14 @@
  *     message : "Comment Added Successfully"
  * }
  *
- * @apiError (404) Photo Not Found
+ * @apiError (400) MissingComment   Provide a comment
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *          "message": "Please write your Comment"
+ *     }
+ *
+ * @apiError (404) PhotoNotFound
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
