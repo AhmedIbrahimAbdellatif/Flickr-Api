@@ -69,7 +69,7 @@ module.exports.getUserAbout = async (req, res) => {
             path: 'showCase.photos',
             populate: {
                 path: 'creator',
-                select: 'firstName lastName _id',
+                select: 'firstName lastName _id userName',
             },
         })
         .populate({
@@ -77,6 +77,16 @@ module.exports.getUserAbout = async (req, res) => {
         })
         .exec();
     if (!user) throw new LogicError(404, 'User not found');
+    const loggedInUser = req.user;
+    if(loggedInUser){
+        for(let i =0 ;i< loggedInUser.following.length;i++){
+            if(loggedInUser.following[i].toString() === user._id.toString())
+            {
+                user.isFollowing = true;
+                break;
+            }
+        }
+    }
     res.send({ user });
 };
 

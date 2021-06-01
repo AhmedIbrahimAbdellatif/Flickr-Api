@@ -701,7 +701,7 @@
  *          },
  *       ],
  *       "description": "A talented photographer",
-
+ *        
  *        "firstName": "",
  *        "LastName": "",
  *        "userName": "",

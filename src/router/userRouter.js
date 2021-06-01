@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const userController = require('../controllers/userController');
 const auth = require('../middleware/authentication');
+const authOptional = require('../middleware/authentication');
 
 const {
     validateRequest,
@@ -54,6 +55,7 @@ router.get(
 
 router.get(
     '/about/:userId',
+    authOptional,
     validateUserIdParam,
     validateRequest,
     userController.getUserAbout
