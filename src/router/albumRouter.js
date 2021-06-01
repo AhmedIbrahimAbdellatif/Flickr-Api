@@ -16,5 +16,6 @@ router.post('/createAlbum', auth, validateCreateAlbum, validateRequest ,albumCon
 router.delete('/deleteAlbum/:albumId', auth, validateAlbumParam, validateRequest, albumController.deleteAlbum);
 router.post('/addPhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.addPhoto);
 router.delete('/deletePhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.deletePhoto);
+router.get('/:albumId', validateAlbumParam, validateRequest, albumController.viewAlbumMedia);
 
 module.exports = router;
