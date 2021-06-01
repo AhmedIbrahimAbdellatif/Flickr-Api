@@ -85,5 +85,7 @@ const authOptional = async (req, res, next) => {
     next();
 };
 
-module.exports = auth;
-module.exports = authOptional;
+module.exports = {
+    auth,
+    authOptional
+};

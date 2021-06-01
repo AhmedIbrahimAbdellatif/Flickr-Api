@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const albumController = require('../controllers/albumController');
-const auth = require('../middleware/authentication');
+const {auth} = require('../middleware/authentication');
 
 //Import Middlewares
 const {

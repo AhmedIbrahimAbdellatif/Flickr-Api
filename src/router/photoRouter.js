@@ -1,8 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const photoController = require('../controllers/photoController');
-const auth = require('../middleware/authentication');
-const authOptional = require('../middleware/authentication');
+const { auth, authOptional} = require('../middleware/authentication');
 
 //Import Middlewares
 const {
