@@ -2142,12 +2142,6 @@ define({ "api": [
             "optional": false,
             "field": "PhotoNotFound",
             "description": "<p>The Photo isn't found</p>"
-          },
-          {
-            "group": "404",
-            "optional": false,
-            "field": "GroupNotFound",
-            "description": "<p>The Group isn't found</p>"
           }
         ]
       },
@@ -2155,11 +2149,6 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
-          "type": "json"
-        },
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Group Not Found\"\n   }\n}",
           "type": "json"
         },
         {
@@ -2180,6 +2169,15 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"_id\": \"5349b4ddd2781d08c09890f4\",\n    \"tags\": [\"Tower\",\"Egypt\"],\n    \"views\": 1023,\n    \"favouriteCount\": 1023,\n    \"commentsNum\": 1023,\n    \"creator\": {\n           \"_id\": \"123123\",\n           \"isFollowing\": false,\n          \"firstName\": \"Ahmed\",\n          \"lastName\": \"Ibrahim\",\n          \"userName\": \"\",\n          \"profilePhotoUrl\":\"\",\n          \"coverPhotoUrl\": \"\"\n     },\n     \"url\": '',\n     \"title\": 'Cairo Tower',\n     \"description\": 'Cairo tower at the sunset',\n     \"createdAt\": \"Date\"\n     \n  \n}",
           "type": "json"
         }
       ]
@@ -3023,6 +3021,76 @@ define({ "api": [
     },
     "filename": "doc/apiDoc/photo.js",
     "groupTitle": "Photo"
+  },
+  {
+    "type": "post",
+    "url": "/photo/getDetails",
+    "title": "Get Photo Details",
+    "name": "Get_Photo_Details",
+    "group": "Photo",
+    "version": "1.0.0",
+    "description": "<p>Get Photo Details</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "photoId",
+            "description": "<p>Photo to be added to group</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"photoId\": \"5349b4ddd2781d08c09890f4\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "PhotoNotFound",
+            "description": "<p>The Photo isn't found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": {\n     \"message\": \"Photo Not Found\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/photo.js",
+    "groupTitle": "Photo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "get",
