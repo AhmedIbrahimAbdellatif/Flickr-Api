@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const photoController = require('../controllers/photoController');
 const auth = require('../middleware/authentication');
+const authOptional = require('../middleware/authentication');
 
 //Import Middlewares
 const {
@@ -13,16 +14,18 @@ const {
     validateComment,
     validateCommentId,
 } = require('../middleware/request-validator');
-const { upload } = require('../middleware/photo-multer-handler');
+const { upload } = require('../middleware/photoMulterHandler');
+
 
 router.post(
-    '/upload',
-    auth,
+    '/upload', 
+    auth, 
     upload.single('file'),
     validatePhotoUpload,
-    validateRequest,
-    photoController.uploadImage
+    validateRequest ,
+    photoController.uploadPhoto
 );
+
 
 router.post(
     '/addToFavorites',
@@ -31,6 +34,7 @@ router.post(
     validateRequest,
     photoController.addToFavorites
 );
+
 
 router.patch(
     '/addTags/:photoId',
@@ -41,12 +45,14 @@ router.patch(
     photoController.addTagToPhoto
 );
 
+
 router.get(
     '/whoFavorited/:photoId',
     validatePhotoIdParam,
     validateRequest,
     photoController.whoFavorited
 );
+
 router.post(
     '/getComments',
     validatePhotoId,
@@ -61,6 +67,7 @@ router.post(
     validateRequest,
     photoController.commentOnPhoto
 );
+
 router.delete(
     '/:photoId/comment',
     auth,
@@ -68,5 +75,22 @@ router.delete(
     validateCommentId,
     validateRequest,
     photoController.deleteComment
+);
+
+router.delete(
+    '/delete/:photoId', 
+    validatePhotoIdParam, 
+    validateRequest, 
+    photoController.deletePhoto
+);
+
+router.post(
+    '/getDetails',
+    authOptional, 
+    validatePhotoId,
+    validateRequest,
+    photoController.getPhotoDetails
+
+
 );
 module.exports = router;

@@ -39,6 +39,15 @@
  *     }
  */
 /**
+ * @apiDefine AuthenticationOptional
+ * @apiHeader {String} Authorization Users access-token
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Bearer asdasdkasdliuaslidas"
+ *     }
+ 
+ */
+/**
  *
  * @api {post} /register/loginWithFacebook Login using Facebook
  * @apiName Facebook Login
@@ -76,7 +85,8 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
- *          "coverPhotoUrl": "https://img.jpg"
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (400) Bad Request  AccessToken Is Required
@@ -127,7 +137,8 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
- *          "coverPhotoUrl": "https://img.jpg"
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (400) AccessTokenMissing  AccessToken Is Required
@@ -177,7 +188,8 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
- *          "coverPhotoUrl": "https://img.jpg"
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (401) Unauthorized   Wrong user credentials
@@ -267,7 +279,8 @@
  *          "occupation": "",
  *          "homeTown": "",
  *          "currentCity": "",
- *          "coverPhotoUrl": "https://img.jpg"
+ *          "coverPhotoUrl": "https://img.jpg",
+ *          "profilePhotoUrl": "https://img.jpg"
  *        }
  *     }
  * @apiError (403) UserExists  The Email is already registered
