@@ -156,14 +156,14 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "albumTitle",
+            "field": "title",
             "description": "<p>title for the new album</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "albumDescription",
+            "field": "description",
             "description": "<p>description for the new album</p>"
           }
         ]
@@ -171,7 +171,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"albumTitle\": \"Paris Pics\",\n  \"albumDescription\": \"Pics of Paris 2019\"\n}",
+          "content": "{\n  \"title\": \"Paris Pics\",\n  \"description\": \"Pics of Paris 2019\"\n}",
           "type": "json"
         }
       ]
