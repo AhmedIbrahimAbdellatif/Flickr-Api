@@ -106,7 +106,9 @@ const validatePhotoIdParam = [
 const validateUserIdParam = [
     param('userId').isMongoId().withMessage('UserId is required'),
 ];
+const validateUserNameParam = [
 
+]
 const validateCreateAlbum = [
     body('title').isString().withMessage('Title is required'),
     body('description')
@@ -149,7 +151,5 @@ module.exports = {
     validateTag,
     validateEditInfo,
     validateShowCaseDescription,
-    validateSearchKeywordParam
-
-
+    validateSearchKeywordParam,
 };

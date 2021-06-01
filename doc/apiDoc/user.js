@@ -27,7 +27,7 @@
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
  *              "isFollowing": false,
- *              "createdAt":  String   
+ *              "createdAt":  String
  *                  },
  *                  {
  *                     "_id":'60953562224d432a505e8d07',
@@ -37,7 +37,7 @@
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
  *              "isFollowing": false,
- *              "createdAt":  String  
+ *              "createdAt":  String
  *                  },
  *                 ]
  * }
@@ -85,7 +85,7 @@
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
  *              "isFollowing": false,
- *              "createdAt":  String 
+ *              "createdAt":  String
  *                  },
  *                  {
  *                      "_id":'60953562224d432a505e8d07',
@@ -95,7 +95,7 @@
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
  *              "isFollowing": false,
- *              "createdAt":  String 
+ *              "createdAt":  String
  *                  },
  *                 ]
  * }
@@ -115,46 +115,44 @@
  */
 
 /**
- * @apiUse AuthenticationOptional
- * @api {get} /user/search/:username     Search on user
- * @apiName Search on user username is the keyword you want to search fo
+ * @api {get} /user/search/:searchKeyword     Search on user
+ * @apiName Search on user searchKeyword is the keyword you want to search for
  * @apiGroup User
  * @apiVersion  1.0.0
  *
- *
- * @apiParam  {String} username    any word to be matched with user names in the DB
- *
- *
- * @apiParamExample  {json} Request-Example:
- * {
- *     username : "Ghallab"
- * }
- *
+ * @apiParam  {String} searchKeyword    Matched With userName
  *
  * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 Success
  * {
- *     users : [{
- *                  "_id":'60953562224d432a505e8d07',
- *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim'
- *              "profilePhotoUrl": "https://img.jpg",
- *              "numberOfPhotos": 123,
- *              "numberOfFollowers": 123,
- *              "isFollowing": false,
- *              "createdAt":  String   
- *              },
- *              {
- *                "_id":'60953562224d432a505e8d07',
- *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim'
- *              "profilePhotoUrl": "https://img.jpg",
- *              "numberOfPhotos": 123,
- *              "numberOfFollowers": 123,
- *              "isFollowing": false,
- *              "createdAt":  String 
- *              },
- *             ]
+ *  {
+ *   "users": [
+ *       {
+ *           "showCase": {
+ *               "title": "Showcase",
+ *               "photos": []
+ *           },
+ *           "description": "",
+ *           "occupation": "",
+ *           "homeTown": "",
+ *           "currentCity": "",
+ *           "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+ *           "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+ *           "_id": "60b5f3e483681736e0959605",
+ *           "email": "coolabdoana@yahoo.com",
+ *           "firstName": "Abdelrhman",
+ *           "lastName": "Shahda",
+ *           "userName": "coolabdoana",
+ *           "age": 21,
+ *           "createdAt": "2021-06-01T08:46:28.064Z",
+ *           "updatedAt": "2021-06-01T08:46:28.064Z",
+ *           "__v": 0,
+ *           "id": "60b5f3e483681736e0959605",
+ *           "numberOfFollowers": 0,
+ *           "numberOfFollowings": 0
+ *       }
+ *    ]
+ *  }
  * }
  */
 
@@ -349,8 +347,8 @@
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
- *     {    
- *       "message": "Photo Not Found" 
+ *     {
+ *       "message": "Photo Not Found"
  *     }
  * @apiError (400) PhotoIdMissing This Photo is required
  * @apiErrorExample {json} Error-Response:

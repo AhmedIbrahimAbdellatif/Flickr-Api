@@ -10,6 +10,8 @@ const {
     validatePhotoId,
     validateEditInfo,
     validateShowCaseDescription,
+    validateUserNameParam,
+    validateSearchKeywordParam,
 } = require('../middleware/request-validator');
 const { validate } = require('../model/userModel');
 
@@ -64,6 +66,13 @@ router.get(
     userController.getUserPhotoStream
 );
 
+router.get(
+    '/search/:searchKeyword',
+    validateSearchKeywordParam,
+    validateRequest,
+    userController.searchUser
+);
+
 router.patch(
     '/editCoverPhoto',
     auth,
@@ -71,7 +80,6 @@ router.patch(
     validateRequest,
     userController.editCoverPhoto
 );
-
 
 router.patch(
     '/editInfo',
@@ -90,12 +98,12 @@ router.patch(
     userController.editShowCaseAndDescription
 );
 
-
-router.patch('/editProfilePhoto',
-             auth,
-             validatePhotoId,
-             validateRequest,
-             userController.editProfilePhoto
- );
+router.patch(
+    '/editProfilePhoto',
+    auth,
+    validatePhotoId,
+    validateRequest,
+    userController.editProfilePhoto
+);
 
 module.exports = router;
