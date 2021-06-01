@@ -76,7 +76,7 @@ const authOptional = async (req, res, next) => {
     }
     const user = await User.findById(decoded.id).select('+passwordChangedAt');
     if (!user) {
-        next()
+        return next()
     }
     if (user.changedPassword(decoded.iat)) {
         return next()
