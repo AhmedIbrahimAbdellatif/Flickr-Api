@@ -37,7 +37,7 @@
  *     {
  *        "message" : "User Not Found"
  *     }
-* @apiError (400) UserIdMissing This user is required
+ * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
@@ -62,7 +62,7 @@
  *     userId : "5349b4ddd2781d08c09890f4"
  * }
  *
- * 
+ *
  * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 Success
  * {
@@ -138,30 +138,85 @@
  *
  * @apiParam  {String} description    The user's Description
  * @apiparam  {String} showcaseTitle       The user's Showcase title
- *
- * @apiParamExample  {type} Request-Example:
+ * @apiParam  {Object[]} photos Array of Photo IDs     This is Optional
+ * @apiParamExample  {json} Request-Example:
  * {
- *     description : "Photos are my passion"
- *     showcaseTitle : "a glimpse of my life"
+ *   {
+ *       "description" : "Photos are my passion",
+ *       "showCase" : {
+ *           "title": "a glimpse of my life",
+ *           "photos" : [
+ *               "60b5969764664624dc230989",
+ *               "60a37996c202e800154d1041"
+ *           ]
+ *       }
+ *   }
+ * }
+ * @apiParamExample  {json} Request-Example:
+ * {
+ *      {
+ *          "description" : "Photos are my passion",
+ *          "showCase" : {
+ *                "title": "a glimpse of my life",
+ *          }
+ *      }
  * }
  *
- *
- * @apiSuccessExample {type} Success-Response:
+ * @apiSuccessExample {json} Success-Response:
  * {
- *     message : "Changed Successfully"
- * }
+ *      {
+ *          "description": "Photos are my passion",
+ *          "showCase": {
+ *              "title":"a glimpse of my life",
+ *              "photos": [
+ *              {
+ *                  "description": "",
+ *                  "tags": [
+ *                      "60b596e63e57db3fe858f46c",
+ *                      "60b596ec3e57db3fe858f46d",
+ *                      "60b596f03e57db3fe858f46e"
+ *                  ],
+ *              "comments": [],
+ *              "views": 0,
+ *              "favouriteCount": 0,
+ *              "isPublic": true,
+ *              "license": "None",
+ *              "safety": "Safe",
+ *              "allowCommenting": true,
+ *              "_id": "60b5969764664624dc230989",
+ *              "albums": [],
+ *              "contentType": "Photo",
+ *              "title": "test100",
+ *              "url": "http://localhost:3000/public/images/60b48a649f4f7a3e5c45aee4/60b5969764664624dc230988.png",
+ *              "creator": "60b48a649f4f7a3e5c45aee4",
+ *              "createdAt": "2021-06-01T02:08:23.334Z",
+ *              "updatedAt": "2021-06-01T02:18:29.827Z",
+ *              "__v": 0,
+ *              "commentsNum": 0
+ *              }
+ *              ]
+ *          }
+ *      }
+ *  }
  * @apiError (400) DescriptionMissing Write Description
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
  *        "message" : "Description is required"
  *     }
-  * @apiError (400) ShowCaseTitleMissing Write Show Case Title
+ * @apiError (400) ShowCaseTitleMissing Write Show Case Title
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 400 Bad Request
  *     {
  *        "message" : "showCaseTitle is required"
  *     }
+ * @apiError (400) PhotosArrayMissing Photos' IDs must be in the form of An Array
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *        "message" : "Photos IDs Missing"
+ *     }
+ *
  * @apiError (404) This user is not found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -209,8 +264,8 @@
  * @apiError (404) UserNotFound  The id of the user wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
- *     {    
- *       "message": "User Not Found" 
+ *     {
+ *       "message": "User Not Found"
  *     }
  * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
@@ -233,8 +288,8 @@
  * @apiError (404) PhotoNotFound  The id of the photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
- *     {    
- *       "message": "Photo Not Found" 
+ *     {
+ *       "message": "Photo Not Found"
  *     }
  * @apiError (400) PhotoIdMissing This Photo is required
  * @apiErrorExample {json} Error-Response:
@@ -259,45 +314,45 @@
  * @apiParam {String} occupation User's Occupation
  * @apiParam {String} homeTown User's Home Town
  * @apiParam {String} currentCity User's Current City
- * 
+ *
  * @apiParamExample {json} Request-Example:
  * {
  *     "occupation": "Engineer",
  *      "homeTown": "",
  *      "currentCity": ""
- *      
+ *
  * }
  * @apiError (400) OccupationInvalid  Occupation should be String
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *      
+ *
  *       "message": "Occupation should be String"
- *        
+ *
  *     }
  * @apiError (400) CurrentCityInvalid  Current City should be String
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *      
+ *
  *       "message": "Current City should be String"
- *        
+ *
  *     }
  * @apiError (400) HomeTownInvalid  Home Town should be String
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *      
+ *
  *       "message": "Home Town should be String"
- *        
+ *
  *     }
-  * @apiError (400) InvalidEdit  Invalid Edit
+ * @apiError (400) InvalidEdit  Invalid Edit
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *      
+ *
  *       "message": "Invalid Edit"
- *        
+ *
  *     }
  */
 /**
@@ -323,9 +378,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *      
+ *
  *       "message": "User Not Found"
- *        
+ *
  *     }
  */
 
@@ -365,13 +420,13 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *        "message": "User Not Found"
- *        
+ *
  *     }
  */
 /////////////////////////////////////////HIMA/////////////////////////////////
- 
+
 /**
  * @api {get} /user/fav/:userId Get Favorites
  * @apiName Get User Favorites
@@ -405,11 +460,11 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *        "message": "User Not Found"
- *        
+ *
  *     }
-  * @apiError (400) UserIdMissing This user is required
+ * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
@@ -443,9 +498,9 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "User Not Found"
- *        
+ *
  *     }
  */
 
@@ -475,14 +530,14 @@
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "User Not Found"
- *       
+ *
  *     }
- * 
- */   
-//////////////////////////////// KARIM ///////////////////////////////////  
- /**
+ *
+ */
+//////////////////////////////// KARIM ///////////////////////////////////
+/**
  * @apiUse Authentication
  * @api {post} /user/followUser Follow User
  * @apiName Follow User
@@ -497,23 +552,23 @@
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 Success
  *   {
- *       
+ *
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       
+ *
  *        "message": "User Not Found"
- *        
+ *
  *     }
-  * @apiError (400) UserIdMissing This user is required
+ * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
  *        "message" : "UserId is required"
  *     }
- * 
+ *
  */
 
 /**
@@ -531,7 +586,7 @@
  * @apiSuccessExample {json} Success-Response:
  *    HTTP/1.1 200 Success
  *   {
- *       
+ *
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
@@ -541,15 +596,15 @@
  *          "message": "User Not Found"
  *        }
  *     }
-  * @apiError (400) UserIdMissing This user is required
+ * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
  *        "message" : "UserId is required"
  *     }
- * 
+ *
  */
- /**
+/**
  * @api {get} /user/about/:userId Show About
  * @apiName Show User's About
  * @apiGroup User
@@ -580,10 +635,10 @@
  *               "url": '',
  *               "title": 'Cairo Tower',
  *               "description": 'Cairo tower at the sunset'
- *          },              
+ *          },
  *       ],
  *       "description": "A talented photographer",
- *       "statistics": 
+ *       "statistics":
  *               {
  *                   "views": 27
  *                   "faves": 9
@@ -593,15 +648,15 @@
  *        "occupation": "",
  *        "currentCity": "",
  *        "homeTown": "",
- *        "createdAt": ""  
+ *        "createdAt": ""
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       
+ *
  *          "message": "User Not Found"
- *        
+ *
  *     }
  * @apiError (400) UserIdMissing This user is required
  * @apiErrorExample {json} Error-Response:
@@ -637,19 +692,19 @@
  *               "title": 'Cairo Tower',
  *               "description": 'Cairo tower at the sunset'
  *               "itemsNum": 27
- *          },            
+ *          },
  *       ],
  *     }
  *  @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Failed
  *     {
- *       
+ *
  *          "message": "User Not Found"
- *        
+ *
  *     }
  */
- /**
+/**
  * @apiUse Authentication
  * @apiUse photoObjects
  * @api {get} /user/cameraRoll/:userId User Camera Roll
@@ -675,24 +730,23 @@
  *               "url": '',
  *               "title": 'Cairo Tower',
  *               "description": 'Cairo tower at the sunset'
- *          },              
+ *          },
  *       ],
  *     }
  * @apiParamExample {json} Request-Example:
  * {
  *     userId: "5349b4ddd2781d08c09890f4"
  * }
- * 
+ *
  * @apiError (404) UserNotFound  The id of the user wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "User Not Found"
- *        
+ *
  *     }
  */
-
 
 /**
  * @apiUse Authentication
@@ -705,19 +759,19 @@
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       
+ *
  *     }
  * @apiParamExample {json} Request-Example:
  * {
  *     photoId: "5349b4ddd2781d08c09890f4"
  * }
- * 
+ *
  * @apiError (404) PhotoNotFound  The id of the Photo wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       
+ *
  *          "message": "Photo Not Found"
- *        
+ *
  *     }
  */

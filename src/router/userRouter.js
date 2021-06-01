@@ -83,9 +83,9 @@ router.patch(
 router.patch(
     '/:userId',
     auth,
-    validateRequest,
     validateUserIdParam,
     validateShowCaseDescription,
+    validateRequest,
     userController.editShowCaseAndDescription
 );
 module.exports = router;

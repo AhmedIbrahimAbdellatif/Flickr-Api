@@ -133,17 +133,16 @@ module.exports.editShowCaseAndDescription = async (req, res) => {
         throw new LogicError(404, 'User Not Found');
     }
     user.description = req.body.description;
-    const photos = req.body.photos;
-    const showCaseTitle = req.body.showCaseTitle;
-    user.showCase = { title: showCaseTitle, photos };
+    const showCase = req.body.showCase;
+    if (showCase) {
+        user.showCase = showCase;
+    }
     await user.save();
-    const userShowcase = await User.findById(user._id)
+    const userPopulated = await User.findById(user._id)
         .populate('showCase.photos')
         .exec();
-    console.log(userShowcase);
     res.status(200).json({
-        description: userShowcase.description,
-        showCaseTitle: userShowcase.showCase.title,
-        photos: userShowcase.showCase.photos,
+        description: userPopulated.description,
+        showCase: userPopulated.showCase,
     });
 };

@@ -92,9 +92,11 @@ const validateTag = [
 ];
 const validateShowCaseDescription = [
     body('description').isString().withMessage('Description is required'),
-    body('showCaseTitle').isString().withMessage('ShowCaseTitle is required'),
-    body('photos').isArray().withMessage('Please Enter photos you want to Add'),
-    body('*._id').isMongoId().withMessage('Please Enter Valid Photo IDs'),
+    body('showCase.title').isString().withMessage('ShowCaseTitle is required'),
+    body('showCase.photos')
+        .optional()
+        .isArray()
+        .withMessage('Photos IDs Missing'),
 ];
 //Params Validations
 const validatePhotoIdParam = [

@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
-    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -4351,7 +4351,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n\n}",
           "type": "json"
         }
       ]
@@ -4396,7 +4396,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"Photo Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"Photo Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -4445,7 +4445,7 @@ define({ "api": [
     }
   },
   {
-    "type": "post",
+    "type": "patch",
     "url": "/users/:userId",
     "title": "Edit Showcase and Description",
     "name": "Edit_Showcase_and_Description",
@@ -4465,16 +4465,28 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "Showcase",
-            "description": "<p>The user's Showcase</p>"
+            "field": "showcaseTitle",
+            "description": "<p>The user's Showcase title</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object[]",
+            "optional": false,
+            "field": "photos",
+            "description": "<p>Array of Photo IDs     This is Optional</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    desciption : \"Photos are my passion\"\n    showcase : \"a glimpse of my life\"\n}",
-          "type": "type"
+          "content": "{\n  {\n      \"description\" : \"Photos are my passion\",\n      \"showCase\" : {\n          \"title\": \"a glimpse of my life\",\n          \"photos\" : [\n              \"60b5969764664624dc230989\",\n              \"60a37996c202e800154d1041\"\n          ]\n      }\n  }\n}",
+          "type": "json"
+        },
+        {
+          "title": "Request-Example:",
+          "content": "{\n     {\n         \"description\" : \"Photos are my passion\",\n         \"showCase\" : {\n               \"title\": \"a glimpse of my life\",\n         }\n     }\n}",
+          "type": "json"
         }
       ]
     },
@@ -4482,13 +4494,33 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    message : \"Changed Successfully\"\n}",
-          "type": "type"
+          "content": "{\n     {\n         \"description\": \"Photos are my passion\",\n         \"showCase\": {\n             \"title\":\"a glimpse of my life\",\n             \"photos\": [\n             {\n                 \"description\": \"\",\n                 \"tags\": [\n                     \"60b596e63e57db3fe858f46c\",\n                     \"60b596ec3e57db3fe858f46d\",\n                     \"60b596f03e57db3fe858f46e\"\n                 ],\n             \"comments\": [],\n             \"views\": 0,\n             \"favouriteCount\": 0,\n             \"isPublic\": true,\n             \"license\": \"None\",\n             \"safety\": \"Safe\",\n             \"allowCommenting\": true,\n             \"_id\": \"60b5969764664624dc230989\",\n             \"albums\": [],\n             \"contentType\": \"Photo\",\n             \"title\": \"test100\",\n             \"url\": \"http://localhost:3000/public/images/60b48a649f4f7a3e5c45aee4/60b5969764664624dc230988.png\",\n             \"creator\": \"60b48a649f4f7a3e5c45aee4\",\n             \"createdAt\": \"2021-06-01T02:08:23.334Z\",\n             \"updatedAt\": \"2021-06-01T02:18:29.827Z\",\n             \"__v\": 0,\n             \"commentsNum\": 0\n             }\n             ]\n         }\n     }\n }",
+          "type": "json"
         }
       ]
     },
     "error": {
       "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "DescriptionMissing",
+            "description": "<p>Write Description</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "ShowCaseTitleMissing",
+            "description": "<p>Write Show Case Title</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotosArrayMissing",
+            "description": "<p>Photos' IDs must be in the form of An Array</p>"
+          }
+        ],
         "401": [
           {
             "group": "401",
@@ -4525,6 +4557,21 @@ define({ "api": [
         ]
       },
       "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n   \"message\" : \"Description is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n   \"message\" : \"showCaseTitle is required\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n   \"message\" : \"Photos IDs Missing\"\n}",
+          "type": "json"
+        },
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"User Not Found\"\n}",
@@ -4646,7 +4693,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{    \n  \"message\": \"Photo Not Found\" \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"Photo Not Found\"\n}",
           "type": "json"
         },
         {
@@ -4741,7 +4788,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"occupation\": \"Engineer\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\"\n     \n}",
+          "content": "{\n    \"occupation\": \"Engineer\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\"\n\n}",
           "type": "json"
         }
       ]
@@ -4804,22 +4851,22 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Occupation should be String\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Occupation should be String\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Current City should be String\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Current City should be String\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Home Town should be String\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Home Town should be String\"\n\n}",
           "type": "json"
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"Invalid Edit\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"Invalid Edit\"\n\n}",
           "type": "json"
         },
         {
@@ -4899,7 +4946,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 200 Success\n{\n    \n  }",
+          "content": " HTTP/1.1 200 Success\n{\n\n  }",
           "type": "json"
         }
       ]
@@ -4952,7 +4999,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Failed\n{\n  \n   \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Failed\n{\n\n   \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -5136,7 +5183,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n   \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n   \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -5227,7 +5274,7 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n   \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n   \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -5443,7 +5490,7 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         }
       ],
@@ -5500,7 +5547,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{    \n  \"message\": \"User Not Found\" \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"message\": \"User Not Found\"\n}",
           "type": "json"
         },
         {
@@ -5576,7 +5623,7 @@ define({ "api": [
         },
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"User Not Found\"\n  \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         }
       ],
@@ -5685,7 +5732,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n \n  \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n  \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -5829,7 +5876,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"showcase\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n  \"description\": \"A talented photographer\",\n  \"statistics\": \n          {\n              \"views\": 27\n              \"faves\": 9\n              \"groups\": 10\n          },\n   \"email\": \"asdasd@test.com\",\n   \"occupation\": \"\",\n   \"currentCity\": \"\",\n   \"homeTown\": \"\",\n   \"createdAt\": \"\"  \n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"showcase\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n  \"description\": \"A talented photographer\",\n  \"statistics\":\n          {\n              \"views\": 27\n              \"faves\": 9\n              \"groups\": 10\n          },\n   \"email\": \"asdasd@test.com\",\n   \"occupation\": \"\",\n   \"currentCity\": \"\",\n   \"homeTown\": \"\",\n   \"createdAt\": \"\"\n}",
           "type": "json"
         }
       ]
@@ -5856,7 +5903,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Failed\n{\n  \n     \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Failed\n{\n\n     \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -5912,7 +5959,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"gallery\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"views\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n          \"itemsNum\": 27\n     },            \n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"gallery\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"views\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n          \"itemsNum\": 27\n     },\n  ],\n}",
           "type": "json"
         }
       ]
@@ -5931,7 +5978,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Failed\n{\n  \n     \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Failed\n{\n\n     \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         }
       ]
@@ -5969,7 +6016,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"cameraRoll\": [\n     {\n        \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },              \n  ],\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"cameraRoll\": [\n     {\n        \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 1023,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ],\n}",
           "type": "json"
         },
         {
@@ -6028,7 +6075,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Error-Response:",
-          "content": "HTTP/1.1 404 Not Found\n{\n  \n     \"message\": \"User Not Found\"\n   \n}",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n     \"message\": \"User Not Found\"\n\n}",
           "type": "json"
         },
         {
@@ -6108,7 +6155,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": " HTTP/1.1 200 Success\n{\n    \n  }",
+          "content": " HTTP/1.1 200 Success\n{\n\n  }",
           "type": "json"
         }
       ]
