@@ -83,19 +83,18 @@ module.exports.commentOnPhoto = async (req, res) => {
         throw new LogicError(404, 'Photo Not Found');
     }
     const newComment = await Comment.create({
-        creator: userId,
+        user: userId,
         text: comment,
         photo: photoId,
     });
     await photo.updateOne({ $push: { comments: newComment } });
-    console.log(photo)
     res.status(200).json({
         message: 'Comment Added Successfully',
     });
 };
 
 module.exports.getMediaComments = async (req, res) => {
-    const photo = await Photo.findById(req.params.photoId).populate('comments');
+    const photo = await Photo.findById(req.body.photoId).populate('comments');
     if (!photo) {
         throw new LogicError(404, 'Photo Not Found');
     }

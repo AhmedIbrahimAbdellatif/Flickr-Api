@@ -46,18 +46,18 @@ router.get(
     validateRequest,
     photoController.whoFavorited
 );
-router.get(
-    '/:photoId',
+router.post(
+    '/getComments',
+    validatePhotoId,
     validateRequest,
-    validatePhotoIdParam,
     photoController.getMediaComments
 );
 router.post(
     '/:photoId/comment',
     auth,
-    validateRequest,
     validatePhotoIdParam,
     validateComment,
+    validateRequest,
     photoController.commentOnPhoto
 );
 module.exports = router;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const commentSchema = new mongoose.Schema(
     {
-        creator: {
+        user: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'User',
             required: true,
@@ -24,8 +24,8 @@ const commentSchema = new mongoose.Schema(
 );
 commentSchema.pre(/^find/, function (next) {
     this.populate({
-        path: 'creator',
-        select: 'userName firstName lastName _id profilePhotoUrl',
+        path: 'user',
+        select: 'userName firstName lastName profilePhotoUrl',
     });
     next();
 });
