@@ -31,9 +31,18 @@ const validatePhotoId = [
     body('photoId').isMongoId().withMessage('Photo Id is missing'),
 ];
 const validateEditInfo = [
-    body('occupation').optional().isString().withMessage("Occupations should be a String"),
-    body('currentCity').optional().isString().withMessage("Current City should be a String"),
-    body('homeTown').optional().isString().withMessage("Home Town should be a String"),
+    body('occupation')
+        .optional()
+        .isString()
+        .withMessage('Occupations should be a String'),
+    body('currentCity')
+        .optional()
+        .isString()
+        .withMessage('Current City should be a String'),
+    body('homeTown')
+        .optional()
+        .isString()
+        .withMessage('Home Town should be a String'),
 ];
 const validateSignUp = [
     body('email').isEmail().withMessage('Email is required'),
@@ -81,6 +90,12 @@ const validateUserEmailBody = [
 const validateTag = [
     body('tag').isString().withMessage('Tag name is required'),
 ];
+const validateShowCaseDescription = [
+    body('description').isString().withMessage('Description is required'),
+    body('showCaseTitle').isString().withMessage('ShowCaseTitle is required'),
+    body('photos').isArray().withMessage('Please Enter photos you want to Add'),
+    body('*._id').isMongoId().withMessage('Please Enter Valid Photo IDs'),
+];
 //Params Validations
 const validatePhotoIdParam = [
     param('photoId').isMongoId().withMessage('PhotoId is required'),
@@ -92,15 +107,18 @@ const validateUserIdParam = [
 
 const validateCreateAlbum = [
     body('title').isString().withMessage('Title is required'),
-    body('description').optional().isString().withMessage('Description should be string')
-]
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+];
 
 const validateAlbumParam = [
-    param('albumId').isMongoId().withMessage('albumId is required')
-]
+    param('albumId').isMongoId().withMessage('albumId is required'),
+];
 const validateAlbumId = [
-    body('albumId').isMongoId().withMessage('albumId is required')
-]
+    body('albumId').isMongoId().withMessage('albumId is required'),
+];
 
 module.exports = {
     validateRequest,
@@ -118,6 +136,6 @@ module.exports = {
     validateAlbumId,
     validateRegisterWithFacebook,
     validateTag,
-    validateEditInfo
-
+    validateEditInfo,
+    validateShowCaseDescription,
 };

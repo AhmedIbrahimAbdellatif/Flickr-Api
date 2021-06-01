@@ -8,25 +8,84 @@ const {
     validateUserIdParam,
     validateUserIdBody,
     validatePhotoId,
-    validateEditInfo
+    validateEditInfo,
+    validateShowCaseDescription,
 } = require('../middleware/request-validator');
 const { validate } = require('../model/userModel');
 
-router.get('/fav/:userId', validateUserIdParam, validateRequest, userController.getFavorites);
+router.get(
+    '/fav/:userId',
+    validateUserIdParam,
+    validateRequest,
+    userController.getFavorites
+);
 
-router.post('/followUser', auth, validateUserIdBody, validateRequest, userController.followUser);
+router.post(
+    '/followUser',
+    auth,
+    validateUserIdBody,
+    validateRequest,
+    userController.followUser
+);
 
-router.post('/unfollowUser', auth, validateUserIdBody, validateRequest, userController.unfollowUser);
+router.post(
+    '/unfollowUser',
+    auth,
+    validateUserIdBody,
+    validateRequest,
+    userController.unfollowUser
+);
 
-router.get('/followers/:userId', validateUserIdParam, validateRequest, userController.getFollowers);
+router.get(
+    '/followers/:userId',
+    validateUserIdParam,
+    validateRequest,
+    userController.getFollowers
+);
 
-router.get('/followings/:userId', validateUserIdParam, validateRequest, userController.getFollowings);
+router.get(
+    '/followings/:userId',
+    validateUserIdParam,
+    validateRequest,
+    userController.getFollowings
+);
 
-router.get('/about/:userId', validateUserIdParam, validateRequest, userController.getUserAbout);
+router.get(
+    '/about/:userId',
+    validateUserIdParam,
+    validateRequest,
+    userController.getUserAbout
+);
 
-router.get('/photostream/:userId', validateUserIdParam, validateRequest, userController.getUserPhotoStream);
+router.get(
+    '/photostream/:userId',
+    validateUserIdParam,
+    validateRequest,
+    userController.getUserPhotoStream
+);
 
-router.patch('/editCoverPhoto',auth, validatePhotoId, validateRequest, userController.editCoverPhoto);
+router.patch(
+    '/editCoverPhoto',
+    auth,
+    validatePhotoId,
+    validateRequest,
+    userController.editCoverPhoto
+);
 
-router.patch('/editInfo', auth,validateEditInfo, validateRequest,userController.editInfo);
+router.patch(
+    '/editInfo',
+    auth,
+    validateEditInfo,
+    validateRequest,
+    userController.editInfo
+);
+
+router.patch(
+    '/:userId',
+    auth,
+    validateRequest,
+    validateUserIdParam,
+    validateShowCaseDescription,
+    userController.editShowCaseAndDescription
+);
 module.exports = router;

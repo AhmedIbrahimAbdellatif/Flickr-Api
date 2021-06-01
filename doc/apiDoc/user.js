@@ -130,19 +130,19 @@
 
 /**
  * @apiUse Authentication
- * @api {post} /users/:userId   Edit Showcase and Description
+ * @api {patch} /users/:userId   Edit Showcase and Description
  * @apiName Edit Showcase and Description
  * @apiGroup User
  * @apiVersion  1.0.0
  *
  *
  * @apiParam  {String} description    The user's Description
- * @apiparam  {String} Showcase       The user's Showcase
+ * @apiparam  {String} showcaseTitle       The user's Showcase title
  *
  * @apiParamExample  {type} Request-Example:
  * {
- *     desciption : "Photos are my passion"
- *     showcase : "a glimpse of my life"
+ *     description : "Photos are my passion"
+ *     showcaseTitle : "a glimpse of my life"
  * }
  *
  *
@@ -150,7 +150,18 @@
  * {
  *     message : "Changed Successfully"
  * }
- *
+ * @apiError (400) DescriptionMissing Write Description
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *        "message" : "Description is required"
+ *     }
+  * @apiError (400) ShowCaseTitleMissing Write Show Case Title
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *        "message" : "showCaseTitle is required"
+ *     }
  * @apiError (404) This user is not found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
