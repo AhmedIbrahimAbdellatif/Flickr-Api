@@ -20,22 +20,26 @@
  * {
  *     followers : [
  *                  {
- *                      "_id":'60953562224d432a505e8d07',
+ *                        "_id":'60953562224d432a505e8d07',
  *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim'
+ *              "lastName":'Ibrahim',
+ *              "userName": "Kim",
  *              "profilePhotoUrl": "https://img.jpg",
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
+ *              "numberOfFollowings": 123
  *              "isFollowing": false,
  *              "createdAt":  String
  *                  },
  *                  {
  *                     "_id":'60953562224d432a505e8d07',
  *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim'
+ *              "lastName":'Ibrahim',
+ *              "userName": "Kim",
  *              "profilePhotoUrl": "https://img.jpg",
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
+ *              "numberOfFollowings": 123
  *              "isFollowing": false,
  *              "createdAt":  String
  *                  },
@@ -78,22 +82,26 @@
  * {
  *     following : [
  *                  {
- *                      "_id":'60953562224d432a505e8d07',
+ *                        "_id":'60953562224d432a505e8d07',
  *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim'
+ *              "lastName":'Ibrahim',
+ *              "userName": "Kim",
  *              "profilePhotoUrl": "https://img.jpg",
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
+ *              "numberOfFollowings": 123
  *              "isFollowing": false,
  *              "createdAt":  String
  *                  },
  *                  {
- *                      "_id":'60953562224d432a505e8d07',
+ *                        "_id":'60953562224d432a505e8d07',
  *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim'
+ *              "lastName":'Ibrahim',
+ *              "userName": "Kim",
  *              "profilePhotoUrl": "https://img.jpg",
  *              "numberOfPhotos": 123,
  *              "numberOfFollowers": 123,
+ *              "numberOfFollowings": 123
  *              "isFollowing": false,
  *              "createdAt":  String
  *                  },
@@ -149,7 +157,8 @@
  *           "__v": 0,
  *           "id": "60b5f3e483681736e0959605",
  *           "numberOfFollowers": 0,
- *           "numberOfFollowings": 0
+ *           "numberOfFollowings": 0,
+ *           "isFollowing": false
  *       }
  *    ]
  *  }
@@ -701,7 +710,7 @@
  *          },
  *       ],
  *       "description": "A talented photographer",
-
+ *        
  *        "firstName": "",
  *        "LastName": "",
  *        "userName": "",
