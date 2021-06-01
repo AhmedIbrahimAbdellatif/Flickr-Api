@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const tagController = require('../controllers/tagController');
-const auth = require('../middleware/authentication');
+
 const {
     validateRequest,
     validateTag,
