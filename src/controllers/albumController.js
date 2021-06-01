@@ -3,10 +3,7 @@ const Photo = require('../model/photoModel');
 const { LogicError } = require('../error/logic-error');
 
 module.exports.createAlbum = async (req, res) => {
-    const isAlbumExist = await Album.exists({title: req.body.title});
-    if(isAlbumExist) {
-        throw new LogicError(400, 'Title already taken');
-    }
+    
     reqBody = { ...req.body };
     const album = new Album({
         ...reqBody,
