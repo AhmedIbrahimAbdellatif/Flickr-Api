@@ -18,7 +18,6 @@ const photoSchema = new mongoose.Schema(
             {
                 type: [mongoose.SchemaTypes.ObjectId],
                 ref: 'Tag',
-                unique: true,
                 default: [],
             },
         ],

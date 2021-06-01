@@ -115,4 +115,9 @@ router.get(
     validateRequest,
     userController.viewUserAlbums
     );
+router.get(
+    '/cameraRoll',
+    auth,
+    userController.viewCameraRoll
+);
 module.exports = router;
