@@ -22,7 +22,11 @@ app.use(cors())
 app.get('/public/images/:userId/:imageName', async(req,res) => {
     res.sendFile(path.join(__dirname, `../public/images/${req.params.userId}/${req.params.imageName}`))
 })
-
+app.use((req,res,next) => {
+    
+    console.log(req.body)
+    next()
+})
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/photo', photoRouter);
