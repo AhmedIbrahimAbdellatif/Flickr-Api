@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const photoController = require('../controllers/photoController');
 const auth = require('../middleware/authentication');
+const authOptional = require('../middleware/authentication');
 
 //Import Middlewares
 const {
@@ -14,7 +15,14 @@ const {
 const { upload } = require('../middleware/photoMulterHandler');
 
 
-router.post('/upload', auth, upload.single('file'),validatePhotoUpload,validateRequest ,photoController.uploadPhoto);
+router.post(
+    '/upload', 
+    auth, 
+    upload.single('file'),
+    validatePhotoUpload,
+    validateRequest ,
+    photoController.uploadPhoto
+);
 
 
 router.post(
@@ -36,8 +44,25 @@ router.patch(
 );
 
 
-router.get('/whoFavorited/:photoId', validatePhotoIdParam, validateRequest, photoController.whoFavorited);
+router.get(
+    '/whoFavorited/:photoId',
+    validatePhotoIdParam,
+    validateRequest,
+    photoController.whoFavorited
+);
 
-router.delete('/delete/:photoId', validatePhotoIdParam, validateRequest, photoController.deletePhoto);
+router.delete(
+    '/delete/:photoId', 
+    validatePhotoIdParam, 
+    validateRequest, 
+    photoController.deletePhoto
+);
 
+router.post(
+    '/getDetails',
+    authOptional, 
+    validatePhotoId,
+    validateRequest,
+    photoController.getPhotoDetails
+);
 module.exports = router;
