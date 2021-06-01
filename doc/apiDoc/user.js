@@ -784,7 +784,7 @@
 /**
  * @apiUse Authentication
  * @apiUse photoObjects
- * @api {get} /user/cameraRoll/:userId User Camera Roll
+ * @api {get} /user/cameraRoll User Camera Roll
  * @apiName Show User Camera Roll
  * @apiGroup User
  * @apiVersion 1.0.0

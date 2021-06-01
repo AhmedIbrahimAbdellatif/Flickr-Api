@@ -81,7 +81,11 @@
  *       "media": [
  *          {
  *              "_id": "5349b4ddd2781d08c09890f4",
- *               "tags": ["Tower","Egypt"],
+ *               "tags": [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],
  *               "views": 1023,
  *               "favouritesNum": 1023,
  *               "commentsNum": 1023,
