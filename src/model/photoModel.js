@@ -53,7 +53,8 @@ const photoSchema = new mongoose.Schema(
         contentType: {
             type: String,
             enum: ['Screenshot', 'Art/Illustration', 'Photo'],
-            required: true,
+            default: 'Photo'
+            
         },
         creator: {
             type: mongoose.SchemaTypes.ObjectId,

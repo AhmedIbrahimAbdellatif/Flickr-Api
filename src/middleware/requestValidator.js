@@ -62,7 +62,7 @@ const validateLogIn = [
 const validatePhotoUpload = [
     body('file').exists().withMessage('File is required'),
     body('title').isString().withMessage('Title is required'),
-    body('contentType').isString().withMessage('Content Type is required'),
+    body('contentType').optional().isString().withMessage('Content Type is required'),
     body('isPublic')
         .optional()
         .isBoolean()
