@@ -3,7 +3,7 @@ const Photo = require('../model/photoModel');
 const { LogicError } = require('../error/logic-error');
 
 module.exports.createAlbum = async (req, res) => {
-    
+
     reqBody = { ...req.body };
     const album = new Album({
         ...reqBody,
@@ -11,12 +11,12 @@ module.exports.createAlbum = async (req, res) => {
     });
     album.views = 0;
     await album.save();
-    res.status(201).send({album: album});
+    res.status(201).send({ album: album });
 };
 
 module.exports.deleteAlbum = async (req, res) => {
     const album = await Album.findOneAndDelete({ _id: req.params.albumId, creator: req.user._id })
-    if(!album) {
+    if (!album) {
         throw new LogicError(404, 'Album is not found');
     }
     res.status(200).send();
@@ -25,19 +25,19 @@ module.exports.deleteAlbum = async (req, res) => {
 module.exports.addPhoto = async (req, res) => {
     const photoId = req.body.photoId;
     const albumId = req.body.albumId;
-    const isAlbumExist = await Album.exists({_id: albumId});
-    const isPhotoExist = await Photo.exists({_id: photoId});
-    if(!isAlbumExist) {
+    const isAlbumExist = await Album.exists({ _id: albumId });
+    const isPhotoExist = await Photo.exists({ _id: photoId });
+    if (!isAlbumExist) {
         throw new LogicError(404, 'Album is not found');
     }
-    if(!isPhotoExist) {
+    if (!isPhotoExist) {
         throw new LogicError(404, 'Photo is not found');
     }
     await Album.findByIdAndUpdate(albumId, {
-        $addToSet: {photoIds: photoId}
+        $addToSet: { photoIds: photoId }
     });
     await Photo.findByIdAndUpdate(photoId, {
-        $addToSet: {albums: albumId}
+        $addToSet: { albums: albumId }
     });
     res.status(200).send();
 }
@@ -45,16 +45,34 @@ module.exports.addPhoto = async (req, res) => {
 module.exports.deletePhoto = async (req, res) => {
     const photoId = req.body.photoId;
     const albumId = req.body.albumId;
-    const isAlbumExist = await Album.exists({_id: albumId});
-    const photo = await Photo.exists({_id: photoId});
-    if(!isAlbumExist) {
+    const isAlbumExist = await Album.exists({ _id: albumId });
+    const photo = await Photo.exists({ _id: photoId });
+    if (!isAlbumExist) {
         throw new LogicError(404, 'Album is not found');
     }
-    if(!photo) {
+    if (!photo) {
         throw new LogicError(404, 'Photo is not found');
     }
     await Album.findByIdAndUpdate(albumId, {
-        $pull: {photoIds: photoId}
+        $pull: { photoIds: photoId }
     });
     res.status(200).send();
 }
+module.exports.viewAlbumMedia = async (req, res) => {
+    const albumId = req.params.albumId;
+    const album = await Album.findById(albumId).populate({
+        path: 'photoIds',
+        populate: [
+            {
+                path: 'creator'
+            },
+            {
+                path: 'tags'
+            }
+        ]
+    })
+    if(!album) throw new LogicError(404, 'Album is not found');
+    album.views++;
+    await album.save();
+    res.status(200).send({media: album.photoIds});
+};
