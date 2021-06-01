@@ -2,6 +2,7 @@ const express = require('express');
 const router = new express.Router();
 const photoController = require('../controllers/photoController');
 const auth = require('../middleware/authentication');
+const authOptional = require('../middleware/authentication');
 
 //Import Middlewares
 const {
@@ -59,7 +60,7 @@ router.delete(
 
 router.post(
     '/getDetails',
-    auth, 
+    authOptional, 
     validatePhotoId,
     validateRequest,
     photoController.getPhotoDetails

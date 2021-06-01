@@ -109,5 +109,5 @@ module.exports.getPhotoDetails = async (req, res) => {
         });
         photo.creator.isFollowing = isFollowing
     }
-    res.status(200).json(photo);
+    res.status(200).send(photo);
 };
