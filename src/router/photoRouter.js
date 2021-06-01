@@ -12,6 +12,7 @@ const {
     validatePhotoUpload,
     validateTag,
     validateComment,
+    validateCommentId,
 } = require('../middleware/request-validator');
 const { upload } = require('../middleware/photoMulterHandler');
 
@@ -68,6 +69,15 @@ router.post(
 );
 
 router.delete(
+    '/:photoId/comment',
+    auth,
+    validatePhotoIdParam,
+    validateCommentId,
+    validateRequest,
+    photoController.deleteComment
+);
+
+router.delete(
     '/delete/:photoId', 
     validatePhotoIdParam, 
     validateRequest, 
@@ -80,6 +90,7 @@ router.post(
     validatePhotoId,
     validateRequest,
     photoController.getPhotoDetails
+
 
 );
 module.exports = router;

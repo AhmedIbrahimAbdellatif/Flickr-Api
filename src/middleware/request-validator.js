@@ -103,6 +103,9 @@ const validateShowCaseDescription = [
         .isArray()
         .withMessage('Photos IDs Missing'),
 ];
+const validateCommentId = [
+    body('commentId').isMongoId().withMessage('Comment ID Missing'),
+];
 //Params Validations
 const validatePhotoIdParam = [
     param('photoId').isMongoId().withMessage('PhotoId is required'),
@@ -157,10 +160,10 @@ module.exports = {
     validateRegisterWithFacebook,
     validateTag,
     validateEditInfo,
-
     validateComment,
-
+    validateCommentId,
     validateShowCaseDescription,
     validateSearchKeywordParam,
+
 
 };
