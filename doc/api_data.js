@@ -3591,7 +3591,7 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/photo/whoFavortied/:photoId",
+    "url": "/photo/whoFavorited/:photoId",
     "title": "See who favorited",
     "name": "See_who_favorited",
     "group": "Photo",

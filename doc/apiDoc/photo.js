@@ -720,7 +720,7 @@
 ////////////////////////////////HIMA////////////////////
 /**
  * @apiUse AuthenticationOptional
- * @api {get} /photo/whoFavortied/:photoId See who favorited
+ * @api {get} /photo/whoFavorited/:photoId See who favorited
  * @apiName See who favorited
  * @apiGroup Photo
  * @apiVersion 1.0.0
