@@ -93,6 +93,13 @@ router.patch(
 );
 
 router.patch(
+    '/editProfilePhoto',
+    auth,
+    validatePhotoId,
+    validateRequest,
+    userController.editProfilePhoto
+);
+router.patch(
     '/:userId',
     auth,
     validateUserIdParam,
@@ -101,13 +108,6 @@ router.patch(
     userController.editShowCaseAndDescription
 );
 
-router.patch(
-    '/editProfilePhoto',
-    auth,
-    validatePhotoId,
-    validateRequest,
-    userController.editProfilePhoto
-);
 router.get(
     '/albums/:userId', 
     validateUserIdParam,
