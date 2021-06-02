@@ -9,7 +9,10 @@ const tagSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-
+  photo: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'Photo'
+  }
 }, {
     timestamps: true
 })

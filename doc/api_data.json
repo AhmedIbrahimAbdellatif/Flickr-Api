@@ -736,8 +736,8 @@
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
-    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
     "name": ""
   },
   {
@@ -4751,7 +4751,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\"\n         }\n     ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n     \"trendingTags\": [\n         {\n             \"count\": 120,\n             \"_id\": \"5349b4ddd2781d08c09890f4\",\n             \"name\": \"nature\",\n             \"photo\": {\n                 \"description\": \"Used to test edit photo endpoint\",\n                 \"tags\": [\n                     \"60b646b5713aa239148be8a2\",\n                     \"60b646b5713aa239148be8a3\",\n                     \"60b646b6713aa239148be8a4\",\n                     \"60b647455b90103070078df3\",\n                     \"60b647755b90103070078df4\",\n                     \"60b6483c9cd1194ad4d3e2fa\",\n                     \"60b6483c9cd1194ad4d3e2fb\",\n                     \"60b7a87073306f7fa83e53d6\",\n                     \"60b7ddf70b24f13da065deee\"\n                 ],\n                 \"comments\": [],\n                 \"views\": 4,\n                 \"favouriteCount\": 0,\n                 \"isPublic\": true,\n                 \"license\": \"None\",\n                 \"safety\": \"Safe\",\n                 \"contentType\": \"Photo\",\n                 \"allowCommenting\": true,\n                 \"albums\": [],\n                 \"_id\": \"60b63494d9e8252f94fbc9aa\",\n                 \"title\": \"Edit Photo test v4\",\n                 \"url\": \"http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b63494d9e8252f94fbc9a9.png\",\n                 \"creator\": \"60b5f47c2b026f150822c5fd\",\n                 \"createdAt\": \"2021-06-01T13:22:28.872Z\",\n                 \"updatedAt\": \"2021-06-02T19:37:27.683Z\",\n                 \"__v\": 0,\n                 \"commentsNum\": 0\n             }\n         }\n     ]\n}",
           "type": "json"
         }
       ]
