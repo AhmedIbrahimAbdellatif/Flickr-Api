@@ -10,7 +10,8 @@ const {
     validateSignUp,
     validateLogIn,
     validateUserEmailBody,
-    validateRegisterWithFacebook
+    validateRegisterWithFacebook,
+    validateResetPassword
 } = require('../middleware/requestValidator');
 
 router.post(
@@ -30,4 +31,5 @@ router.post('/logOut', auth, registerController.logOut);
 router.post('/changePassword', auth, validateChangePassword, validateRequest, registerController.changePassword);
 
 router.post('/forgetPassword', validateUserEmailBody, validateRequest, registerController.forgetPassword)
+router.post('/resetPassword', validateResetPassword, validateRequest, registerController.resetPassword)
 module.exports = router;

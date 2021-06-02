@@ -137,6 +137,15 @@ const validateAlbumParam = [
 
     param('albumId').isMongoId().withMessage('albumId is required'),
 ];
+const validateResetPassword = [
+    body('email').isEmail().withMessage('Email is required'),
+    body('newPass')
+    .isString()
+    .withMessage('New Password is required')
+    .isLength({ min: 8 })
+    .withMessage('New Password must be more than 8 characters'),
+    body('code').isString().withMessage("Code is required")
+]
 
 
 
@@ -183,5 +192,6 @@ module.exports = {
     validateSearchKeywordParam,
     validateEditAlbum,
     validateEditPhoto,
+    validateResetPassword
 
 };

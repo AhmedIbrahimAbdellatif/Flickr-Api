@@ -437,3 +437,57 @@
  *
  *     }
  */
+/**
+ * @api {post} /register/resetPassword Reset Password
+ * @apiName Reset Password
+ * @apiGroup Register
+ * @apiVersion 1.0.0
+ * @apiDescription Reset user password
+ * @apiParam {String} email Email whose password was forgetten
+ * @apiParam {String} newPass New user's password
+ * @apiParam {String} code User's code
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *
+ *     }
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     "email": "test@test.com",
+ *     "newPass": "asdsahdasda",
+ *     "code": "Asdasd"
+ * 
+ *
+ * @apiError (400) EmailMissing Email is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "Email is required"
+ *
+ *     }
+ * @apiError (400) NewPasswordMissing New Password is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "New Password is required"
+ *
+ *     }
+ * @apiError (400) CodeMissing Code is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "Code is required"
+ *
+ *     }
+ * @apiError (400) CodeIsInvalid Code is invalid
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *
+ *          "message": "Code is invalid"
+ *
+ *     }
+ */

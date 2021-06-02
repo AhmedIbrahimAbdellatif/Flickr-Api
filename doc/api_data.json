@@ -736,8 +736,8 @@
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
-    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "name": ""
   },
   {
@@ -4455,6 +4455,112 @@
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Password is required\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/register.js",
+    "groupTitle": "Register"
+  },
+  {
+    "type": "post",
+    "url": "/register/resetPassword",
+    "title": "Reset Password",
+    "name": "Reset_Password",
+    "group": "Register",
+    "version": "1.0.0",
+    "description": "<p>Reset user password</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email whose password was forgetten</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "newPass",
+            "description": "<p>New user's password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>User's code</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"email\": \"test@test.com\",\n    \"newPass\": \"asdsahdasda\",\n    \"code\": \"Asdasd\"",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "EmailMissing",
+            "description": "<p>Email is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "NewPasswordMissing",
+            "description": "<p>New Password is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "CodeMissing",
+            "description": "<p>Code is required</p>"
+          },
+          {
+            "group": "400",
+            "optional": false,
+            "field": "CodeIsInvalid",
+            "description": "<p>Code is invalid</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Email is required\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"New Password is required\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Code is required\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n\n     \"message\": \"Code is invalid\"\n\n}",
           "type": "json"
         }
       ]

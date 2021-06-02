@@ -142,3 +142,16 @@ module.exports.forgetPassword = async (req, res) => {
     await user.save();
     res.send({});
 };
+module.exports.resetPassword = async (req, res) => {
+    const { email,code ,newPass } = req.body;
+    const user = await User.findOne({
+        email,
+    }).select('+forgetPassCode +password');
+    if (!user) throw new LogicError(404, 'User not found');
+    if(!user.forgetPassCode || user.forgetPassCode !== code) throw new LogicError(400, 'Code is Invalid');
+
+    user.forgetPassCode = undefined;
+    user.password = newPass
+    await user.save();
+    res.send({});
+};
