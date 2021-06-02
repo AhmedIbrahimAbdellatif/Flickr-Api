@@ -3707,7 +3707,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "photo",
+            "field": "file",
             "description": "<p>A binary object containing the uploaded photo</p>"
           },
           {
@@ -3764,7 +3764,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"photo\" : <binary data>,\n  \"isPublic\": true,\n  \"title\": \"Cairo Tower\",\n  \"allowCommenting\": true,\n   \"license\": \"\",\n   \"contentType\":'',\n   \"tags\": \"snow,white,dog\"\n   \"safetyOption\":'',\n  \"description\": \"A photo of Cairo tower at the sunset\"\n}",
+          "content": "{\n  \"file\" : <binary data>,\n  \"isPublic\": true,\n  \"title\": \"Cairo Tower\",\n  \"allowCommenting\": true,\n   \"license\": \"\",\n   \"contentType\":'',\n   \"tags\": \"snow,white,dog\"\n   \"safetyOption\":'',\n  \"description\": \"A photo of Cairo tower at the sunset\"\n}",
           "type": "json"
         }
       ]

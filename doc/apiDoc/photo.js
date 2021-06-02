@@ -471,7 +471,7 @@
  * @apiGroup Photo
  * @apiVersion 1.0.0
  * @apiDescription Upload a photo by an authenticated user
- * @apiParam {String} photo A binary object containing the uploaded photo
+ * @apiParam {String} file A binary object containing the uploaded photo
  * @apiParam {Boolean} isPublic Boolean to control if it's a public or a private photo
  * @apiParam {String} title Title for the uploaded photo
  * @apiParam {Boolean} allowCommenting Boolean to allow for commenting on the photo
@@ -482,7 +482,7 @@
  * @apiParam {String} description Description for the uploaded photo
  * @apiParamExample {json} Request-Example:
  *     {
- *       "photo" : <binary data>,
+ *       "file" : <binary data>,
  *       "isPublic": true,
  *       "title": "Cairo Tower",
  *       "allowCommenting": true,
