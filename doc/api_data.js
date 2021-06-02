@@ -736,8 +736,8 @@ define({ "api": [
     "url": "",
     "version": "0.0.0",
     "filename": "doc/main.js",
-    "group": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
-    "groupTitle": "E:\\UNIVERSITY\\Semester 8\\Software Engineering\\project\\Flickr-Api\\doc\\main.js",
+    "group": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
+    "groupTitle": "E:\\University\\Software\\Project\\Code\\doc\\main.js",
     "name": ""
   },
   {
@@ -3299,7 +3299,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"photos\" : [\n              {\n               \"url\" : String,\n               \"title\" : String,\n               \"creator\" : {\n                 \"firstName\": \"Abdelrahman\",\n                 \"lastName\": \"Shahda\"\n               },\n               \"favouriteCount\" : Number\n               \"commentsNum\" : Number\n              },\n\n             ]\n}",
+          "content": "{\n        \"photos\": [{\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n      \"title\": \"Cat\",\n      \"description\": \"image description\",\n      \"tags\": [\"cat\",\"animals\"],\n      \"photoUrl\": 'https://www.google.com/photo'\n      \"views\": 1023,\n      \"favouriteCount\": 1023,\n      \"commentsNum\": 1023,\n      \"creator\": {\n         \"_id\": \"asdasda\",\n         \"userName\": \"asdasdas\"\n         \"firstName\": \"Abdelrahman\",\n         \"lastName\": \"Shahda\"\n       },\n      \"isPublic\": false,\n      \"allowCommenting\": true\n    }]\n}",
           "type": "json"
         }
       ]

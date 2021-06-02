@@ -83,19 +83,24 @@
  *
  * @apiSuccessExample {json} Success-Response:
  * {
- *     "photos" : [
- *               {
- *                "url" : String,
- *                "title" : String,
- *                "creator" : {
- *                  "firstName": "Abdelrahman",
- *                  "lastName": "Shahda"
- *                },
- *                "favouriteCount" : Number
- *                "commentsNum" : Number
- *               },
- *
- *              ]
+        "photos": [{
+ *       "_id": "5349b4ddd2781d08c09890f4",
+ *       "title": "Cat",
+ *       "description": "image description",
+ *       "tags": ["cat","animals"],
+ *       "photoUrl": 'https://www.google.com/photo'
+ *       "views": 1023,
+ *       "favouriteCount": 1023,
+ *       "commentsNum": 1023,
+ *       "creator": {
+ *          "_id": "asdasda",
+ *          "userName": "asdasdas"
+ *          "firstName": "Abdelrahman",
+ *          "lastName": "Shahda"
+ *        },
+ *       "isPublic": false,
+ *       "allowCommenting": true
+ *     }]
  * }
  */
 /**
