@@ -110,10 +110,14 @@ module.exports.getUserAbout = async (req, res) => {
     const user = await User.findById(req.params.userId)
         .populate({
             path: 'showCase.photos',
-            populate: {
+            populate: [{
                 path: 'creator',
                 select: 'firstName lastName _id userName',
             },
+            {
+                path: 'tags'
+            }
+            ],
         })
         .populate({
             path: 'numberOfFollowers',
@@ -142,6 +146,8 @@ module.exports.getUserPhotoStream = async (req, res) => {
     const photos = await Photo.find({
         creator: req.params.userId,
         isPublic: true,
+    }).populate({
+        path:'tags'
     })
         .populate({
             path: 'creator',

@@ -87,7 +87,11 @@
  *       "_id": "5349b4ddd2781d08c09890f4",
  *       "title": "Cat",
  *       "description": "image description",
- *       "tags": ["cat","animals"],
+ *       "tags":  [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": 1
+ *              }],
  *       "photoUrl": 'https://www.google.com/photo'
  *       "views": 1023,
  *       "favouriteCount": 1023,
@@ -326,7 +330,7 @@
  *         "tags": [{
  *                  "_id": "12321",
  *                  "name": "Gamed",
- *                  "count": "Asdasd"
+ *                  "count": 1
  *              }],
  *         "views": 1023,
  *         "favouriteCount": 1023,
@@ -374,10 +378,10 @@
  *     HTTP/1.1 200 OK
  *     {
  *         "_id": "5349b4ddd2781d08c09890f4",
- *         "tags": "tags": [{
+ *         "tags":  [{
  *                  "_id": "12321",
  *                  "name": "Gamed",
- *                  "count": "Asdasd"
+ *                  "count": 1
  *              }],
  *         "views": 1023,
  *         "favouriteCount": 1023,
@@ -439,7 +443,7 @@
  *         "tags": [{
  *                  "_id": "12321",
  *                  "name": "Gamed",
- *                  "count": "Asdasd"
+ *                  "count": 123
  *              }],
  *         "views": 1023,
  *         "favouriteCount": 1023,
@@ -721,7 +725,7 @@
  *               "tags": [{
  *                  "_id": "12321",
  *                  "name": "Gamed",
- *                  "count": "Asdasd"
+ *                  "count": 2
  *              }],
  *               "views": 1023,
  *               "favouriteCount": 1023,

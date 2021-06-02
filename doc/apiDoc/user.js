@@ -274,7 +274,11 @@
  *       "_id": "5349b4ddd2781d08c09890f4",
  *       "title": "Cat",
  *       "description": "image description",
- *       "tags": ["cat","animals"],
+ *       "tags":  [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": 1
+ *              }],,
  *       "photoUrl": 'https://www.google.com/photo'
  *       "views": 1023,
  *       "favouriteCount": 1023,
@@ -798,7 +802,11 @@
  *       "cameraRoll": [
  *          {
  *             "_id": "5349b4ddd2781d08c09890f4",
- *               "tags": ["Tower","Egypt"],
+ *               "tags":  [{
+ *                  "_id": "12321",
+ *                  "name": "Gamed",
+ *                  "count": "Asdasd"
+ *              }],,
  *               "views": 1023,
  *               "favouriteCount": 1023,
  *               "commentsNum": 1023,

@@ -84,7 +84,7 @@
  *               "tags": [{
  *                  "_id": "12321",
  *                  "name": "Gamed",
- *                  "count": "Asdasd"
+ *                  "count": 1
  *              }],
  *               "views": 1023,
  *               "favouritesNum": 1023,
