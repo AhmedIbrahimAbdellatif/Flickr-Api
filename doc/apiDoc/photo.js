@@ -725,11 +725,6 @@
  * @apiGroup Photo
  * @apiVersion 1.0.0
  * @apiDescription View who made a certain media favorite
- * @apiParam {String} photoId ID of the photo
- * @apiParamExample {json} Request-Example:
- * {
- *     photoId: "60953562224d432a505e8d07"
- * }
  * @apiSuccess {Object[]]} user Array of users who made the media favorite
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK

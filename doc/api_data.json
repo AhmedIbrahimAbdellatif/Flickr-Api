@@ -3597,26 +3597,6 @@
     "group": "Photo",
     "version": "1.0.0",
     "description": "<p>View who made a certain media favorite</p>",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "photoId",
-            "description": "<p>ID of the photo</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    photoId: \"60953562224d432a505e8d07\"\n}",
-          "type": "json"
-        }
-      ]
-    },
     "success": {
       "fields": {
         "Success 200": [
