@@ -243,6 +243,8 @@ module.exports.editPhoto = async (req,res) =>{
 module.exports.explorePhotos = async(req,res) => {
     const photos = await Photo.find({}).sort({'createdAt':-1}).populate({
         path:'creator'
+    }).populate({
+        path:'tags'
     });
     res.send({photos});
 

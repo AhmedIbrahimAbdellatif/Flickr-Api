@@ -18,32 +18,30 @@
  * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 Success
  * {
- *     followers : [
- *                  {
- *                        "_id":'60953562224d432a505e8d07',
- *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim',
- *              "userName": "Kim",
- *              "profilePhotoUrl": "https://img.jpg",
- *              "numberOfPhotos": 123,
- *              "numberOfFollowers": 123,
- *              "numberOfFollowings": 123
- *              "isFollowing": false,
- *              "createdAt":  String
- *                  },
- *                  {
- *                     "_id":'60953562224d432a505e8d07',
- *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim',
- *              "userName": "Kim",
- *              "profilePhotoUrl": "https://img.jpg",
- *              "numberOfPhotos": 123,
- *              "numberOfFollowers": 123,
- *              "numberOfFollowings": 123
- *              "isFollowing": false,
- *              "createdAt":  String
- *                  },
- *                 ]
+ *    "followers": [
+        {
+            "description": "",
+            "occupation": "",
+            "homeTown": "",
+            "currentCity": "",
+            "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+            "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+            "_id": "60b5f3e483681736e0959605",
+            "email": "coolabdoana@yahoo.com",
+            "firstName": "Abdelrhman",
+            "lastName": "Shahda",
+            "userName": "coolabdoana",
+            "age": 21,
+            "createdAt": "2021-06-01T08:46:28.064Z",
+            "updatedAt": "2021-06-01T08:46:28.064Z",
+            "__v": 0,
+            "numberOfFollowers": 1,
+            "numberOfPhotos": 0,
+            "id": "60b5f3e483681736e0959605",
+            "numberOfFollowings": 0,
+            "isFollowing": false
+        }
+    ]
  * }
  * @apiError (404) UserNotFound This user is not found
  * @apiErrorExample {json} Error-Response:
@@ -80,32 +78,30 @@
  * @apiSuccessExample {json} Success-Response:
  * HTTP/1.1 200 Success
  * {
- *     following : [
- *                  {
- *                        "_id":'60953562224d432a505e8d07',
- *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim',
- *              "userName": "Kim",
- *              "profilePhotoUrl": "https://img.jpg",
- *              "numberOfPhotos": 123,
- *              "numberOfFollowers": 123,
- *              "numberOfFollowings": 123
- *              "isFollowing": false,
- *              "createdAt":  String
- *                  },
- *                  {
- *                        "_id":'60953562224d432a505e8d07',
- *              "firstName":'Ahmed',
- *              "lastName":'Ibrahim',
- *              "userName": "Kim",
- *              "profilePhotoUrl": "https://img.jpg",
- *              "numberOfPhotos": 123,
- *              "numberOfFollowers": 123,
- *              "numberOfFollowings": 123
- *              "isFollowing": false,
- *              "createdAt":  String
- *                  },
- *                 ]
+ *     "following": [
+        {
+            "description": "",
+            "occupation": "",
+            "homeTown": "",
+            "currentCity": "",
+            "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+            "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+            "_id": "60b5f3e483681736e0959605",
+            "email": "coolabdoana@yahoo.com",
+            "firstName": "Abdelrhman",
+            "lastName": "Shahda",
+            "userName": "coolabdoana",
+            "age": 21,
+            "createdAt": "2021-06-01T08:46:28.064Z",
+            "updatedAt": "2021-06-01T08:46:28.064Z",
+            "__v": 0,
+            "numberOfFollowers": 1,
+            "numberOfPhotos": 0,
+            "id": "60b5f3e483681736e0959605",
+            "numberOfFollowings": 0,
+            "isFollowing": false
+        }
+    ]
  * }
  *
  * @apiError (404) This user is not found
@@ -271,25 +267,50 @@
  *     HTTP/1.1 200 OK
  * {
  *     "photos": [{
- *       "_id": "5349b4ddd2781d08c09890f4",
- *       "title": "Cat",
- *       "description": "image description",
- *       "tags":  [{
- *                  "_id": "12321",
- *                  "name": "Gamed",
- *                  "count": 1
- *              }],,
- *       "photoUrl": 'https://www.google.com/photo'
- *       "views": 1023,
- *       "favouriteCount": 1023,
- *       "commentsNum": 1023,
- *       "creator": {
- *          "firstName": "Abdelrahman",
- *          "lastName": "Shahda"
- *        },
- *       "isPublic": false,
- *       "allowCommenting": true
- *     }]
+            "description": "Used to test edit photo endpoint",
+            "tags": [],
+            "comments": [],
+            "views": 3,
+            "favouriteCount": 0,
+            "isPublic": true,
+            "license": "None",
+            "safety": "Safe",
+            "contentType": "Photo",
+            "allowCommenting": true,
+            "albums": [],
+            "_id": "60b63494d9e8252f94fbc9aa",
+            "title": "Edit Photo test v4",
+            "url": "http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b63494d9e8252f94fbc9a9.png",
+            "creator": {
+                "showCase": {
+                    "title": "Showcase",
+                    "photos": []
+                },
+                "description": "",
+                "occupation": "",
+                "homeTown": "",
+                "currentCity": "",
+                "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "_id": "60b5f47c2b026f150822c5fd",
+                "email": "test@test.com",
+                "firstName": "Abdelrahman",
+                "lastName": "Shahda",
+                "userName": "test",
+                "age": 22,
+                "createdAt": "2021-06-01T08:49:00.059Z",
+                "updatedAt": "2021-06-01T11:33:15.837Z",
+                "__v": 1,
+                "id": "60b5f47c2b026f150822c5fd",
+                "numberOfFollowers": 0,
+                "numberOfFollowings": 1,
+                "isFollowing": false
+            },
+            "createdAt": "2021-06-01T13:22:28.872Z",
+            "updatedAt": "2021-06-01T16:40:25.424Z",
+            "__v": 0,
+            "commentsNum": 0
+        }]
  * }
  
  */
@@ -591,13 +612,16 @@
  *     {
  *       "albums": [
  *          {
- *              "_id": "5349b4ddd2781d08c09890f4",
- *               "title": "Paris pics",
- *               "description": "Paris pics 2019"
- *               "creator": "2149b4ddd2781d08c09890a1",
- *               "views": 1023,
- *               "numberOfPhotos": 6,
- *          },
+            "views": 2,
+            "description": "Used for testing the edit album endpoint",
+            "_id": "60b624781b913c19185a8403",
+            "title": "editAlbumTest",
+            "creator": "60b5f47c2b026f150822c5fd",
+            "createdAt": "2021-06-01T12:13:44.299Z",
+            "updatedAt": "2021-06-01T13:08:29.540Z",
+            "__v": 0,
+            "numberOfPhotos": 1
+        }
  *       ]
  *     }
  * @apiError (404) UserNotFound  The id of the user wasn't found
@@ -695,43 +719,32 @@
  *  @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
- *       "user":{
- *          "showcase": 
- *         {
- *          title: String
- *          photos: [
- *          {
- *               "_id": "5349b4ddd2781d08c09890f4",
- *               "tags": ["Tower","Egypt"],
- *               "views": 1023,
- *               "favouriteCount": 1023,
- *               "commentsNum": 1023,
- *               "creator": {
- *                   "firstName": "Ahmed",
- *                   "lastName": "Ibrahim"
- *               },
- *               "url": '',
- *               "title": 'Cairo Tower',
- *               "description": 'Cairo tower at the sunset'
- *          },
- *       ],
- *       "description": "A talented photographer",
- *        
- *        "firstName": "",
- *        "LastName": "",
- *        "userName": "",
- *        "email": "asdasd@test.com",
- *        "occupation": "",
- *        "currentCity": "",
- *        "homeTown": "",
-
- *        "createdAt": "" ,
- *        "coverPhotoUrl": "",
- *        "profilePhotoUrl": "",
- *        "numberOfFollowers": 12,
- *        "numberOfFollowings": 12,
- *        "isFollowing": false
- * }   
+ *       "user": {
+        "showCase": {
+            "title": "Showcase",
+            "photos": []
+        },
+        "description": "",
+        "occupation": "",
+        "homeTown": "",
+        "currentCity": "",
+        "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+        "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+        "_id": "60b5f47c2b026f150822c5fd",
+        "email": "test@test.com",
+        "firstName": "Abdelrahman",
+        "lastName": "Shahda",
+        "userName": "test",
+        "age": 22,
+        "createdAt": "2021-06-01T08:49:00.059Z",
+        "updatedAt": "2021-06-01T11:33:15.837Z",
+        "__v": 1,
+        "numberOfFollowers": 0,
+        "numberOfPhotos": 132,
+        "id": "60b5f47c2b026f150822c5fd",
+        "numberOfFollowings": 1,
+        "isFollowing": false
+    }
  *     }
  * @apiError (404) User Not Found
  *  @apiErrorExample {json} Error-Response:
@@ -801,25 +814,50 @@
  *     {
  *       "cameraRoll": [
  *          {
- *             "_id": "5349b4ddd2781d08c09890f4",
- *               "tags":  [{
- *                  "_id": "12321",
- *                  "name": "Gamed",
- *                  "count": "Asdasd"
- *              }],,
- *               "views": 1023,
- *               "favouriteCount": 1023,
- *               "commentsNum": 1023,
- *               "creator": {
- *                   "firstName": "Ahmed",
- *                   "lastName": "Ibrahim"
- *               },
- *               "url": '',
- *               "title": 'Cairo Tower',
- *               "description": 'Cairo tower at the sunset',
- *               "isPublic": false,
- *               "allowCommenting": true
- *          },
+            "description": "Used to test edit photo endpoint",
+            "tags": [],
+            "comments": [],
+            "views": 3,
+            "favouriteCount": 0,
+            "isPublic": true,
+            "license": "None",
+            "safety": "Safe",
+            "contentType": "Photo",
+            "allowCommenting": true,
+            "albums": [],
+            "_id": "60b63494d9e8252f94fbc9aa",
+            "title": "Edit Photo test v4",
+            "url": "http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b63494d9e8252f94fbc9a9.png",
+            "creator": {
+                "showCase": {
+                    "title": "Showcase",
+                    "photos": []
+                },
+                "description": "",
+                "occupation": "",
+                "homeTown": "",
+                "currentCity": "",
+                "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "_id": "60b5f47c2b026f150822c5fd",
+                "email": "test@test.com",
+                "firstName": "Abdelrahman",
+                "lastName": "Shahda",
+                "userName": "test",
+                "age": 22,
+                "createdAt": "2021-06-01T08:49:00.059Z",
+                "updatedAt": "2021-06-01T11:33:15.837Z",
+                "__v": 1,
+                "id": "60b5f47c2b026f150822c5fd",
+                "numberOfFollowers": 0,
+                "numberOfFollowings": 1,
+                "isFollowing": false
+            },
+            "createdAt": "2021-06-01T13:22:28.872Z",
+            "updatedAt": "2021-06-01T16:40:25.424Z",
+            "__v": 0,
+            "commentsNum": 0
+        }
  *       ],
  *     }
  * @apiParamExample {json} Request-Example:

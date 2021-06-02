@@ -150,8 +150,7 @@ module.exports.getUserPhotoStream = async (req, res) => {
         path:'tags'
     })
         .populate({
-            path: 'creator',
-            select: 'firstName lastName _id',
+            path: 'creator',            
         })
         .exec();
 
@@ -266,7 +265,6 @@ module.exports.viewCameraRoll = async (req, res) => {
     })
         .populate({
             path: 'creator',
-            select: 'firstName lastName _id',
         });
 
     res.status(200).send({ cameraRoll: photos});
