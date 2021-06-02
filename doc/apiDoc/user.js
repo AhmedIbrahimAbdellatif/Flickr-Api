@@ -322,10 +322,6 @@
  * @apiGroup User
  * @apiVersion 1.0.0
  * @apiDescription Return a certain User photostream
- * @apiParamExample {json} Request-Example:
- * {
- *     userId: "5349b4ddd2781d08c09890f4"
- * }
  * @apiError (404) UserNotFound  The id of the user wasn't found
  * @apiErrorExample {json} Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -860,10 +856,6 @@
         }
  *       ],
  *     }
- * @apiParamExample {json} Request-Example:
- * {
- *     userId: "5349b4ddd2781d08c09890f4"
- * }
  *
  * @apiError (404) UserNotFound  The id of the user wasn't found
  * @apiErrorExample {json} Error-Response:

@@ -6137,15 +6137,6 @@ define({ "api": [
     "group": "User",
     "version": "1.0.0",
     "description": "<p>Return a certain User photostream</p>",
-    "parameter": {
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    userId: \"5349b4ddd2781d08c09890f4\"\n}",
-          "type": "json"
-        }
-      ]
-    },
     "error": {
       "fields": {
         "400": [
@@ -6636,15 +6627,6 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "    HTTP/1.1 200 OK\n{\n    \"photos\": [{\n            \"description\": \"Used to test edit photo endpoint\",\n            \"tags\": [],\n            \"comments\": [],\n            \"views\": 3,\n            \"favouriteCount\": 0,\n            \"isPublic\": true,\n            \"license\": \"None\",\n            \"safety\": \"Safe\",\n            \"contentType\": \"Photo\",\n            \"allowCommenting\": true,\n            \"albums\": [],\n            \"_id\": \"60b63494d9e8252f94fbc9aa\",\n            \"title\": \"Edit Photo test v4\",\n            \"url\": \"http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b63494d9e8252f94fbc9a9.png\",\n            \"creator\": {\n                \"showCase\": {\n                    \"title\": \"Showcase\",\n                    \"photos\": []\n                },\n                \"description\": \"\",\n                \"occupation\": \"\",\n                \"homeTown\": \"\",\n                \"currentCity\": \"\",\n                \"coverPhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n                \"profilePhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n                \"_id\": \"60b5f47c2b026f150822c5fd\",\n                \"email\": \"test@test.com\",\n                \"firstName\": \"Abdelrahman\",\n                \"lastName\": \"Shahda\",\n                \"userName\": \"test\",\n                \"age\": 22,\n                \"createdAt\": \"2021-06-01T08:49:00.059Z\",\n                \"updatedAt\": \"2021-06-01T11:33:15.837Z\",\n                \"__v\": 1,\n                \"id\": \"60b5f47c2b026f150822c5fd\",\n                \"numberOfFollowers\": 0,\n                \"numberOfFollowings\": 1,\n                \"isFollowing\": false\n            },\n            \"createdAt\": \"2021-06-01T13:22:28.872Z\",\n            \"updatedAt\": \"2021-06-01T16:40:25.424Z\",\n            \"__v\": 0,\n            \"commentsNum\": 0\n        }]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "parameter": {
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n    userId: \"5349b4ddd2781d08c09890f4\"\n}",
           "type": "json"
         }
       ]
