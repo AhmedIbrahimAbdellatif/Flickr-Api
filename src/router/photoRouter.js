@@ -35,6 +35,14 @@ router.post(
     photoController.addToFavorites
 );
 
+router.delete(
+    '/deleteFromFavorites',
+    auth,
+    validatePhotoId,
+    validateRequest,
+    photoController.deleteFromFavorites
+);
+
 
 router.patch(
     '/addTags/:photoId',
