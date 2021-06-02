@@ -21,6 +21,7 @@ module.exports.uploadPhoto = async (req, res) => {
     photo.favouriteCount = 0;
     var tagNames = []
     if(req.body.tags) {
+        req.body.tags = req.body.tags.toString().replaceAll(/[\s\t\n\r]+/g, ''),
         tagNames = req.body.tags.split(',');
     }
     for(let i = 0;i<tagNames.length;i++){
