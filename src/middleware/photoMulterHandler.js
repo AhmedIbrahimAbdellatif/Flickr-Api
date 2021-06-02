@@ -24,7 +24,7 @@ storage = multer.diskStorage({
 module.exports.upload = multer({
     storage: storage,
     limits: {
-        fileSize: 1000000,
+        fileSize: 10000000,
     },
     fileFilter(req, file, callback) {
         if (!file.originalname.match(/\.(png|jpg|tiff)$/i)) {
