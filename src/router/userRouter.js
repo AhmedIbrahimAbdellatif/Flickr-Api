@@ -99,6 +99,11 @@ router.patch(
     validateRequest,
     userController.editProfilePhoto
 );
+router.get(
+    '/cameraRoll',
+    auth,
+    userController.viewCameraRoll
+);
 router.patch(
     '/:userId',
     auth,
@@ -108,15 +113,11 @@ router.patch(
     userController.editShowCaseAndDescription
 );
 
+
 router.get(
     '/albums/:userId', 
     validateUserIdParam,
     validateRequest,
     userController.viewUserAlbums
     );
-router.get(
-    '/cameraRoll',
-    auth,
-    userController.viewCameraRoll
-);
 module.exports = router;
