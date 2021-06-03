@@ -20,7 +20,7 @@ module.exports.signUp = async (req, res, next) => {
         age,
     });
     const token = newUser.signToken(newUser._id);
-    await user.populate({
+    await newUser.populate({
         path:'numberOfPhotos'
     }).execPopulate();
     res.status(201).json({
@@ -50,7 +50,7 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
         return;
     }else{
         const userName = userData.email.split('@')[0];
-        const password = await await crypto.randomBytes(11).toString('hex');
+        const password = await  crypto.randomBytes(11).toString('hex');
         const user = await User.create({
             email:userData.email,
             password,
