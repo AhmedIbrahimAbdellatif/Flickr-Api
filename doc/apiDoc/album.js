@@ -184,3 +184,17 @@
  *     }
  *
  */
+/**
+ * @apiUse Authentication
+ * @api {post} /album/deleteAlbum/:albumId   Delete Album
+ * @apiName Delete Album
+ * @apiGroup Album
+ * @apiVersion  1.0.0
+ * @apiError (404) Album Not Found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *          "message": "Album Not Found"
+ *     }
+ *
+ */

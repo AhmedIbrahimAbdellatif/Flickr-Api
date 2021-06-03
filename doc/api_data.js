@@ -379,6 +379,101 @@ define({ "api": [
     }
   },
   {
+    "type": "post",
+    "url": "/album/deleteAlbum/:albumId",
+    "title": "Delete Album",
+    "name": "Delete_Album",
+    "group": "Album",
+    "version": "1.0.0",
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "Album",
+            "description": "<p>Not Found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n     \"message\": \"Album Not Found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/album.js",
+    "groupTitle": "Album",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "patch",
     "url": "/album/:albumId",
     "title": "Edit an album",
@@ -3001,6 +3096,144 @@ define({ "api": [
         {
           "title": "Error-Response:",
           "content": "HTTP/1.1 404 Not Found\n{\n    \"message\": \"This user is not found\"\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"Token may be Invalid or Expired! Please log in to continue\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token does not exist\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"The user that belongs to this token changed his password recently! Please reLogin\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 401 unauthorized\n{\n\n  \"message\": \"You are not logged in! Please log in to continue\"\n\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "doc/apiDoc/photo.js",
+    "groupTitle": "Photo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/photo/deleteFromFavorites",
+    "title": "Delete from Favorites",
+    "name": "Delete_from_Favorites",
+    "group": "Photo",
+    "version": "1.0.0",
+    "description": "<p>Delete a photo from favorites</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "photoId",
+            "description": "<p>ID of the photo to be removed from favorites</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    photoId: \"60b8023e9d236a2b4419e7d3\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n{\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "PhotoIdMissing",
+            "description": "<p>This Photo is required</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidToken",
+            "description": "<p>Token May be Expired or Invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserDeleted",
+            "description": "<p>The user linked to this token does no longer exist</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "UserChangedPassword",
+            "description": "<p>The user Linked to this token changed his password recently therefore token is no longer valid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "unauthorized",
+            "description": "<p>User is not authorized</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "PhotoNotFound",
+            "description": "<p>The id of the photo wasn't found</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n\n \"message\": \"Photo Not Found\"\n\n}",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n   \"message\" : \"PhotoId is required\"\n}",
           "type": "json"
         },
         {
@@ -5850,7 +6083,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"favorites\": [\n     {\n          \"_id\": \"5349b4ddd2781d08c09890f4\",\n          \"tags\": [\"Tower\",\"Egypt\"],\n          \"views\": 1023,\n          \"favouriteCount\": 0,\n          \"commentsNum\": 1023,\n          \"creator\": {\n              \"_id\": \"60928e30456b633130df176d\",\n              \"firstName\": \"Ahmed\",\n              \"lastName\": \"Ibrahim\"\n          },\n          \"url\": '',\n          \"title\": 'Cairo Tower',\n          \"description\": 'Cairo tower at the sunset'\n     },\n  ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"favorites\": [\n    {\n        \"description\": \"\",\n        \"tags\": [\n            {\n                \"count\": 6,\n                \"_id\": \"60b7ddf70b24f13da065deee\",\n                \"name\": \"one\",\n                \"createdAt\": \"2021-06-02T19:37:27.474Z\",\n                \"updatedAt\": \"2021-06-02T22:24:06.160Z\",\n                \"__v\": 0\n            },\n            {\n                \"count\": 2,\n                \"_id\": \"60b8023f73306f7fa8844401\",\n                \"name\": \"twom\",\n                \"__v\": 0,\n                \"createdAt\": \"2021-06-02T22:12:15.112Z\",\n                \"updatedAt\": \"2021-06-02T22:24:06.264Z\"\n            },\n            {\n                \"count\": 2,\n                \"_id\": \"60b8023f73306f7fa8844414\",\n                \"name\": \"threse\",\n                \"__v\": 0,\n                \"createdAt\": \"2021-06-02T22:12:15.202Z\",\n                \"updatedAt\": \"2021-06-02T22:24:06.367Z\"\n            },\n            {\n                \"count\": 2,\n                \"_id\": \"60b8023f73306f7fa8844439\",\n                \"name\": \"         thrw\",\n                \"__v\": 0,\n                \"createdAt\": \"2021-06-02T22:12:15.291Z\",\n                \"updatedAt\": \"2021-06-02T22:24:06.467Z\"\n            },\n            {\n                \"count\": 2,\n                \"_id\": \"60b8023f73306f7fa8844449\",\n                \"name\": \"test1\",\n                \"__v\": 0,\n                \"createdAt\": \"2021-06-02T22:12:15.382Z\",\n                \"updatedAt\": \"2021-06-02T22:24:06.565Z\"\n            }\n        ],\n        \"comments\": [],\n        \"views\": 0,\n        \"favouriteCount\": 1,\n        \"isPublic\": true,\n        \"license\": \"None\",\n        \"safety\": \"Safe\",\n        \"contentType\": \"Photo\",\n        \"allowCommenting\": true,\n        \"albums\": [],\n        \"_id\": \"60b8023e9d236a2b4419e7d3\",\n        \"title\": \"test109\",\n        \"url\": \"http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b8023e9d236a2b4419e7d2.jpg\",\n        \"creator\": {\n            \"showCase\": {\n                \"title\": \"Showcase\",\n                \"photos\": []\n            },\n            \"description\": \"\",\n            \"occupation\": \"\",\n            \"homeTown\": \"\",\n            \"currentCity\": \"\",\n            \"coverPhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n            \"profilePhotoUrl\": \"http://localhost:3000/public/images/default/8.jpeg\",\n            \"_id\": \"60b5f47c2b026f150822c5fd\",\n            \"email\": \"test@test.com\",\n            \"firstName\": \"Abdelrahman\",\n            \"lastName\": \"Shahda\",\n            \"userName\": \"test\",\n            \"age\": 22,\n            \"createdAt\": \"2021-06-01T08:49:00.059Z\",\n            \"updatedAt\": \"2021-06-03T08:27:41.671Z\",\n            \"__v\": 14,\n            \"id\": \"60b5f47c2b026f150822c5fd\",\n            \"numberOfFollowers\": 0,\n            \"numberOfFollowings\": 1,\n            \"isFollowing\": false\n        },\n        \"createdAt\": \"2021-06-02T22:12:15.484Z\",\n        \"updatedAt\": \"2021-06-03T08:27:41.751Z\",\n        \"__v\": 0,\n        \"commentsNum\": 0\n    },\n  ]\n}",
           "type": "json"
         },
         {
