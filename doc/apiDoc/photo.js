@@ -674,6 +674,38 @@
  *     }
  *
  */
+/**
+ * @apiUse Authentication
+ * @api {delete} /photo/deleteFromFavorites Delete from Favorites
+ * @apiName Delete from Favorites
+ * @apiGroup Photo
+ * @apiVersion 1.0.0
+ * @apiDescription Delete a photo from favorites
+ * @apiParam {String} photoId ID of the photo to be removed from favorites
+ * @apiParamExample {json} Request-Example:
+ * {
+ *     photoId: "60b8023e9d236a2b4419e7d3"
+ * }
+ *  @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ * {
+ * }
+ * @apiError (404) PhotoNotFound  The id of the photo wasn't found
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *
+ *      "message": "Photo Not Found"
+ *
+ *     }
+ * @apiError (400) PhotoIdMissing This Photo is required
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *        "message" : "PhotoId is required"
+ *     }
+ *
+ */
 /////////////////////////KARIM//////////////////////////
 /**
  * @apiUse Authentication

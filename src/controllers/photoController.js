@@ -62,6 +62,20 @@ module.exports.addToFavorites = async (req, res) => {
     res.send();
 };
 
+module.exports.deleteFromFavorites = async (req, res) => {
+    const photo = await Photo.findById(req.body.photoId);
+    if (!photo) {
+        throw new LogicError(404, 'Photo is not found');
+    }
+    if (req.user.favourites.includes(photo._id)) {
+        req.user.favourites.pull(photo._id);
+        await req.user.save();
+        photo.favouriteCount = photo.favouriteCount - 1;
+        await photo.save();
+    }
+    res.send();
+};
+
 module.exports.whoFavorited = async (req, res) => {
     const photo = await Photo.findById(req.params.photoId);
     if (!photo) {
