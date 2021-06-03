@@ -666,8 +666,8 @@ define({ "api": [
     "groupTitle": "Album"
   },
   {
-    "type": "post",
-    "url": "/album/removePhoto",
+    "type": "delete",
+    "url": "/album/deletePhoto",
     "title": "Remove photo from album",
     "name": "Remove_photo_from_album",
     "group": "Album",
@@ -695,15 +695,6 @@ define({ "api": [
         {
           "title": "Request-Example:",
           "content": "{\n    photoId : \"5349b4ddd2781d08c09890f4\"\n    albumId : \"5349b4ddd2781d08c09890f4\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "{\n    message : \"Photo removed successfully\"\n}",
           "type": "json"
         }
       ]

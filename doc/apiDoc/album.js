@@ -149,7 +149,7 @@
  */
 /**
  * @apiUse Authentication
- * @api {post} /album/deletePhoto         Remove photo from album
+ * @api {delete} /album/deletePhoto         Remove photo from album
  * @apiName Remove photo from album
  * @apiGroup Album
  * @apiVersion  1.0.0
