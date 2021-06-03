@@ -65,7 +65,10 @@ const photoSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
-      albums: [{
+        isFavourite:{
+            type:Boolean
+        },
+        albums: [{
         type: [mongoose.SchemaTypes.ObjectId],
         ref: 'Album',
         default: []
@@ -78,6 +81,8 @@ const photoSchema = new mongoose.Schema(
             transform: function (doc, ret, options) {
                 ret.favouriteCount;
                 ret.commentsNum = ret.comments.length;
+                if(!ret.isFavourite)
+                    ret.isFavourite = false
             },
         },
 

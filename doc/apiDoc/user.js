@@ -613,6 +613,7 @@
             },
             "createdAt": "2021-06-02T22:12:15.484Z",
             "updatedAt": "2021-06-03T08:27:41.751Z",
+            "isFavourite": false,
             "__v": 0,
             "commentsNum": 0
         },

@@ -23,6 +23,14 @@ module.exports.getFavorites = async (req, res) => {
             path:'tags'
         })
         .exec();
+    if(req.user){
+        for(let i =0;i<photos.length;i++){
+            req.user.favourites.forEach((id)=> {
+                if(id.toString()=== photos[i].id.toString())
+                    photos[i].isFavourite = true
+            })
+        }
+    }
     res.send({ favorites: photos });
 };
 module.exports.followUser = async (req, res) => {

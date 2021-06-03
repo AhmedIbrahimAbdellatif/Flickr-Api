@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const albumController = require('../controllers/albumController');
-const {auth} = require('../middleware/authentication');
+const {auth,authOptional} = require('../middleware/authentication');
 
 //Import Middlewares
 const {
@@ -17,7 +17,7 @@ router.post('/createAlbum', auth, validateCreateAlbum, validateRequest ,albumCon
 router.delete('/deleteAlbum/:albumId', auth, validateAlbumParam, validateRequest, albumController.deleteAlbum);
 router.post('/addPhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.addPhoto);
 router.delete('/deletePhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.deletePhoto);
-router.get('/:albumId', validateAlbumParam, validateRequest, albumController.viewAlbumMedia);
+router.get('/:albumId',authOptional, validateAlbumParam, validateRequest, albumController.viewAlbumMedia);
 router.patch('/:albumId', validateAlbumParam, validateEditAlbum, validateRequest, albumController.editAlbum);
 
 module.exports = router;

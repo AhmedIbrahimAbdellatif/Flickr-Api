@@ -82,38 +82,61 @@
  *     HTTP/1.1 200 OK
  *     {
  *      "media": [
- *       {
- *           "description": "",
- *           "tags": [
- *               "60b596e63e57db3fe858f46c",
- *               "60b596ec3e57db3fe858f46d",
- *               "60b596f03e57db3fe858f46e"
- *           ],
- *           "comments": [
- *               "60b5df64bc0b9e3c283fa482",
- *               "60b5df67bc0b9e3c283fa483",
- *               "60b5df70bc0b9e3c283fa484",
- *               "60b5e3317214fe0f8485fa89",
- *               "60b5e33e7214fe0f8485fa8a",
- *               "60b5e33f7214fe0f8485fa8b"
- *           ],
- *           "views": 0,
- *           "favouriteCount": 0,
- *           "isPublic": true,
- *           "license": "None",
- *           "safety": "Safe",
- *           "allowCommenting": true,
- *           "_id": "60b5969764664624dc230989",
- *           "albums": [],
- *           "contentType": "Photo",
- *           "title": "test100",
- *           "url": "http://localhost:3000/public/images/60b48a649f4f7a3e5c45aee4/60b5969764664624dc230988.png",
- *           "creator": "60b48a649f4f7a3e5c45aee4",
- *           "createdAt": "2021-06-01T02:08:23.334Z",
- *           "updatedAt": "2021-06-01T07:35:27.359Z",
- *           "__v": 0,
- *           "commentsNum": 6
- *       }
+ *      {
+            "description": "Used to test edit photo endpoint",
+            "tags": [
+                {
+                    "count": 7,
+                    "_id": "60b7ddf70b24f13da065deee",
+                    "name": "one",
+                    "createdAt": "2021-06-02T19:37:27.474Z",
+                    "updatedAt": "2021-06-03T20:08:54.661Z",
+                    "__v": 0
+                }
+            ],
+            "comments": [],
+            "views": 4,
+            "favouriteCount": 0,
+            "isPublic": true,
+            "license": "None",
+            "safety": "Safe",
+            "contentType": "Photo",
+            "allowCommenting": true,
+            "albums": [],
+            "_id": "60b63494d9e8252f94fbc9aa",
+            "title": "Edit Photo test v4",
+            "url": "http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b63494d9e8252f94fbc9a9.png",
+            "creator": {
+                "showCase": {
+                    "title": "Showcase",
+                    "photos": []
+                },
+                "description": "",
+                "occupation": "",
+                "homeTown": "",
+                "currentCity": "",
+                "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "_id": "60b5f47c2b026f150822c5fd",
+                "email": "test@test.com",
+                "firstName": "Abdelrahman",
+                "lastName": "Shahda",
+                "userName": "test",
+                "age": 22,
+                "createdAt": "2021-06-01T08:49:00.059Z",
+                "updatedAt": "2021-06-03T20:05:35.004Z",
+                "__v": 15,
+                "id": "60b5f47c2b026f150822c5fd",
+                "numberOfFollowers": 0,
+                "numberOfFollowings": 1,
+                "isFollowing": false
+            },
+            "createdAt": "2021-06-01T13:22:28.872Z",
+            "updatedAt": "2021-06-02T19:37:27.683Z",
+            "__v": 0,
+            "commentsNum": 0,
+            "isFavourite": false
+        }
  *   ]
  * }
  * @apiErrorExample {json} Error-Response:

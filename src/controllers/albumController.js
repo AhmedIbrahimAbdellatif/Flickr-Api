@@ -74,6 +74,15 @@ module.exports.viewAlbumMedia = async (req, res) => {
     if(!album) throw new LogicError(404, 'Album is not found');
     album.views++;
     await album.save();
+    if(req.user){
+        console.log('Hena')
+        for(let i =0;i<album.photoIds.length;i++){
+            req.user.favourites.forEach((id)=> {
+                if(id.toString()=== album.photoIds[i].id.toString())
+                    album.photoIds[i].isFavourite = true
+            })
+        }
+    }
     res.status(200).send({media: album.photoIds});
 };
 module.exports.editAlbum = async (req, res) => {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const tagController = require('../controllers/tagController');
-
+const { authOptional } =require('../middleware/authentication'); 
 const {
     validateRequest,
     validateTag,
@@ -17,6 +17,7 @@ router.get(
 
 router.get(
     '/:tagName',
+    authOptional,
     validateRequest,
     validateTagParam,
     tagController.getTagMedia

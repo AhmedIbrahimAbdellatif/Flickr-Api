@@ -217,6 +217,10 @@ module.exports.getPhotoDetails = async (req, res) => {
                 isFollowing = true
         });
         photo.creator.isFollowing = isFollowing
+        user.favourites.forEach((id)=> {
+            if(id.toString()=== photo.id.toString())
+                photo.isFavourite = true
+        })
     }
     await photo.updateOne({
         $inc: { views: 1}

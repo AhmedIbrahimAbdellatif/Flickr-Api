@@ -457,7 +457,8 @@
     "createdAt": "2021-06-01T13:22:28.872Z",
     "updatedAt": "2021-06-01T16:40:25.424Z",
     "__v": 0,
-    "commentsNum": 0
+    "commentsNum": 0,
+    "isFavourite": true
 }
 *
 

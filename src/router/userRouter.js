@@ -16,6 +16,7 @@ const { validate } = require('../model/userModel');
 
 router.get(
     '/fav/:userId',
+    authOptional,
     validateUserIdParam,
     validateRequest,
     userController.getFavorites
