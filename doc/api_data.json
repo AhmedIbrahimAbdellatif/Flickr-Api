@@ -379,7 +379,7 @@
     }
   },
   {
-    "type": "post",
+    "type": "delete",
     "url": "/album/deleteAlbum/:albumId",
     "title": "Delete Album",
     "name": "Delete_Album",

@@ -186,7 +186,7 @@
  */
 /**
  * @apiUse Authentication
- * @api {post} /album/deleteAlbum/:albumId   Delete Album
+ * @api {delete} /album/deleteAlbum/:albumId   Delete Album
  * @apiName Delete Album
  * @apiGroup Album
  * @apiVersion  1.0.0
