@@ -3010,7 +3010,7 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/photo",
+    "url": "/photo/delete/:photoId",
     "title": "Delete Photo",
     "name": "Delete_Photo",
     "group": "Photo",
@@ -3031,15 +3031,6 @@ define({ "api": [
         {
           "title": "Request-Example:",
           "content": "{\n    photoId : \"5349b4ddd2781d08c09890f4\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "{\n    message : \"Photo with ID 5349b4ddd2781d08c09890f4 is deleted\"\n}",
           "type": "json"
         }
       ]

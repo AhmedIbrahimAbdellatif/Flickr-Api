@@ -165,7 +165,7 @@
  */
 /**
  * @apiUse Authentication
- * @api {delete} /photo        Delete Photo
+ * @api {delete} /photo/delete/:photoId        Delete Photo
  * @apiName Delete Photo
  * @apiGroup Photo
  * @apiVersion  1.0.0
@@ -173,10 +173,6 @@
  * @apiParamExample  {json} Request-Example:
  * {
  *     photoId : "5349b4ddd2781d08c09890f4"
- * }
- * @apiSuccessExample {json} Success-Response:
- * {
- *     message : "Photo with ID 5349b4ddd2781d08c09890f4 is deleted"
  * }
  *
  * @apiError (404) Photo Not Found
