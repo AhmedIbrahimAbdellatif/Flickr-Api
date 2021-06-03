@@ -81,6 +81,7 @@
  *          },
  *          "numberOfFollowings": 9,
  *          "numberOfFollowers": 0,
+ *          "numberOfPhotos": 0,
  *          "description": "",
  *          "occupation": "",
  *          "homeTown": "",
@@ -133,6 +134,7 @@
  *          },
  *          "numberOfFollowings": 9,
  *          "numberOfFollowers": 0,
+ *          "numberOfPhotos": 0
  *          "description": "",
  *          "occupation": "",
  *          "homeTown": "",
@@ -184,6 +186,7 @@
  *          },
  *          "numberOfFollowings": 9,
  *          "numberOfFollowers": 0,
+ *          "numberOfPhotos": 0
  *          "description": "",
  *          "occupation": "",
  *          "homeTown": "",
@@ -275,6 +278,7 @@
  *          },
  *          "numberOfFollowings": 9,
  *          "numberOfFollowers": 0,
+ *          "numberOfPhotos": 0
  *          "description": "",
  *          "occupation": "",
  *          "homeTown": "",

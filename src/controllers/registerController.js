@@ -20,6 +20,9 @@ module.exports.signUp = async (req, res, next) => {
         age,
     });
     const token = newUser.signToken(newUser._id);
+    await user.populate({
+        path:'numberOfPhotos'
+    }).execPopulate();
     res.status(201).json({
         accessToken: token,
         user:newUser
@@ -58,6 +61,9 @@ module.exports.signUpWithFacebook = async (req, res, next) => {
             facebookId: userData.id
         });
         const token = user.signToken(user._id);
+        await user.populate({
+            path:'numberOfPhotos'
+        }).execPopulate();
         res.status(201).json({
             accessToken: token,
             user
@@ -72,6 +78,8 @@ module.exports.loginnWithFacebook = async (req, res, next) => {
         throw new LogicError(404,"User Not Found");
     await user.populate('numberOfFollowers').populate({
         path: 'showCase.photos'
+    }).populate({
+        path:'numberOfPhotos'
     }).execPopulate();
     const token = user.signToken(user._id);
     res.status(200).json({
@@ -89,6 +97,8 @@ module.exports.logIn = async (req, res, next) => {
     }
     await user.populate('numberOfFollowers').populate({
         path: 'showCase.photos'
+    }).populate({
+        path:'numberOfPhotos'
     }).execPopulate();
     const token = user.signToken(user._id);
     res.status(200).json({

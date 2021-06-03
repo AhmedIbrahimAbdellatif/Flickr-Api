@@ -4345,7 +4345,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"numberOfPhotos\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4403,7 +4403,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"numberOfPhotos\": 0\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4644,7 +4644,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"numberOfPhotos\": 0\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -4914,7 +4914,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"accessToken\": \"skdnksd7474g3kdbjfhf34\",\n  \"user\": {\n      \"_id\": \"5349b4ddd2781d08c09890f4\",\n     \"email\": \"test@email.com\",\n     \"firstName\": \"User\",\n     \"lastName\": \"User\",\n     \"userName\": \"test\",\n     \"age\": 18,\n     \"showCase\": {\n         \"photos\": [],\n         \"title\": \"showCase\"   \n     },\n     \"numberOfFollowings\": 9,\n     \"numberOfFollowers\": 0,\n     \"numberOfPhotos\": 0\n     \"description\": \"\",\n     \"occupation\": \"\",\n     \"homeTown\": \"\",\n     \"currentCity\": \"\",\n     \"coverPhotoUrl\": \"https://img.jpg\",\n     \"profilePhotoUrl\": \"https://img.jpg\"\n   }\n}",
           "type": "json"
         }
       ]
