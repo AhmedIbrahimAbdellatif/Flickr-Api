@@ -24,7 +24,7 @@ app.get('/public/images/:userId/:imageName', async(req,res) => {
 })
 app.use((req,res,next) => {
     
-    console.log(req.body)
+    console.log({body:req.body,path:req.originalUrl})
     next()
 })
 app.use('/register', registerRouter);

@@ -18,7 +18,9 @@ module.exports.getFavorites = async (req, res) => {
     })
         .populate({
             path: 'creator',
-            select: ['_id', 'firstName', 'lastName'],
+           
+        }).populate({
+            path:'tags'
         })
         .exec();
     res.send({ favorites: photos });

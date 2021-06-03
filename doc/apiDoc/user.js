@@ -530,21 +530,92 @@
  *     HTTP/1.1 200 OK
  *     {
  *       "favorites": [
- *          {
- *               "_id": "5349b4ddd2781d08c09890f4",
- *               "tags": ["Tower","Egypt"],
- *               "views": 1023,
- *               "favouriteCount": 0,
- *               "commentsNum": 1023,
- *               "creator": {
- *                   "_id": "60928e30456b633130df176d",
- *                   "firstName": "Ahmed",
- *                   "lastName": "Ibrahim"
- *               },
- *               "url": '',
- *               "title": 'Cairo Tower',
- *               "description": 'Cairo tower at the sunset'
- *          },
+ *         {
+            "description": "",
+            "tags": [
+                {
+                    "count": 6,
+                    "_id": "60b7ddf70b24f13da065deee",
+                    "name": "one",
+                    "createdAt": "2021-06-02T19:37:27.474Z",
+                    "updatedAt": "2021-06-02T22:24:06.160Z",
+                    "__v": 0
+                },
+                {
+                    "count": 2,
+                    "_id": "60b8023f73306f7fa8844401",
+                    "name": "twom",
+                    "__v": 0,
+                    "createdAt": "2021-06-02T22:12:15.112Z",
+                    "updatedAt": "2021-06-02T22:24:06.264Z"
+                },
+                {
+                    "count": 2,
+                    "_id": "60b8023f73306f7fa8844414",
+                    "name": "threse",
+                    "__v": 0,
+                    "createdAt": "2021-06-02T22:12:15.202Z",
+                    "updatedAt": "2021-06-02T22:24:06.367Z"
+                },
+                {
+                    "count": 2,
+                    "_id": "60b8023f73306f7fa8844439",
+                    "name": "         thrw",
+                    "__v": 0,
+                    "createdAt": "2021-06-02T22:12:15.291Z",
+                    "updatedAt": "2021-06-02T22:24:06.467Z"
+                },
+                {
+                    "count": 2,
+                    "_id": "60b8023f73306f7fa8844449",
+                    "name": "test1",
+                    "__v": 0,
+                    "createdAt": "2021-06-02T22:12:15.382Z",
+                    "updatedAt": "2021-06-02T22:24:06.565Z"
+                }
+            ],
+            "comments": [],
+            "views": 0,
+            "favouriteCount": 1,
+            "isPublic": true,
+            "license": "None",
+            "safety": "Safe",
+            "contentType": "Photo",
+            "allowCommenting": true,
+            "albums": [],
+            "_id": "60b8023e9d236a2b4419e7d3",
+            "title": "test109",
+            "url": "http://localhost:3000/public/images/60b5f47c2b026f150822c5fd/60b8023e9d236a2b4419e7d2.jpg",
+            "creator": {
+                "showCase": {
+                    "title": "Showcase",
+                    "photos": []
+                },
+                "description": "",
+                "occupation": "",
+                "homeTown": "",
+                "currentCity": "",
+                "coverPhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
+                "_id": "60b5f47c2b026f150822c5fd",
+                "email": "test@test.com",
+                "firstName": "Abdelrahman",
+                "lastName": "Shahda",
+                "userName": "test",
+                "age": 22,
+                "createdAt": "2021-06-01T08:49:00.059Z",
+                "updatedAt": "2021-06-03T08:27:41.671Z",
+                "__v": 14,
+                "id": "60b5f47c2b026f150822c5fd",
+                "numberOfFollowers": 0,
+                "numberOfFollowings": 1,
+                "isFollowing": false
+            },
+            "createdAt": "2021-06-02T22:12:15.484Z",
+            "updatedAt": "2021-06-03T08:27:41.751Z",
+            "__v": 0,
+            "commentsNum": 0
+        },
  *       ]
  *     }
  * @apiError (404) UserNotFound  The id of the user wasn't found
