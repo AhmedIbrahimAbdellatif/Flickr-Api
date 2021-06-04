@@ -243,7 +243,7 @@
  *       },
  *       {
  *           "_id": "60b5df70bc0b9e3c283fa484",
- *           "creator": {
+ *           "user": {
  *               "_id": "60b5a1cf64664624dc23098f",
  *               "profilePhotoUrl": "http://localhost:3000/public/images/default/8.jpeg",
  *               "firstName": "Abdelrhman",
