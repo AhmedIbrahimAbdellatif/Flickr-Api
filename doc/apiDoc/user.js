@@ -771,6 +771,7 @@
  *
  */
 /**
+ * @apiUse AuthenticationOptional
  * @api {get} /user/about/:userId Show About
  * @apiName Show User's About
  * @apiGroup User
