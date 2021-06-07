@@ -35,6 +35,7 @@ module.exports.getFavorites = async (req, res) => {
 };
 module.exports.followUser = async (req, res) => {
     const user = req.user;
+    if(user._id.toString() === req.body.userId) throw new LogicError(404, "You Can't Follow yourself");
     const isUserExist = await User.exists({ _id: req.body.userId });
     if (!isUserExist) throw new LogicError(404, 'User not found');
     await User.findByIdAndUpdate(user._id, {
