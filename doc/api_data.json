@@ -3520,7 +3520,27 @@
       ]
     },
     "filename": "doc/apiDoc/photo.js",
-    "groupTitle": "Photo"
+    "groupTitle": "Photo",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Users access-token</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer asdasdkasdliuaslidas\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "post",

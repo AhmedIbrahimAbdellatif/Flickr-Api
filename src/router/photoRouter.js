@@ -110,6 +110,7 @@ router.patch(
 );
 router.get(
     '/explore',
+    authOptional,
     photoController.explorePhotos
 );
 module.exports = router;

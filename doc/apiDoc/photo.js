@@ -74,7 +74,7 @@
  * }
  */
 /**
- *
+ * @apiUse AuthenticationOptional
  * @api {get} /photo/explore Explore Photos
  * @apiName Explore Recent Photos
  * @apiGroup Photo

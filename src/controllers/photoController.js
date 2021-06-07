@@ -260,11 +260,21 @@ module.exports.editPhoto = async (req,res) =>{
     res.status(200).send(updatedPhoto);
 };
 module.exports.explorePhotos = async(req,res) => {
-    const photos = await Photo.find({}).sort({'createdAt':-1}).populate({
+    const photos = await Photo.find({
+        isPublic: true,
+    }).sort({'views':-1}).populate({
         path:'creator'
     }).populate({
         path:'tags'
     });
+    if(req.user){
+        for(let i =0;i<photos.length;i++){
+            req.user.favourites.forEach((id)=> {
+                if(id.toString()=== photos[i].id.toString())
+                    photos[i].isFavourite = true
+            })
+        }
+    }
     res.send({photos});
 
 }
