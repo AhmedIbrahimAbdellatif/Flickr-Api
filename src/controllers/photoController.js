@@ -35,7 +35,10 @@ module.exports.uploadPhoto = async (req, res) => {
 
 module.exports.deletePhoto = async (req, res) => {
     photoId = req.params.photoId;
-    const photo = await Photo.findById(photoId);
+    const photo = await Photo.findOne({
+        _id: photoId,
+        creator: req.user._id
+    });
     if (!photo) {
         throw new LogicError(404, 'Photo is not found');
     }
@@ -43,6 +46,19 @@ module.exports.deletePhoto = async (req, res) => {
         await Album.findByIdAndUpdate(albumId, {
             $pull: {photoIds: photoId}
         });
+    })
+    photo.tags.forEach(async function (tagId) {
+        const tag = await Tag.findByIdAndUpdate(tagId, {
+            $pull: {photo: photoId},
+            $inc: {
+                count: -1
+            }
+        },{
+            new: true
+        });
+        if(tag.count == 0){
+            await Tag.findByIdAndDelete(tag._id);
+        }
     })
     await photo.remove();
     res.status(200).send();

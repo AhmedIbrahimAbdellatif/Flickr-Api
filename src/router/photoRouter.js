@@ -88,6 +88,7 @@ router.delete(
 
 router.delete(
     '/delete/:photoId', 
+    auth,
     validatePhotoIdParam, 
     validateRequest, 
     photoController.deletePhoto
