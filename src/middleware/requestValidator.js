@@ -1,6 +1,11 @@
 const { validationResult, body, param } = require('express-validator');
 const { RequestValidationError } = require('../error/requestValidation');
-
+/**
+ * validates the request and checks if there are errors
+ * @param  {Object} req
+ * @param  {Object} res
+ * @param  {function} next
+ */
 const validateRequest = (req, res, next) => {
     const errors = validationResult(req);
 
@@ -62,7 +67,10 @@ const validateLogIn = [
 const validatePhotoUpload = [
     body('file').exists().withMessage('File is required'),
     body('title').isString().withMessage('Title is required'),
-    body('contentType').optional().isString().withMessage('Content Type is required'),
+    body('contentType')
+        .optional()
+        .isString()
+        .withMessage('Content Type is required'),
     body('isPublic')
         .optional()
         .isBoolean()
@@ -93,7 +101,7 @@ const validateTag = [
 
 const validateComment = [
     body('comment').isString().withMessage('Please write your Comment'),
-]
+];
 
 const validateShowCaseDescription = [
     body('description').isString().withMessage('Description is required'),
@@ -134,27 +142,21 @@ const validateEditAlbum = [
         .withMessage('Description should be string'),
 ];
 const validateAlbumParam = [
-
     param('albumId').isMongoId().withMessage('albumId is required'),
 ];
 const validateResetPassword = [
     body('email').isEmail().withMessage('Email is required'),
     body('newPass')
-    .isString()
-    .withMessage('New Password is required')
-    .isLength({ min: 8 })
-    .withMessage('New Password must be more than 8 characters'),
-    body('code').isString().withMessage("Code is required")
-]
-
-
-
+        .isString()
+        .withMessage('New Password is required')
+        .isLength({ min: 8 })
+        .withMessage('New Password must be more than 8 characters'),
+    body('code').isString().withMessage('Code is required'),
+];
 
 const validateSearchKeywordParam = [
-    param('searchKeyword').isString().withMessage('searchKeyword is required')
-]
-
-
+    param('searchKeyword').isString().withMessage('searchKeyword is required'),
+];
 
 const validateAlbumId = [
     body('albumId').isMongoId().withMessage('albumId is required'),
@@ -164,9 +166,10 @@ const validateEditPhoto = [
     body('title').isString().withMessage('title is required'),
     body('description').isString().withMessage('description is required'),
     body('isPublic').isBoolean().withMessage('isPublic is required'),
-    body('allowCommenting').isBoolean().withMessage('allowCommenting is required'),
+    body('allowCommenting')
+        .isBoolean()
+        .withMessage('allowCommenting is required'),
 ];
-
 
 module.exports = {
     validateRequest,
@@ -192,6 +195,5 @@ module.exports = {
     validateSearchKeywordParam,
     validateEditAlbum,
     validateEditPhoto,
-    validateResetPassword
-
+    validateResetPassword,
 };

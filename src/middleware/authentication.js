@@ -3,7 +3,14 @@ const { LogicError } = require('../error/logicError');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const { redisClient, getAsync, setAsync } = require('../third-Parties/redis');
-
+/**
+ * The authentication function used before any request that require a user to be logged in.
+ * it checks the validity of the token.
+ * @param  {Object} req
+ * @param  {Object} res
+ * @param  {function} next
+ * @function
+ */
 const auth = async (req, res, next) => {
     let token;
     if (
@@ -51,6 +58,14 @@ const auth = async (req, res, next) => {
     req.user = user;
     next();
 };
+/**
+ * The authentication function used before any request that require a user to be logged in.
+ * it checks the validity of the token.
+ * this one is optional for some requests
+ * @param  {Object} req
+ * @param  {Object} res
+ * @param  {function} next
+ */
 const authOptional = async (req, res, next) => {
     let token;
     if (
@@ -61,8 +76,7 @@ const authOptional = async (req, res, next) => {
         req.token = token;
     }
     if (!token) {
-        return next()
-        
+        return next();
     }
     let decoded;
     try {
@@ -76,10 +90,10 @@ const authOptional = async (req, res, next) => {
     }
     const user = await User.findById(decoded.id).select('+passwordChangedAt');
     if (!user) {
-        return next()
+        return next();
     }
     if (user.changedPassword(decoded.iat)) {
-        return next()
+        return next();
     }
     req.user = user;
     next();
@@ -87,5 +101,5 @@ const authOptional = async (req, res, next) => {
 
 module.exports = {
     auth,
-    authOptional
+    authOptional,
 };
