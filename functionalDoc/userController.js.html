@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: userController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: userController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * User Controller Module contains User's route handler
  * @module controlles/user
  */
@@ -7,41 +35,22 @@
  * User Model
  * @const
  */
-const User = require('../model/userModel');
 
-/**
- * Photo Model
- * @const
- */
+const User = require('../model/userModel');
 const Photo = require('../model/photoModel');
-/**
- * Album Model
- * @const
- */
+const mongoose = require('mongoose');
+const { LogicError } = require('../error/logicError');
 const Album = require('../model/albumModel');
 
-/**
- * LogicError Class used to throw logical error in route handlers
- * @const
- */
-const { LogicError } = require('../error/logicError');
-
-/**
- * A function that is used to Get User's Favourites.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.getFavorites = async (req, res) => {
-
-    //Check if user exists
     const user = await User.findById(req.params.userId);
     if (!user) {
         throw new LogicError(404, 'User is not found');
     }
     favouritesArray = [];
-
-    //Get User Favoruites
+    // user['favourites'].forEach((photoId) =>
+    //     favouritesArray.push(mongoose.Types.ObjectId(photoId))
+    // );
     const photos = await Photo.find({
         _id: { $in: user['favourites'] },
     })
@@ -52,10 +61,8 @@ module.exports.getFavorites = async (req, res) => {
             path: 'tags',
         })
         .exec();
-    
-    //Populate loggedIN USer isFavourite
     if (req.user) {
-        for (let i = 0; i < photos.length; i++) {
+        for (let i = 0; i &lt; photos.length; i++) {
             req.user.favourites.forEach((id) => {
                 if (id.toString() === photos[i].id.toString())
                     photos[i].isFavourite = true;
@@ -64,58 +71,27 @@ module.exports.getFavorites = async (req, res) => {
     }
     res.send({ favorites: photos });
 };
-
-/**
- * A function that is used to Follow Another User.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.followUser = async (req, res) => {
-
-    //Check if user exists and that the loggedIN user isnt follwoing himself
     const user = req.user;
     if (user._id.toString() === req.body.userId)
         throw new LogicError(404, "You Can't Follow yourself");
     const isUserExist = await User.exists({ _id: req.body.userId });
     if (!isUserExist) throw new LogicError(404, 'User not found');
-
-    //Update user followings
     await User.findByIdAndUpdate(user._id, {
         $addToSet: { following: req.body.userId },
     });
     res.send();
 };
-
-/**
- * A function that is used to Unfollow User.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.unfollowUser = async (req, res) => {
     const user = req.user;
-
-    //Check iF user exists
     const isUserExist = await User.exists({ _id: req.body.userId });
     if (!isUserExist) throw new LogicError(404, 'User not found');
-
-    //Remove userId from following array
     await User.findByIdAndUpdate(user._id, {
         $pull: { following: req.body.userId },
     });
     res.send();
 };
-
-/**
- * A function that is used to Get Followers.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.getFollowers = async (req, res) => {
-
-    //Check that user exists
     const user = await User.findById(req.params.userId);
     if (!user) throw new LogicError(404, 'User not found');
     await user
@@ -132,12 +108,10 @@ module.exports.getFollowers = async (req, res) => {
             ],
         })
         .execPopulate();
-
-    //Populate isFollowing for loggedIn User
     const loggedInUser = req.user;
     if (loggedInUser) {
         user.followers.forEach((user) => {
-            for (let i = 0; i < loggedInUser.following.length; i++) {
+            for (let i = 0; i &lt; loggedInUser.following.length; i++) {
                 if (
                     loggedInUser.following[i].toString() === user._id.toString()
                 ) {
@@ -150,15 +124,7 @@ module.exports.getFollowers = async (req, res) => {
     res.send({ followers: user.followers });
 };
 
-/**
- * A function that is used to Get Follwoings.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.getFollowings = async (req, res) => {
-
-    //Check if user exists
     const user = await User.findById(req.params.userId);
     if (!user) throw new LogicError(404, 'User not found');
     await user
@@ -175,12 +141,10 @@ module.exports.getFollowings = async (req, res) => {
             ],
         })
         .execPopulate();
-
-    //Populate LoogedIn User isFollowing
     const loggedInUser = req.user;
     if (loggedInUser) {
         user.following.forEach((user) => {
-            for (let i = 0; i < loggedInUser.following.length; i++) {
+            for (let i = 0; i &lt; loggedInUser.following.length; i++) {
                 if (
                     loggedInUser.following[i].toString() === user._id.toString()
                 ) {
@@ -193,15 +157,8 @@ module.exports.getFollowings = async (req, res) => {
     res.send({ following: user.following });
 };
 
-/**
- * A function that is used to Get User About.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
+//Add Statistics
 module.exports.getUserAbout = async (req, res) => {
-
-    //Check if user exists
     const user = await User.findById(req.params.userId)
         .populate({
             path: 'showCase.photos',
@@ -223,11 +180,9 @@ module.exports.getUserAbout = async (req, res) => {
         })
         .exec();
     if (!user) throw new LogicError(404, 'User not found');
-
-    //Populate loggedIn User isFollowing
     const loggedInUser = req.user;
     if (loggedInUser) {
-        for (let i = 0; i < loggedInUser.following.length; i++) {
+        for (let i = 0; i &lt; loggedInUser.following.length; i++) {
             if (loggedInUser.following[i].toString() === user._id.toString()) {
                 user.isFollowing = true;
                 break;
@@ -237,19 +192,9 @@ module.exports.getUserAbout = async (req, res) => {
     res.send({ user });
 };
 
-/**
- * A function that is used to Get User's PhotoStream.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.getUserPhotoStream = async (req, res) => {
-
-    //Check id user exists
     const isUserExist = await User.exists({ _id: req.params.userId });
     if (!isUserExist) throw new LogicError(404, 'User not found');
-
-    //Fetch photos created by user
     const photos = await Photo.find({
         creator: req.params.userId,
         isPublic: true,
@@ -264,20 +209,10 @@ module.exports.getUserPhotoStream = async (req, res) => {
 
     res.send({ photos });
 };
-
-/**
- * A function that is used to Edit Cover Photo.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.editCoverPhoto = async (req, res) => {
-
-    //Check that Photo exists
     const photo = await Photo.findById(req.body.photoId);
     if (!photo) throw new LogicError(404, 'Photo not found');
 
-    //Check that the photo is uploaded by the user or is in his albums
     if (!(photo.creator.toString() === req.user.id.toString())) {
         const albums = await Album.findOne({
             creator: req.user.id,
@@ -286,27 +221,16 @@ module.exports.editCoverPhoto = async (req, res) => {
         if (!albums)
             throw new LogicError(400, 'You cant use this photo as cover photo');
     }
-
-    //Update User's Cover Photo
     const user = req.user;
     user.coverPhotoUrl = photo.url;
     await user.save();
     res.send({});
 };
 
-/**
- * A function that is used to Edit User's ProfilePhoto.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.editProfilePhoto = async (req, res) => {
-
-    //Check that Photo exists
     const photo = await Photo.findById(req.body.photoId);
     if (!photo) throw new LogicError(404, 'Photo not found');
 
-    //Check that the photo is uploaded by the user or is in his albums
     if (!(photo.creator.toString() === req.user.id.toString())) {
         const albums = await Album.findOne({
             creator: req.user.id,
@@ -315,42 +239,24 @@ module.exports.editProfilePhoto = async (req, res) => {
         if (!albums)
             throw new LogicError(400, 'You cant use this photo as cover photo');
     }
-
-    //Update User Profile
     const user = req.user;
     user.profilePhotoUrl = photo.url;
     await user.save();
     res.send({});
 };
 
-/**
- * A function that is used to Edit User Info.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.editInfo = async (req, res) => {
-
-    //Check if the edit is from allowed Changes
     let isValid = true;
     const validEdits = ['currentCity', 'homeTown', 'occupation'];
     Object.keys(req.body).forEach((edit) => {
         if (!validEdits.includes(edit)) isValid = false;
     });
     if (!isValid) throw new LogicError(400, 'Invalid Edit');
-
-    //Update User
     const user = req.user;
     await user.updateOne({ ...req.body });
     res.send({});
 };
 
-/**
- * A function that is used to Edit ShowCase
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.editShowCaseAndDescription = async (req, res) => {
     const user = await User.findById(req.params.userId);
     if (!user) {
@@ -371,15 +277,7 @@ module.exports.editShowCaseAndDescription = async (req, res) => {
     });
 };
 
-/**
- * A function that is used to Search for a user using his userName.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.searchUser = async (req, res) => {
-
-    //Search for the user using regular expression
     const users = await User.find({
         userName: {
             $regex: '.*' + req.params.searchKeyword + '.*',
@@ -393,12 +291,10 @@ module.exports.searchUser = async (req, res) => {
             path: 'numberOfPhotos',
         })
         .sort({ userName: -1 });
-
-    //Populate isFollwoing For LoggedIN User
     const loggedInUser = req.user;
     if (loggedInUser) {
         users.forEach((user) => {
-            for (let i = 0; i < loggedInUser.following.length; i++) {
+            for (let i = 0; i &lt; loggedInUser.following.length; i++) {
                 if (
                     loggedInUser.following[i].toString() === user._id.toString()
                 ) {
@@ -413,24 +309,11 @@ module.exports.searchUser = async (req, res) => {
         users,
     });
 };
-/**
- * A function that is used to Get a User's Albums
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.viewUserAlbums = async (req, res) => {
     const userId = req.params.userId;
     const albums = await Album.find({ creator: userId });
     res.status(200).send({ albums });
 };
-
-/**
- * A function that is used to LoggedIn User CamerRoll.
- * @param {Object} req - The request passed.
- * @param {Object} res - The respond sent
- * @function
- */
 module.exports.viewCameraRoll = async (req, res) => {
     const photos = await Photo.find({
         creator: req.user._id,
@@ -440,3 +323,26 @@ module.exports.viewCameraRoll = async (req, res) => {
 
     res.status(200).send({ cameraRoll: photos });
 };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controlles_album.html">controlles/album</a></li><li><a href="module-controlles_photo.html">controlles/photo</a></li><li><a href="module-controlles_user.html">controlles/user</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Jun 08 2021 17:16:30 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,6 +1,32 @@
+/**
+ * Tag Controller Module contains Tag's route handler
+ * @module controlles/tag
+ */
+
+/**
+ * Tag Model
+ * @const
+ */
 const Tag = require('../model/tagModel');
+
+/**
+ * Photo Model
+ * @const
+ */
 const Photo = require('../model/photoModel');
+
+/**
+ * LogicError Class used to throw logical error in route handlers
+ * @const
+ */
 const { LogicError } = require('../error/logicError');
+
+/**
+ * A function that is used to Get Trending tags that has larger than 3 photos.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
 module.exports.getTrendingTags = async (req, res) => {
     const trendingTags = await Tag.find({ count: { $gte: 3 } }).sort({
         count: -1,
@@ -16,8 +42,15 @@ module.exports.getTrendingTags = async (req, res) => {
         trendingTags,
     });
 };
-
+/**
+ * A function that is used to Get Photos Belonging  to A certain Tag.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
 module.exports.getTagMedia = async (req, res) => {
+
+    //Check if Tag exists
     const tagName = req.params.tagName;
     const tag = await Tag.findOne({ name: tagName }).populate({
         path:'photos',
@@ -32,6 +65,8 @@ module.exports.getTagMedia = async (req, res) => {
     if (!tag) {
         throw new LogicError(404, 'Tag Not Found');
     }
+
+    //Populate loggedIn User isFavourite
     const media = tag.photos;
     if(req.user){
 
@@ -46,6 +81,13 @@ module.exports.getTagMedia = async (req, res) => {
         media,
     });
 };
+
+/**
+ * A function that is used to Search Tag.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
 module.exports.searchTags = async (req, res) => {
     const searchResult = await Tag.find({
         name: { $regex: '.*' + req.params.searchKeyword + '.*', $options: 'i' },
