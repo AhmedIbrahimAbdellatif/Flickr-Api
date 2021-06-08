@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/albumController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/albumController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Album Controller Module contains Album's route handler
+ * @module controlles/album
+ */
+
+/**
+ * Album Model
+ * @const
+ */
+const Album = require('../model/albumModel');
+
+/**
+ * Photo Model
+ * @const
+ */
+const Photo = require('../model/photoModel');
+
+/**
+ * LogicError Class used to throw logical error in route handlers
+ * @const
+ */
+const { LogicError } = require('../error/logicError');
+
+
+/**
+ * A function that is used to Create Album.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
+module.exports.createAlbum = async (req, res) => {
+
+    reqBody = { ...req.body };
+    const album = new Album({
+        ...reqBody,
+        creator: req.user._id,
+    });
+    album.views = 0;
+    await album.save();
+    res.status(201).send({ album: album });
+};
+
+/**
+ * A function that is used to delete Album.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
+module.exports.deleteAlbum = async (req, res) => {
+    const album = await Album.findOneAndDelete({ _id: req.params.albumId, creator: req.user._id })
+    if (!album) {
+        throw new LogicError(404, 'Album is not found');
+    }
+    res.status(200).send();
+};
+
+/**
+ * A function that is used to Add Photo to Album.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
+module.exports.addPhoto = async (req, res) => {
+    const photoId = req.body.photoId;
+    const albumId = req.body.albumId;
+
+    //Check That Album and Photo exits
+    const isAlbumExist = await Album.exists({ _id: albumId });
+    const isPhotoExist = await Photo.exists({ _id: photoId });
+    if (!isAlbumExist) {
+        throw new LogicError(404, 'Album is not found');
+    }
+    if (!isPhotoExist) {
+        throw new LogicError(404, 'Photo is not found');
+    }
+
+    //Add Photo to the album
+    await Album.findByIdAndUpdate(albumId, {
+        $addToSet: { photoIds: photoId }
+    });
+    await Photo.findByIdAndUpdate(photoId, {
+        $addToSet: { albums: albumId }
+    });
+    res.status(200).send();
+}
+
+/**
+ * A function that is used to Remove Photo From the Album.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
+module.exports.deletePhoto = async (req, res) => {
+    const photoId = req.body.photoId;
+    const albumId = req.body.albumId;
+
+    //Check if both Album and the Photo provided exists
+    const isAlbumExist = await Album.exists({ _id: albumId });
+    const photo = await Photo.exists({ _id: photoId });
+    if (!isAlbumExist) {
+        throw new LogicError(404, 'Album is not found');
+    }
+    if (!photo) {
+        throw new LogicError(404, 'Photo is not found');
+    }
+
+    //Remove photo from album
+    await Album.findByIdAndUpdate(albumId, {
+        $pull: { photoIds: photoId }
+    });
+    res.status(200).send();
+}
+/**
+ * A function that is used to View Album Media
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
+module.exports.viewAlbumMedia = async (req, res) => {
+    const albumId = req.params.albumId;
+
+    //Fetch Album and populate its photos
+    const album = await Album.findById(albumId).populate({
+        path: 'photoIds',
+        populate: [
+            {
+                path: 'creator'
+            },
+            {
+                path: 'tags'
+            }
+        ]
+    })
+    if(!album) throw new LogicError(404, 'Album is not found');
+
+    //Add albums views
+    album.views++;
+    await album.save();
+
+    //Check If Logged In User has favourited one of the album's photos
+    if(req.user){
+        for(let i =0;i&lt;album.photoIds.length;i++){
+            req.user.favourites.forEach((id)=> {
+                if(id.toString()=== album.photoIds[i].id.toString())
+                    album.photoIds[i].isFavourite = true
+            })
+        }
+    }
+    res.status(200).send({media: album.photoIds});
+};
+
+/**
+ * A function that is used to Edit Album's Title and Description.
+ * @param {Object} req - The request passed.
+ * @param {Object} res - The respond sent
+ * @function
+ */
+module.exports.editAlbum = async (req, res) => {
+    const albumId = req.params.albumId;
+    const update = {};
+
+    //Check If title or descriptions was included in req.body to make the change
+    if(req.body.title) update.title = req.body.title;
+    if(req.body.description) update.description = req.body.description;
+    const album = await Album.findByIdAndUpdate(albumId, update);
+    if(!album) throw new LogicError(404, 'Album is not Found');
+    await album.save();
+    res.status(200).send(album);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controlles_album.html">controlles/album</a></li><li><a href="module-controlles_photo.html">controlles/photo</a></li><li><a href="module-controlles_register.html">controlles/register</a></li><li><a href="module-controlles_tag.html">controlles/tag</a></li><li><a href="module-controlles_user.html">controlles/user</a></li><li><a href="module-third-Parties_email.html">third-Parties/email</a></li><li><a href="module-third-Parties_facebook.html">third-Parties/facebook</a></li><li><a href="module-third-Parties_redis.html">third-Parties/redis</a></li></ul><h3>Classes</h3><ul><li><a href="CustomError.html">CustomError</a></li><li><a href="LogicError.html">LogicError</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="RequestValidationError.html">RequestValidationError</a></li></ul><h3>Global</h3><ul><li><a href="global.html#auth">auth</a></li><li><a href="global.html#authOptional">authOptional</a></li><li><a href="global.html#errorHandler">errorHandler</a></li><li><a href="global.html#storage">storage</a></li><li><a href="global.html#upload">upload</a></li><li><a href="global.html#validateRequest">validateRequest</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Jun 08 2021 21:49:19 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

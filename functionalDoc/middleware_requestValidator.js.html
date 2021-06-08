@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: middleware/requestValidator.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: middleware/requestValidator.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { validationResult, body, param } = require('express-validator');
+const { RequestValidationError } = require('../error/requestValidation');
+/**
+ * validates the request and checks if there are errors
+ * @param  {Object} req
+ * @param  {Object} res
+ * @param  {function} next
+ */
+const validateRequest = (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) throw new RequestValidationError(errors.array());
+    next();
+};
+
+//Body Validations
+const validateChangePassword = [
+    body('oldPass')
+        .isString()
+        .withMessage('Old password is required')
+        .isLength({ min: 8 })
+        .withMessage('Old Password must be more than 8 characters'),
+    body('newPass')
+        .isString()
+        .withMessage('Password is required')
+        .isLength({ min: 8 })
+        .withMessage('New Password must be more than 8 characters'),
+];
+const validateUserIdBody = [
+    body('userId').isMongoId().withMessage('User Id to be followed is missing'),
+];
+const validateRegisterWithFacebook = [
+    body('accessToken').isString().withMessage('Access Token is missing'),
+];
+const validatePhotoId = [
+    body('photoId').isMongoId().withMessage('Photo Id is missing'),
+];
+const validateEditInfo = [
+    body('occupation')
+        .optional()
+        .isString()
+        .withMessage('Occupations should be a String'),
+    body('currentCity')
+        .optional()
+        .isString()
+        .withMessage('Current City should be a String'),
+    body('homeTown')
+        .optional()
+        .isString()
+        .withMessage('Home Town should be a String'),
+];
+const validateSignUp = [
+    body('email').isEmail().withMessage('Email is required'),
+    body('password')
+        .isString()
+        .withMessage('Password is required')
+        .isLength({ min: 8 })
+        .withMessage('Password must be more than 8 characters'),
+    body('firstName').isString().withMessage('First Name is required'),
+    body('lastName').isString().withMessage('Last Name is required'),
+    body('age').isNumeric().withMessage('Age is required'),
+];
+const validateLogIn = [
+    body('email').isEmail().withMessage('Email is required'),
+    body('password').isString().withMessage('Password is required'),
+];
+const validatePhotoUpload = [
+    body('file').exists().withMessage('File is required'),
+    body('title').isString().withMessage('Title is required'),
+    body('contentType')
+        .optional()
+        .isString()
+        .withMessage('Content Type is required'),
+    body('isPublic')
+        .optional()
+        .isBoolean()
+        .withMessage('Is Public should be boolean'),
+    body('allowCommenting')
+        .optional()
+        .isBoolean()
+        .withMessage('Allow Commenting should be boolean'),
+    body('license')
+        .optional()
+        .isString()
+        .withMessage('license should be string'),
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+    body('safetyOption')
+        .optional()
+        .isString()
+        .withMessage('Safety Option should be string'),
+];
+const validateUserEmailBody = [
+    body('email').isEmail().withMessage('Email is required'),
+];
+const validateTag = [
+    body('tag').isString().withMessage('Tag name is required'),
+];
+
+const validateComment = [
+    body('comment').isString().withMessage('Please write your Comment'),
+];
+
+const validateShowCaseDescription = [
+    body('description').isString().withMessage('Description is required'),
+    body('showCase.title').isString().withMessage('ShowCaseTitle is required'),
+    body('showCase.photos')
+        .optional()
+        .isArray()
+        .withMessage('Photos IDs Missing'),
+];
+const validateCommentId = [
+    body('commentId').isMongoId().withMessage('Comment ID Missing'),
+];
+//Params Validations
+const validatePhotoIdParam = [
+    param('photoId').isMongoId().withMessage('PhotoId is required'),
+];
+
+const validateUserIdParam = [
+    param('userId').isMongoId().withMessage('UserId is required'),
+];
+
+const validateTagParam = [
+    param('tagName').isString().withMessage('Tag Name is Required'),
+];
+
+const validateCreateAlbum = [
+    body('title').isString().withMessage('Title is required'),
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+];
+const validateEditAlbum = [
+    body('title').optional().isString().withMessage('Title is required'),
+    body('description')
+        .optional()
+        .isString()
+        .withMessage('Description should be string'),
+];
+const validateAlbumParam = [
+    param('albumId').isMongoId().withMessage('albumId is required'),
+];
+const validateResetPassword = [
+    body('email').isEmail().withMessage('Email is required'),
+    body('newPass')
+        .isString()
+        .withMessage('New Password is required')
+        .isLength({ min: 8 })
+        .withMessage('New Password must be more than 8 characters'),
+    body('code').isString().withMessage('Code is required'),
+];
+
+const validateSearchKeywordParam = [
+    param('searchKeyword').isString().withMessage('searchKeyword is required'),
+];
+
+const validateAlbumId = [
+    body('albumId').isMongoId().withMessage('albumId is required'),
+];
+
+const validateEditPhoto = [
+    body('title').isString().withMessage('title is required'),
+    body('description').isString().withMessage('description is required'),
+    body('isPublic').isBoolean().withMessage('isPublic is required'),
+    body('allowCommenting')
+        .isBoolean()
+        .withMessage('allowCommenting is required'),
+];
+
+module.exports = {
+    validateRequest,
+    validatePhotoId,
+    validateSignUp,
+    validateLogIn,
+    validatePhotoIdParam,
+    validateAlbumParam,
+    validatePhotoUpload,
+    validateUserIdParam,
+    validateUserIdBody,
+    validateChangePassword,
+    validateUserEmailBody,
+    validateCreateAlbum,
+    validateAlbumId,
+    validateRegisterWithFacebook,
+    validateTag,
+    validateTagParam,
+    validateEditInfo,
+    validateComment,
+    validateCommentId,
+    validateShowCaseDescription,
+    validateSearchKeywordParam,
+    validateEditAlbum,
+    validateEditPhoto,
+    validateResetPassword,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-controlles_album.html">controlles/album</a></li><li><a href="module-controlles_photo.html">controlles/photo</a></li><li><a href="module-controlles_register.html">controlles/register</a></li><li><a href="module-controlles_tag.html">controlles/tag</a></li><li><a href="module-controlles_user.html">controlles/user</a></li><li><a href="module-third-Parties_email.html">third-Parties/email</a></li><li><a href="module-third-Parties_facebook.html">third-Parties/facebook</a></li><li><a href="module-third-Parties_redis.html">third-Parties/redis</a></li></ul><h3>Classes</h3><ul><li><a href="CustomError.html">CustomError</a></li><li><a href="LogicError.html">LogicError</a></li><li><a href="NotFound.html">NotFound</a></li><li><a href="RequestValidationError.html">RequestValidationError</a></li></ul><h3>Global</h3><ul><li><a href="global.html#auth">auth</a></li><li><a href="global.html#authOptional">authOptional</a></li><li><a href="global.html#errorHandler">errorHandler</a></li><li><a href="global.html#storage">storage</a></li><li><a href="global.html#upload">upload</a></li><li><a href="global.html#validateRequest">validateRequest</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Tue Jun 08 2021 21:49:19 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
