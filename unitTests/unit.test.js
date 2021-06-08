@@ -6,7 +6,7 @@ const Album = require('../src/model/albumModel');
 const Photo = require('../src/model/photoModel');
 const Comment = require('../src/model/commentModel');
 const Tag = require('../src/model/tagModel');
-
+const { redisClient } = require('../src/third-Parties/redis');
 const userId = new mongoose.Types.ObjectId();
 const userLogId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
@@ -69,6 +69,11 @@ beforeAll(async () => {
     await new Tag(data.tagData).save();
 });
 
+afterAll(async ()=> {
+    await mongoose.disconnect();
+    await redisClient.quit();
+
+})
 /**Register Controller */
 test('Test Reset Password flow', async () => {
     await request(app).post('/register/forgetPassword').send({}).expect(400);

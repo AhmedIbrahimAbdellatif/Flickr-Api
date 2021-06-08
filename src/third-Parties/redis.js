@@ -34,3 +34,4 @@ redisClient.on('error', (error) => {
 });
 module.exports.getAsync = promisify(redisClient.get).bind(redisClient);
 module.exports.setAsync = promisify(redisClient.set).bind(redisClient);
+module.exports.redisClient = redisClient
