@@ -1,9 +1,9 @@
 
-setup_e2e_test_env:
-	docker-compose -f docker-compose.e2e-test.yml build
+setup_e2e_test_env: 
+	docker-compose -f docker-compose.e2e-test.yml --env-file ./config/e2e_test.env build
 
 run_e2e_tests:
-	docker-compose -f docker-compose.e2e-test.yml up --exit-code-from test --abort-on-container-exit
+	docker-compose -f docker-compose.e2e-test.yml --env-file ./config/e2e_test.env up --exit-code-from test --abort-on-container-exit
 
 post_run_e2e_tests:
 	docker-compose -f docker-compose.e2e-test.yml down

@@ -1,6 +1,24 @@
 version: "3"
 
 services:
+  traefik:
+    image: traefik:2.4
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    networks:
+      internal:
+        aliases:
+          - ${DOMAIN}
+          - api.${DOMAIN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
   api:
     image: flickr-api
     container_name: api
@@ -9,19 +27,22 @@ services:
       MONGODB_URL: mongodb://mongo
       REDIS_URL: redis://redis
       NODE_ENV: testTeam
-      HOSTNAME: http://api.qasaqees.tech/
-      PORT: 80
+      HOSTNAME: http://api.${DOMAIN}/
+      PORT: 3000
     env_file:
       - config/e2e_test.env
     networks:
-      databases:
-      proxy:
-        aliases:
-          - api.qasaqees.tech
+      - internal
     depends_on:
       - mongo
       - redis
-  
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.backend.rule=(( Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`) ) && PathPrefix(`/api`)) || Host(`api.${DOMAIN}`)
+      - traefik.http.middlewares.backendPathStrip.stripprefix.prefixes=/api
+      - traefik.http.middlewares.backendPathStrip.stripprefix.forceSlash=false
+      - traefik.http.routers.backend.middlewares=backendPathStrip@docker
+
   frontend:
     image: ghcr.io/ahmedhussiien/swfrontend:latest
     container_name: frontend
@@ -29,18 +50,19 @@ services:
     logging:
       driver: none 
     networks:
-      proxy:
-        aliases:
-          - qasaqees.tech
+      - internal
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.frontend.rule=( Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`) )
 
   test:
     image: ghcr.io/ahmedhussiien/flickr-test:0036a51e
     container_name: test
     environment:
-      URL: http://qasaqees.tech/
+      URL: http://${DOMAIN}/
       MODE: automated
     networks:
-      - proxy
+      - internal
     depends_on:
       - api
       - frontend
@@ -50,7 +72,7 @@ services:
     container_name: mongo
     restart: unless-stopped
     networks:
-      - databases
+      - internal
     volumes:
       - dbdata:/data/db
     logging:
@@ -60,13 +82,12 @@ services:
     image: redis:6.2-alpine
     container_name: redis
     networks:
-      - databases
+      - internal
     logging:
       driver: none 
 
 networks:
-  databases:
-  proxy:
+  internal:
 
 volumes:
   dbdata:
