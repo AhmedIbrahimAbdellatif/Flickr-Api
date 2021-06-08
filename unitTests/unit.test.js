@@ -26,7 +26,7 @@ const data = {
         _id: photoId,
         title: 'Test',
         creator: userId,
-        url:'http://localhost:3000/public/images/default/8.jpeg'
+        url:'http://localhost:3000/public/images/default/20.jpeg'
     }
 }
 beforeEach(async() => {
@@ -81,7 +81,79 @@ test('Test Reset Password flow', async() => {
 
 
 /**User Controller Test */
+test('Edit Cover Photo',async() =>{
 
+    // No Auth
+    await request(app)
+            .patch('/user/editCoverPhoto')
+            .send({}).expect(401);
+    
+    //No PhotoId
+    await request(app)
+            .patch('/user/editCoverPhoto')
+            .set('Authorization',`Bearer ${data.token}`)
+            .send({}).expect(400);
+
+    await request(app)
+            .patch('/user/editCoverPhoto')
+            .set('Authorization',`Bearer ${data.token}`)
+            .send({
+                photoId
+            }).expect(200);
+
+    const user = await User.findById(userId);
+    const photo = await Photo.findById(photoId);
+
+    expect(user.coverPhotoUrl).toBe(photo.url);
+      
+})
+test('Edit Profile Photo',async() =>{
+    // No Auth
+    await request(app)
+            .patch('/user/editProfilePhoto')
+            .send({}).expect(401); 
+    //No PhotoId
+    await request(app)
+            .patch('/user/editProfilePhoto')
+            .set('Authorization',`Bearer ${data.token}`)
+            .send({}).expect(400);
+    
+    await request(app)
+            .patch('/user/editProfilePhoto')
+            .set('Authorization',`Bearer ${data.token}`)
+            .send({
+                photoId
+            }).expect(200);
+
+    const user = await User.findById(userId);
+    const photo = await Photo.findById(photoId);
+
+    expect(user.profilePhotoUrl).toBe(photo.url);
+      
+})
+test('Edit User Info',async() =>{
+    // No Auth
+    await request(app)
+            .patch('/user/editInfo')
+            .send({}).expect(401); 
+    
+    await request(app)
+            .patch('/user/editInfo')
+            .set('Authorization',`Bearer ${data.token}`)
+            .send({
+                currentHome: 'Cairo'
+            }).expect(400);
+    await request(app)
+            .patch('/user/editInfo')
+            .set('Authorization',`Bearer ${data.token}`)
+            .send({
+                currentCity: 'Cairo'
+            }).expect(200);
+
+    const user = await User.findById(userId);
+    expect(user.currentCity).toBe('Cairo');
+      
+})
 
 
 

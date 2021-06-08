@@ -22,7 +22,12 @@ router.get(
     validateTagParam,
     tagController.getTagMedia
 );
-router.get('/search/:searchKeyword', validateSearchKeywordParam, validateRequest, tagController.searchTags);
+router.get(
+    '/search/:searchKeyword', 
+    validateSearchKeywordParam, 
+    validateRequest, 
+    tagController.searchTags
+    );
 
 
 module.exports = router;

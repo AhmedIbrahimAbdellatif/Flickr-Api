@@ -13,11 +13,42 @@ const {
     validateEditAlbum,
 } = require('../middleware/requestValidator');
 
-router.post('/createAlbum', auth, validateCreateAlbum, validateRequest ,albumController.createAlbum);
-router.delete('/deleteAlbum/:albumId', auth, validateAlbumParam, validateRequest, albumController.deleteAlbum);
-router.post('/addPhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.addPhoto);
-router.delete('/deletePhoto', auth, validatePhotoId, validateAlbumId, validateRequest ,albumController.deletePhoto);
-router.get('/:albumId',authOptional, validateAlbumParam, validateRequest, albumController.viewAlbumMedia);
-router.patch('/:albumId', validateAlbumParam, validateEditAlbum, validateRequest, albumController.editAlbum);
+router.post('/createAlbum',
+             auth, 
+             validateCreateAlbum, 
+             validateRequest ,
+             albumController.createAlbum
+);
+router.delete('/deleteAlbum/:albumId', 
+                auth, 
+                validateAlbumParam, 
+                validateRequest, 
+                albumController.deleteAlbum
+);
+router.post('/addPhoto', 
+            auth, 
+            validatePhotoId, 
+            validateAlbumId, 
+            validateRequest ,
+            albumController.addPhoto
+            );
+router.delete('/deletePhoto', 
+                auth, 
+                validatePhotoId, 
+                validateAlbumId, 
+                validateRequest ,
+                albumController.deletePhoto
+);
+router.get('/:albumId',
+            authOptional, 
+            validateAlbumParam, 
+            validateRequest, 
+            albumController.viewAlbumMedia);
+router.patch('/:albumId', 
+            validateAlbumParam, 
+            validateEditAlbum, 
+            validateRequest, 
+            albumController.editAlbum
+);
 
 module.exports = router;

@@ -20,16 +20,51 @@ router.post(
     validateRequest,
     registerController.signUp
 );
-router.post('/signUpWithFacebook',validateRegisterWithFacebook, validateRequest, registerController.signUpWithFacebook);
+router.post(
+    '/signUpWithFacebook',
+    validateRegisterWithFacebook, 
+    validateRequest, 
+    registerController.signUpWithFacebook
+    );
 
-router.post('/loginWithFacebook',validateRegisterWithFacebook, validateRequest, registerController.loginnWithFacebook);
+router.post(
+    '/loginWithFacebook',
+    validateRegisterWithFacebook, 
+    validateRequest, 
+    registerController.loginnWithFacebook
+    );
 
-router.post('/logIn', validateLogIn, validateRequest, registerController.logIn);
+router.post(
+    '/logIn', 
+    validateLogIn, 
+    validateRequest, 
+    registerController.logIn
+    );
 
-router.post('/logOut', auth, registerController.logOut);
+router.post(
+    '/logOut', 
+    auth, 
+    registerController.logOut
+    );
 
-router.post('/changePassword', auth, validateChangePassword, validateRequest, registerController.changePassword);
+router.post(
+    '/changePassword', 
+    auth, 
+    validateChangePassword, 
+    validateRequest, 
+    registerController.changePassword);
 
-router.post('/forgetPassword', validateUserEmailBody, validateRequest, registerController.forgetPassword)
-router.post('/resetPassword', validateResetPassword, validateRequest, registerController.resetPassword)
+router.post(
+    '/forgetPassword', 
+    validateUserEmailBody, 
+    validateRequest, 
+    registerController.forgetPassword
+    );
+
+router.post(
+    '/resetPassword', 
+    validateResetPassword, 
+    validateRequest, 
+    registerController.resetPassword
+    );
 module.exports = router;
