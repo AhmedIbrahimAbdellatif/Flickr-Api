@@ -8,7 +8,7 @@
     "scripts": {
         "dev": "env-cmd -f ./config/.env nodemon src/index.js",
         "test": "echo \"Error: no test specified\" && exit 0",
-        "testWatch": "env-cmd -f ./config/test.env jest --watchAll -w 1",
+        "testWatch": "env-cmd -f ./config/test.env jest --watchAll",
         "start": "node src/index.js"
     },
     "jest": {

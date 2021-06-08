@@ -6,6 +6,7 @@ const Album = require('../src/model/albumModel');
 const Photo = require('../src/model/photoModel');
 
 const userId = new mongoose.Types.ObjectId();
+const userLogId =  new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
 const photoId = new mongoose.Types.ObjectId();
 const data = {
@@ -13,6 +14,14 @@ const data = {
         _id: userId,
         email: 'test@test.com',
         password: 'test@test.pass',
+        firstName: 'Test',
+        lastName: 'flickr',
+        age: 21,
+    },
+    userLogData: {
+        _id: userLogId,
+        email: 'test2@test.com',
+        password: 'test2@test.pass',
         firstName: 'Test',
         lastName: 'flickr',
         age: 21,
@@ -29,14 +38,16 @@ const data = {
         url: 'http://localhost:3000/public/images/default/20.jpeg',
     },
 };
-beforeEach(async () => {
+beforeAll(async () => {
     await User.deleteMany({});
     await Album.deleteMany({});
     await Photo.deleteMany({});
-    const users = await User.find({}).countDocuments();
     const user = new User(data.userData);
     await user.save();
+    const userLog = new User(data.userLogData);
+    await userLog.save();
     data.token = user.signToken(user._id);
+    data.logOutToken = user.signToken(userLog._id);
     await new Album(data.albumData).save();
     await new Photo(data.photoData).save();
 });
@@ -99,7 +110,7 @@ test('Test LogIn', async () => {
     await request(app)
         .post('/register/logIn')
         .send({
-            email: data.userData.email,
+            email: data.userLogData.email,
             password: 'wrongPass',
         })
         .expect(401);
@@ -107,40 +118,40 @@ test('Test LogIn', async () => {
         .post('/register/logIn')
         .send({
             email: 'wrongUser@test.com',
-            password: data.userData.password,
+            password: data.userLogData.password,
         })
         .expect(401);
     await request(app)
         .post('/register/logIn')
         .send({
-            email: data.userData.email,
-            password: data.userData.password,
+            email: data.userLogData.email,
+            password: data.userLogData.password,
         })
         .expect(200);
 });
 
 test('Test LogOut Flow', async () => {
-    await request(app)
+    const response = await request(app)
         .post('/register/logIn')
         .send({
-            email: data.userData.email,
-            password: data.userData.password,
+            email: data.userLogData.email,
+            password: data.userLogData.password,
         })
         .expect(200);
     await request(app)
         .patch('/user/editInfo')
-        .set('Authorization', `Bearer ${data.token}`)
+        .set('Authorization', `Bearer ${data.logOutToken}`)
         .send({
             currentCity: 'Cairo',
         })
         .expect(200);
     await request(app)
         .post('/register/logOut')
-        .set('Authorization', `Bearer ${data.token}`)
+        .set('Authorization', `Bearer ${data.logOutToken}`)
         .expect(200);
     await request(app)
         .patch('/user/editInfo')
-        .set('Authorization', `Bearer ${data.token}`)
+        .set('Authorization', `Bearer ${data.logOutToken}`)
         .send({
             currentCity: 'Cairo',
         })
