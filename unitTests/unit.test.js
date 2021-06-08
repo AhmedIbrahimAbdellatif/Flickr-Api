@@ -397,7 +397,6 @@ test('View User Favourites', async () => {
 
 /** Photo Controller */
 test('Upload Photo', async () => {
-    // No Auth
     await request(app)
         .post('/photo/upload')
         .set('Authorization', `Bearer ${data.token}`)
