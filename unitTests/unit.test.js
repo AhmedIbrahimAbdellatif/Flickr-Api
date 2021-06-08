@@ -11,8 +11,12 @@ const { redisClient } = require('../src/third-Parties/redis');
 const userId = new mongoose.Types.ObjectId();
 const userLogId = new mongoose.Types.ObjectId();
 const userChangePassId = new mongoose.Types.ObjectId();
+const userFaveouriedId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
+const albumDeleteId = new mongoose.Types.ObjectId();
+const albumDeletePhotoId = new mongoose.Types.ObjectId();
 const photoId = new mongoose.Types.ObjectId();
+const photoDeleteId = new mongoose.Types.ObjectId();
 const tag1Id = new mongoose.Types.ObjectId();
 const tag2Id = new mongoose.Types.ObjectId();
 const commentId = new mongoose.Types.ObjectId();
@@ -43,8 +47,27 @@ const data = {
         lastName: 'flickr',
         age: 21,
     },
+    userFavouriedData: {
+        _id: userFaveouriedId,
+        email: 'test4@test.com',
+        password: 'test4@test.pass',
+        firstName: 'Test',
+        lastName: 'flickr',
+        favourites: [photoId],
+        age: 21,
+    },
     albumData: {
         _id: albumId,
+        creator: userId,
+        title: 'Test',
+    },
+    albumDeleteData: {
+        _id: albumDeleteId,
+        creator: userId,
+        title: 'Test',
+    },
+    albumDeletePhotoData: {
+        _id: albumDeletePhotoId,
         creator: userId,
         title: 'Test',
     },
@@ -52,8 +75,15 @@ const data = {
         _id: photoId,
         title: 'Test',
         creator: userId,
-        albums: [albumId],
+        albums: [albumDeletePhotoId],
         url: 'http://localhost:3000/public/images/default/20.jpeg'
+    },
+    photoDeleteData: {
+        _id: photoDeleteId,
+        title: 'Test',
+        creator: userId,
+        albums: [albumDeletePhotoId],
+        url: 'http://localhost:3000/public/images/default/21.jpeg'
     },
     tag1Data: {
         _id: tag1Id,
@@ -84,12 +114,18 @@ beforeAll(async () => {
     await user.save();
     const userLog = new User(data.userLogData);
     await userLog.save();
+    const userFavouried = new User(data.userFavouriedData);
+    await userFavouried.save();
     const userChangePass = new User(data.userChangePassData);
     await userChangePass.save();
     data.token = user.signToken(user._id);
-
+    data.logOutToken = userLog.signToken(userLog._id);
+    data.favouriedToken = userFavouried.signToken(userFavouried._id);
     await new Album(data.albumData).save();
+    await new Album(data.albumDeleteData).save();
+    await new Album(data.albumDeletePhotoData).save();
     await new Photo(data.photoData).save();
+    await new Photo(data.photoDeleteData).save();
     await new Tag(data.tag1Data).save();
     await new Tag(data.tag2Data).save();
     await new Comment(data.commentData).save();
@@ -103,44 +139,14 @@ afterAll(async ()=> {
 })
 /**Register Controller */
 test('Test Reset Password flow', async () => {
-
-
     await request(app)
         .post('/register/forgetPassword')
         .send({}).expect(400);
     await request(app)
         .post('/register/forgetPassword')
         .send({
-            email: data.userData.email
+            email: data.userChangePassData.email
         }).expect(200);
-
-    const user = await User.findById(userId).select('+forgetPassCode');
-    await request(app)
-        .post('/register/resetPassword')
-        .send({
-            email: data.userData.email,
-            code: user.forgetPassCode,
-            newPass: 'fifa2011'
-        }).expect(200);
-
-    await request(app)
-        .post('/register/logIn')
-        .send({
-            email: data.userData.email,
-            password: 'fifa2011'
-        }).expect(200);
-})
-
-
-/**Register Controller */
-test('Test Reset Password flow', async () => {
-    await request(app).post('/register/forgetPassword').send({}).expect(400);
-    await request(app)
-        .post('/register/forgetPassword')
-        .send({
-            email: data.userChangePassData.email,
-        })
-        .expect(200);
 
     const user = await User.findById(userChangePassId).select('+forgetPassCode');
     await request(app)
@@ -148,70 +154,16 @@ test('Test Reset Password flow', async () => {
         .send({
             email: data.userChangePassData.email,
             code: user.forgetPassCode,
-            newPass: 'fifa2011',
-        })
-        .expect(200);
+            newPass: 'fifa2011'
+        }).expect(200);
 
-/**Album Controller */
-test('Create Album', async () => {
     await request(app)
-        .post('/album/createAlbum')
-        .send({ 'title': "testAlbum" })
-        .expect(401);
-    const response = await request(app)
-        .post('/album/createAlbum')
-        .set('Authorization', `Bearer ${data.token}`)
-        .send({ 'title': "testAlbum" })
-        .expect(201);
-    expect(response.body.album.creator).toBe(userId.toString());
+        .post('/register/logIn')
+        .send({
+            email: data.userChangePassData.email,
+            password: 'fifa2011'
+        }).expect(200);
 })
-
-test('Delete Album', async () => {
-    await request(app)
-        .delete(`/album/deleteAlbum/${albumId}`)
-        .expect(401);
-    await request(app)
-        .delete(`/album/deleteAlbum/${albumId}`)
-        .set('Authorization', `Bearer ${data.token}`)
-        .expect(200);
-})
-
-test('Add Photo to Album', async () => {
-    const response = await request(app)
-        .post('/photo/upload')
-        .set('Authorization', `Bearer ${data.token}`)
-        .attach('file', 'unitTests/fixtures/philly.jpg')
-        .field('contentType', 'Photo')
-        .field('title', 'test1')
-        .expect(201);
-    await request(app)
-        .post(`/album/addPhoto`)
-        .send({ 'albumId': albumId, 'photoId': response.body._id })
-        .expect(401);
-    await request(app)
-        .post(`/album/addPhoto`)
-        .set('Authorization', `Bearer ${data.token}`)
-        .send({ 'albumId': albumId, 'photoId': response.body._id })
-        .expect(200);
-    const album = await Album.findById(albumId);
-    expect(album.photoIds.toString()).toContain(response.body._id);
-})
-
-test('Delete Photo from Album', async () => {
-    await request(app)
-        .delete(`/album/deletePhoto`)
-        .send({ 'albumId': albumId, 'photoId': photoId })
-        .expect(401);
-    await request(app)
-        .delete(`/album/deletePhoto`)
-        .set('Authorization', `Bearer ${data.token}`)
-        .send({ 'albumId': albumId, 'photoId': photoId })
-        .expect(200);
-    const album = await Album.findById(albumId);
-    expect(album.photoIds.toString()).not.toContain(photoId.toString());
-})
-
-
 
 test('Test SignUp', async () => {
     await request(app).post('/register/signUp').send({}).expect(400);
@@ -291,6 +243,63 @@ test('Test LogOut Flow', async () => {
 });
 
 /**Album Controller */
+test('Create Album', async () => {
+    await request(app)
+        .post('/album/createAlbum')
+        .send({ 'title': "testAlbum" })
+        .expect(401);
+    const response = await request(app)
+        .post('/album/createAlbum')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'title': "testAlbum" })
+        .expect(201);
+    expect(response.body.album.creator).toBe(userId.toString());
+})
+
+test('Delete Album', async () => {
+    await request(app)
+        .delete(`/album/deleteAlbum/${albumDeleteId}`)
+        .expect(401);
+    await request(app)
+        .delete(`/album/deleteAlbum/${albumDeleteId}`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .expect(200);
+})
+
+test('Add Photo to Album', async () => {
+    const response = await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(201);
+    await request(app)
+        .post(`/album/addPhoto`)
+        .send({ 'albumId': albumId, 'photoId': response.body._id })
+        .expect(401);
+    await request(app)
+        .post(`/album/addPhoto`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'albumId': albumId, 'photoId': response.body._id })
+        .expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.toString()).toContain(response.body._id);
+})
+
+test('Delete Photo from Album', async () => {
+    await request(app)
+        .delete(`/album/deletePhoto`)
+        .send({ 'albumId': albumId, 'photoId': photoId })
+        .expect(401);
+    await request(app)
+        .delete(`/album/deletePhoto`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'albumId': albumId, 'photoId': photoId })
+        .expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.toString()).not.toContain(photoId.toString());
+})
 
 /**User Controller Test */
 test('Edit Cover Photo', async () => {
@@ -435,13 +444,13 @@ test('Upload Photo', async () => {
 test('Delete Photo', async () => {
     // No Auth
     await request(app)
-        .delete(`/photo/delete/${photoId}`)
+        .delete(`/photo/delete/${photoDeleteId}`)
         .send({}).expect(401);
     await request(app)
-        .delete(`/photo/delete/${photoId}`)
+        .delete(`/photo/delete/${photoDeleteId}`)
         .set('Authorization', `Bearer ${data.token}`)
         .send({}).expect(200);
-    const album = await Album.findById(albumId);
+    const album = await Album.findById(albumDeletePhotoId);
     expect(album.photoIds.length).toBe(0);
 })
 
@@ -473,10 +482,10 @@ test('Delete from favourites', async () => {
         .expect(401);
     await request(app)
         .delete('/photo/deleteFromFavorites')
-        .set('Authorization', `Bearer ${data.token}`)
+        .set('Authorization', `Bearer ${data.favouriedToken}`)
         .send({ 'photoId': photoId })
         .expect(200);
-    const user = await User.findById(userId);
+    const user = await User.findById(userFaveouriedId);
     expect(user.favourites.toString()).not.toContain(photoId.toString());
 })
 
@@ -572,6 +581,7 @@ test('Edit ShowCase And Description', async () => {
 test('Test Search User', async () => {
     await request(app).get('/user/search/es').expect(200);
 });
+
 /** Photo Controller */
 test('Add Tag To Photo', async () => {
     await request(app)
@@ -659,6 +669,7 @@ test('Deleting A Comment', async () => {
         })
         .expect(404);
 });
+
 /** Tag Controller */
 test('Getting Tag Media', async () => {
     await request(app).get(`/tag/${data.tagData.name}`).expect(200);
