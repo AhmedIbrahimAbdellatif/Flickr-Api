@@ -9,6 +9,7 @@ const Tag = require('../src/model/tagModel');
 const { redisClient } = require('../src/third-Parties/redis');
 const userId = new mongoose.Types.ObjectId();
 const userLogId = new mongoose.Types.ObjectId();
+const userChangePassId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
 const photoId = new mongoose.Types.ObjectId();
 const commentId = new mongoose.Types.ObjectId();
@@ -24,6 +25,14 @@ const data = {
     userLogData: {
         _id: userLogId,
         email: 'test2@test.com',
+        password: 'test2@test.pass',
+        firstName: 'Test',
+        lastName: 'flickr',
+        age: 21,
+    },
+    userChangePassData: {
+        _id: userChangePassId,
+        email: 'test3@test.com',
         password: 'test2@test.pass',
         firstName: 'Test',
         lastName: 'flickr',
@@ -61,6 +70,8 @@ beforeAll(async () => {
     await user.save();
     const userLog = new User(data.userLogData);
     await userLog.save();
+    const userChangePass = new User(data.userChangePassData);
+    await userChangePass.save();
     data.token = user.signToken(user._id);
     data.logOutToken = user.signToken(userLog._id);
     await new Album(data.albumData).save();
@@ -80,15 +91,15 @@ test('Test Reset Password flow', async () => {
     await request(app)
         .post('/register/forgetPassword')
         .send({
-            email: data.userData.email,
+            email: data.userChangePassData.email,
         })
         .expect(200);
 
-    const user = await User.findById(userId).select('+forgetPassCode');
+    const user = await User.findById(userChangePassId).select('+forgetPassCode');
     await request(app)
         .post('/register/resetPassword')
         .send({
-            email: data.userData.email,
+            email: data.userChangePassData.email,
             code: user.forgetPassCode,
             newPass: 'fifa2011',
         })
@@ -97,7 +108,7 @@ test('Test Reset Password flow', async () => {
     await request(app)
         .post('/register/logIn')
         .send({
-            email: data.userData.email,
+            email: data.userChangePassData.email,
             password: 'fifa2011',
         })
         .expect(200);
