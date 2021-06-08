@@ -51,7 +51,8 @@ router.get(
     albumController.viewAlbumMedia
 );
 router.patch(
-    '/:albumId', 
+    '/:albumId',
+    auth,
     validateAlbumParam, 
     validateEditAlbum, 
     validateRequest, 

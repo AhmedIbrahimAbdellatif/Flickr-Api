@@ -104,6 +104,7 @@ router.post(
 
 router.patch(
     '/:photoId',
+    auth,
     validatePhotoIdParam,
     validateEditPhoto,
     validateRequest,

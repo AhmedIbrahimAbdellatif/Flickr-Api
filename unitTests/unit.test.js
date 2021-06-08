@@ -9,8 +9,9 @@ const Tag = require('../src/model/tagModel');
 const { redisClient } = require('../src/third-Parties/redis');
 
 const userId = new mongoose.Types.ObjectId();
-const userLogId = new mongoose.Types.ObjectId();
 const userChangePassId = new mongoose.Types.ObjectId();
+const userLogId = new mongoose.Types.ObjectId();
+const userResetPassId = new mongoose.Types.ObjectId();
 const userFaveouriedId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
 const albumDeleteId = new mongoose.Types.ObjectId();
@@ -30,7 +31,16 @@ const data = {
         lastName: 'flickr',
         favourites: [photoId],
         age: 21
-    }, 
+    },
+    userChangePassData:{
+        _id: userChangePassId,
+        email: 'karim@test.com',
+        password: 'karim@test.pass',
+        firstName: 'Flicker',
+        lastName: 'Test',
+        favourites: [photoId],
+        age: 22
+    },
     userLogData: {
         _id: userLogId,
         email: 'test2@test.com',
@@ -39,8 +49,8 @@ const data = {
         lastName: 'flickr',
         age: 21,
     },
-    userChangePassData: {
-        _id: userChangePassId,
+    userResetPassData: {
+        _id: userResetPassId,
         email: 'test3@test.com',
         password: 'test2@test.pass',
         firstName: 'Test',
@@ -112,13 +122,16 @@ beforeAll(async () => {
     await Tag.deleteMany({});
     const user = new User(data.userData);
     await user.save();
+    const userChangePass = new User(data.userChangePassData);
+    await userChangePass.save();
     const userLog = new User(data.userLogData);
     await userLog.save();
     const userFavouried = new User(data.userFavouriedData);
     await userFavouried.save();
-    const userChangePass = new User(data.userChangePassData);
-    await userChangePass.save();
+    const userResetPass = new User(data.userResetPassData);
+    await userResetPass.save();
     data.token = user.signToken(user._id);
+    data.tokenChangePass = user.signToken(userChangePass._id)
     data.logOutToken = userLog.signToken(userLog._id);
     data.favouriedToken = userFavouried.signToken(userFavouried._id);
     await new Album(data.albumData).save();
@@ -138,6 +151,38 @@ afterAll(async ()=> {
 
 })
 /**Register Controller */
+test('Change Password', async() => {
+    await request(app)
+    .post('/register/changePassword')
+    .set('Authorization', `Bearer ${data.tokenChangePass}`)
+    .send({
+        "newPass" : "Fifa2011!"
+    }).expect(400)
+
+
+    await request(app)
+    .post('/register/changePassword')
+    .set('Authorization', `Bearer ${data.tokenChangePass}`)
+    .send({
+        "oldPass" : data.userChangePassData.password
+    }).expect(400)
+
+    await request(app)
+    .post('/register/changePassword')
+    .send({
+        "newPass" : "Fifa2011!",
+        "oldPass" : data.userChangePassData.password
+    }).expect(401)
+
+    await request(app)
+    .post('/register/changePassword')
+    .set('Authorization', `Bearer ${data.tokenChangePass}`)
+    .send({
+        "newPass" : "Fifa2011!",
+        "oldPass" : data.userChangePassData.password
+    }).expect(200)
+})
+
 test('Test Reset Password flow', async () => {
     await request(app)
         .post('/register/forgetPassword')
@@ -145,14 +190,14 @@ test('Test Reset Password flow', async () => {
     await request(app)
         .post('/register/forgetPassword')
         .send({
-            email: data.userChangePassData.email
+            email: data.userResetPassData.email
         }).expect(200);
 
-    const user = await User.findById(userChangePassId).select('+forgetPassCode');
+    const user = await User.findById(userResetPassId).select('+forgetPassCode');
     await request(app)
         .post('/register/resetPassword')
         .send({
-            email: data.userChangePassData.email,
+            email: data.userResetPassData.email,
             code: user.forgetPassCode,
             newPass: 'fifa2011'
         }).expect(200);
@@ -160,7 +205,7 @@ test('Test Reset Password flow', async () => {
     await request(app)
         .post('/register/logIn')
         .send({
-            email: data.userChangePassData.email,
+            email: data.userResetPassData.email,
             password: 'fifa2011'
         }).expect(200);
 })
@@ -243,6 +288,36 @@ test('Test LogOut Flow', async () => {
 });
 
 /**Album Controller */
+test('View Album Media', async() => {
+    const response = await request(app).get(`/album/${albumId}`)
+    .send({})
+    .expect(200)
+
+    expect(response.body).not.toBeNull();
+})
+
+test('Edit Album', async() => {
+
+    //No Authentication
+    await request(app)
+    .patch(`/album/${albumId}`)
+    .send({
+        "title": "editAlbumTest",
+        "description": "Used for testing the edit album endpoint"
+    }).expect(401)
+
+    //With Authentication
+    const response =  await request(app)
+    .patch(`/album/${albumId}`)
+    .set('Authorization', `Bearer ${data.token}`)
+    .send({
+        "title": "editAlbumTest",
+        "description": "Used for testing the edit album endpoint"
+    }).expect(200)
+
+    expect(response.body).not.toBeNull();    
+})
+
 test('Create Album', async () => {
     await request(app)
         .post('/album/createAlbum')
@@ -302,6 +377,88 @@ test('Delete Photo from Album', async () => {
 })
 
 /**User Controller Test */
+
+test('Follow User', async() => {
+     await request(app)
+    .post('/user/followUser')
+    .set('Authorization', `Bearer ${data.token}`)
+    .send({'userId': userLogId})
+    .expect(200)
+
+    await request(app)
+    .post('/user/followUser')
+    .send({'userId': userLogId})
+    .expect(401)
+
+    await request(app)
+    .post('/user/followUser')
+    .set('Authorization', `Bearer ${data.token}`)
+    .send()
+    .expect(400)
+})
+
+test('Unfollow User', async() => {
+    await request(app)
+   .post('/user/unfollowUser')
+   .set('Authorization', `Bearer ${data.token}`)
+   .send({'userId': userLogId})
+   .expect(200)
+
+   await request(app)
+   .post('/user/unfollowUser')
+   .send({'userId': userLogId})
+   .expect(401)
+
+   await request(app)
+   .post('/user/unfollowUser')
+   .set('Authorization', `Bearer ${data.token}`)
+   .send()
+   .expect(400)
+})
+
+test('Get Followers', async() => {
+    const response = await request(app)
+    .get(`/user/followers/${userLogId}`)
+    .send({})
+    .expect(200)
+
+    expect(response.body).not.toBeNull()
+})
+
+test('Get Followings', async() => {
+    const response = await request(app)
+    .get(`/user/followings/${userLogId}`)
+    .send({})
+    .expect(200)
+
+    expect(response.body).not.toBeNull()
+})
+test('View User Albums', async() => {
+    const response = await request(app)
+    .get(`/user/albums/${userId}`)
+    .send({})
+    .expect(200)
+
+    expect(response.body).not.toBeNull()
+})
+
+test('View CameraRoll', async () => {
+    
+    //With Authentication
+    const response = await request(app)
+    .get('/user/cameraRoll')
+    .set('Authorization', `Bearer ${data.token}`)
+    .send({})
+    .expect(200)
+
+    expect(response.body).not.toBeNull();
+    
+    //No Authentication
+    await request(app)
+    .get('/user/cameraRoll')
+    .send({})
+    .expect(401)
+})
 test('Edit Cover Photo', async () => {
 
     // No Auth
@@ -395,6 +552,42 @@ test('View User Favourites', async () => {
 })
 
 /** Photo Controller */
+test('Edit Photo', async ()=>{
+
+    //Authentication
+   const response = await request(app)
+    .patch(`/photo/${photoId}`)
+    .set('Authorization', `Bearer ${data.token}`)
+    .send({
+        "title" : "Edit Photo test v3",
+        "description": "Used to test edit photo endpoint",
+        "isPublic": true,
+        "allowCommenting": true,
+        "tags": ["test1", "test2", "test3", "test4"]
+    }).expect(200)
+
+    expect(response.body).not.toBeNull();
+
+    //No Authentication
+    await request(app)
+    .patch(`/photo/${photoId}`)
+    .send({
+        "title" : "Edit Photo test v3",
+        "description": "Used to test edit photo endpoint",
+        "isPublic": true,
+        "allowCommenting": true,
+        "tags": ["test1", "test2", "test3", "test4"]
+    }).expect(401)
+
+    //With Empty body
+    await request(app)
+    .patch(`/photo/${photoId}`)
+    .set('Authorization', `Bearer ${data.token}`)
+    .send({}).expect(400)
+
+});
+
+
 test('Upload Photo', async () => {
     // No Auth
     await request(app)
