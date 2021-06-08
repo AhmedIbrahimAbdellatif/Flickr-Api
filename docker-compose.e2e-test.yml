@@ -2,7 +2,7 @@ version: "3"
 
 services:
   api:
-    image: ghcr.io/ahmedhussiien/flickr-api:latest
+    image: flickr-api
     container_name: api
     restart: unless-stopped
     environment:
@@ -32,7 +32,7 @@ services:
           - qasaqees.tech
 
   test:
-    image: ghcr.io/ahmedhussiien/flickr-test:latest
+    image: ghcr.io/ahmedhussiien/flickr-test:0036a51e
     container_name: test
     environment:
       URL: http://qasaqees.tech/
