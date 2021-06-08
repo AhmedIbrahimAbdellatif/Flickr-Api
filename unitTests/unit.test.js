@@ -4,10 +4,13 @@ const mongoose = require('mongoose');
 const User = require('../src/model/userModel');
 const Album = require('../src/model/albumModel');
 const Photo = require('../src/model/photoModel');
+const Tag = require('../src/model/tagModel');
 
 const userId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
 const photoId = new mongoose.Types.ObjectId();
+const tag1Id = new mongoose.Types.ObjectId();
+const tag2Id = new mongoose.Types.ObjectId();
 const data = {
     userData: {
         _id: userId,
@@ -30,18 +33,29 @@ const data = {
         creator: userId,
         albums: [albumId],
         url: 'http://localhost:3000/public/images/default/20.jpeg'
+    },
+    tag1Data: {
+        _id: tag1Id,
+        name: 'beautifulSnow',
+    },
+    tag2Data: {
+        _id: tag2Id,
+        name: 'snow',
     }
 }
 beforeEach(async () => {
     await User.deleteMany({});
     await Album.deleteMany({});
     await Photo.deleteMany({});
+    await Tag.deleteMany({});
     const users = await User.find({}).countDocuments();
     const user = new User(data.userData);
     await user.save();
     data.token = user.signToken(user._id);
     await new Album(data.albumData).save();
     await new Photo(data.photoData).save();
+    await new Tag(data.tag1Data).save();
+    await new Tag(data.tag2Data).save();
 });
 
 
@@ -325,6 +339,50 @@ test('who favourited', async () => {
     expect(response.body.user).toEqual(
         expect.arrayContaining([
             expect.objectContaining({ id: userId.toString() })
+        ])
+    );
+})
+
+/* Tag Controller*/
+
+test('Search Tags', async () =>{
+    const response1 = await request(app)
+        .get('/tag/search/snow')
+        .expect(200);
+    expect(response1.body.searchResult).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag1Id.toString() })
+        ])
+    );
+    expect(response1.body.searchResult).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag2Id.toString() })
+        ])
+    );
+    const response2 = await request(app)
+        .get('/tag/search/beautiful')
+        .expect(200);
+    expect(response2.body.searchResult).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag1Id.toString() })
+        ])
+    );
+    expect(response2.body.searchResult).not.toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag2Id.toString() })
+        ])
+    );
+    const response3 = await request(app)
+        .get('/tag/search/summer')
+        .expect(200);
+    expect(response3.body.searchResult).not.toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag1Id.toString() })
+        ])
+    );
+    expect(response3.body.searchResult).not.toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag2Id.toString() })
         ])
     );
 })
