@@ -8,11 +8,11 @@ services:
     environment:
       MONGODB_URL: mongodb://mongo
       REDIS_URL: redis://redis
-      NODE_ENV: production
+      NODE_ENV: testTeam
       HOSTNAME: http://api.qasaqees.tech/
       PORT: 80
     env_file:
-      - config/test.env
+      - config/e2e_test.env
     networks:
       databases:
       proxy:
@@ -26,6 +26,8 @@ services:
     image: ghcr.io/ahmedhussiien/swfrontend:latest
     container_name: frontend
     restart: unless-stopped
+    logging:
+      driver: none 
     networks:
       proxy:
         aliases:
