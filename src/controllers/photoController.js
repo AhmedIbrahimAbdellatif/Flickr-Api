@@ -413,6 +413,9 @@ module.exports.editPhoto = async (req,res) =>{
         tags.push(tag)
     }
 
+    const photoExists = await Photo.findOne({_id: photoId, creator: req.user._id});
+    if(!photoExists) throw new LogicError(404, 'Photo Not Found');
+
     //Update the Photo Details
    const updatedPhoto = await Photo.findByIdAndUpdate( photoId,{ $addToSet: {tags}, 
         isPublic: req.body.isPublic, 

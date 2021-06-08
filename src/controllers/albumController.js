@@ -162,7 +162,8 @@ module.exports.editAlbum = async (req, res) => {
     //Check If title or descriptions was included in req.body to make the change
     if(req.body.title) update.title = req.body.title;
     if(req.body.description) update.description = req.body.description;
-    const album = await Album.findByIdAndUpdate(albumId, update);
+    
+    const album = await Album.findOneAndUpdate({_id: albumId, creator: req.user._id}, update);
     if(!album) throw new LogicError(404, 'Album is not Found');
     await album.save();
     res.status(200).send(album);
