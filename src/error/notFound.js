@@ -8,7 +8,7 @@ class NotFound extends CustomError {
 
     /**
      * Status Code of the Error
-     * @property
+     * @field
      */
     statusCode = 404;
 

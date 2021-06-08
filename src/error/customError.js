@@ -6,7 +6,7 @@ class CustomError extends Error {
 
     /**
      * Status Code Of the Error
-     * @property
+     * @field
      */
     statusCode;
 
