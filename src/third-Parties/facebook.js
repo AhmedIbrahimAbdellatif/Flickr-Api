@@ -1,5 +1,14 @@
+/**
+ * Axois npm module to send request
+ * @module
+ */
 const axios = require('axios');
 
+/**
+ * Fetch User's Data From facebook
+ * @param {string} accessToken  facebook Access Token
+ * @returns {object} Data fetched from facebook
+ */
 const getFacebookData = async (accessToken) => {
     const result = await axios.get(`https://graph.facebook.com/v2.12/me?fields=id,age_range,birthday,email,first_name,last_name&access_token=${accessToken}`);
 

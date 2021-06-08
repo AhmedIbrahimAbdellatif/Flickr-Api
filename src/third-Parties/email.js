@@ -1,5 +1,14 @@
-const nodemailer = require('nodemailer');
+
+/**
+ * Crypto npm module
+ * @module
+ */
 const crypto = require('crypto')
+
+/**
+ * sendgrid npm module to send email
+ * @module
+ */
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const msg = {
@@ -8,11 +17,15 @@ const msg = {
   
   
 }
-  
+
+/**
+ * 
+ * @param {string} email 
+ * @returns {string} Reset Passwrod Code
+ */
 module.exports.sendResetPasswordEmail = async (email) => {
 
     const code = await crypto.randomBytes(6).toString('hex')
-
     msg.to = email;
     msg.text =  `Here Is the Password Code: `+ code;
     sgMail.send(msg).then(() => console.log('Email Sent'))
