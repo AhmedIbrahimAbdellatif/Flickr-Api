@@ -1,3 +1,4 @@
+jest.setTimeout(30000);
 const request = require('supertest');
 const { app } = require('../src/app');
 const mongoose = require('mongoose');
@@ -589,7 +590,6 @@ test('Edit Photo', async ()=>{
 
 
 test('Upload Photo', async () => {
-    // No Auth
     await request(app)
         .post('/photo/upload')
         .set('Authorization', `Bearer ${data.token}`)
