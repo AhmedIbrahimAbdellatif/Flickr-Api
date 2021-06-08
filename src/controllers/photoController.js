@@ -33,6 +33,8 @@ const Comment = require('../model/commentModel');
  */
 const { LogicError } = require('../error/logicError');
 
+var fs = require('fs');
+
 /**
  * A function that is used to Upload Photo.
  * @param {Object} req - The request passed.
@@ -109,6 +111,13 @@ module.exports.deletePhoto = async (req, res) => {
             await Tag.findByIdAndDelete(tag._id);
         }
     })
+
+    //Remove photo from server
+    const path = photo.url.toString().match(/(public\/images\/.*)/)[0];
+    if (fs.existsSync(path)) {
+        fs.unlinkSync(path);
+    }
+
     await photo.remove();
     res.status(200).send();
 };
