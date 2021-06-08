@@ -75,7 +75,6 @@ module.exports.viewAlbumMedia = async (req, res) => {
     album.views++;
     await album.save();
     if(req.user){
-        console.log('Hena')
         for(let i =0;i<album.photoIds.length;i++){
             req.user.favourites.forEach((id)=> {
                 if(id.toString()=== album.photoIds[i].id.toString())

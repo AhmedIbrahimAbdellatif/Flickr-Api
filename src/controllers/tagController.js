@@ -10,7 +10,8 @@ module.exports.getTrendingTags = async (req, res) => {
         photo = await Photo.findOne({ tags: trendingTags[i]._id });
         trendingTags[i].photo = photo;
     }
-    console.log(trendingTags);
+    if(process.env.NODE_ENV != 'TEST')
+        console.log(trendingTags);
     res.status(200).json({
         trendingTags,
     });

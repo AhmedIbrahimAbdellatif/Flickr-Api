@@ -8,8 +8,11 @@
     "scripts": {
         "dev": "env-cmd -f ./config/.env nodemon src/index.js",
         "test": "echo \"Error: no test specified\" && exit 0",
-        "testWatch": "jest --watchAll",
+        "testWatch": "env-cmd -f ./config/test.env jest --watchAll --runInBand",
         "start": "node src/index.js"
+    },
+    "jest": {
+        "testEnvironment": "node"
     },
     "keywords": [],
     "author": "",

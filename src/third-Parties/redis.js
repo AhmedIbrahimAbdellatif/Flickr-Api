@@ -25,10 +25,12 @@ const redisClient = redis.createClient(process.env.REDIS_URL);
 // process.env.REDIS_URL is the redis url config variable name on heroku.
 // if local use redis.createClient()
 redisClient.on('connect', () => {
-    console.log('Redis client connected');
+    if(process.env.NODE_ENV != 'TEST')
+        console.log('Redis client connected');
 });
 redisClient.on('error', (error) => {
-    console.log('Redis not connected', error);
+    if(process.env.NODE_ENV != 'TEST')
+        console.log('Redis not connected', error);
 });
 module.exports.getAsync = promisify(redisClient.get).bind(redisClient);
 module.exports.setAsync = promisify(redisClient.set).bind(redisClient);

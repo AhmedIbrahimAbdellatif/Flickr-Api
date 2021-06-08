@@ -6,7 +6,8 @@ const errorHandler = (
   res,
   next
 ) => {
-  console.log(error);
+  if(process.env.NODE_ENV != 'TEST')
+    console.log(error);
   if (error instanceof CustomError)
     res.status(error.statusCode).send(error.serializeError());
   else
