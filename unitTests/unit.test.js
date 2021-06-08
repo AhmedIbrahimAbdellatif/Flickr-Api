@@ -7,12 +7,16 @@ const Photo = require('../src/model/photoModel');
 const Comment = require('../src/model/commentModel');
 const Tag = require('../src/model/tagModel');
 const { redisClient } = require('../src/third-Parties/redis');
+
 const userId = new mongoose.Types.ObjectId();
 const userLogId = new mongoose.Types.ObjectId();
 const userChangePassId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
 const photoId = new mongoose.Types.ObjectId();
+const tag1Id = new mongoose.Types.ObjectId();
+const tag2Id = new mongoose.Types.ObjectId();
 const commentId = new mongoose.Types.ObjectId();
+
 const data = {
     userData: {
         _id: userId,
@@ -20,8 +24,9 @@ const data = {
         password: 'test@test.pass',
         firstName: 'Test',
         lastName: 'flickr',
-        age: 21,
-    },
+        favourites: [photoId],
+        age: 21
+    }, 
     userLogData: {
         _id: userLogId,
         email: 'test2@test.com',
@@ -47,9 +52,17 @@ const data = {
         _id: photoId,
         title: 'Test',
         creator: userId,
-        url: 'http://localhost:3000/public/images/default/20.jpeg',
-        comments: [commentId],
+        albums: [albumId],
+        url: 'http://localhost:3000/public/images/default/20.jpeg'
     },
+    tag1Data: {
+        _id: tag1Id,
+        name: 'beautifulSnow',
+    },
+    tag2Data: {
+        _id: tag2Id,
+        name: 'snow',
+    },    
     commentData: {
         _id: commentId,
         user: userId,
@@ -59,7 +72,8 @@ const data = {
     tagData: {
         name: 'test',
     },
-};
+}
+
 beforeAll(async () => {
     await User.deleteMany({});
     await Album.deleteMany({});
@@ -73,9 +87,11 @@ beforeAll(async () => {
     const userChangePass = new User(data.userChangePassData);
     await userChangePass.save();
     data.token = user.signToken(user._id);
-    data.logOutToken = user.signToken(userLog._id);
+
     await new Album(data.albumData).save();
     await new Photo(data.photoData).save();
+    await new Tag(data.tag1Data).save();
+    await new Tag(data.tag2Data).save();
     await new Comment(data.commentData).save();
     await new Tag(data.tagData).save();
 });
@@ -85,6 +101,37 @@ afterAll(async ()=> {
     await redisClient.quit();
 
 })
+/**Register Controller */
+test('Test Reset Password flow', async () => {
+
+
+    await request(app)
+        .post('/register/forgetPassword')
+        .send({}).expect(400);
+    await request(app)
+        .post('/register/forgetPassword')
+        .send({
+            email: data.userData.email
+        }).expect(200);
+
+    const user = await User.findById(userId).select('+forgetPassCode');
+    await request(app)
+        .post('/register/resetPassword')
+        .send({
+            email: data.userData.email,
+            code: user.forgetPassCode,
+            newPass: 'fifa2011'
+        }).expect(200);
+
+    await request(app)
+        .post('/register/logIn')
+        .send({
+            email: data.userData.email,
+            password: 'fifa2011'
+        }).expect(200);
+})
+
+
 /**Register Controller */
 test('Test Reset Password flow', async () => {
     await request(app).post('/register/forgetPassword').send({}).expect(400);
@@ -105,14 +152,66 @@ test('Test Reset Password flow', async () => {
         })
         .expect(200);
 
+/**Album Controller */
+test('Create Album', async () => {
     await request(app)
-        .post('/register/logIn')
-        .send({
-            email: data.userChangePassData.email,
-            password: 'fifa2011',
-        })
+        .post('/album/createAlbum')
+        .send({ 'title': "testAlbum" })
+        .expect(401);
+    const response = await request(app)
+        .post('/album/createAlbum')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'title': "testAlbum" })
+        .expect(201);
+    expect(response.body.album.creator).toBe(userId.toString());
+})
+
+test('Delete Album', async () => {
+    await request(app)
+        .delete(`/album/deleteAlbum/${albumId}`)
+        .expect(401);
+    await request(app)
+        .delete(`/album/deleteAlbum/${albumId}`)
+        .set('Authorization', `Bearer ${data.token}`)
         .expect(200);
-});
+})
+
+test('Add Photo to Album', async () => {
+    const response = await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(201);
+    await request(app)
+        .post(`/album/addPhoto`)
+        .send({ 'albumId': albumId, 'photoId': response.body._id })
+        .expect(401);
+    await request(app)
+        .post(`/album/addPhoto`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'albumId': albumId, 'photoId': response.body._id })
+        .expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.toString()).toContain(response.body._id);
+})
+
+test('Delete Photo from Album', async () => {
+    await request(app)
+        .delete(`/album/deletePhoto`)
+        .send({ 'albumId': albumId, 'photoId': photoId })
+        .expect(401);
+    await request(app)
+        .delete(`/album/deletePhoto`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'albumId': albumId, 'photoId': photoId })
+        .expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.toString()).not.toContain(photoId.toString());
+})
+
+
 
 test('Test SignUp', async () => {
     await request(app).post('/register/signUp').send({}).expect(400);
@@ -195,51 +294,59 @@ test('Test LogOut Flow', async () => {
 
 /**User Controller Test */
 test('Edit Cover Photo', async () => {
+
     // No Auth
-    await request(app).patch('/user/editCoverPhoto').send({}).expect(401);
+    await request(app)
+        .patch('/user/editCoverPhoto')
+        .send({}).expect(401);
+
 
     //No PhotoId
     await request(app)
         .patch('/user/editCoverPhoto')
         .set('Authorization', `Bearer ${data.token}`)
-        .send({})
-        .expect(400);
+        .send({}).expect(400);
+
 
     await request(app)
         .patch('/user/editCoverPhoto')
         .set('Authorization', `Bearer ${data.token}`)
         .send({
-            photoId,
-        })
-        .expect(200);
+            photoId
+        }).expect(200);
+
 
     const user = await User.findById(userId);
     const photo = await Photo.findById(photoId);
 
     expect(user.coverPhotoUrl).toBe(photo.url);
-});
+
+})
 test('Edit Profile Photo', async () => {
     // No Auth
-    await request(app).patch('/user/editProfilePhoto').send({}).expect(401);
+    await request(app)
+        .patch('/user/editProfilePhoto')
+        .send({}).expect(401);
+
     //No PhotoId
     await request(app)
         .patch('/user/editProfilePhoto')
         .set('Authorization', `Bearer ${data.token}`)
-        .send({})
-        .expect(400);
+        .send({}).expect(400);
+
 
     await request(app)
         .patch('/user/editProfilePhoto')
         .set('Authorization', `Bearer ${data.token}`)
         .send({
-            photoId,
-        })
-        .expect(200);
+            photoId
+        }).expect(200);
 
     const user = await User.findById(userId);
     const photo = await Photo.findById(photoId);
 
     expect(user.profilePhotoUrl).toBe(photo.url);
+
 });
 test('Edit User Info', async () => {
     // No Auth
@@ -247,22 +354,186 @@ test('Edit User Info', async () => {
 
     await request(app)
         .patch('/user/editInfo')
-        .set('Authorization', `Bearer ${data.token}`)
-        .send({
-            currentHome: 'Cairo',
-        })
-        .expect(400);
+        .send({}).expect(401);
+
     await request(app)
         .patch('/user/editInfo')
         .set('Authorization', `Bearer ${data.token}`)
         .send({
-            currentCity: 'Cairo',
-        })
-        .expect(200);
+            currentHome: 'Cairo'
+        }).expect(400);
 
+    await request(app)
+        .patch('/user/editInfo')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            currentCity: 'Cairo'
+        }).expect(200);
     const user = await User.findById(userId);
     expect(user.currentCity).toBe('Cairo');
-});
+
+})
+
+test('View User Favourites', async () => {
+    const response = await request(app)
+                        .get(`/user/fav/${userId}`)
+                        .expect(200);
+    expect(response.body.favorites).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: photoId.toString() })
+        ])
+    );
+})
+
+/** Photo Controller */
+test('Upload Photo', async () => {
+    // No Auth
+    await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({}).expect(400);
+
+    await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/sample-pdf-file.pdf')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(400);
+
+    await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(201);
+
+    const response = await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(201);
+    expect(response.body.url).not.toBeNull();
+    expect(response.body._id).not.toBeNull();
+
+    const response2 = await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .field('tags', 'tag1,tag2,tag3 ,  tag4')
+        .expect(201);
+    expect(response2.body.url).not.toBeNull();
+    expect(response2.body._id).not.toBeNull();
+    expect(response2.body.tagIds.length).toBe(4);
+})
+
+test('Delete Photo', async () => {
+    // No Auth
+    await request(app)
+        .delete(`/photo/delete/${photoId}`)
+        .send({}).expect(401);
+    await request(app)
+        .delete(`/photo/delete/${photoId}`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({}).expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.length).toBe(0);
+})
+
+test('Add to favourites', async () => {
+    const response = await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(201);
+    await request(app)
+        .post('/photo/addToFavorites')
+        .send({ 'photoId': response.body._id })
+        .expect(401);
+    await request(app)
+        .post('/photo/addToFavorites')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'photoId': response.body._id })
+        .expect(200);
+    const user = await User.findById(userId);
+    expect(user.favourites.toString()).toContain(response.body._id);
+})
+
+test('Delete from favourites', async () => {
+    await request(app)
+        .delete('/photo/deleteFromFavorites')
+        .send({ 'photoId': photoId })
+        .expect(401);
+    await request(app)
+        .delete('/photo/deleteFromFavorites')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'photoId': photoId })
+        .expect(200);
+    const user = await User.findById(userId);
+    expect(user.favourites.toString()).not.toContain(photoId.toString());
+})
+
+test('who favourited', async () => {
+    const response = await request(app)
+        .get(`/photo/whoFavorited/${photoId}`)
+        .expect(200);
+    expect(response.body.user).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ id: userId.toString() })
+        ])
+    );
+})
+
+/* Tag Controller*/
+test('Search Tags', async () =>{
+    const response1 = await request(app)
+        .get('/tag/search/snow')
+        .expect(200);
+    expect(response1.body.searchResult).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag1Id.toString() })
+        ])
+    );
+    expect(response1.body.searchResult).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag2Id.toString() })
+        ])
+    );
+    const response2 = await request(app)
+        .get('/tag/search/beautiful')
+        .expect(200);
+    expect(response2.body.searchResult).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag1Id.toString() })
+        ])
+    );
+    expect(response2.body.searchResult).not.toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag2Id.toString() })
+        ])
+    );
+    const response3 = await request(app)
+        .get('/tag/search/summer')
+        .expect(200);
+    expect(response3.body.searchResult).not.toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag1Id.toString() })
+        ])
+    );
+    expect(response3.body.searchResult).not.toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: tag2Id.toString() })
+        ])
+    );
+})
+
 
 test('Edit ShowCase And Description', async () => {
     await request(app)
