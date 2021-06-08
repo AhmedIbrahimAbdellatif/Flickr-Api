@@ -212,7 +212,16 @@ test('Edit User Info', async () => {
 
 })
 
-
+test('View User Favourites', async () => {
+    const response = await request(app)
+                        .get(`/user/fav/${userId}`)
+                        .expect(200);
+    expect(response.body.favorites).toEqual(
+        expect.arrayContaining([
+            expect.objectContaining({ _id: photoId.toString() })
+        ])
+    );
+})
 
 /** Photo Controller */
 test('Upload Photo', async () => {
