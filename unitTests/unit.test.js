@@ -15,21 +15,21 @@ const data = {
         password: 'test@test.pass',
         firstName: 'Test',
         lastName: 'flickr',
-        age: 21
+        age: 21,
     },
-    albumData:{
+    albumData: {
         _id: albumId,
         creator: userId,
-        title: 'Test'
+        title: 'Test',
     },
     photoData: {
         _id: photoId,
         title: 'Test',
         creator: userId,
-        url:'http://localhost:3000/public/images/default/20.jpeg'
-    }
-}
-beforeEach(async() => {
+        url: 'http://localhost:3000/public/images/default/20.jpeg',
+    },
+};
+beforeEach(async () => {
     await User.deleteMany({});
     await Album.deleteMany({});
     await Photo.deleteMany({});
@@ -37,124 +37,248 @@ beforeEach(async() => {
     const user = new User(data.userData);
     await user.save();
     data.token = user.signToken(user._id);
-    await new Album(data.albumData).save();  
-    await new Photo(data.photoData).save();  
+    await new Album(data.albumData).save();
+    await new Photo(data.photoData).save();
 });
- 
 
 /**Register Controller */
-test('Test Reset Password flow', async() => {
+test('Test Reset Password flow', async () => {
+    await request(app).post('/register/forgetPassword').send({}).expect(400);
+    await request(app)
+        .post('/register/forgetPassword')
+        .send({
+            email: data.userData.email,
+        })
+        .expect(200);
 
-    
-    await request(app)
-            .post('/register/forgetPassword')
-            .send({}).expect(400);
-    await request(app)
-            .post('/register/forgetPassword')
-            .send({
-                email: data.userData.email
-            }).expect(200);
-    
     const user = await User.findById(userId).select('+forgetPassCode');
     await request(app)
-            .post('/register/resetPassword')
-            .send({
-                email: data.userData.email,
-                code: user.forgetPassCode,
-                newPass: 'fifa2011'
-            }).expect(200);
-    
+        .post('/register/resetPassword')
+        .send({
+            email: data.userData.email,
+            code: user.forgetPassCode,
+            newPass: 'fifa2011',
+        })
+        .expect(200);
+
     await request(app)
-            .post('/register/logIn')
-            .send({
-                email: data.userData.email,
-                password:'fifa2011'
-            }).expect(200);
-})
+        .post('/register/logIn')
+        .send({
+            email: data.userData.email,
+            password: 'fifa2011',
+        })
+        .expect(200);
+});
 
+test('Test SignUp', async () => {
+    await request(app).post('/register/signUp').send({}).expect(400);
+    await request(app)
+        .post('/register/signUp')
+        .send({
+            email: data.userData.email,
+            password: data.userData.password,
+            firstName: data.userData.firstName,
+            lastName: data.userData.firstName,
+            age: data.userData.age,
+        })
+        .expect(403);
+    await request(app)
+        .post('/register/signUp')
+        .send({
+            email: 'unitTest@test.com',
+            password: data.userData.password,
+            firstName: data.userData.firstName,
+            lastName: data.userData.firstName,
+            age: data.userData.age,
+        })
+        .expect(201);
+});
 
+test('Test LogIn', async () => {
+    await request(app).post('/register/logIn').send({}).expect(400);
+    await request(app)
+        .post('/register/logIn')
+        .send({
+            email: data.userData.email,
+            password: 'wrongPass',
+        })
+        .expect(401);
+    await request(app)
+        .post('/register/logIn')
+        .send({
+            email: 'wrongUser@test.com',
+            password: data.userData.password,
+        })
+        .expect(401);
+    await request(app)
+        .post('/register/logIn')
+        .send({
+            email: data.userData.email,
+            password: data.userData.password,
+        })
+        .expect(200);
+});
+
+test('Test LogOut Flow', async () => {
+    await request(app)
+        .post('/register/logIn')
+        .send({
+            email: data.userData.email,
+            password: data.userData.password,
+        })
+        .expect(200);
+    await request(app)
+        .patch('/user/editInfo')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            currentCity: 'Cairo',
+        })
+        .expect(200);
+    await request(app)
+        .post('/register/logOut')
+        .set('Authorization', `Bearer ${data.token}`)
+        .expect(200);
+    await request(app)
+        .patch('/user/editInfo')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            currentCity: 'Cairo',
+        })
+        .expect(401);
+});
 
 /**Album Controller */
 
-
-
-
-
 /**User Controller Test */
-test('Edit Cover Photo',async() =>{
-
+test('Edit Cover Photo', async () => {
     // No Auth
-    await request(app)
-            .patch('/user/editCoverPhoto')
-            .send({}).expect(401);
-    
+    await request(app).patch('/user/editCoverPhoto').send({}).expect(401);
+
     //No PhotoId
     await request(app)
-            .patch('/user/editCoverPhoto')
-            .set('Authorization',`Bearer ${data.token}`)
-            .send({}).expect(400);
+        .patch('/user/editCoverPhoto')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({})
+        .expect(400);
 
     await request(app)
-            .patch('/user/editCoverPhoto')
-            .set('Authorization',`Bearer ${data.token}`)
-            .send({
-                photoId
-            }).expect(200);
+        .patch('/user/editCoverPhoto')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            photoId,
+        })
+        .expect(200);
 
     const user = await User.findById(userId);
     const photo = await Photo.findById(photoId);
 
     expect(user.coverPhotoUrl).toBe(photo.url);
-      
-})
-test('Edit Profile Photo',async() =>{
+});
+test('Edit Profile Photo', async () => {
     // No Auth
-    await request(app)
-            .patch('/user/editProfilePhoto')
-            .send({}).expect(401); 
+    await request(app).patch('/user/editProfilePhoto').send({}).expect(401);
     //No PhotoId
     await request(app)
-            .patch('/user/editProfilePhoto')
-            .set('Authorization',`Bearer ${data.token}`)
-            .send({}).expect(400);
-    
+        .patch('/user/editProfilePhoto')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({})
+        .expect(400);
+
     await request(app)
-            .patch('/user/editProfilePhoto')
-            .set('Authorization',`Bearer ${data.token}`)
-            .send({
-                photoId
-            }).expect(200);
+        .patch('/user/editProfilePhoto')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            photoId,
+        })
+        .expect(200);
 
     const user = await User.findById(userId);
     const photo = await Photo.findById(photoId);
 
     expect(user.profilePhotoUrl).toBe(photo.url);
-      
-})
-test('Edit User Info',async() =>{
+});
+test('Edit User Info', async () => {
     // No Auth
+    await request(app).patch('/user/editInfo').send({}).expect(401);
+
     await request(app)
-            .patch('/user/editInfo')
-            .send({}).expect(401); 
-    
+        .patch('/user/editInfo')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            currentHome: 'Cairo',
+        })
+        .expect(400);
     await request(app)
-            .patch('/user/editInfo')
-            .set('Authorization',`Bearer ${data.token}`)
-            .send({
-                currentHome: 'Cairo'
-            }).expect(400);
-    await request(app)
-            .patch('/user/editInfo')
-            .set('Authorization',`Bearer ${data.token}`)
-            .send({
-                currentCity: 'Cairo'
-            }).expect(200);
+        .patch('/user/editInfo')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            currentCity: 'Cairo',
+        })
+        .expect(200);
 
     const user = await User.findById(userId);
     expect(user.currentCity).toBe('Cairo');
-      
-})
+});
 
+test('Edit ShowCase And Description', async () => {
+    await request(app)
+        .patch(`/user/${data.userData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({})
+        .expect(400);
+    await request(app)
+        .patch(`/user/${data.userData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            description: 'Photos are my passion',
+            showCase: {
+                title: 'a glimpse of my life',
+                photos: [data.photoData._id],
+            },
+        })
+        .expect(200);
+    const user = await User.findById(userId);
+    expect(user.description).toBe('Photos are my passion');
+    expect(user.showCase.title).toBe('a glimpse of my life');
+    expect(user.showCase.photos).toContainEqual(data.photoData._id);
 
-
+    await request(app)
+        .patch(`/user/${data.photoData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            description: 'Photos are my passion',
+            showCase: {
+                title: 'a glimpse of my life',
+                photos: [data.photoData._id],
+            },
+        })
+        .expect(404);
+});
+test('Test Search User', async () => {
+    await request(app).get('/user/search/es').expect(200);
+});
 /** Photo Controller */
+test('Add Tag To Photo', async () => {
+    await request(app)
+        .post(`/photo/addTags/${data.userData._id}`)
+        .send({ tag: 'testTag' })
+        .expect(404);
+    await request(app)
+        .post(`'photo/addTags/${data.photoData._id}`)
+        .send({})
+        .expect(400);
+    await request(app)
+        .post(`/photo/addTags/${data.photoData._id}`)
+        .send({ tag: 'testTag' })
+        .expect(200);
+    await request(app)
+        .post(`/photo/addTags/${data.photoData._id}`)
+        .send({ tag: 'testTag' })
+        .expect(409);
+});
+test('Comment On Media', async () => {});
+test('Getting Photo Comments', async () => {});
+test('Deleting A Comment', async () => {});
+/** Tag Controller */
+test('Getting Tag Media', async () => {});
+test('Getting Trending Tags', async () => {});

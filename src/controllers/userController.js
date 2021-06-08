@@ -18,24 +18,25 @@ module.exports.getFavorites = async (req, res) => {
     })
         .populate({
             path: 'creator',
-           
-        }).populate({
-            path:'tags'
+        })
+        .populate({
+            path: 'tags',
         })
         .exec();
-    if(req.user){
-        for(let i =0;i<photos.length;i++){
-            req.user.favourites.forEach((id)=> {
-                if(id.toString()=== photos[i].id.toString())
-                    photos[i].isFavourite = true
-            })
+    if (req.user) {
+        for (let i = 0; i < photos.length; i++) {
+            req.user.favourites.forEach((id) => {
+                if (id.toString() === photos[i].id.toString())
+                    photos[i].isFavourite = true;
+            });
         }
     }
     res.send({ favorites: photos });
 };
 module.exports.followUser = async (req, res) => {
     const user = req.user;
-    if(user._id.toString() === req.body.userId) throw new LogicError(404, "You Can't Follow yourself");
+    if (user._id.toString() === req.body.userId)
+        throw new LogicError(404, "You Can't Follow yourself");
     const isUserExist = await User.exists({ _id: req.body.userId });
     if (!isUserExist) throw new LogicError(404, 'User not found');
     await User.findByIdAndUpdate(user._id, {
@@ -57,29 +58,30 @@ module.exports.getFollowers = async (req, res) => {
     if (!user) throw new LogicError(404, 'User not found');
     await user
         .populate({
-             path: 'followers', 
-            select:'-showCase', 
-            populate:[{
-                path: 'numberOfFollowers'
-            },
-            {
-                path:'numberOfPhotos'
-            }
-        ] 
-    })
+            path: 'followers',
+            select: '-showCase',
+            populate: [
+                {
+                    path: 'numberOfFollowers',
+                },
+                {
+                    path: 'numberOfPhotos',
+                },
+            ],
+        })
         .execPopulate();
     const loggedInUser = req.user;
-    if(loggedInUser){
+    if (loggedInUser) {
         user.followers.forEach((user) => {
-            for(let i =0 ;i< loggedInUser.following.length;i++){
-                if(loggedInUser.following[i].toString() === user._id.toString())
-                {
+            for (let i = 0; i < loggedInUser.following.length; i++) {
+                if (
+                    loggedInUser.following[i].toString() === user._id.toString()
+                ) {
                     user.isFollowing = true;
                     break;
                 }
             }
-
-        })
+        });
     }
     res.send({ followers: user.followers });
 };
@@ -89,29 +91,30 @@ module.exports.getFollowings = async (req, res) => {
     if (!user) throw new LogicError(404, 'User not found');
     await user
         .populate({
-             path: 'following', 
-            select:'-showCase', 
-            populate:[{
-                path: 'numberOfFollowers'
-            },
-            {
-                path:'numberOfPhotos'
-            }
-            ]  
-    })
+            path: 'following',
+            select: '-showCase',
+            populate: [
+                {
+                    path: 'numberOfFollowers',
+                },
+                {
+                    path: 'numberOfPhotos',
+                },
+            ],
+        })
         .execPopulate();
     const loggedInUser = req.user;
-    if(loggedInUser){
+    if (loggedInUser) {
         user.following.forEach((user) => {
-            for(let i =0 ;i< loggedInUser.following.length;i++){
-                if(loggedInUser.following[i].toString() === user._id.toString())
-                {
+            for (let i = 0; i < loggedInUser.following.length; i++) {
+                if (
+                    loggedInUser.following[i].toString() === user._id.toString()
+                ) {
                     user.isFollowing = true;
                     break;
                 }
             }
-
-        })
+        });
     }
     res.send({ following: user.following });
 };
@@ -121,28 +124,28 @@ module.exports.getUserAbout = async (req, res) => {
     const user = await User.findById(req.params.userId)
         .populate({
             path: 'showCase.photos',
-            populate: [{
-                path: 'creator',
-                select: 'firstName lastName _id userName',
-            },
-            {
-                path: 'tags'
-            }
+            populate: [
+                {
+                    path: 'creator',
+                    select: 'firstName lastName _id userName',
+                },
+                {
+                    path: 'tags',
+                },
             ],
         })
         .populate({
             path: 'numberOfFollowers',
         })
         .populate({
-            path: 'numberOfPhotos'
+            path: 'numberOfPhotos',
         })
         .exec();
     if (!user) throw new LogicError(404, 'User not found');
     const loggedInUser = req.user;
-    if(loggedInUser){
-        for(let i =0 ;i< loggedInUser.following.length;i++){
-            if(loggedInUser.following[i].toString() === user._id.toString())
-            {
+    if (loggedInUser) {
+        for (let i = 0; i < loggedInUser.following.length; i++) {
+            if (loggedInUser.following[i].toString() === user._id.toString()) {
                 user.isFollowing = true;
                 break;
             }
@@ -157,11 +160,12 @@ module.exports.getUserPhotoStream = async (req, res) => {
     const photos = await Photo.find({
         creator: req.params.userId,
         isPublic: true,
-    }).populate({
-        path:'tags'
     })
         .populate({
-            path: 'creator',            
+            path: 'tags',
+        })
+        .populate({
+            path: 'creator',
         })
         .exec();
 
@@ -216,7 +220,7 @@ module.exports.editInfo = async (req, res) => {
 };
 
 module.exports.editShowCaseAndDescription = async (req, res) => {
-    const user = req.user;
+    const user = await User.findById(req.params.userId);
     if (!user) {
         throw new LogicError(404, 'User Not Found');
     }
@@ -241,42 +245,43 @@ module.exports.searchUser = async (req, res) => {
             $regex: '.*' + req.params.searchKeyword + '.*',
             $options: 'i',
         },
-    }).populate({
-        path: 'numberOfFollowers',
     })
-    .populate({
-        path: 'numberOfPhotos'
-    }).sort({ userName: -1 });
+        .populate({
+            path: 'numberOfFollowers',
+        })
+        .populate({
+            path: 'numberOfPhotos',
+        })
+        .sort({ userName: -1 });
     const loggedInUser = req.user;
-    if(loggedInUser){
+    if (loggedInUser) {
         users.forEach((user) => {
-            for(let i =0 ;i< loggedInUser.following.length;i++){
-                if(loggedInUser.following[i].toString() === user._id.toString())
-                {
+            for (let i = 0; i < loggedInUser.following.length; i++) {
+                if (
+                    loggedInUser.following[i].toString() === user._id.toString()
+                ) {
                     user.isFollowing = true;
                     break;
                 }
             }
-
-        })
+        });
     }
-    
+
     res.status(200).send({
         users,
     });
 };
 module.exports.viewUserAlbums = async (req, res) => {
     const userId = req.params.userId;
-    const albums = await Album.find({creator: userId});
-    res.status(200).send({albums});
+    const albums = await Album.find({ creator: userId });
+    res.status(200).send({ albums });
 };
 module.exports.viewCameraRoll = async (req, res) => {
     const photos = await Photo.find({
         creator: req.user._id,
-    })
-        .populate({
-            path: 'creator',
-        });
+    }).populate({
+        path: 'creator',
+    });
 
-    res.status(200).send({ cameraRoll: photos});
-}
+    res.status(200).send({ cameraRoll: photos });
+};
