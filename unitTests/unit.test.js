@@ -4,11 +4,14 @@ const mongoose = require('mongoose');
 const User = require('../src/model/userModel');
 const Album = require('../src/model/albumModel');
 const Photo = require('../src/model/photoModel');
+const Comment = require('../src/model/commentModel');
+const Tag = require('../src/model/tagModel');
 
 const userId = new mongoose.Types.ObjectId();
-const userLogId =  new mongoose.Types.ObjectId();
+const userLogId = new mongoose.Types.ObjectId();
 const albumId = new mongoose.Types.ObjectId();
 const photoId = new mongoose.Types.ObjectId();
+const commentId = new mongoose.Types.ObjectId();
 const data = {
     userData: {
         _id: userId,
@@ -36,12 +39,24 @@ const data = {
         title: 'Test',
         creator: userId,
         url: 'http://localhost:3000/public/images/default/20.jpeg',
+        comments: [commentId],
+    },
+    commentData: {
+        _id: commentId,
+        user: userId,
+        text: 'Testing',
+        photo: photoId,
+    },
+    tagData: {
+        name: 'test',
     },
 };
 beforeAll(async () => {
     await User.deleteMany({});
     await Album.deleteMany({});
     await Photo.deleteMany({});
+    await Comment.deleteMany({});
+    await Tag.deleteMany({});
     const user = new User(data.userData);
     await user.save();
     const userLog = new User(data.userLogData);
@@ -50,6 +65,8 @@ beforeAll(async () => {
     data.logOutToken = user.signToken(userLog._id);
     await new Album(data.albumData).save();
     await new Photo(data.photoData).save();
+    await new Comment(data.commentData).save();
+    await new Tag(data.tagData).save();
 });
 
 /**Register Controller */
@@ -271,25 +288,95 @@ test('Test Search User', async () => {
 /** Photo Controller */
 test('Add Tag To Photo', async () => {
     await request(app)
-        .post(`/photo/addTags/${data.userData._id}`)
+        .patch(`/photo/addTags/${data.userData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
         .send({ tag: 'testTag' })
         .expect(404);
     await request(app)
-        .post(`'photo/addTags/${data.photoData._id}`)
+        .patch(`'photo/addTags/${data.photoData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
         .send({})
         .expect(400);
     await request(app)
-        .post(`/photo/addTags/${data.photoData._id}`)
+        .patch(`/photo/addTags/${data.photoData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
         .send({ tag: 'testTag' })
         .expect(200);
     await request(app)
-        .post(`/photo/addTags/${data.photoData._id}`)
+        .patch(`/photo/addTags/${data.photoData._id}`)
+        .set('Authorization', `Bearer ${data.token}`)
         .send({ tag: 'testTag' })
         .expect(409);
 });
-test('Comment On Media', async () => {});
-test('Getting Photo Comments', async () => {});
-test('Deleting A Comment', async () => {});
+test('Comment On Media', async () => {
+    await request(app)
+        .post(`/photo/${data.photoData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            comment: 'This is very cool!',
+        })
+        .expect(200);
+    await request(app)
+        .post(`/photo/${data.userData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            comment: 'This is very cool!',
+        })
+        .expect(404);
+    await request(app)
+        .post(`/photo/${data.photoData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({})
+        .expect(400);
+});
+test('Getting Photo Comments', async () => {
+    await request(app)
+        .post('/photo/getComments')
+        .send({
+            photoId: data.photoData._id,
+        })
+        .expect(200);
+    await request(app)
+        .post('/photo/getComments')
+        .send({
+            photoId: data.userData._id,
+        })
+        .expect(404);
+    await request(app).post('/photo/getComments').send({}).expect(400);
+});
+test('Deleting A Comment', async () => {
+    await request(app)
+        .delete(`/photo/${data.photoData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({})
+        .expect(400);
+    await request(app)
+        .delete(`/photo/${data.userData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            commentId: data.commentData._id,
+        })
+        .expect(404);
+    await request(app)
+        .delete(`/photo/${data.photoData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            commentId: data.commentData._id,
+        })
+        .expect(200);
+    await request(app)
+        .delete(`/photo/${data.userData._id}/comment`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({
+            commentId: data.commentData._id,
+        })
+        .expect(404);
+});
 /** Tag Controller */
-test('Getting Tag Media', async () => {});
-test('Getting Trending Tags', async () => {});
+test('Getting Tag Media', async () => {
+    await request(app).get(`/tag/${data.tagData.name}`).expect(200);
+    await request(app).get(`/tag/wrongName`).expect(404);
+});
+test('Getting Trending Tags', async () => {
+    await request(app).get(`/tag/trending`).expect(200);
+});
