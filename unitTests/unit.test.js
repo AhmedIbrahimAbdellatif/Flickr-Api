@@ -78,9 +78,63 @@ test('Test Reset Password flow', async () => {
 
 
 /**Album Controller */
+test('Create Album', async () => {
+    await request(app)
+        .post('/album/createAlbum')
+        .send({ 'title': "testAlbum" })
+        .expect(401);
+    const response = await request(app)
+        .post('/album/createAlbum')
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'title': "testAlbum" })
+        .expect(201);
+    expect(response.body.album.creator).toBe(userId.toString());
+})
 
+test('Delete Album', async () => {
+    await request(app)
+        .delete(`/album/deleteAlbum/${albumId}`)
+        .expect(401);
+    await request(app)
+        .delete(`/album/deleteAlbum/${albumId}`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .expect(200);
+})
 
+test('Add Photo to Album', async () => {
+    const response = await request(app)
+        .post('/photo/upload')
+        .set('Authorization', `Bearer ${data.token}`)
+        .attach('file', 'unitTests/fixtures/philly.jpg')
+        .field('contentType', 'Photo')
+        .field('title', 'test1')
+        .expect(201);
+    await request(app)
+        .post(`/album/addPhoto`)
+        .send({ 'albumId': albumId, 'photoId': response.body._id })
+        .expect(401);
+    await request(app)
+        .post(`/album/addPhoto`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'albumId': albumId, 'photoId': response.body._id })
+        .expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.toString()).toContain(response.body._id);
+})
 
+test('Delete Photo from Album', async () => {
+    await request(app)
+        .delete(`/album/deletePhoto`)
+        .send({ 'albumId': albumId, 'photoId': photoId })
+        .expect(401);
+    await request(app)
+        .delete(`/album/deletePhoto`)
+        .set('Authorization', `Bearer ${data.token}`)
+        .send({ 'albumId': albumId, 'photoId': photoId })
+        .expect(200);
+    const album = await Album.findById(albumId);
+    expect(album.photoIds.toString()).not.toContain(photoId.toString());
+})
 
 
 /**User Controller Test */
@@ -175,7 +229,7 @@ test('Upload Photo', async () => {
         .field('contentType', 'Photo')
         .field('title', 'test1')
         .expect(400);
-        
+
     await request(app)
         .post('/photo/upload')
         .set('Authorization', `Bearer ${data.token}`)
@@ -244,12 +298,12 @@ test('Add to favourites', async () => {
 test('Delete from favourites', async () => {
     await request(app)
         .delete('/photo/deleteFromFavorites')
-        .send({'photoId': photoId})
+        .send({ 'photoId': photoId })
         .expect(401);
     await request(app)
         .delete('/photo/deleteFromFavorites')
         .set('Authorization', `Bearer ${data.token}`)
-        .send({'photoId': photoId})
+        .send({ 'photoId': photoId })
         .expect(200);
     const user = await User.findById(userId);
     expect(user.favourites.toString()).not.toContain(photoId.toString());
