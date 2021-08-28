@@ -26,7 +26,7 @@
 ### Backend Team
 
 - [Abdelrahman Shahda](https://github.com/Abdelrahman-Shahda)
-- [Ahmed Ibrahim](https://github.com/Ahmed-Ibrahim-99)
+- [Ahmed Ibrahim](https://github.com/AhmedIbrahimAbdellatif)
 - [Karim Wael](https://github.com/Karim-Wael)
 - [Mohammed Ghallab](https://github.com/Ghallab98)
 
